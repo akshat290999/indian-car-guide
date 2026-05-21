@@ -1,60 +1,30 @@
-name: CI/CD Deployment Pipeline
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  deploy-frontend:
+deploy-backend:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-      
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-          cache-dependency-path: frontend/package-lock.json
-          
-      - name: Install & Build Frontend
-        run: |
-          cd frontend
-          npm ci
-          npm run build
-          
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
-
-      - name: Sync Frontend Build to S3
-        run: |
-          aws s3 sync frontend/dist/ s3://indian-car-guide-frontend-1779267092 --delete
-
-      - name: Invalidate CloudFront Cache
-        run: |
-          aws cloudfront create-invalidation --distribution-id E3R33265D081BW --paths "/*"
-
-  deploy-backend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to EC2 via SSH
+      - name: Deploy FastAPI to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: 13.233.134.52
           username: ubuntu
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          # request_pty: false is the default and correct here.
+          # A PTY would make the runner wait for interactive input — leave it off.
           script: |
+            set -e  # Fail fast: any non-zero exit aborts the script
+
             cd ~/app
             git pull origin main
-            pkill -f uvicorn || true
+
+            # Re-install deps if requirements.txt changed
             source venv/bin/activate
-            
-            # The bulletproof detachment sequence
-            nohup uvicorn main:app --host 0.0.0.0 --port 8000 > uvicorn.log 2>&1 </dev/null &
-            disown -a
-            exit 0
+            pip install -r requirements.txt --quiet
+
+            # Hand the restart off to systemd (PID 1) and return immediately.
+            # The SSH session has zero involvement in the Uvicorn process lifetime.
+            sudo systemctl restart fastapi
+
+            # Optional: verify the service actually came up before reporting success
+            sleep 2
+            sudo systemctl is-active --quiet fastapi \
+              && echo "✅ FastAPI service is running" \
+              || { echo "❌ FastAPI service failed to start"; sudo journalctl -u fastapi -n 20 --no-pager; exit 1; }
