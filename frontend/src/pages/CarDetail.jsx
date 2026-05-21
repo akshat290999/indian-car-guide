@@ -66,7 +66,7 @@ function Chip({ label, active, onClick }) {
   );
 }
 
-// ─── Inline on-road estimator (per-row, no external utility needed) ───────────
+// ─── Inline on-road estimator ─────────────────────────────────────────────────
 function calculateCompactOnRoad(exShowroomLakhs, stateName) {
   const basePrice = exShowroomLakhs * 100000;
   const rates = { 'Delhi': 0.10, 'Maharashtra': 0.11, 'Karnataka': 0.14, 'Uttar Pradesh': 0.08, 'Haryana': 0.09 };
@@ -87,7 +87,6 @@ function VariantRow({ v, isLast }) {
       padding:'14px 0',
       borderBottom: isLast ? 'none' : `1px solid ${C.border}`,
     }}>
-      {/* ── Main row ── */}
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:'12px' }}>
         <div style={{ flex:'1 1 200px' }}>
           <p style={{ margin:'0 0 7px', fontFamily:C.inter, fontSize:'14px', fontWeight:'600', color:C.black }}>
@@ -101,14 +100,16 @@ function VariantRow({ v, isLast }) {
               {v.gearbox_type}
             </span>
             <span style={{ padding:'2px 9px', borderRadius:'20px', fontSize:'11px', fontWeight:'600', fontFamily:C.inter, backgroundColor:'#E8F8F0', color:'#1A7A45', border:'1px solid #A3D9BE' }}>
-              {v.power} BHP
+              {v.power != null ? `${v.power} BHP` : 'N/A'}
             </span>
           </div>
         </div>
         <div style={{ display:'flex', alignItems:'center', gap:'14px', flexShrink:0 }}>
           <div style={{ textAlign:'right' }}>
             <span style={{ display:'block', fontSize:'10px', color:C.muted, fontFamily:C.inter, marginBottom:'2px' }}>Ex-Showroom</span>
-            <span style={{ fontSize:'18px', fontWeight:'800', color:C.red, fontFamily:C.inter }}>₹{v.ex_showroom_price} L</span>
+            <span style={{ fontSize:'18px', fontWeight:'800', color:C.red, fontFamily:C.inter }}>
+              {v.ex_showroom_price != null ? `₹${v.ex_showroom_price} L` : 'N/A'}
+            </span>
           </div>
           <button
             onClick={() => setExpanded(x => !x)}
@@ -119,7 +120,6 @@ function VariantRow({ v, isLast }) {
         </div>
       </div>
 
-      {/* ── Inline on-road calculator ── */}
       {expanded && (
         <div style={{ display:'flex', alignItems:'center', justifyContent:'flex-end', gap:'12px', marginTop:'12px', paddingTop:'12px', borderTop:`1px dashed ${C.border}` }}>
           <span style={{ fontSize:'13px', fontFamily:C.inter, color:C.muted }}>Select State:</span>
@@ -135,7 +135,9 @@ function VariantRow({ v, isLast }) {
             <option value="Haryana">Haryana</option>
           </select>
           <span style={{ fontSize:'14px', fontFamily:C.inter, color:C.navy, marginLeft:'8px' }}>
-            On road price = <strong style={{ fontSize:'16px', color:C.red, fontWeight:'800' }}>₹{calculateCompactOnRoad(v.ex_showroom_price, calcState)}</strong>
+            On road price = <strong style={{ fontSize:'16px', color:C.red, fontWeight:'800' }}>
+              ₹{v.ex_showroom_price != null ? calculateCompactOnRoad(v.ex_showroom_price, calcState) : 'N/A'}
+            </strong>
           </span>
         </div>
       )}
@@ -145,8 +147,9 @@ function VariantRow({ v, isLast }) {
 
 // ─── Series block ─────────────────────────────────────────────────────────────
 function SeriesBlock({ name, variants }) {
-  const ps = variants.map(v => v.ex_showroom_price);
-  const lo = Math.min(...ps), hi = Math.max(...ps);
+  const ps = variants.map(v => v.ex_showroom_price).filter(p => p != null);
+  const lo = ps.length ? Math.min(...ps) : null;
+  const hi = ps.length ? Math.max(...ps) : null;
   return (
     <div style={{ backgroundColor:C.cardBg, border:`1px solid ${C.border}`, borderRadius:'12px', marginBottom:'16px', overflow:'hidden' }}>
       <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'13px 22px', backgroundColor:C.subBg, borderBottom:`1px solid ${C.border}` }}>
@@ -154,7 +157,7 @@ function SeriesBlock({ name, variants }) {
           {name.toUpperCase()} SERIES
         </span>
         <span style={{ fontFamily:C.inter, fontSize:'13px', fontWeight:'700', color:C.red }}>
-          {lo === hi ? `₹${lo} L` : `₹${lo} – ₹${hi} L`}
+          {lo == null ? 'Price N/A' : lo === hi ? `₹${lo} L` : `₹${lo} – ₹${hi} L`}
           <span style={{ color:C.muted, fontWeight:'400', marginLeft:'8px' }}>
             {variants.length} variant{variants.length !== 1 ? 's' : ''}
           </span>
@@ -172,7 +175,7 @@ function SpecPill({ label, value }) {
   return (
     <div style={{ backgroundColor:C.cardBg, border:`1px solid ${C.border}`, borderRadius:'10px', padding:'16px 20px', flex:'1 1 140px' }}>
       <p style={{ margin:'0 0 5px', fontSize:'10px', fontFamily:C.inter, fontWeight:'700', color:C.muted, textTransform:'uppercase', letterSpacing:'1px' }}>{label}</p>
-      <p style={{ margin:0, fontSize:'15px', fontFamily:C.inter, fontWeight:'700', color:C.navy }}>{value}</p>
+      <p style={{ margin:0, fontSize:'15px', fontFamily:C.inter, fontWeight:'700', color:C.navy }}>{value ?? 'N/A'}</p>
     </div>
   );
 }
@@ -199,7 +202,9 @@ export default function CarDetail() {
   const [activeTab, setActiveTab]         = useState('variants');
 
   useEffect(() => {
-    axios.get('/api/cars')
+    // Using same absolute CloudFront URL as Home.jsx — avoids relative URL
+    // routing issues when served from S3/CloudFront
+    axios.get('https://d1m68rrd1mp2k5.cloudfront.net/api/cars')
       .then(res => {
         const matched = res.data.filter(c => c.model_name.toLowerCase() === decodedModel.toLowerCase());
         setVariants(matched);
@@ -220,14 +225,14 @@ export default function CarDetail() {
   );
 
   const first       = variants[0];
-  const prices      = variants.map(v => v.ex_showroom_price);
-  const minP        = Math.min(...prices);
-  const maxP        = Math.max(...prices);
-  const powers      = variants.map(v => v.power);
-  const minPow      = Math.min(...powers);
-  const maxPow      = Math.max(...powers);
-  const fuelTypes   = [...new Set(variants.map(v => v.fuel_type))].join(' / ');
-  const gearTypes   = [...new Set(variants.map(v => v.gearbox_type))].join(' / ');
+  const prices      = variants.map(v => v.ex_showroom_price).filter(p => p != null);
+  const minP        = prices.length ? Math.min(...prices) : null;
+  const maxP        = prices.length ? Math.max(...prices) : null;
+  const powers      = variants.map(v => v.power).filter(p => p != null);
+  const minPow      = powers.length ? Math.min(...powers) : null;
+  const maxPow      = powers.length ? Math.max(...powers) : null;
+  const fuelTypes   = [...new Set(variants.map(v => v.fuel_type).filter(Boolean))].join(' / ');
+  const gearTypes   = [...new Set(variants.map(v => v.gearbox_type).filter(Boolean))].join(' / ');
   const imageUrl    = first.image_urls?.[0];
   const colors      = first.colors || [];
 
@@ -287,7 +292,7 @@ export default function CarDetail() {
                     Ex-Showroom Range
                   </p>
                   <p style={{ margin:0, fontFamily:C.inter, fontSize:'clamp(22px,3vw,30px)', fontWeight:'900', color:C.red }}>
-                    {minP === maxP ? `₹${minP} Lakh` : `₹${minP} – ₹${maxP} Lakh`}
+                    {minP == null ? 'Price N/A' : minP === maxP ? `₹${minP} Lakh` : `₹${minP} – ₹${maxP} Lakh`}
                   </p>
                 </div>
               </div>
@@ -391,9 +396,9 @@ export default function CarDetail() {
         <div id="specs" style={{ scrollMarginTop:'120px', marginTop:'52px' }}>
           <SectionHead>QUICK SPECS</SectionHead>
           <div style={{ display:'flex', gap:'12px', flexWrap:'wrap', marginBottom:'20px' }}>
-            <SpecPill label="Power"          value={minPow === maxPow ? `${minPow} BHP` : `${minPow}–${maxPow} BHP`} />
-            <SpecPill label="Fuel"           value={fuelTypes} />
-            <SpecPill label="Transmission"   value={gearTypes} />
+            <SpecPill label="Power"          value={minPow == null ? 'N/A' : minPow === maxPow ? `${minPow} BHP` : `${minPow}–${maxPow} BHP`} />
+            <SpecPill label="Fuel"           value={fuelTypes || 'N/A'} />
+            <SpecPill label="Transmission"   value={gearTypes || 'N/A'} />
             <SpecPill label="Body Type"      value={first.car_type} />
             <SpecPill label="Brand"          value={first.brand} />
             <SpecPill label="Total Variants" value={`${variants.length} options`} />

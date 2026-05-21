@@ -144,7 +144,7 @@ function PulseCard({ car, rank }) {
                 Avg. Monthly Sales
               </span>
               <span style={{ fontFamily: C.inter, fontSize: '17px', fontWeight: '800', color: rankColor }}>
-                {car.monthly_sales.toLocaleString('en-IN')} units
+                {car.monthly_sales != null ? car.monthly_sales.toLocaleString('en-IN') : 'N/A'} units
               </span>
             </div>
           </div>
@@ -170,10 +170,8 @@ export default function Home() {
   const [topCars, setTopCars] = useState([]);
 
   useEffect(() => {
-    // FORCE CLOUDFRONT API DIRECTLY - BYPASSES HIDDEN AXIOS BASEURL CONFIGS
     axios.get('https://d1m68rrd1mp2k5.cloudfront.net/api/cars')
       .then(res => {
-        // Deduplicate by model_name, keep highest monthly_sales entry per model
         const byModel = {};
         res.data.forEach(car => {
           if (!byModel[car.model_name] || car.monthly_sales > byModel[car.model_name].monthly_sales) {
@@ -366,7 +364,6 @@ export default function Home() {
                   e.currentTarget.style.borderColor = C.border;
                 }}
               >
-                {/* Avatar */}
                 <div style={{
                   width: '48px', height: '48px', borderRadius: '12px',
                   backgroundColor: accent,
@@ -377,7 +374,6 @@ export default function Home() {
                     {abbr}
                   </span>
                 </div>
-                {/* Name */}
                 <span style={{ fontFamily: C.inter, fontSize: '13px', fontWeight: '700', color: C.navy, lineHeight: 1.3 }}>
                   {name}
                 </span>
@@ -391,27 +387,18 @@ export default function Home() {
 
         {/* ── MARKET PULSE ────────────────────────────────────────────────── */}
         <section style={{ marginBottom: '80px' }}>
-          {/* ═══ MARKET PULSE HEADER ═══ */}
           <div style={{ textAlign: 'center', marginBottom: '48px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
-            {/* Live Rankings Badge */}
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', backgroundColor: '#E8F8F0', borderRadius: '20px', marginBottom: '16px' }}>
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#22C55E' }} />
               <span style={{ fontFamily: C.inter, fontSize: '11px', fontWeight: '700', color: '#1A7A45', letterSpacing: '1px' }}>LIVE RANKINGS</span>
             </div>
-
-            {/* Main Heading */}
             <h2 style={{ fontFamily: C.oswald, fontSize: '36px', color: C.navy, marginBottom: '16px', letterSpacing: '0.5px' }}>
               MARKET PULSE
             </h2>
-
-            {/* Descriptive Text */}
             <p style={{ color: C.muted, fontSize: '15px', lineHeight: '1.7', maxWidth: '650px', margin: '0 auto', fontFamily: C.inter }}>
               India's top-selling cars ranked by average monthly volume. Track the shifting trends of the Indian automotive landscape with real-world sales data. Discover which models are dominating the streets and capturing the market's attention right now.
             </p>
-
           </div>
-
 
           {topCars.length === 0 ? (
             <div style={{ padding: '60px', textAlign: 'center', backgroundColor: C.white, borderRadius: '14px', border: `1px solid ${C.border}` }}>
@@ -424,8 +411,6 @@ export default function Home() {
                   <PulseCard key={car.id} car={car} rank={i} />
                 ))}
               </div>
-
-              {/* ═══ VIEW ALL BUTTON (Below Cards) ═══ */}
               <div style={{ textAlign: 'center', marginTop: '40px' }}>
                 <Link to="/search" style={{ display: 'inline-block', padding: '14px 28px', backgroundColor: '#0A192F', color: '#FFFFFF', fontSize: '15px', fontWeight: '600', textDecoration: 'none', borderRadius: '8px', transition: 'background-color 0.2s' }}>
                   View All Models →
@@ -465,7 +450,6 @@ export default function Home() {
                   onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(10,25,47,0.12)'; }}
                   onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)';    e.currentTarget.style.boxShadow = '0 2px 8px rgba(10,25,47,0.05)'; }}
                 >
-                  {/* Icon + tag row */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
                     <span style={{ fontSize: '28px', lineHeight: 1 }}>{icon}</span>
                     <span style={{
@@ -478,17 +462,12 @@ export default function Home() {
                       {tag}
                     </span>
                   </div>
-
-                  {/* Title */}
                   <h3 style={{ margin: '0 0 12px', fontFamily: C.oswald, fontSize: '20px', fontWeight: '700', color: C.black, letterSpacing: '0.3px' }}>
                     {title}
                   </h3>
-
-                  {/* Body */}
                   <p style={{ margin: '0 0 20px', fontSize: '13.5px', color: C.bodyText, lineHeight: '1.8', fontFamily: C.inter }}>
                     {body}
                   </p>
-
                   <span style={{ fontSize: '13px', fontWeight: '700', color: accentColor, fontFamily: C.inter }}>
                     Explore {title} →
                   </span>
