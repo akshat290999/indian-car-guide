@@ -53,4 +53,8 @@ jobs:
             git pull origin main
             pkill -f uvicorn || true
             source venv/bin/activate
-            BUILD_ID=dontKillMe nohup uvicorn main:app --host 0.0.0.0 --port 8000 > uvicorn.log 2>&1 &
+            
+            # The bulletproof detachment sequence
+            nohup uvicorn main:app --host 0.0.0.0 --port 8000 > uvicorn.log 2>&1 </dev/null &
+            disown -a
+            exit 0
