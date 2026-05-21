@@ -54,11 +54,11 @@ jobs:
             git pull origin main
 
             source venv/bin/activate
-            pip install -r requirements.txt --quiet
+            [ -f requirements.txt ] && pip install -r requirements.txt --quiet || true
 
             sudo systemctl restart fastapi
 
             sleep 2
             sudo systemctl is-active --quiet fastapi \
               && echo "✅ FastAPI service is running" \
-              || { echo "❌ FastAPI service failed to start"; sudo journalctl -u fastapi -n 20 --no-pager; exit 1; }
+              || { echo "❌ FastAPI service failed to start"; sudo systemctl status fastapi; exit 1; }
