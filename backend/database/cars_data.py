@@ -14,7 +14,7 @@ CARS_DATA = [
         'lineage_history': 'Launched in 2015, the Creta revolutionized the compact SUV segment in India. Over multiple generations, it has remained the undisputed segment leader, known for its futuristic styling and feature-packed cabin.',
         'monthly_sales': 16000,
         'colors': ['Atlas White', 'Abyss Black', 'Titan Grey'],
-        'image_urls': {'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg', 'Abyss Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg', 'Titan Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg'},
+        'image_urls': {'Atlas White': '/images/hyundai-creta-atlas-white.jpg', 'Abyss Black': '/images/hyundai-creta-abyss-black.jpg', 'Titan Grey': '/images/hyundai-creta-titan-grey.jpg'},
     },
     {
         'id': 2,
@@ -31,7 +31,7 @@ CARS_DATA = [
         'lineage_history': 'Launched in 2015, the Creta revolutionized the compact SUV segment in India. Over multiple generations, it has remained the undisputed segment leader, known for its futuristic styling and feature-packed cabin.',
         'monthly_sales': 16000,
         'colors': ['Atlas White', 'Abyss Black', 'Titan Grey'],
-        'image_urls': {'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg', 'Abyss Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg', 'Titan Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg'},
+        'image_urls': {'Atlas White': '/images/hyundai-creta-atlas-white.jpg', 'Abyss Black': '/images/hyundai-creta-abyss-black.jpg', 'Titan Grey': '/images/hyundai-creta-titan-grey.jpg'},
     },
     {
         'id': 3,
@@ -48,7 +48,7 @@ CARS_DATA = [
         'lineage_history': 'Launched in 2015, the Creta revolutionized the compact SUV segment in India. Over multiple generations, it has remained the undisputed segment leader, known for its futuristic styling and feature-packed cabin.',
         'monthly_sales': 16000,
         'colors': ['Atlas White', 'Abyss Black', 'Titan Grey'],
-        'image_urls': {'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg', 'Abyss Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg', 'Titan Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg'},
+        'image_urls': {'Atlas White': '/images/hyundai-creta-atlas-white.jpg', 'Abyss Black': '/images/hyundai-creta-abyss-black.jpg', 'Titan Grey': '/images/hyundai-creta-titan-grey.jpg'},
     },
     {
         'id': 4,
@@ -65,7 +65,7 @@ CARS_DATA = [
         'lineage_history': 'Launched in 2015, the Creta revolutionized the compact SUV segment in India. Over multiple generations, it has remained the undisputed segment leader, known for its futuristic styling and feature-packed cabin.',
         'monthly_sales': 16000,
         'colors': ['Atlas White', 'Abyss Black', 'Titan Grey'],
-        'image_urls': {'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg', 'Abyss Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg', 'Titan Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg'},
+        'image_urls': {'Atlas White': '/images/hyundai-creta-atlas-white.jpg', 'Abyss Black': '/images/hyundai-creta-abyss-black.jpg', 'Titan Grey': '/images/hyundai-creta-titan-grey.jpg'},
     },
     {
         'id': 5,
@@ -82,7 +82,7 @@ CARS_DATA = [
         'lineage_history': 'Launched in 2015, the Creta revolutionized the compact SUV segment in India. Over multiple generations, it has remained the undisputed segment leader, known for its futuristic styling and feature-packed cabin.',
         'monthly_sales': 16000,
         'colors': ['Atlas White', 'Abyss Black', 'Titan Grey'],
-        'image_urls': {'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg', 'Abyss Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg', 'Titan Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141125/creta-exterior-right-front-three-quarter-11.jpeg'},
+        'image_urls': {'Atlas White': '/images/hyundai-creta-atlas-white.jpg', 'Abyss Black': '/images/hyundai-creta-abyss-black.jpg', 'Titan Grey': '/images/hyundai-creta-titan-grey.jpg'},
     },
     {
         'id': 6,
@@ -99,7 +99,7 @@ CARS_DATA = [
         'lineage_history': 'The i20 popularized the premium hatchback concept in India since its 2008 debut. It is celebrated for bringing big-car features, space, and sophisticated European design to the hatchback market.',
         'monthly_sales': 6500,
         'colors': ['Fiery Red', 'Polar White', 'Starry Night'],
-        'image_urls': {'Fiery Red': '/images/hyundai-i20.jpg', 'Polar White': '/images/hyundai-i20.jpg', 'Starry Night': '/images/hyundai-i20.jpg'},
+        'image_urls': {'Fiery Red': '/images/hyundai-i20-fiery-red.jpg', 'Polar White': '/images/hyundai-i20-polar-white.jpg', 'Starry Night': '/images/hyundai-i20-starry-night.jpg'},
     },
     {
         'id': 7,
@@ -116,7 +116,7 @@ CARS_DATA = [
         'lineage_history': 'The i20 popularized the premium hatchback concept in India since its 2008 debut. It is celebrated for bringing big-car features, space, and sophisticated European design to the hatchback market.',
         'monthly_sales': 6500,
         'colors': ['Fiery Red', 'Polar White', 'Starry Night'],
-        'image_urls': {'Fiery Red': '/images/hyundai-i20.jpg', 'Polar White': '/images/hyundai-i20.jpg', 'Starry Night': '/images/hyundai-i20.jpg'},
+        'image_urls': {'Fiery Red': '/images/hyundai-i20-fiery-red.jpg', 'Polar White': '/images/hyundai-i20-polar-white.jpg', 'Starry Night': '/images/hyundai-i20-starry-night.jpg'},
     },
     {
         'id': 8,
@@ -133,7 +133,7 @@ CARS_DATA = [
         'lineage_history': 'The i20 popularized the premium hatchback concept in India since its 2008 debut. It is celebrated for bringing big-car features, space, and sophisticated European design to the hatchback market.',
         'monthly_sales': 6500,
         'colors': ['Fiery Red', 'Polar White', 'Starry Night'],
-        'image_urls': {'Fiery Red': '/images/hyundai-i20.jpg', 'Polar White': '/images/hyundai-i20.jpg', 'Starry Night': '/images/hyundai-i20.jpg'},
+        'image_urls': {'Fiery Red': '/images/hyundai-i20-fiery-red.jpg', 'Polar White': '/images/hyundai-i20-polar-white.jpg', 'Starry Night': '/images/hyundai-i20-starry-night.jpg'},
     },
     {
         'id': 9,
@@ -150,7 +150,7 @@ CARS_DATA = [
         'lineage_history': 'The i20 popularized the premium hatchback concept in India since its 2008 debut. It is celebrated for bringing big-car features, space, and sophisticated European design to the hatchback market.',
         'monthly_sales': 6500,
         'colors': ['Fiery Red', 'Polar White', 'Starry Night'],
-        'image_urls': {'Fiery Red': '/images/hyundai-i20.jpg', 'Polar White': '/images/hyundai-i20.jpg', 'Starry Night': '/images/hyundai-i20.jpg'},
+        'image_urls': {'Fiery Red': '/images/hyundai-i20-fiery-red.jpg', 'Polar White': '/images/hyundai-i20-polar-white.jpg', 'Starry Night': '/images/hyundai-i20-starry-night.jpg'},
     },
     {
         'id': 10,
@@ -167,7 +167,7 @@ CARS_DATA = [
         'lineage_history': 'The i20 popularized the premium hatchback concept in India since its 2008 debut. It is celebrated for bringing big-car features, space, and sophisticated European design to the hatchback market.',
         'monthly_sales': 6500,
         'colors': ['Fiery Red', 'Polar White', 'Starry Night'],
-        'image_urls': {'Fiery Red': '/images/hyundai-i20.jpg', 'Polar White': '/images/hyundai-i20.jpg', 'Starry Night': '/images/hyundai-i20.jpg'},
+        'image_urls': {'Fiery Red': '/images/hyundai-i20-fiery-red.jpg', 'Polar White': '/images/hyundai-i20-polar-white.jpg', 'Starry Night': '/images/hyundai-i20-starry-night.jpg'},
     },
     {
         'id': 11,
@@ -184,7 +184,7 @@ CARS_DATA = [
         'lineage_history': "Introduced as the Vitara Brezza in 2016, this model marked Maruti's entry into compact SUVs. It quickly became a massive hit due to its high fuel efficiency, robust reliability, and boxy, commanding stance.",
         'monthly_sales': 14500,
         'colors': ['Sizzling Red', 'Exuberant Blue', 'Magma Grey'],
-        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-brezza.jpg', 'Exuberant Blue': '/images/maruti-suzuki-brezza.jpg', 'Magma Grey': '/images/maruti-suzuki-brezza.jpg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-brezza-sizzling-red.jpg', 'Exuberant Blue': '/images/maruti-suzuki-brezza-exuberant-blue.jpg', 'Magma Grey': '/images/maruti-suzuki-brezza-magma-grey.jpg'},
     },
     {
         'id': 12,
@@ -201,7 +201,7 @@ CARS_DATA = [
         'lineage_history': "Introduced as the Vitara Brezza in 2016, this model marked Maruti's entry into compact SUVs. It quickly became a massive hit due to its high fuel efficiency, robust reliability, and boxy, commanding stance.",
         'monthly_sales': 14500,
         'colors': ['Sizzling Red', 'Exuberant Blue', 'Magma Grey'],
-        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-brezza.jpg', 'Exuberant Blue': '/images/maruti-suzuki-brezza.jpg', 'Magma Grey': '/images/maruti-suzuki-brezza.jpg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-brezza-sizzling-red.jpg', 'Exuberant Blue': '/images/maruti-suzuki-brezza-exuberant-blue.jpg', 'Magma Grey': '/images/maruti-suzuki-brezza-magma-grey.jpg'},
     },
     {
         'id': 13,
@@ -218,7 +218,7 @@ CARS_DATA = [
         'lineage_history': "Introduced as the Vitara Brezza in 2016, this model marked Maruti's entry into compact SUVs. It quickly became a massive hit due to its high fuel efficiency, robust reliability, and boxy, commanding stance.",
         'monthly_sales': 14500,
         'colors': ['Sizzling Red', 'Exuberant Blue', 'Magma Grey'],
-        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-brezza.jpg', 'Exuberant Blue': '/images/maruti-suzuki-brezza.jpg', 'Magma Grey': '/images/maruti-suzuki-brezza.jpg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-brezza-sizzling-red.jpg', 'Exuberant Blue': '/images/maruti-suzuki-brezza-exuberant-blue.jpg', 'Magma Grey': '/images/maruti-suzuki-brezza-magma-grey.jpg'},
     },
     {
         'id': 14,
@@ -235,7 +235,7 @@ CARS_DATA = [
         'lineage_history': "Introduced as the Vitara Brezza in 2016, this model marked Maruti's entry into compact SUVs. It quickly became a massive hit due to its high fuel efficiency, robust reliability, and boxy, commanding stance.",
         'monthly_sales': 14500,
         'colors': ['Sizzling Red', 'Exuberant Blue', 'Magma Grey'],
-        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-brezza.jpg', 'Exuberant Blue': '/images/maruti-suzuki-brezza.jpg', 'Magma Grey': '/images/maruti-suzuki-brezza.jpg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-brezza-sizzling-red.jpg', 'Exuberant Blue': '/images/maruti-suzuki-brezza-exuberant-blue.jpg', 'Magma Grey': '/images/maruti-suzuki-brezza-magma-grey.jpg'},
     },
     {
         'id': 15,
@@ -252,7 +252,7 @@ CARS_DATA = [
         'lineage_history': "Introduced as the Vitara Brezza in 2016, this model marked Maruti's entry into compact SUVs. It quickly became a massive hit due to its high fuel efficiency, robust reliability, and boxy, commanding stance.",
         'monthly_sales': 14500,
         'colors': ['Sizzling Red', 'Exuberant Blue', 'Magma Grey'],
-        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-brezza.jpg', 'Exuberant Blue': '/images/maruti-suzuki-brezza.jpg', 'Magma Grey': '/images/maruti-suzuki-brezza.jpg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-brezza-sizzling-red.jpg', 'Exuberant Blue': '/images/maruti-suzuki-brezza-exuberant-blue.jpg', 'Magma Grey': '/images/maruti-suzuki-brezza-magma-grey.jpg'},
     },
     {
         'id': 16,
@@ -269,7 +269,7 @@ CARS_DATA = [
         'lineage_history': "Since 2005, the Swift has been a cultural icon in India, redefining the hatchback as sporty and youthful. Across four generations, it has consistently remained one of the country's top three best-selling cars.",
         'monthly_sales': 17000,
         'colors': ['Sizzling Red', 'Splendid Silver', 'Arctic White'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg', 'Arctic White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-swift-sizzling-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-swift-splendid-silver.jpg', 'Arctic White': '/images/maruti-suzuki-swift-arctic-white.jpg'},
     },
     {
         'id': 17,
@@ -286,7 +286,7 @@ CARS_DATA = [
         'lineage_history': "Since 2005, the Swift has been a cultural icon in India, redefining the hatchback as sporty and youthful. Across four generations, it has consistently remained one of the country's top three best-selling cars.",
         'monthly_sales': 17000,
         'colors': ['Sizzling Red', 'Splendid Silver', 'Arctic White'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg', 'Arctic White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-swift-sizzling-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-swift-splendid-silver.jpg', 'Arctic White': '/images/maruti-suzuki-swift-arctic-white.jpg'},
     },
     {
         'id': 18,
@@ -303,7 +303,7 @@ CARS_DATA = [
         'lineage_history': "Since 2005, the Swift has been a cultural icon in India, redefining the hatchback as sporty and youthful. Across four generations, it has consistently remained one of the country's top three best-selling cars.",
         'monthly_sales': 17000,
         'colors': ['Sizzling Red', 'Splendid Silver', 'Arctic White'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg', 'Arctic White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-swift-sizzling-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-swift-splendid-silver.jpg', 'Arctic White': '/images/maruti-suzuki-swift-arctic-white.jpg'},
     },
     {
         'id': 19,
@@ -320,7 +320,7 @@ CARS_DATA = [
         'lineage_history': "Since 2005, the Swift has been a cultural icon in India, redefining the hatchback as sporty and youthful. Across four generations, it has consistently remained one of the country's top three best-selling cars.",
         'monthly_sales': 17000,
         'colors': ['Sizzling Red', 'Splendid Silver', 'Arctic White'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg', 'Arctic White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-swift-sizzling-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-swift-splendid-silver.jpg', 'Arctic White': '/images/maruti-suzuki-swift-arctic-white.jpg'},
     },
     {
         'id': 20,
@@ -337,7 +337,7 @@ CARS_DATA = [
         'lineage_history': "Since 2005, the Swift has been a cultural icon in India, redefining the hatchback as sporty and youthful. Across four generations, it has consistently remained one of the country's top three best-selling cars.",
         'monthly_sales': 17000,
         'colors': ['Sizzling Red', 'Splendid Silver', 'Arctic White'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg', 'Arctic White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/159231/swift-exterior-right-front-three-quarter-3.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-swift-sizzling-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-swift-splendid-silver.jpg', 'Arctic White': '/images/maruti-suzuki-swift-arctic-white.jpg'},
     },
     {
         'id': 21,
@@ -354,7 +354,7 @@ CARS_DATA = [
         'lineage_history': 'Arriving in 2021 as the spiritual successor to the XUV500, the XUV700 raised the bar for global Indian engineering. It popularized advanced safety tech like ADAS and high-performance turbo engines at an accessible price point.',
         'monthly_sales': 6000,
         'colors': ['Everest White', 'Midnight Black', 'Electric Blue'],
-        'image_urls': {'Everest White': '/images/mahindra-xuv-700.jpg', 'Midnight Black': '/images/mahindra-xuv-700.jpg', 'Electric Blue': '/images/mahindra-xuv-700.jpg'},
+        'image_urls': {'Everest White': '/images/mahindra-xuv-700-everest-white.jpg', 'Midnight Black': '/images/mahindra-xuv-700-midnight-black.jpg', 'Electric Blue': '/images/mahindra-xuv-700-electric-blue.jpg'},
     },
     {
         'id': 22,
@@ -371,7 +371,7 @@ CARS_DATA = [
         'lineage_history': 'Arriving in 2021 as the spiritual successor to the XUV500, the XUV700 raised the bar for global Indian engineering. It popularized advanced safety tech like ADAS and high-performance turbo engines at an accessible price point.',
         'monthly_sales': 6000,
         'colors': ['Everest White', 'Midnight Black', 'Electric Blue'],
-        'image_urls': {'Everest White': '/images/mahindra-xuv-700.jpg', 'Midnight Black': '/images/mahindra-xuv-700.jpg', 'Electric Blue': '/images/mahindra-xuv-700.jpg'},
+        'image_urls': {'Everest White': '/images/mahindra-xuv-700-everest-white.jpg', 'Midnight Black': '/images/mahindra-xuv-700-midnight-black.jpg', 'Electric Blue': '/images/mahindra-xuv-700-electric-blue.jpg'},
     },
     {
         'id': 23,
@@ -388,7 +388,7 @@ CARS_DATA = [
         'lineage_history': 'Arriving in 2021 as the spiritual successor to the XUV500, the XUV700 raised the bar for global Indian engineering. It popularized advanced safety tech like ADAS and high-performance turbo engines at an accessible price point.',
         'monthly_sales': 6000,
         'colors': ['Everest White', 'Midnight Black', 'Electric Blue'],
-        'image_urls': {'Everest White': '/images/mahindra-xuv-700.jpg', 'Midnight Black': '/images/mahindra-xuv-700.jpg', 'Electric Blue': '/images/mahindra-xuv-700.jpg'},
+        'image_urls': {'Everest White': '/images/mahindra-xuv-700-everest-white.jpg', 'Midnight Black': '/images/mahindra-xuv-700-midnight-black.jpg', 'Electric Blue': '/images/mahindra-xuv-700-electric-blue.jpg'},
     },
     {
         'id': 24,
@@ -405,7 +405,7 @@ CARS_DATA = [
         'lineage_history': 'Arriving in 2021 as the spiritual successor to the XUV500, the XUV700 raised the bar for global Indian engineering. It popularized advanced safety tech like ADAS and high-performance turbo engines at an accessible price point.',
         'monthly_sales': 6000,
         'colors': ['Everest White', 'Midnight Black', 'Electric Blue'],
-        'image_urls': {'Everest White': '/images/mahindra-xuv-700.jpg', 'Midnight Black': '/images/mahindra-xuv-700.jpg', 'Electric Blue': '/images/mahindra-xuv-700.jpg'},
+        'image_urls': {'Everest White': '/images/mahindra-xuv-700-everest-white.jpg', 'Midnight Black': '/images/mahindra-xuv-700-midnight-black.jpg', 'Electric Blue': '/images/mahindra-xuv-700-electric-blue.jpg'},
     },
     {
         'id': 25,
@@ -422,7 +422,7 @@ CARS_DATA = [
         'lineage_history': 'Arriving in 2021 as the spiritual successor to the XUV500, the XUV700 raised the bar for global Indian engineering. It popularized advanced safety tech like ADAS and high-performance turbo engines at an accessible price point.',
         'monthly_sales': 6000,
         'colors': ['Everest White', 'Midnight Black', 'Electric Blue'],
-        'image_urls': {'Everest White': '/images/mahindra-xuv-700.jpg', 'Midnight Black': '/images/mahindra-xuv-700.jpg', 'Electric Blue': '/images/mahindra-xuv-700.jpg'},
+        'image_urls': {'Everest White': '/images/mahindra-xuv-700-everest-white.jpg', 'Midnight Black': '/images/mahindra-xuv-700-midnight-black.jpg', 'Electric Blue': '/images/mahindra-xuv-700-electric-blue.jpg'},
     },
     {
         'id': 26,
@@ -439,7 +439,7 @@ CARS_DATA = [
         'lineage_history': 'Evolving from legacy military jeeps and the classic MM550, the modern Thar launched in 2020 as a lifestyle off-roader. It combined legendary 4x4 capability with daily-driver comfort, creating an instant cult following.',
         'monthly_sales': 5500,
         'colors': ['Red Rage', 'Napoli Black', 'Deep Grey'],
-        'image_urls': {'Red Rage': '/images/mahindra-thar.jpg', 'Napoli Black': '/images/mahindra-thar.jpg', 'Deep Grey': '/images/mahindra-thar.jpg'},
+        'image_urls': {'Red Rage': '/images/mahindra-thar-red-rage.jpg', 'Napoli Black': '/images/mahindra-thar-napoli-black.jpg', 'Deep Grey': '/images/mahindra-thar-deep-grey.jpg'},
     },
     {
         'id': 27,
@@ -456,7 +456,7 @@ CARS_DATA = [
         'lineage_history': 'Evolving from legacy military jeeps and the classic MM550, the modern Thar launched in 2020 as a lifestyle off-roader. It combined legendary 4x4 capability with daily-driver comfort, creating an instant cult following.',
         'monthly_sales': 5500,
         'colors': ['Red Rage', 'Napoli Black', 'Deep Grey'],
-        'image_urls': {'Red Rage': '/images/mahindra-thar.jpg', 'Napoli Black': '/images/mahindra-thar.jpg', 'Deep Grey': '/images/mahindra-thar.jpg'},
+        'image_urls': {'Red Rage': '/images/mahindra-thar-red-rage.jpg', 'Napoli Black': '/images/mahindra-thar-napoli-black.jpg', 'Deep Grey': '/images/mahindra-thar-deep-grey.jpg'},
     },
     {
         'id': 28,
@@ -473,7 +473,7 @@ CARS_DATA = [
         'lineage_history': 'Evolving from legacy military jeeps and the classic MM550, the modern Thar launched in 2020 as a lifestyle off-roader. It combined legendary 4x4 capability with daily-driver comfort, creating an instant cult following.',
         'monthly_sales': 5500,
         'colors': ['Red Rage', 'Napoli Black', 'Deep Grey'],
-        'image_urls': {'Red Rage': '/images/mahindra-thar.jpg', 'Napoli Black': '/images/mahindra-thar.jpg', 'Deep Grey': '/images/mahindra-thar.jpg'},
+        'image_urls': {'Red Rage': '/images/mahindra-thar-red-rage.jpg', 'Napoli Black': '/images/mahindra-thar-napoli-black.jpg', 'Deep Grey': '/images/mahindra-thar-deep-grey.jpg'},
     },
     {
         'id': 29,
@@ -490,7 +490,7 @@ CARS_DATA = [
         'lineage_history': 'Evolving from legacy military jeeps and the classic MM550, the modern Thar launched in 2020 as a lifestyle off-roader. It combined legendary 4x4 capability with daily-driver comfort, creating an instant cult following.',
         'monthly_sales': 5500,
         'colors': ['Red Rage', 'Napoli Black', 'Deep Grey'],
-        'image_urls': {'Red Rage': '/images/mahindra-thar.jpg', 'Napoli Black': '/images/mahindra-thar.jpg', 'Deep Grey': '/images/mahindra-thar.jpg'},
+        'image_urls': {'Red Rage': '/images/mahindra-thar-red-rage.jpg', 'Napoli Black': '/images/mahindra-thar-napoli-black.jpg', 'Deep Grey': '/images/mahindra-thar-deep-grey.jpg'},
     },
     {
         'id': 30,
@@ -507,7 +507,7 @@ CARS_DATA = [
         'lineage_history': 'Evolving from legacy military jeeps and the classic MM550, the modern Thar launched in 2020 as a lifestyle off-roader. It combined legendary 4x4 capability with daily-driver comfort, creating an instant cult following.',
         'monthly_sales': 5500,
         'colors': ['Red Rage', 'Napoli Black', 'Deep Grey'],
-        'image_urls': {'Red Rage': '/images/mahindra-thar.jpg', 'Napoli Black': '/images/mahindra-thar.jpg', 'Deep Grey': '/images/mahindra-thar.jpg'},
+        'image_urls': {'Red Rage': '/images/mahindra-thar-red-rage.jpg', 'Napoli Black': '/images/mahindra-thar-napoli-black.jpg', 'Deep Grey': '/images/mahindra-thar-deep-grey.jpg'},
     },
     {
         'id': 31,
@@ -524,7 +524,7 @@ CARS_DATA = [
         'lineage_history': "Debuting in 2017, the Nexon made history as the first Indian car to achieve a 5-star GNCAP safety rating. Its bold coupe-like styling and robust safety focus transformed Tata Motors' brand perception completely.",
         'monthly_sales': 12000,
         'colors': ['Flame Red', 'Calgary White', 'Fearless Purple'],
-        'image_urls': {'Flame Red': '/images/tata-nexon.jpg', 'Calgary White': '/images/tata-nexon.jpg', 'Fearless Purple': '/images/tata-nexon.jpg'},
+        'image_urls': {'Flame Red': '/images/tata-nexon-flame-red.jpg', 'Calgary White': '/images/tata-nexon-calgary-white.jpg', 'Fearless Purple': '/images/tata-nexon.jpg'},
     },
     {
         'id': 32,
@@ -541,7 +541,7 @@ CARS_DATA = [
         'lineage_history': "Debuting in 2017, the Nexon made history as the first Indian car to achieve a 5-star GNCAP safety rating. Its bold coupe-like styling and robust safety focus transformed Tata Motors' brand perception completely.",
         'monthly_sales': 12000,
         'colors': ['Flame Red', 'Calgary White', 'Fearless Purple'],
-        'image_urls': {'Flame Red': '/images/tata-nexon.jpg', 'Calgary White': '/images/tata-nexon.jpg', 'Fearless Purple': '/images/tata-nexon.jpg'},
+        'image_urls': {'Flame Red': '/images/tata-nexon-flame-red.jpg', 'Calgary White': '/images/tata-nexon-calgary-white.jpg', 'Fearless Purple': '/images/tata-nexon.jpg'},
     },
     {
         'id': 33,
@@ -558,7 +558,7 @@ CARS_DATA = [
         'lineage_history': "Debuting in 2017, the Nexon made history as the first Indian car to achieve a 5-star GNCAP safety rating. Its bold coupe-like styling and robust safety focus transformed Tata Motors' brand perception completely.",
         'monthly_sales': 12000,
         'colors': ['Flame Red', 'Calgary White', 'Fearless Purple'],
-        'image_urls': {'Flame Red': '/images/tata-nexon.jpg', 'Calgary White': '/images/tata-nexon.jpg', 'Fearless Purple': '/images/tata-nexon.jpg'},
+        'image_urls': {'Flame Red': '/images/tata-nexon-flame-red.jpg', 'Calgary White': '/images/tata-nexon-calgary-white.jpg', 'Fearless Purple': '/images/tata-nexon.jpg'},
     },
     {
         'id': 34,
@@ -575,7 +575,7 @@ CARS_DATA = [
         'lineage_history': "Debuting in 2017, the Nexon made history as the first Indian car to achieve a 5-star GNCAP safety rating. Its bold coupe-like styling and robust safety focus transformed Tata Motors' brand perception completely.",
         'monthly_sales': 12000,
         'colors': ['Flame Red', 'Calgary White', 'Fearless Purple'],
-        'image_urls': {'Flame Red': '/images/tata-nexon.jpg', 'Calgary White': '/images/tata-nexon.jpg', 'Fearless Purple': '/images/tata-nexon.jpg'},
+        'image_urls': {'Flame Red': '/images/tata-nexon-flame-red.jpg', 'Calgary White': '/images/tata-nexon-calgary-white.jpg', 'Fearless Purple': '/images/tata-nexon.jpg'},
     },
     {
         'id': 35,
@@ -592,7 +592,7 @@ CARS_DATA = [
         'lineage_history': "Debuting in 2017, the Nexon made history as the first Indian car to achieve a 5-star GNCAP safety rating. Its bold coupe-like styling and robust safety focus transformed Tata Motors' brand perception completely.",
         'monthly_sales': 12000,
         'colors': ['Flame Red', 'Calgary White', 'Fearless Purple'],
-        'image_urls': {'Flame Red': '/images/tata-nexon.jpg', 'Calgary White': '/images/tata-nexon.jpg', 'Fearless Purple': '/images/tata-nexon.jpg'},
+        'image_urls': {'Flame Red': '/images/tata-nexon-flame-red.jpg', 'Calgary White': '/images/tata-nexon-calgary-white.jpg', 'Fearless Purple': '/images/tata-nexon.jpg'},
     },
     {
         'id': 36,
@@ -609,7 +609,7 @@ CARS_DATA = [
         'lineage_history': 'Launched in 2019, the Harrier introduced Land Rover-derived D8 platform architecture to the mid-size SUV segment. It gained immense popularity for its striking design, imposing road presence, and heavy highway cruising stability.',
         'monthly_sales': 2200,
         'colors': ['Coral Red', 'Pebble Grey', 'Oberon Black'],
-        'image_urls': {'Coral Red': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg', 'Pebble Grey': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg', 'Oberon Black': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg'},
+        'image_urls': {'Coral Red': '/images/tata-harrier-coral-red.jpg', 'Pebble Grey': '/images/tata-harrier-pebble-grey.jpg', 'Oberon Black': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg'},
     },
     {
         'id': 37,
@@ -626,7 +626,7 @@ CARS_DATA = [
         'lineage_history': 'Launched in 2019, the Harrier introduced Land Rover-derived D8 platform architecture to the mid-size SUV segment. It gained immense popularity for its striking design, imposing road presence, and heavy highway cruising stability.',
         'monthly_sales': 2200,
         'colors': ['Coral Red', 'Pebble Grey', 'Oberon Black'],
-        'image_urls': {'Coral Red': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg', 'Pebble Grey': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg', 'Oberon Black': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg'},
+        'image_urls': {'Coral Red': '/images/tata-harrier-coral-red.jpg', 'Pebble Grey': '/images/tata-harrier-pebble-grey.jpg', 'Oberon Black': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg'},
     },
     {
         'id': 38,
@@ -643,7 +643,7 @@ CARS_DATA = [
         'lineage_history': 'Launched in 2019, the Harrier introduced Land Rover-derived D8 platform architecture to the mid-size SUV segment. It gained immense popularity for its striking design, imposing road presence, and heavy highway cruising stability.',
         'monthly_sales': 2200,
         'colors': ['Coral Red', 'Pebble Grey', 'Oberon Black'],
-        'image_urls': {'Coral Red': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg', 'Pebble Grey': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg', 'Oberon Black': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg'},
+        'image_urls': {'Coral Red': '/images/tata-harrier-coral-red.jpg', 'Pebble Grey': '/images/tata-harrier-pebble-grey.jpg', 'Oberon Black': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg'},
     },
     {
         'id': 39,
@@ -660,7 +660,7 @@ CARS_DATA = [
         'lineage_history': 'Launched in 2019, the Harrier introduced Land Rover-derived D8 platform architecture to the mid-size SUV segment. It gained immense popularity for its striking design, imposing road presence, and heavy highway cruising stability.',
         'monthly_sales': 2200,
         'colors': ['Coral Red', 'Pebble Grey', 'Oberon Black'],
-        'image_urls': {'Coral Red': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg', 'Pebble Grey': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg', 'Oberon Black': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg'},
+        'image_urls': {'Coral Red': '/images/tata-harrier-coral-red.jpg', 'Pebble Grey': '/images/tata-harrier-pebble-grey.jpg', 'Oberon Black': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg'},
     },
     {
         'id': 40,
@@ -677,7 +677,7 @@ CARS_DATA = [
         'lineage_history': 'Launched in 2019, the Harrier introduced Land Rover-derived D8 platform architecture to the mid-size SUV segment. It gained immense popularity for its striking design, imposing road presence, and heavy highway cruising stability.',
         'monthly_sales': 2200,
         'colors': ['Coral Red', 'Pebble Grey', 'Oberon Black'],
-        'image_urls': {'Coral Red': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg', 'Pebble Grey': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg', 'Oberon Black': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg'},
+        'image_urls': {'Coral Red': '/images/tata-harrier-coral-red.jpg', 'Pebble Grey': '/images/tata-harrier-pebble-grey.jpg', 'Oberon Black': 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Tata_Buzzard_Sport%2C_GIMS_2019%2C_Le_Grand-Saconnex_%28GIMS0651%29.jpg'},
     },
     {
         'id': 41,
@@ -864,7 +864,7 @@ CARS_DATA = [
         'lineage_history': 'Arriving in India in 2009, the Fortuner achieved legendary status as the undisputed king of full-size SUVs. Its bulletproof reliability, massive resale value, and immense road presence have kept it dominant for over a decade.',
         'monthly_sales': 3000,
         'colors': ['Polar White', 'Midnight Black', 'Magma Grey'],
-        'image_urls': {'Polar White': '/images/toyota-fortuner.jpg', 'Midnight Black': '/images/toyota-fortuner.jpg', 'Magma Grey': '/images/toyota-fortuner.jpg'},
+        'image_urls': {'Polar White': '/images/toyota-fortuner-polar-white.jpg', 'Midnight Black': '/images/toyota-fortuner-midnight-black.jpg', 'Magma Grey': '/images/toyota-fortuner-magma-grey.jpg'},
     },
     {
         'id': 52,
@@ -881,7 +881,7 @@ CARS_DATA = [
         'lineage_history': 'Arriving in India in 2009, the Fortuner achieved legendary status as the undisputed king of full-size SUVs. Its bulletproof reliability, massive resale value, and immense road presence have kept it dominant for over a decade.',
         'monthly_sales': 3000,
         'colors': ['Polar White', 'Midnight Black', 'Magma Grey'],
-        'image_urls': {'Polar White': '/images/toyota-fortuner.jpg', 'Midnight Black': '/images/toyota-fortuner.jpg', 'Magma Grey': '/images/toyota-fortuner.jpg'},
+        'image_urls': {'Polar White': '/images/toyota-fortuner-polar-white.jpg', 'Midnight Black': '/images/toyota-fortuner-midnight-black.jpg', 'Magma Grey': '/images/toyota-fortuner-magma-grey.jpg'},
     },
     {
         'id': 53,
@@ -898,7 +898,7 @@ CARS_DATA = [
         'lineage_history': 'Arriving in India in 2009, the Fortuner achieved legendary status as the undisputed king of full-size SUVs. Its bulletproof reliability, massive resale value, and immense road presence have kept it dominant for over a decade.',
         'monthly_sales': 3000,
         'colors': ['Polar White', 'Midnight Black', 'Magma Grey'],
-        'image_urls': {'Polar White': '/images/toyota-fortuner.jpg', 'Midnight Black': '/images/toyota-fortuner.jpg', 'Magma Grey': '/images/toyota-fortuner.jpg'},
+        'image_urls': {'Polar White': '/images/toyota-fortuner-polar-white.jpg', 'Midnight Black': '/images/toyota-fortuner-midnight-black.jpg', 'Magma Grey': '/images/toyota-fortuner-magma-grey.jpg'},
     },
     {
         'id': 54,
@@ -915,7 +915,7 @@ CARS_DATA = [
         'lineage_history': 'Arriving in India in 2009, the Fortuner achieved legendary status as the undisputed king of full-size SUVs. Its bulletproof reliability, massive resale value, and immense road presence have kept it dominant for over a decade.',
         'monthly_sales': 3000,
         'colors': ['Polar White', 'Midnight Black', 'Magma Grey'],
-        'image_urls': {'Polar White': '/images/toyota-fortuner.jpg', 'Midnight Black': '/images/toyota-fortuner.jpg', 'Magma Grey': '/images/toyota-fortuner.jpg'},
+        'image_urls': {'Polar White': '/images/toyota-fortuner-polar-white.jpg', 'Midnight Black': '/images/toyota-fortuner-midnight-black.jpg', 'Magma Grey': '/images/toyota-fortuner-magma-grey.jpg'},
     },
     {
         'id': 55,
@@ -932,7 +932,7 @@ CARS_DATA = [
         'lineage_history': 'Arriving in India in 2009, the Fortuner achieved legendary status as the undisputed king of full-size SUVs. Its bulletproof reliability, massive resale value, and immense road presence have kept it dominant for over a decade.',
         'monthly_sales': 3000,
         'colors': ['Polar White', 'Midnight Black'],
-        'image_urls': {'Polar White': '/images/toyota-fortuner.jpg', 'Midnight Black': '/images/toyota-fortuner.jpg'},
+        'image_urls': {'Polar White': '/images/toyota-fortuner-polar-white.jpg', 'Midnight Black': '/images/toyota-fortuner-midnight-black.jpg'},
     },
     {
         'id': 56,
@@ -949,7 +949,7 @@ CARS_DATA = [
         'lineage_history': 'Building on two decades of Innova supremacy, the Hycross introduced a radical shift to monocoque front-wheel drive and strong hybrid technology. It delivers luxury MPV comfort with hatchback-like fuel economy.',
         'monthly_sales': 5000,
         'colors': ['Super White', 'Blackish Ageha Flake', 'Silver Metallic'],
-        'image_urls': {'Super White': '/images/toyota-innova-hycross.jpg', 'Blackish Ageha Flake': '/images/toyota-innova-hycross.jpg', 'Silver Metallic': '/images/toyota-innova-hycross.jpg'},
+        'image_urls': {'Super White': '/images/toyota-innova-hycross-super-white.jpg', 'Blackish Ageha Flake': '/images/toyota-innova-hycross-blackish-ageha-flake.jpg', 'Silver Metallic': '/images/toyota-innova-hycross-silver-metallic.jpg'},
     },
     {
         'id': 57,
@@ -966,7 +966,7 @@ CARS_DATA = [
         'lineage_history': 'Building on two decades of Innova supremacy, the Hycross introduced a radical shift to monocoque front-wheel drive and strong hybrid technology. It delivers luxury MPV comfort with hatchback-like fuel economy.',
         'monthly_sales': 5000,
         'colors': ['Super White', 'Blackish Ageha Flake', 'Silver Metallic'],
-        'image_urls': {'Super White': '/images/toyota-innova-hycross.jpg', 'Blackish Ageha Flake': '/images/toyota-innova-hycross.jpg', 'Silver Metallic': '/images/toyota-innova-hycross.jpg'},
+        'image_urls': {'Super White': '/images/toyota-innova-hycross-super-white.jpg', 'Blackish Ageha Flake': '/images/toyota-innova-hycross-blackish-ageha-flake.jpg', 'Silver Metallic': '/images/toyota-innova-hycross-silver-metallic.jpg'},
     },
     {
         'id': 58,
@@ -983,7 +983,7 @@ CARS_DATA = [
         'lineage_history': 'Building on two decades of Innova supremacy, the Hycross introduced a radical shift to monocoque front-wheel drive and strong hybrid technology. It delivers luxury MPV comfort with hatchback-like fuel economy.',
         'monthly_sales': 5000,
         'colors': ['Super White', 'Blackish Ageha Flake', 'Silver Metallic'],
-        'image_urls': {'Super White': '/images/toyota-innova-hycross.jpg', 'Blackish Ageha Flake': '/images/toyota-innova-hycross.jpg', 'Silver Metallic': '/images/toyota-innova-hycross.jpg'},
+        'image_urls': {'Super White': '/images/toyota-innova-hycross-super-white.jpg', 'Blackish Ageha Flake': '/images/toyota-innova-hycross-blackish-ageha-flake.jpg', 'Silver Metallic': '/images/toyota-innova-hycross-silver-metallic.jpg'},
     },
     {
         'id': 59,
@@ -1000,7 +1000,7 @@ CARS_DATA = [
         'lineage_history': 'Building on two decades of Innova supremacy, the Hycross introduced a radical shift to monocoque front-wheel drive and strong hybrid technology. It delivers luxury MPV comfort with hatchback-like fuel economy.',
         'monthly_sales': 5000,
         'colors': ['Super White', 'Blackish Ageha Flake', 'Silver Metallic'],
-        'image_urls': {'Super White': '/images/toyota-innova-hycross.jpg', 'Blackish Ageha Flake': '/images/toyota-innova-hycross.jpg', 'Silver Metallic': '/images/toyota-innova-hycross.jpg'},
+        'image_urls': {'Super White': '/images/toyota-innova-hycross-super-white.jpg', 'Blackish Ageha Flake': '/images/toyota-innova-hycross-blackish-ageha-flake.jpg', 'Silver Metallic': '/images/toyota-innova-hycross-silver-metallic.jpg'},
     },
     {
         'id': 60,
@@ -1017,7 +1017,7 @@ CARS_DATA = [
         'lineage_history': 'Building on two decades of Innova supremacy, the Hycross introduced a radical shift to monocoque front-wheel drive and strong hybrid technology. It delivers luxury MPV comfort with hatchback-like fuel economy.',
         'monthly_sales': 5000,
         'colors': ['Super White', 'Blackish Ageha Flake', 'Silver Metallic'],
-        'image_urls': {'Super White': '/images/toyota-innova-hycross.jpg', 'Blackish Ageha Flake': '/images/toyota-innova-hycross.jpg', 'Silver Metallic': '/images/toyota-innova-hycross.jpg'},
+        'image_urls': {'Super White': '/images/toyota-innova-hycross-super-white.jpg', 'Blackish Ageha Flake': '/images/toyota-innova-hycross-blackish-ageha-flake.jpg', 'Silver Metallic': '/images/toyota-innova-hycross-silver-metallic.jpg'},
     },
     {
         'id': 61,
@@ -1034,7 +1034,7 @@ CARS_DATA = [
         'lineage_history': "Introduced in 2002, the Scorpio transformed Mahindra's image from a utilitarian brand into a lifestyle icon. The 2022 Scorpio-N arrived on a fully new ground-up platform with segment-first feature richness and the potent 2.0-litre mStallion turbo petrol, reclaiming the full-size SUV crown with modern refinement.",
         'monthly_sales': 8000,
         'colors': ['Deep Forest', 'Napoli Black', 'Dazzling Silver'],
-        'image_urls': {'Deep Forest': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg', 'Napoli Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg', 'Dazzling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg'},
+        'image_urls': {'Deep Forest': '/images/mahindra-scorpio-n-deep-forest.jpg', 'Napoli Black': '/images/mahindra-scorpio-n-napoli-black.jpg', 'Dazzling Silver': '/images/mahindra-scorpio-n-dazzling-silver.jpg'},
     },
     {
         'id': 62,
@@ -1051,7 +1051,7 @@ CARS_DATA = [
         'lineage_history': "Introduced in 2002, the Scorpio transformed Mahindra's image from a utilitarian brand into a lifestyle icon. The 2022 Scorpio-N arrived on a fully new ground-up platform with segment-first feature richness and the potent 2.0-litre mStallion turbo petrol, reclaiming the full-size SUV crown with modern refinement.",
         'monthly_sales': 8000,
         'colors': ['Deep Forest', 'Napoli Black', 'Dazzling Silver'],
-        'image_urls': {'Deep Forest': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg', 'Napoli Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg', 'Dazzling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg'},
+        'image_urls': {'Deep Forest': '/images/mahindra-scorpio-n-deep-forest.jpg', 'Napoli Black': '/images/mahindra-scorpio-n-napoli-black.jpg', 'Dazzling Silver': '/images/mahindra-scorpio-n-dazzling-silver.jpg'},
     },
     {
         'id': 63,
@@ -1068,7 +1068,7 @@ CARS_DATA = [
         'lineage_history': "Introduced in 2002, the Scorpio transformed Mahindra's image from a utilitarian brand into a lifestyle icon. The 2022 Scorpio-N arrived on a fully new ground-up platform with segment-first feature richness and the potent 2.0-litre mStallion turbo petrol, reclaiming the full-size SUV crown with modern refinement.",
         'monthly_sales': 8000,
         'colors': ['Deep Forest', 'Napoli Black', 'Dazzling Silver'],
-        'image_urls': {'Deep Forest': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg', 'Napoli Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg', 'Dazzling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg'},
+        'image_urls': {'Deep Forest': '/images/mahindra-scorpio-n-deep-forest.jpg', 'Napoli Black': '/images/mahindra-scorpio-n-napoli-black.jpg', 'Dazzling Silver': '/images/mahindra-scorpio-n-dazzling-silver.jpg'},
     },
     {
         'id': 64,
@@ -1085,7 +1085,7 @@ CARS_DATA = [
         'lineage_history': "Introduced in 2002, the Scorpio transformed Mahindra's image from a utilitarian brand into a lifestyle icon. The 2022 Scorpio-N arrived on a fully new ground-up platform with segment-first feature richness and the potent 2.0-litre mStallion turbo petrol, reclaiming the full-size SUV crown with modern refinement.",
         'monthly_sales': 8000,
         'colors': ['Deep Forest', 'Napoli Black', 'Dazzling Silver'],
-        'image_urls': {'Deep Forest': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg', 'Napoli Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg', 'Dazzling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/40432/scorpio-n-exterior-right-front-three-quarter-73.jpeg'},
+        'image_urls': {'Deep Forest': '/images/mahindra-scorpio-n-deep-forest.jpg', 'Napoli Black': '/images/mahindra-scorpio-n-napoli-black.jpg', 'Dazzling Silver': '/images/mahindra-scorpio-n-dazzling-silver.jpg'},
     },
     {
         'id': 65,
@@ -1102,7 +1102,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2024 as the successor to the XUV300, the XUV 3XO raised the compact SUV bar with panoramic sunroof, Level 2 ADAS, and Mahindra's acclaimed turbocharged petrol engines. It set new benchmarks for interior quality and safety in the sub-₹15 lakh space.",
         'monthly_sales': 5000,
         'colors': ['Burnt Sienna Red', 'Everest White', 'Napoli Black'],
-        'image_urls': {'Burnt Sienna Red': '/images/mahindra-xuv-3xo.jpg', 'Everest White': '/images/mahindra-xuv-3xo.jpg', 'Napoli Black': '/images/mahindra-xuv-3xo.jpg'},
+        'image_urls': {'Burnt Sienna Red': '/images/mahindra-xuv-3xo-burnt-sienna-red.jpg', 'Everest White': '/images/mahindra-xuv-3xo-everest-white.jpg', 'Napoli Black': '/images/mahindra-xuv-3xo-napoli-black.jpg'},
     },
     {
         'id': 66,
@@ -1119,7 +1119,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2024 as the successor to the XUV300, the XUV 3XO raised the compact SUV bar with panoramic sunroof, Level 2 ADAS, and Mahindra's acclaimed turbocharged petrol engines. It set new benchmarks for interior quality and safety in the sub-₹15 lakh space.",
         'monthly_sales': 5000,
         'colors': ['Burnt Sienna Red', 'Everest White', 'Napoli Black'],
-        'image_urls': {'Burnt Sienna Red': '/images/mahindra-xuv-3xo.jpg', 'Everest White': '/images/mahindra-xuv-3xo.jpg', 'Napoli Black': '/images/mahindra-xuv-3xo.jpg'},
+        'image_urls': {'Burnt Sienna Red': '/images/mahindra-xuv-3xo-burnt-sienna-red.jpg', 'Everest White': '/images/mahindra-xuv-3xo-everest-white.jpg', 'Napoli Black': '/images/mahindra-xuv-3xo-napoli-black.jpg'},
     },
     {
         'id': 67,
@@ -1136,7 +1136,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2024 as the successor to the XUV300, the XUV 3XO raised the compact SUV bar with panoramic sunroof, Level 2 ADAS, and Mahindra's acclaimed turbocharged petrol engines. It set new benchmarks for interior quality and safety in the sub-₹15 lakh space.",
         'monthly_sales': 5000,
         'colors': ['Burnt Sienna Red', 'Everest White', 'Napoli Black'],
-        'image_urls': {'Burnt Sienna Red': '/images/mahindra-xuv-3xo.jpg', 'Everest White': '/images/mahindra-xuv-3xo.jpg', 'Napoli Black': '/images/mahindra-xuv-3xo.jpg'},
+        'image_urls': {'Burnt Sienna Red': '/images/mahindra-xuv-3xo-burnt-sienna-red.jpg', 'Everest White': '/images/mahindra-xuv-3xo-everest-white.jpg', 'Napoli Black': '/images/mahindra-xuv-3xo-napoli-black.jpg'},
     },
     {
         'id': 68,
@@ -1153,7 +1153,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2024 as the successor to the XUV300, the XUV 3XO raised the compact SUV bar with panoramic sunroof, Level 2 ADAS, and Mahindra's acclaimed turbocharged petrol engines. It set new benchmarks for interior quality and safety in the sub-₹15 lakh space.",
         'monthly_sales': 5000,
         'colors': ['Burnt Sienna Red', 'Everest White', 'Napoli Black'],
-        'image_urls': {'Burnt Sienna Red': '/images/mahindra-xuv-3xo.jpg', 'Everest White': '/images/mahindra-xuv-3xo.jpg', 'Napoli Black': '/images/mahindra-xuv-3xo.jpg'},
+        'image_urls': {'Burnt Sienna Red': '/images/mahindra-xuv-3xo-burnt-sienna-red.jpg', 'Everest White': '/images/mahindra-xuv-3xo-everest-white.jpg', 'Napoli Black': '/images/mahindra-xuv-3xo-napoli-black.jpg'},
     },
     {
         'id': 69,
@@ -1170,7 +1170,7 @@ CARS_DATA = [
         'lineage_history': 'Building on the iconic Bolero platform loved for its near-indestructible reliability, the Bolero Neo bridges the gap between workhorse utility and modern SUV sensibilities. With a three-row layout and mHawk diesel engine, it remains the preferred choice for buyers in semi-urban and rural markets.',
         'monthly_sales': 4000,
         'colors': ['Aquamarine Silver', 'Majestic Silver', 'Red Rage'],
-        'image_urls': {'Aquamarine Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg', 'Majestic Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg', 'Red Rage': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg'},
+        'image_urls': {'Aquamarine Silver': '/images/mahindra-bolero-neo-aquamarine-silver.jpg', 'Majestic Silver': '/images/mahindra-bolero-neo-majestic-silver.jpg', 'Red Rage': '/images/mahindra-bolero-neo-red-rage.jpg'},
     },
     {
         'id': 70,
@@ -1187,7 +1187,7 @@ CARS_DATA = [
         'lineage_history': 'Building on the iconic Bolero platform loved for its near-indestructible reliability, the Bolero Neo bridges the gap between workhorse utility and modern SUV sensibilities. With a three-row layout and mHawk diesel engine, it remains the preferred choice for buyers in semi-urban and rural markets.',
         'monthly_sales': 4000,
         'colors': ['Aquamarine Silver', 'Majestic Silver', 'Red Rage'],
-        'image_urls': {'Aquamarine Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg', 'Majestic Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg', 'Red Rage': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg'},
+        'image_urls': {'Aquamarine Silver': '/images/mahindra-bolero-neo-aquamarine-silver.jpg', 'Majestic Silver': '/images/mahindra-bolero-neo-majestic-silver.jpg', 'Red Rage': '/images/mahindra-bolero-neo-red-rage.jpg'},
     },
     {
         'id': 71,
@@ -1204,7 +1204,7 @@ CARS_DATA = [
         'lineage_history': 'Building on the iconic Bolero platform loved for its near-indestructible reliability, the Bolero Neo bridges the gap between workhorse utility and modern SUV sensibilities. With a three-row layout and mHawk diesel engine, it remains the preferred choice for buyers in semi-urban and rural markets.',
         'monthly_sales': 4000,
         'colors': ['Aquamarine Silver', 'Majestic Silver', 'Red Rage'],
-        'image_urls': {'Aquamarine Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg', 'Majestic Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg', 'Red Rage': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg'},
+        'image_urls': {'Aquamarine Silver': '/images/mahindra-bolero-neo-aquamarine-silver.jpg', 'Majestic Silver': '/images/mahindra-bolero-neo-majestic-silver.jpg', 'Red Rage': '/images/mahindra-bolero-neo-red-rage.jpg'},
     },
     {
         'id': 72,
@@ -1221,7 +1221,7 @@ CARS_DATA = [
         'lineage_history': 'Building on the iconic Bolero platform loved for its near-indestructible reliability, the Bolero Neo bridges the gap between workhorse utility and modern SUV sensibilities. With a three-row layout and mHawk diesel engine, it remains the preferred choice for buyers in semi-urban and rural markets.',
         'monthly_sales': 4000,
         'colors': ['Aquamarine Silver', 'Majestic Silver', 'Red Rage'],
-        'image_urls': {'Aquamarine Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg', 'Majestic Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg', 'Red Rage': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/107533/bolero-neo-plus-exterior-right-front-three-quarter.jpeg'},
+        'image_urls': {'Aquamarine Silver': '/images/mahindra-bolero-neo-aquamarine-silver.jpg', 'Majestic Silver': '/images/mahindra-bolero-neo-majestic-silver.jpg', 'Red Rage': '/images/mahindra-bolero-neo-red-rage.jpg'},
     },
     {
         'id': 73,
@@ -1238,7 +1238,7 @@ CARS_DATA = [
         'lineage_history': "Revived in 2022 in partnership with Toyota, the Grand Vitara brought strong hybrid technology to Maruti's portfolio for the first time. It competes at the premium end of the compact SUV segment, offering mild hybrid and Toyota's proven 1.5-litre strong hybrid with class-leading fuel economy.",
         'monthly_sales': 6000,
         'colors': ['Grandeur Grey', 'Opulent Red', 'Splendid Silver'],
-        'image_urls': {'Grandeur Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg', 'Opulent Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg'},
+        'image_urls': {'Grandeur Grey': '/images/maruti-suzuki-grand-vitara-grandeur-grey.jpg', 'Opulent Red': '/images/maruti-suzuki-grand-vitara-opulent-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-grand-vitara-splendid-silver.jpg'},
     },
     {
         'id': 74,
@@ -1255,7 +1255,7 @@ CARS_DATA = [
         'lineage_history': "Revived in 2022 in partnership with Toyota, the Grand Vitara brought strong hybrid technology to Maruti's portfolio for the first time. It competes at the premium end of the compact SUV segment, offering mild hybrid and Toyota's proven 1.5-litre strong hybrid with class-leading fuel economy.",
         'monthly_sales': 6000,
         'colors': ['Grandeur Grey', 'Opulent Red', 'Splendid Silver'],
-        'image_urls': {'Grandeur Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg', 'Opulent Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg'},
+        'image_urls': {'Grandeur Grey': '/images/maruti-suzuki-grand-vitara-grandeur-grey.jpg', 'Opulent Red': '/images/maruti-suzuki-grand-vitara-opulent-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-grand-vitara-splendid-silver.jpg'},
     },
     {
         'id': 75,
@@ -1272,7 +1272,7 @@ CARS_DATA = [
         'lineage_history': "Revived in 2022 in partnership with Toyota, the Grand Vitara brought strong hybrid technology to Maruti's portfolio for the first time. It competes at the premium end of the compact SUV segment, offering mild hybrid and Toyota's proven 1.5-litre strong hybrid with class-leading fuel economy.",
         'monthly_sales': 6000,
         'colors': ['Grandeur Grey', 'Opulent Red', 'Splendid Silver'],
-        'image_urls': {'Grandeur Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg', 'Opulent Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg'},
+        'image_urls': {'Grandeur Grey': '/images/maruti-suzuki-grand-vitara-grandeur-grey.jpg', 'Opulent Red': '/images/maruti-suzuki-grand-vitara-opulent-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-grand-vitara-splendid-silver.jpg'},
     },
     {
         'id': 76,
@@ -1289,7 +1289,7 @@ CARS_DATA = [
         'lineage_history': "Revived in 2022 in partnership with Toyota, the Grand Vitara brought strong hybrid technology to Maruti's portfolio for the first time. It competes at the premium end of the compact SUV segment, offering mild hybrid and Toyota's proven 1.5-litre strong hybrid with class-leading fuel economy.",
         'monthly_sales': 6000,
         'colors': ['Grandeur Grey', 'Opulent Red', 'Splendid Silver'],
-        'image_urls': {'Grandeur Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg', 'Opulent Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/123165/grand-vitara-exterior-right-front-three-quarter-5.jpeg'},
+        'image_urls': {'Grandeur Grey': '/images/maruti-suzuki-grand-vitara-grandeur-grey.jpg', 'Opulent Red': '/images/maruti-suzuki-grand-vitara-opulent-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-grand-vitara-splendid-silver.jpg'},
     },
     {
         'id': 77,
@@ -1306,7 +1306,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2015 and comprehensively redesigned in 2022, the Baleno is India's best-selling premium hatchback. Sold exclusively through the NEXA channel, it brought HUD and connected car features to the segment, achieving over one million cumulative sales and consistently ranking among India's top-five best sellers.",
         'monthly_sales': 14000,
         'colors': ['Sizzling Red', 'Splendid Silver', 'Arctic White'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg', 'Arctic White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-baleno-sizzling-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-baleno-splendid-silver.jpg', 'Arctic White': '/images/maruti-suzuki-baleno-arctic-white.jpg'},
     },
     {
         'id': 78,
@@ -1323,7 +1323,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2015 and comprehensively redesigned in 2022, the Baleno is India's best-selling premium hatchback. Sold exclusively through the NEXA channel, it brought HUD and connected car features to the segment, achieving over one million cumulative sales and consistently ranking among India's top-five best sellers.",
         'monthly_sales': 14000,
         'colors': ['Sizzling Red', 'Splendid Silver', 'Arctic White'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg', 'Arctic White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-baleno-sizzling-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-baleno-splendid-silver.jpg', 'Arctic White': '/images/maruti-suzuki-baleno-arctic-white.jpg'},
     },
     {
         'id': 79,
@@ -1340,7 +1340,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2015 and comprehensively redesigned in 2022, the Baleno is India's best-selling premium hatchback. Sold exclusively through the NEXA channel, it brought HUD and connected car features to the segment, achieving over one million cumulative sales and consistently ranking among India's top-five best sellers.",
         'monthly_sales': 14000,
         'colors': ['Sizzling Red', 'Splendid Silver', 'Arctic White'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg', 'Arctic White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-baleno-sizzling-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-baleno-splendid-silver.jpg', 'Arctic White': '/images/maruti-suzuki-baleno-arctic-white.jpg'},
     },
     {
         'id': 80,
@@ -1357,7 +1357,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2015 and comprehensively redesigned in 2022, the Baleno is India's best-selling premium hatchback. Sold exclusively through the NEXA channel, it brought HUD and connected car features to the segment, achieving over one million cumulative sales and consistently ranking among India's top-five best sellers.",
         'monthly_sales': 14000,
         'colors': ['Sizzling Red', 'Splendid Silver', 'Arctic White'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg', 'Arctic White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/115599/baleno-exterior-right-front-three-quarter-7.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-baleno-sizzling-red.jpg', 'Splendid Silver': '/images/maruti-suzuki-baleno-splendid-silver.jpg', 'Arctic White': '/images/maruti-suzuki-baleno-arctic-white.jpg'},
     },
     {
         'id': 81,
@@ -1374,7 +1374,7 @@ CARS_DATA = [
         'lineage_history': 'The Fronx arrived in 2023 as a crossover-SUV built on the Baleno Heartect platform, sold exclusively through the NEXA premium channel. It combines the assertive stance of an SUV with hatchback agility, and its 1.0-litre Boosterjet turbo engine is among the most refined in the compact crossover class.',
         'monthly_sales': 7000,
         'colors': ['Sizzling Red', 'Grandeur Grey', 'Splendid Silver'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg', 'Grandeur Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-fronx-sizzling-red.jpg', 'Grandeur Grey': '/images/maruti-suzuki-fronx-grandeur-grey.jpg', 'Splendid Silver': '/images/maruti-suzuki-fronx-splendid-silver.jpg'},
     },
     {
         'id': 82,
@@ -1391,7 +1391,7 @@ CARS_DATA = [
         'lineage_history': 'The Fronx arrived in 2023 as a crossover-SUV built on the Baleno Heartect platform, sold exclusively through the NEXA premium channel. It combines the assertive stance of an SUV with hatchback agility, and its 1.0-litre Boosterjet turbo engine is among the most refined in the compact crossover class.',
         'monthly_sales': 7000,
         'colors': ['Sizzling Red', 'Grandeur Grey', 'Splendid Silver'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg', 'Grandeur Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-fronx-sizzling-red.jpg', 'Grandeur Grey': '/images/maruti-suzuki-fronx-grandeur-grey.jpg', 'Splendid Silver': '/images/maruti-suzuki-fronx-splendid-silver.jpg'},
     },
     {
         'id': 83,
@@ -1408,7 +1408,7 @@ CARS_DATA = [
         'lineage_history': 'The Fronx arrived in 2023 as a crossover-SUV built on the Baleno Heartect platform, sold exclusively through the NEXA premium channel. It combines the assertive stance of an SUV with hatchback agility, and its 1.0-litre Boosterjet turbo engine is among the most refined in the compact crossover class.',
         'monthly_sales': 7000,
         'colors': ['Sizzling Red', 'Grandeur Grey', 'Splendid Silver'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg', 'Grandeur Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-fronx-sizzling-red.jpg', 'Grandeur Grey': '/images/maruti-suzuki-fronx-grandeur-grey.jpg', 'Splendid Silver': '/images/maruti-suzuki-fronx-splendid-silver.jpg'},
     },
     {
         'id': 84,
@@ -1425,7 +1425,7 @@ CARS_DATA = [
         'lineage_history': 'The Fronx arrived in 2023 as a crossover-SUV built on the Baleno Heartect platform, sold exclusively through the NEXA premium channel. It combines the assertive stance of an SUV with hatchback agility, and its 1.0-litre Boosterjet turbo engine is among the most refined in the compact crossover class.',
         'monthly_sales': 7000,
         'colors': ['Sizzling Red', 'Grandeur Grey', 'Splendid Silver'],
-        'image_urls': {'Sizzling Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg', 'Grandeur Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg', 'Splendid Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/130583/fronx-exterior-right-front-three-quarter-4.jpeg'},
+        'image_urls': {'Sizzling Red': '/images/maruti-suzuki-fronx-sizzling-red.jpg', 'Grandeur Grey': '/images/maruti-suzuki-fronx-grandeur-grey.jpg', 'Splendid Silver': '/images/maruti-suzuki-fronx-splendid-silver.jpg'},
     },
     {
         'id': 85,
@@ -1442,7 +1442,7 @@ CARS_DATA = [
         'lineage_history': "Since its 2006 debut, the Verna has been synonymous with premium mid-size sedans in India. The fifth generation arrived in 2023 with ADAS Level 2 as standard, a sweeping parametric design, and the brand's 1.5-litre turbo GDi engine - reigniting interest in the declining sedan segment.",
         'monthly_sales': 4000,
         'colors': ['Phantom Black', 'Atlas White', 'Typhoon Silver'],
-        'image_urls': {'Phantom Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg', 'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg', 'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg'},
+        'image_urls': {'Phantom Black': '/images/hyundai-verna-phantom-black.jpg', 'Atlas White': '/images/hyundai-verna-atlas-white.jpg', 'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg'},
     },
     {
         'id': 86,
@@ -1459,7 +1459,7 @@ CARS_DATA = [
         'lineage_history': "Since its 2006 debut, the Verna has been synonymous with premium mid-size sedans in India. The fifth generation arrived in 2023 with ADAS Level 2 as standard, a sweeping parametric design, and the brand's 1.5-litre turbo GDi engine - reigniting interest in the declining sedan segment.",
         'monthly_sales': 4000,
         'colors': ['Phantom Black', 'Atlas White', 'Typhoon Silver'],
-        'image_urls': {'Phantom Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg', 'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg', 'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg'},
+        'image_urls': {'Phantom Black': '/images/hyundai-verna-phantom-black.jpg', 'Atlas White': '/images/hyundai-verna-atlas-white.jpg', 'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg'},
     },
     {
         'id': 87,
@@ -1476,7 +1476,7 @@ CARS_DATA = [
         'lineage_history': "Since its 2006 debut, the Verna has been synonymous with premium mid-size sedans in India. The fifth generation arrived in 2023 with ADAS Level 2 as standard, a sweeping parametric design, and the brand's 1.5-litre turbo GDi engine - reigniting interest in the declining sedan segment.",
         'monthly_sales': 4000,
         'colors': ['Phantom Black', 'Atlas White', 'Typhoon Silver'],
-        'image_urls': {'Phantom Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg', 'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg', 'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg'},
+        'image_urls': {'Phantom Black': '/images/hyundai-verna-phantom-black.jpg', 'Atlas White': '/images/hyundai-verna-atlas-white.jpg', 'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg'},
     },
     {
         'id': 88,
@@ -1493,7 +1493,7 @@ CARS_DATA = [
         'lineage_history': "Since its 2006 debut, the Verna has been synonymous with premium mid-size sedans in India. The fifth generation arrived in 2023 with ADAS Level 2 as standard, a sweeping parametric design, and the brand's 1.5-litre turbo GDi engine - reigniting interest in the declining sedan segment.",
         'monthly_sales': 4000,
         'colors': ['Phantom Black', 'Atlas White', 'Typhoon Silver'],
-        'image_urls': {'Phantom Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg', 'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg', 'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg'},
+        'image_urls': {'Phantom Black': '/images/hyundai-verna-phantom-black.jpg', 'Atlas White': '/images/hyundai-verna-atlas-white.jpg', 'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/121943/verna-exterior-right-front-three-quarter-10.jpeg'},
     },
     {
         'id': 89,
@@ -1510,7 +1510,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2019 as Hyundai's entry into the compact SUV segment, the Venue pioneered connected car technology with BlueLink. Its compact footprint, raised stance, and punchy 1.0-litre turbo engine have kept it among the top 5 best-selling SUVs in India for five consecutive years.",
         'monthly_sales': 8000,
         'colors': ['Typhoon Silver', 'Atlas White', 'Intense Red'],
-        'image_urls': {'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg', 'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Typhoon Silver': '/images/hyundai-venue-typhoon-silver.jpg', 'Atlas White': '/images/hyundai-venue-atlas-white.jpg', 'Intense Red': '/images/hyundai-venue-intense-red.jpg'},
     },
     {
         'id': 90,
@@ -1527,7 +1527,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2019 as Hyundai's entry into the compact SUV segment, the Venue pioneered connected car technology with BlueLink. Its compact footprint, raised stance, and punchy 1.0-litre turbo engine have kept it among the top 5 best-selling SUVs in India for five consecutive years.",
         'monthly_sales': 8000,
         'colors': ['Typhoon Silver', 'Atlas White', 'Intense Red'],
-        'image_urls': {'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg', 'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Typhoon Silver': '/images/hyundai-venue-typhoon-silver.jpg', 'Atlas White': '/images/hyundai-venue-atlas-white.jpg', 'Intense Red': '/images/hyundai-venue-intense-red.jpg'},
     },
     {
         'id': 91,
@@ -1544,7 +1544,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2019 as Hyundai's entry into the compact SUV segment, the Venue pioneered connected car technology with BlueLink. Its compact footprint, raised stance, and punchy 1.0-litre turbo engine have kept it among the top 5 best-selling SUVs in India for five consecutive years.",
         'monthly_sales': 8000,
         'colors': ['Typhoon Silver', 'Atlas White', 'Intense Red'],
-        'image_urls': {'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg', 'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Typhoon Silver': '/images/hyundai-venue-typhoon-silver.jpg', 'Atlas White': '/images/hyundai-venue-atlas-white.jpg', 'Intense Red': '/images/hyundai-venue-intense-red.jpg'},
     },
     {
         'id': 92,
@@ -1561,7 +1561,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2019 as Hyundai's entry into the compact SUV segment, the Venue pioneered connected car technology with BlueLink. Its compact footprint, raised stance, and punchy 1.0-litre turbo engine have kept it among the top 5 best-selling SUVs in India for five consecutive years.",
         'monthly_sales': 8000,
         'colors': ['Typhoon Silver', 'Atlas White', 'Intense Red'],
-        'image_urls': {'Typhoon Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg', 'Atlas White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/116281/venue-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Typhoon Silver': '/images/hyundai-venue-typhoon-silver.jpg', 'Atlas White': '/images/hyundai-venue-atlas-white.jpg', 'Intense Red': '/images/hyundai-venue-intense-red.jpg'},
     },
     {
         'id': 93,
@@ -1578,7 +1578,7 @@ CARS_DATA = [
         'lineage_history': "The Ioniq 5, based on Hyundai's dedicated BEV E-GMP platform, represented a landmark moment for EVs in India. With its retro-futurist design, 800V charging architecture, and class-leading range, it established Hyundai as a technology leader in the nascent Indian premium electric vehicle market.",
         'monthly_sales': 300,
         'colors': ['Digital Teal Green', 'Lucid Lime', 'Gravity Gold Matte'],
-        'image_urls': {'Digital Teal Green': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/126485/ioniq-5-exterior-right-front-three-quarter-2.jpeg', 'Lucid Lime': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/126485/ioniq-5-exterior-right-front-three-quarter-2.jpeg', 'Gravity Gold Matte': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/126485/ioniq-5-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Digital Teal Green': '/images/hyundai-ioniq-5-digital-teal-green.jpg', 'Lucid Lime': '/images/hyundai-ioniq-5-lucid-lime.jpg', 'Gravity Gold Matte': '/images/hyundai-ioniq-5-gravity-gold-matte.jpg'},
     },
     {
         'id': 94,
@@ -1595,7 +1595,7 @@ CARS_DATA = [
         'lineage_history': "The Ioniq 5, based on Hyundai's dedicated BEV E-GMP platform, represented a landmark moment for EVs in India. With its retro-futurist design, 800V charging architecture, and class-leading range, it established Hyundai as a technology leader in the nascent Indian premium electric vehicle market.",
         'monthly_sales': 300,
         'colors': ['Digital Teal Green', 'Lucid Lime', 'Gravity Gold Matte'],
-        'image_urls': {'Digital Teal Green': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/126485/ioniq-5-exterior-right-front-three-quarter-2.jpeg', 'Lucid Lime': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/126485/ioniq-5-exterior-right-front-three-quarter-2.jpeg', 'Gravity Gold Matte': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/126485/ioniq-5-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Digital Teal Green': '/images/hyundai-ioniq-5-digital-teal-green.jpg', 'Lucid Lime': '/images/hyundai-ioniq-5-lucid-lime.jpg', 'Gravity Gold Matte': '/images/hyundai-ioniq-5-gravity-gold-matte.jpg'},
     },
     {
         'id': 95,
@@ -1612,7 +1612,7 @@ CARS_DATA = [
         'lineage_history': "The Ioniq 5, based on Hyundai's dedicated BEV E-GMP platform, represented a landmark moment for EVs in India. With its retro-futurist design, 800V charging architecture, and class-leading range, it established Hyundai as a technology leader in the nascent Indian premium electric vehicle market.",
         'monthly_sales': 300,
         'colors': ['Digital Teal Green', 'Lucid Lime', 'Gravity Gold Matte'],
-        'image_urls': {'Digital Teal Green': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/126485/ioniq-5-exterior-right-front-three-quarter-2.jpeg', 'Lucid Lime': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/126485/ioniq-5-exterior-right-front-three-quarter-2.jpeg', 'Gravity Gold Matte': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/126485/ioniq-5-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Digital Teal Green': '/images/hyundai-ioniq-5-digital-teal-green.jpg', 'Lucid Lime': '/images/hyundai-ioniq-5-lucid-lime.jpg', 'Gravity Gold Matte': '/images/hyundai-ioniq-5-gravity-gold-matte.jpg'},
     },
     {
         'id': 96,
@@ -1629,7 +1629,7 @@ CARS_DATA = [
         'lineage_history': 'Originally a body-on-frame off-roader launched in 1998, the Safari name was reimagined in 2021 on the Omega Arc monocoque platform. The modern Safari is a premium three-row family SUV combining command seating, panoramic roof, and a 2.0-litre Kryotec diesel.',
         'monthly_sales': 5000,
         'colors': ['Orcus White', 'Fossil Grey', 'Royal Blue'],
-        'image_urls': {'Orcus White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Fossil Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Royal Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Orcus White': '/images/tata-safari-orcus-white.jpg', 'Fossil Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Royal Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg'},
     },
     {
         'id': 97,
@@ -1646,7 +1646,7 @@ CARS_DATA = [
         'lineage_history': 'Originally a body-on-frame off-roader launched in 1998, the Safari name was reimagined in 2021 on the Omega Arc monocoque platform. The modern Safari is a premium three-row family SUV combining command seating, panoramic roof, and a 2.0-litre Kryotec diesel.',
         'monthly_sales': 5000,
         'colors': ['Orcus White', 'Fossil Grey', 'Royal Blue'],
-        'image_urls': {'Orcus White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Fossil Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Royal Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Orcus White': '/images/tata-safari-orcus-white.jpg', 'Fossil Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Royal Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg'},
     },
     {
         'id': 98,
@@ -1663,7 +1663,7 @@ CARS_DATA = [
         'lineage_history': 'Originally a body-on-frame off-roader launched in 1998, the Safari name was reimagined in 2021 on the Omega Arc monocoque platform. The modern Safari is a premium three-row family SUV combining command seating, panoramic roof, and a 2.0-litre Kryotec diesel.',
         'monthly_sales': 5000,
         'colors': ['Orcus White', 'Fossil Grey', 'Royal Blue'],
-        'image_urls': {'Orcus White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Fossil Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Royal Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Orcus White': '/images/tata-safari-orcus-white.jpg', 'Fossil Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Royal Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg'},
     },
     {
         'id': 99,
@@ -1680,7 +1680,7 @@ CARS_DATA = [
         'lineage_history': 'Originally a body-on-frame off-roader launched in 1998, the Safari name was reimagined in 2021 on the Omega Arc monocoque platform. The modern Safari is a premium three-row family SUV combining command seating, panoramic roof, and a 2.0-litre Kryotec diesel.',
         'monthly_sales': 5000,
         'colors': ['Orcus White', 'Fossil Grey', 'Royal Blue'],
-        'image_urls': {'Orcus White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Fossil Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Royal Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Orcus White': '/images/tata-safari-orcus-white.jpg', 'Fossil Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg', 'Royal Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/154783/safari-facelift-exterior-right-front-three-quarter-2.jpeg'},
     },
     {
         'id': 100,
@@ -1697,7 +1697,7 @@ CARS_DATA = [
         'lineage_history': 'The Punch entered the micro-SUV segment in 2021 and immediately became a sales phenomenon. Built on the ALFA platform, it delivers genuine 5-star Global NCAP safety in an affordable, urban-friendly package with a distinctive SUV stance.',
         'monthly_sales': 12000,
         'colors': ['Tornado Blue', 'Daytona Grey', 'Oberon Black'],
-        'image_urls': {'Tornado Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Daytona Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Oberon Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg'},
+        'image_urls': {'Tornado Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Daytona Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Oberon Black': '/images/tata-punch-oberon-black.jpg'},
     },
     {
         'id': 101,
@@ -1714,7 +1714,7 @@ CARS_DATA = [
         'lineage_history': 'The Punch entered the micro-SUV segment in 2021 and immediately became a sales phenomenon. Built on the ALFA platform, it delivers genuine 5-star Global NCAP safety in an affordable, urban-friendly package with a distinctive SUV stance.',
         'monthly_sales': 12000,
         'colors': ['Tornado Blue', 'Daytona Grey', 'Oberon Black'],
-        'image_urls': {'Tornado Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Daytona Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Oberon Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg'},
+        'image_urls': {'Tornado Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Daytona Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Oberon Black': '/images/tata-punch-oberon-black.jpg'},
     },
     {
         'id': 102,
@@ -1731,7 +1731,7 @@ CARS_DATA = [
         'lineage_history': 'The Punch entered the micro-SUV segment in 2021 and immediately became a sales phenomenon. Built on the ALFA platform, it delivers genuine 5-star Global NCAP safety in an affordable, urban-friendly package with a distinctive SUV stance.',
         'monthly_sales': 12000,
         'colors': ['Tornado Blue', 'Daytona Grey', 'Oberon Black'],
-        'image_urls': {'Tornado Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Daytona Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Oberon Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg'},
+        'image_urls': {'Tornado Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Daytona Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Oberon Black': '/images/tata-punch-oberon-black.jpg'},
     },
     {
         'id': 103,
@@ -1748,7 +1748,7 @@ CARS_DATA = [
         'lineage_history': 'The Punch entered the micro-SUV segment in 2021 and immediately became a sales phenomenon. Built on the ALFA platform, it delivers genuine 5-star Global NCAP safety in an affordable, urban-friendly package with a distinctive SUV stance.',
         'monthly_sales': 12000,
         'colors': ['Tornado Blue', 'Daytona Grey', 'Oberon Black'],
-        'image_urls': {'Tornado Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Daytona Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Oberon Black': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg'},
+        'image_urls': {'Tornado Blue': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Daytona Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/99113/punch-exterior-right-front-three-quarter-15.jpeg', 'Oberon Black': '/images/tata-punch-oberon-black.jpg'},
     },
     {
         'id': 104,
@@ -1901,7 +1901,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2023 as Honda's first compact SUV built specifically for India, the Elevate leverages the City's proven 1.5-litre i-VTEC engine in an SUV body with a premium cabin. Engineered at Honda's India R&D centre, it directly addresses the dominant consumer preference shift toward compact SUVs.",
         'monthly_sales': 4000,
         'colors': ['Lunar Silver Metallic', 'Meteoroid Grey Metallic', 'Radiant Red Metallic'],
-        'image_urls': {'Lunar Silver Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg', 'Meteoroid Grey Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg', 'Radiant Red Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg'},
+        'image_urls': {'Lunar Silver Metallic': '/images/honda-elevate-lunar-silver-metallic.jpg', 'Meteoroid Grey Metallic': '/images/honda-elevate-meteoroid-grey-metallic.jpg', 'Radiant Red Metallic': '/images/honda-elevate-radiant-red-metallic.jpg'},
     },
     {
         'id': 113,
@@ -1918,7 +1918,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2023 as Honda's first compact SUV built specifically for India, the Elevate leverages the City's proven 1.5-litre i-VTEC engine in an SUV body with a premium cabin. Engineered at Honda's India R&D centre, it directly addresses the dominant consumer preference shift toward compact SUVs.",
         'monthly_sales': 4000,
         'colors': ['Lunar Silver Metallic', 'Meteoroid Grey Metallic', 'Radiant Red Metallic'],
-        'image_urls': {'Lunar Silver Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg', 'Meteoroid Grey Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg', 'Radiant Red Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg'},
+        'image_urls': {'Lunar Silver Metallic': '/images/honda-elevate-lunar-silver-metallic.jpg', 'Meteoroid Grey Metallic': '/images/honda-elevate-meteoroid-grey-metallic.jpg', 'Radiant Red Metallic': '/images/honda-elevate-radiant-red-metallic.jpg'},
     },
     {
         'id': 114,
@@ -1935,7 +1935,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2023 as Honda's first compact SUV built specifically for India, the Elevate leverages the City's proven 1.5-litre i-VTEC engine in an SUV body with a premium cabin. Engineered at Honda's India R&D centre, it directly addresses the dominant consumer preference shift toward compact SUVs.",
         'monthly_sales': 4000,
         'colors': ['Lunar Silver Metallic', 'Meteoroid Grey Metallic', 'Radiant Red Metallic'],
-        'image_urls': {'Lunar Silver Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg', 'Meteoroid Grey Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg', 'Radiant Red Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg'},
+        'image_urls': {'Lunar Silver Metallic': '/images/honda-elevate-lunar-silver-metallic.jpg', 'Meteoroid Grey Metallic': '/images/honda-elevate-meteoroid-grey-metallic.jpg', 'Radiant Red Metallic': '/images/honda-elevate-radiant-red-metallic.jpg'},
     },
     {
         'id': 115,
@@ -1952,7 +1952,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2023 as Honda's first compact SUV built specifically for India, the Elevate leverages the City's proven 1.5-litre i-VTEC engine in an SUV body with a premium cabin. Engineered at Honda's India R&D centre, it directly addresses the dominant consumer preference shift toward compact SUVs.",
         'monthly_sales': 4000,
         'colors': ['Lunar Silver Metallic', 'Meteoroid Grey Metallic', 'Radiant Red Metallic'],
-        'image_urls': {'Lunar Silver Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg', 'Meteoroid Grey Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg', 'Radiant Red Metallic': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141115/elevate-exterior-right-front-three-quarter-3.jpeg'},
+        'image_urls': {'Lunar Silver Metallic': '/images/honda-elevate-lunar-silver-metallic.jpg', 'Meteoroid Grey Metallic': '/images/honda-elevate-meteoroid-grey-metallic.jpg', 'Radiant Red Metallic': '/images/honda-elevate-radiant-red-metallic.jpg'},
     },
     {
         'id': 116,
@@ -2037,7 +2037,7 @@ CARS_DATA = [
         'lineage_history': "The Seltos was Kia's blockbuster India debut in 2019, selling 7,000 units in its first month. Positioned as a feature-technology benchmark in the compact SUV segment, it brought Bose audio, panoramic sunroof, and Kia's Heartbeat design to a price point that disrupted the competitive order. It remains Kia India's highest-volume nameplate.",
         'monthly_sales': 9000,
         'colors': ['Sparkling Silver', 'Aurora Black Pearl', 'Intense Red'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg', 'Aurora Black Pearl': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-seltos-sparkling-silver.jpg', 'Aurora Black Pearl': '/images/kia-seltos-aurora-black-pearl.jpg', 'Intense Red': '/images/kia-seltos-intense-red.jpg'},
     },
     {
         'id': 121,
@@ -2054,7 +2054,7 @@ CARS_DATA = [
         'lineage_history': "The Seltos was Kia's blockbuster India debut in 2019, selling 7,000 units in its first month. Positioned as a feature-technology benchmark in the compact SUV segment, it brought Bose audio, panoramic sunroof, and Kia's Heartbeat design to a price point that disrupted the competitive order. It remains Kia India's highest-volume nameplate.",
         'monthly_sales': 9000,
         'colors': ['Sparkling Silver', 'Aurora Black Pearl', 'Intense Red'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg', 'Aurora Black Pearl': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-seltos-sparkling-silver.jpg', 'Aurora Black Pearl': '/images/kia-seltos-aurora-black-pearl.jpg', 'Intense Red': '/images/kia-seltos-intense-red.jpg'},
     },
     {
         'id': 122,
@@ -2071,7 +2071,7 @@ CARS_DATA = [
         'lineage_history': "The Seltos was Kia's blockbuster India debut in 2019, selling 7,000 units in its first month. Positioned as a feature-technology benchmark in the compact SUV segment, it brought Bose audio, panoramic sunroof, and Kia's Heartbeat design to a price point that disrupted the competitive order. It remains Kia India's highest-volume nameplate.",
         'monthly_sales': 9000,
         'colors': ['Sparkling Silver', 'Aurora Black Pearl', 'Intense Red'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg', 'Aurora Black Pearl': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-seltos-sparkling-silver.jpg', 'Aurora Black Pearl': '/images/kia-seltos-aurora-black-pearl.jpg', 'Intense Red': '/images/kia-seltos-intense-red.jpg'},
     },
     {
         'id': 123,
@@ -2088,7 +2088,7 @@ CARS_DATA = [
         'lineage_history': "The Seltos was Kia's blockbuster India debut in 2019, selling 7,000 units in its first month. Positioned as a feature-technology benchmark in the compact SUV segment, it brought Bose audio, panoramic sunroof, and Kia's Heartbeat design to a price point that disrupted the competitive order. It remains Kia India's highest-volume nameplate.",
         'monthly_sales': 9000,
         'colors': ['Sparkling Silver', 'Aurora Black Pearl', 'Intense Red'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg', 'Aurora Black Pearl': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/141891/seltos-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-seltos-sparkling-silver.jpg', 'Aurora Black Pearl': '/images/kia-seltos-aurora-black-pearl.jpg', 'Intense Red': '/images/kia-seltos-intense-red.jpg'},
     },
     {
         'id': 124,
@@ -2105,7 +2105,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2020, the Sonet took the Seltos formula to the sub-compact SUV segment, immediately topping its category. Its segment-first 6-speed iMT gearbox, UVO connected car platform, and feature density set a new standard for small SUVs. It consistently features in India's top 10 best-selling cars.",
         'monthly_sales': 8000,
         'colors': ['Sparkling Silver', 'Gravity Grey', 'Intense Red'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg', 'Gravity Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-sonet-sparkling-silver.jpg', 'Gravity Grey': '/images/kia-sonet-gravity-grey.jpg', 'Intense Red': '/images/kia-sonet-intense-red.jpg'},
     },
     {
         'id': 125,
@@ -2122,7 +2122,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2020, the Sonet took the Seltos formula to the sub-compact SUV segment, immediately topping its category. Its segment-first 6-speed iMT gearbox, UVO connected car platform, and feature density set a new standard for small SUVs. It consistently features in India's top 10 best-selling cars.",
         'monthly_sales': 8000,
         'colors': ['Sparkling Silver', 'Gravity Grey', 'Intense Red'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg', 'Gravity Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-sonet-sparkling-silver.jpg', 'Gravity Grey': '/images/kia-sonet-gravity-grey.jpg', 'Intense Red': '/images/kia-sonet-intense-red.jpg'},
     },
     {
         'id': 126,
@@ -2139,7 +2139,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2020, the Sonet took the Seltos formula to the sub-compact SUV segment, immediately topping its category. Its segment-first 6-speed iMT gearbox, UVO connected car platform, and feature density set a new standard for small SUVs. It consistently features in India's top 10 best-selling cars.",
         'monthly_sales': 8000,
         'colors': ['Sparkling Silver', 'Gravity Grey', 'Intense Red'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg', 'Gravity Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-sonet-sparkling-silver.jpg', 'Gravity Grey': '/images/kia-sonet-gravity-grey.jpg', 'Intense Red': '/images/kia-sonet-intense-red.jpg'},
     },
     {
         'id': 127,
@@ -2156,7 +2156,7 @@ CARS_DATA = [
         'lineage_history': "Launched in 2020, the Sonet took the Seltos formula to the sub-compact SUV segment, immediately topping its category. Its segment-first 6-speed iMT gearbox, UVO connected car platform, and feature density set a new standard for small SUVs. It consistently features in India's top 10 best-selling cars.",
         'monthly_sales': 8000,
         'colors': ['Sparkling Silver', 'Gravity Grey', 'Intense Red'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg', 'Gravity Grey': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg', 'Intense Red': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/166299/sonet-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-sonet-sparkling-silver.jpg', 'Gravity Grey': '/images/kia-sonet-gravity-grey.jpg', 'Intense Red': '/images/kia-sonet-intense-red.jpg'},
     },
     {
         'id': 128,
@@ -2173,7 +2173,7 @@ CARS_DATA = [
         'lineage_history': "The Carens, unveiled in 2022, occupies a unique lifestyle MPV space - offering three-row seating in a sleek crossover body. It competes against traditional MPVs with modern SUV design cues, connected tech, and Kia's Hyundai-sourced powertrains, earning a strong following among growing urban families.",
         'monthly_sales': 4000,
         'colors': ['Sparkling Silver', 'Aurora Black Pearl', 'Clear White'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg', 'Aurora Black Pearl': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg', 'Clear White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-carens-sparkling-silver.jpg', 'Aurora Black Pearl': '/images/kia-carens-aurora-black-pearl.jpg', 'Clear White': '/images/kia-carens-clear-white.jpg'},
     },
     {
         'id': 129,
@@ -2190,7 +2190,7 @@ CARS_DATA = [
         'lineage_history': "The Carens, unveiled in 2022, occupies a unique lifestyle MPV space - offering three-row seating in a sleek crossover body. It competes against traditional MPVs with modern SUV design cues, connected tech, and Kia's Hyundai-sourced powertrains, earning a strong following among growing urban families.",
         'monthly_sales': 4000,
         'colors': ['Sparkling Silver', 'Aurora Black Pearl', 'Clear White'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg', 'Aurora Black Pearl': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg', 'Clear White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-carens-sparkling-silver.jpg', 'Aurora Black Pearl': '/images/kia-carens-aurora-black-pearl.jpg', 'Clear White': '/images/kia-carens-clear-white.jpg'},
     },
     {
         'id': 130,
@@ -2207,7 +2207,7 @@ CARS_DATA = [
         'lineage_history': "The Carens, unveiled in 2022, occupies a unique lifestyle MPV space - offering three-row seating in a sleek crossover body. It competes against traditional MPVs with modern SUV design cues, connected tech, and Kia's Hyundai-sourced powertrains, earning a strong following among growing urban families.",
         'monthly_sales': 4000,
         'colors': ['Sparkling Silver', 'Aurora Black Pearl', 'Clear White'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg', 'Aurora Black Pearl': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg', 'Clear White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-carens-sparkling-silver.jpg', 'Aurora Black Pearl': '/images/kia-carens-aurora-black-pearl.jpg', 'Clear White': '/images/kia-carens-clear-white.jpg'},
     },
     {
         'id': 131,
@@ -2224,6 +2224,6 @@ CARS_DATA = [
         'lineage_history': "The Carens, unveiled in 2022, occupies a unique lifestyle MPV space - offering three-row seating in a sleek crossover body. It competes against traditional MPVs with modern SUV design cues, connected tech, and Kia's Hyundai-sourced powertrains, earning a strong following among growing urban families.",
         'monthly_sales': 4000,
         'colors': ['Sparkling Silver', 'Aurora Black Pearl', 'Clear White'],
-        'image_urls': {'Sparkling Silver': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg', 'Aurora Black Pearl': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg', 'Clear White': 'https://imgd.aeplcdn.com/666x375/n/cw/ec/103183/carens-exterior-right-front-three-quarter-2.jpeg'},
+        'image_urls': {'Sparkling Silver': '/images/kia-carens-sparkling-silver.jpg', 'Aurora Black Pearl': '/images/kia-carens-aurora-black-pearl.jpg', 'Clear White': '/images/kia-carens-clear-white.jpg'},
     },
 ]
