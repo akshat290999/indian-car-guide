@@ -1,3 +1,14 @@
+/* Global box-sizing reset — prevents padding/border from blowing out widths */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Global image safety — no image can exceed its container */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -15,6 +26,9 @@
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
+  /* Navbar height token — consumed by .car-subnav-sticky's top offset */
+  --navbar-h: 56px;
+
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
@@ -27,6 +41,12 @@
 
   @media (max-width: 1024px) {
     font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-h: 108px;
   }
 }
 
@@ -52,18 +72,19 @@
 
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 1126px;
   margin: 0 auto;
   text-align: center;
   border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 h1,
@@ -108,6 +129,56 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+/* ─── Navbar ─────────────────────────────────────────────────────────────── */
+.navbar {
+  background-color: #0A192F;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: var(--navbar-h);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 24px;
+  flex-shrink: 0;
+}
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+/* CarDetail – sticky sub-nav uses the same height token as the navbar */
+.car-subnav-sticky {
+  position: sticky;
+  top: var(--navbar-h);
+  z-index: 90;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 8px;
+  }
+  .navbar-brand {
+    margin-right: 0;
+  }
+  .navbar-links {
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 /* ─── Responsive layout helpers ─────────────────────────────────────────────

@@ -341,7 +341,7 @@ export default function CarDetail() {
           </div>
         </div>
       </div>
-      <div style={{ position:'sticky', top:'56px', zIndex:90, backgroundColor:'#fff', borderBottom:`2px solid ${C.border}`, boxShadow:'0 2px 8px rgba(10,25,47,0.07)' }}>
+      <div className="car-subnav-sticky" style={{ backgroundColor:'#fff', borderBottom:`2px solid ${C.border}`, boxShadow:'0 2px 8px rgba(10,25,47,0.07)' }}>
         <div style={{ maxWidth:'1000px', margin:'0 auto', padding:'0 24px', display:'flex', overflowX:'auto' }}>
           {NAV_ITEMS.map(({ id, label }) => {
             const active = activeTab === id;
