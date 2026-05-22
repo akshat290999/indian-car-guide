@@ -204,7 +204,7 @@ export default function CarDetail() {
   useEffect(() => {
     // Using same absolute CloudFront URL as Home.jsx — avoids relative URL
     // routing issues when served from S3/CloudFront
-    axios.get('https://d1m68rrd1mp2k5.cloudfront.net/api/cars')
+    axios.get('/api/cars')
       .then(res => {
         const matched = res.data.filter(c => c.model_name.toLowerCase() === decodedModel.toLowerCase());
         setVariants(matched);
@@ -233,9 +233,12 @@ export default function CarDetail() {
   const maxPow      = powers.length ? Math.max(...powers) : null;
   const fuelTypes   = [...new Set(variants.map(v => v.fuel_type).filter(Boolean))].join(' / ');
   const gearTypes   = [...new Set(variants.map(v => v.gearbox_type).filter(Boolean))].join(' / ');
-  const imageUrl    = first.image_urls
-    ? (first.image_urls[selectedColor] ?? Object.values(first.image_urls)[0])
-    : null;
+  let imageUrl = null;
+  if (Array.isArray(first.image_urls) && first.image_urls.length > 0) {
+    imageUrl = first.image_urls[0];
+  } else if (first.image_urls && typeof first.image_urls === 'object' && Object.keys(first.image_urls).length > 0) {
+    imageUrl = (selectedColor && first.image_urls[selectedColor]) ?? Object.values(first.image_urls)[0];
+  }
   const colors      = first.colors || [];
 
   const filtered = variants.filter(v => {
