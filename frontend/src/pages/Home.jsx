@@ -76,7 +76,9 @@ const STATS = [
 function PulseCard({ car, rank }) {
   const rankColors = ['#E03A3E', '#0072BB', '#1A7A45'];
   const rankColor  = rankColors[rank] || C.muted;
-  const imageUrl   = car.image_urls?.[0];
+  const imageUrl   = car.image_urls
+    ? Object.values(car.image_urls)[0]
+    : null;
 
   return (
     <Link to={`/car/${encodeURIComponent(car.model_name)}`} style={{ textDecoration: 'none', display: 'block' }}>

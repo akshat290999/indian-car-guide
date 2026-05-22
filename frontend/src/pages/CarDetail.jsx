@@ -233,7 +233,9 @@ export default function CarDetail() {
   const maxPow      = powers.length ? Math.max(...powers) : null;
   const fuelTypes   = [...new Set(variants.map(v => v.fuel_type).filter(Boolean))].join(' / ');
   const gearTypes   = [...new Set(variants.map(v => v.gearbox_type).filter(Boolean))].join(' / ');
-  const imageUrl    = first.image_urls?.[0];
+  const imageUrl    = first.image_urls
+    ? (first.image_urls[selectedColor] ?? Object.values(first.image_urls)[0])
+    : null;
   const colors      = first.colors || [];
 
   const filtered = variants.filter(v => {

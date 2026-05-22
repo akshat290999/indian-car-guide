@@ -1,0 +1,243 @@
+{
+  "Honda||Amaze": {
+    "path": null,
+    "colors": [
+      "Golden Brown Metallic",
+      "Lunar Silver Metallic",
+      "Platinum White Pearl"
+    ]
+  },
+  "Honda||City": {
+    "path": "/images/honda-city.jpg",
+    "colors": [
+      "Lunar Silver Metallic",
+      "Platinum White Pearl",
+      "Radiant Red Metallic"
+    ]
+  },
+  "Honda||Elevate": {
+    "path": null,
+    "colors": [
+      "Lunar Silver Metallic",
+      "Meteoroid Grey Metallic",
+      "Radiant Red Metallic"
+    ]
+  },
+  "Hyundai||Creta": {
+    "path": null,
+    "colors": [
+      "Abyss Black",
+      "Atlas White",
+      "Titan Grey"
+    ]
+  },
+  "Hyundai||Ioniq 5": {
+    "path": null,
+    "colors": [
+      "Digital Teal Green",
+      "Gravity Gold Matte",
+      "Lucid Lime"
+    ]
+  },
+  "Hyundai||Venue": {
+    "path": null,
+    "colors": [
+      "Atlas White",
+      "Intense Red",
+      "Typhoon Silver"
+    ]
+  },
+  "Hyundai||Verna": {
+    "path": null,
+    "colors": [
+      "Atlas White",
+      "Phantom Black",
+      "Typhoon Silver"
+    ]
+  },
+  "Hyundai||i20": {
+    "path": "/images/hyundai-i20.jpg",
+    "colors": [
+      "Fiery Red",
+      "Polar White",
+      "Starry Night"
+    ]
+  },
+  "Kia||Carens": {
+    "path": null,
+    "colors": [
+      "Aurora Black Pearl",
+      "Clear White",
+      "Sparkling Silver"
+    ]
+  },
+  "Kia||Seltos": {
+    "path": null,
+    "colors": [
+      "Aurora Black Pearl",
+      "Intense Red",
+      "Sparkling Silver"
+    ]
+  },
+  "Kia||Sonet": {
+    "path": null,
+    "colors": [
+      "Gravity Grey",
+      "Intense Red",
+      "Sparkling Silver"
+    ]
+  },
+  "Mahindra||Bolero Neo": {
+    "path": null,
+    "colors": [
+      "Aquamarine Silver",
+      "Majestic Silver",
+      "Red Rage"
+    ]
+  },
+  "Mahindra||Scorpio-N": {
+    "path": null,
+    "colors": [
+      "Dazzling Silver",
+      "Deep Forest",
+      "Napoli Black"
+    ]
+  },
+  "Mahindra||Thar": {
+    "path": "/images/mahindra-thar.jpg",
+    "colors": [
+      "Deep Grey",
+      "Napoli Black",
+      "Red Rage"
+    ]
+  },
+  "Mahindra||XUV 3XO": {
+    "path": "/images/mahindra-xuv-3xo.jpg",
+    "colors": [
+      "Burnt Sienna Red",
+      "Everest White",
+      "Napoli Black"
+    ]
+  },
+  "Mahindra||XUV 700": {
+    "path": "/images/mahindra-xuv-700.jpg",
+    "colors": [
+      "Electric Blue",
+      "Everest White",
+      "Midnight Black"
+    ]
+  },
+  "Maruti Suzuki||Baleno": {
+    "path": null,
+    "colors": [
+      "Arctic White",
+      "Sizzling Red",
+      "Splendid Silver"
+    ]
+  },
+  "Maruti Suzuki||Brezza": {
+    "path": "/images/maruti-suzuki-brezza.jpg",
+    "colors": [
+      "Exuberant Blue",
+      "Magma Grey",
+      "Sizzling Red"
+    ]
+  },
+  "Maruti Suzuki||Fronx": {
+    "path": null,
+    "colors": [
+      "Grandeur Grey",
+      "Sizzling Red",
+      "Splendid Silver"
+    ]
+  },
+  "Maruti Suzuki||Grand Vitara": {
+    "path": null,
+    "colors": [
+      "Grandeur Grey",
+      "Opulent Red",
+      "Splendid Silver"
+    ]
+  },
+  "Maruti Suzuki||Swift": {
+    "path": null,
+    "colors": [
+      "Arctic White",
+      "Sizzling Red",
+      "Splendid Silver"
+    ]
+  },
+  "Skoda||Kushaq": {
+    "path": "/images/skoda-kushaq.jpg",
+    "colors": [
+      "Candy White",
+      "Carbon Steel",
+      "Tornado Red",
+      "Tornado Red with Black Roof"
+    ]
+  },
+  "Skoda||Slavia": {
+    "path": null,
+    "colors": [
+      "Brilliant Silver",
+      "Candy White",
+      "Tornado Red"
+    ]
+  },
+  "Tata||Altroz": {
+    "path": null,
+    "colors": [
+      "Arcade Grey",
+      "Avenue White",
+      "High Street Gold"
+    ]
+  },
+  "Tata||Harrier": {
+    "path": null,
+    "colors": [
+      "Coral Red",
+      "Oberon Black",
+      "Pebble Grey"
+    ]
+  },
+  "Tata||Nexon": {
+    "path": "/images/tata-nexon.jpg",
+    "colors": [
+      "Calgary White",
+      "Fearless Purple",
+      "Flame Red"
+    ]
+  },
+  "Tata||Punch": {
+    "path": null,
+    "colors": [
+      "Daytona Grey",
+      "Oberon Black",
+      "Tornado Blue"
+    ]
+  },
+  "Tata||Safari": {
+    "path": null,
+    "colors": [
+      "Fossil Grey",
+      "Orcus White",
+      "Royal Blue"
+    ]
+  },
+  "Toyota||Fortuner": {
+    "path": "/images/toyota-fortuner.jpg",
+    "colors": [
+      "Magma Grey",
+      "Midnight Black",
+      "Polar White"
+    ]
+  },
+  "Toyota||Innova Hycross": {
+    "path": "/images/toyota-innova-hycross.jpg",
+    "colors": [
+      "Blackish Ageha Flake",
+      "Silver Metallic",
+      "Super White"
+    ]
+  }
+}

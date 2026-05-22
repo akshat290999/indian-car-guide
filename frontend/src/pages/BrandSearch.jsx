@@ -94,7 +94,9 @@ export default function BrandSearch() {
               const maxP       = Math.max(...prices);
               const first      = variants[0];
               const numSeries  = new Set(variants.map(v => v.series)).size;
-              const imageUrl   = first.image_urls?.[0];
+              const imageUrl   = first.image_urls
+                ? Object.values(first.image_urls)[0]
+                : null;
 
               return (
                 <Link key={modelName} to={`/car/${encodeURIComponent(modelName)}`} style={{ textDecoration: 'none', display: 'block' }}>
