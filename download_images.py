@@ -1,12 +1,5 @@
-"""
-download_images.py
-For each unique (brand, model), downloads the first existing image_url
-already stored in cars_data.py (the imgd.aeplcdn.com CDN links).
-Saves to frontend/public/images/brand-model.jpg.
-Writes image_results.json for patch_cars_data.py.
-"""
-
-import os, re, sys, time, json, requests
+import os, sys, re, time, json, urllib.parse
+from playwright.sync_api import sync_playwright
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR    = os.path.join(SCRIPT_DIR, "frontend", "public", "images")
@@ -15,87 +8,121 @@ os.makedirs(OUT_DIR, exist_ok=True)
 sys.path.insert(0, os.path.join(SCRIPT_DIR, "backend"))
 from database.cars_data import CARS_DATA
 
-def slugify(text):
-    text = text.lower().strip()
-    text = re.sub(r'[^a-z0-9\s-]', '', text)
-    text = re.sub(r'\s+', '-', text)
-    return re.sub(r'-+', '-', text)
-
 UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
     "Chrome/124.0.0.0 Safari/537.36"
 )
 
-def download(url, dest):
-    r = requests.get(url, headers={"User-Agent": UA}, timeout=20, stream=True)
-    r.raise_for_status()
+def slugify(text):
+    text = text.lower().strip()
+    text = re.sub(r'[^a-z0-9\s-]', '', text)
+    text = re.sub(r'\s+', '-', text)
+    return re.sub(r'-+', '-', text)
+
+def get_first_image_url(page, query):
+    url = f"https://www.bing.com/images/search?q={urllib.parse.quote_plus(query)}"
+    page.goto(url, wait_until="domcontentloaded", timeout=30000)
+
+    # The first a.iusc element holds a JSON blob in its `m` attribute.
+    # The "murl" key inside that JSON is the direct link to the source image.
+    m_attr = page.locator("a.iusc").first.get_attribute("m", timeout=10000)
+    data   = json.loads(m_attr)
+    return data["murl"]
+
+def _wikimedia_fix(url):
+    # Bing's murl for Wikimedia images often points to a /thumb/.../Npx-File.jpg path.
+    # The thumb server returns 400 for non-standard sizes; the original file always works.
+    m = re.match(
+        r'(https://upload\.wikimedia\.org/wikipedia/[^/]+)/thumb/(\w+/\w+/.+?)/\d+px-.+$',
+        url,
+    )
+    return f"{m.group(1)}/{m.group(2)}" if m else url
+
+
+def download_image(ctx, url, dest):
+    url  = _wikimedia_fix(url)
+    resp = ctx.request.get(
+        url,
+        headers={
+            # A real Accept header — some servers 403 on */*
+            "Accept":          "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            # Bing referer satisfies hotlink-protection checks on most image hosts
+            "Referer":         "https://www.bing.com/images/",
+        },
+        timeout=30000,
+    )
+    if not resp.ok:
+        raise Exception(f"{resp.status} {resp.status_text}")
     with open(dest, "wb") as f:
-        for chunk in r.iter_content(8192):
-            f.write(chunk)
+        f.write(resp.body())
 
-# ── collect one source URL per (brand, model) ─────────────────────────────────
-model_info = {}   # (brand, model) → {source_url, colors}
+# ── Build the full list of unique (brand, model, color) triples ──────────────
+triples = []
+seen    = set()
 for car in CARS_DATA:
-    key = (car["brand"], car["model_name"])
-    urls = car.get("image_urls", [])
-    src  = (urls[0] if isinstance(urls, list) and urls
-            else next(iter(urls.values()), None) if isinstance(urls, dict)
-            else None)
-    if key not in model_info:
-        model_info[key] = {"source_url": src, "colors": set()}
-    model_info[key]["colors"].update(car.get("colors", []))
-    if src and not model_info[key]["source_url"]:
-        model_info[key]["source_url"] = src
+    brand  = car["brand"]
+    model  = car["model_name"]
+    for color in car.get("colors", []):
+        key = (brand, model, color)
+        if key not in seen:
+            seen.add(key)
+            triples.append(key)
 
-models = sorted(model_info.keys())
-print(f"Downloading {len(models)} model images from existing CDN URLs\n")
+total = len(triples)
+print(f"Unique (brand, model, color) triples to process: {total}\n")
 
-results = {}
+ok_count   = 0
+skip_count = 0
+fail_count = 0
 
-for i, (brand, model) in enumerate(models, 1):
-    info   = model_info[(brand, model)]
-    src    = info["source_url"]
-    fname  = f"{slugify(brand)}-{slugify(model)}.jpg"
-    dest   = os.path.join(OUT_DIR, fname)
-    web    = f"/images/{fname}"
+with sync_playwright() as pw:
+    browser = pw.chromium.launch(headless=True)
+    ctx     = browser.new_context(
+        user_agent=UA,
+        viewport={"width": 1280, "height": 800}
+    )
+    page = ctx.new_page()
 
-    if os.path.exists(dest):
-        print(f"[{i:2}/{len(models)}] SKIP  {fname}  ({os.path.getsize(dest)//1024} KB)")
-        results[(brand, model)] = web
-        continue
+    for i, (brand, model, color) in enumerate(triples, 1):
+        fname = f"{slugify(brand)}-{slugify(model)}-{slugify(color)}.jpg"
+        dest  = os.path.join(OUT_DIR, fname)
 
-    if not src:
-        print(f"[{i:2}/{len(models)}] NO SRC  {brand} {model}")
-        results[(brand, model)] = None
-        continue
+        if os.path.exists(dest):
+            print(f"[{i:3}/{total}] SKIP   {fname}")
+            skip_count += 1
+            continue
 
-    print(f"[{i:2}/{len(models)}] GET   {brand} {model}")
-    print(f"          src: {src}")
-    try:
-        download(src, dest)
-        size = os.path.getsize(dest)
-        print(f"          → saved {fname}  ({size//1024} KB)")
-        results[(brand, model)] = web
-    except Exception as e:
-        print(f"          → FAILED: {e}")
-        results[(brand, model)] = None
+        query = f"{brand} {model} {color} car india high resolution"
+        print(f"[{i:3}/{total}] SEARCH {brand} {model} – {color}")
 
-    time.sleep(0.5)
+        try:
+            img_url = get_first_image_url(page, query)
 
-# ── summary ────────────────────────────────────────────────────────────────────
-ok_n   = sum(1 for v in results.values() if v)
-fail_n = sum(1 for v in results.values() if not v)
-print(f"\n✓  Downloaded: {ok_n}   ✗  Failed: {fail_n}  (of {len(models)} models)")
+            if not img_url:
+                print(f"          → no image URL found")
+                fail_count += 1
+                time.sleep(1)
+                continue
 
-log = {
-    f"{b}||{m}": {
-        "path":   results[(b, m)],
-        "colors": sorted(model_info[(b, m)]["colors"]),
-    }
-    for (b, m) in models
-}
-log_path = os.path.join(SCRIPT_DIR, "image_results.json")
-with open(log_path, "w") as f:
-    json.dump(log, f, indent=2)
-print(f"Log → {log_path}")
+            download_image(ctx, img_url, dest)
+            kb = os.path.getsize(dest) // 1024
+            print(f"          → saved {fname}  ({kb} KB)  <- {img_url[:60]}...")
+            ok_count += 1
+
+        except Exception as e:
+            print(f"          → FAILED: {e}")
+            if os.path.exists(dest):
+                os.remove(dest)
+            fail_count += 1
+
+        time.sleep(2)
+
+    browser.close()
+
+print(f"\n── Summary {'─' * 50}")
+print(f"  Saved   : {ok_count}")
+print(f"  Skipped : {skip_count}")
+print(f"  Failed  : {fail_count}")
+print(f"  Total   : {total}")

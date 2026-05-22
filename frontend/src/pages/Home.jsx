@@ -76,9 +76,12 @@ const STATS = [
 function PulseCard({ car, rank }) {
   const rankColors = ['#E03A3E', '#0072BB', '#1A7A45'];
   const rankColor  = rankColors[rank] || C.muted;
-  const imageUrl   = car.image_urls
-    ? Object.values(car.image_urls)[0]
-    : null;
+  let imageUrl = null;
+  if (Array.isArray(car.image_urls) && car.image_urls.length > 0) {
+    imageUrl = car.image_urls[0];
+  } else if (car.image_urls && typeof car.image_urls === 'object' && Object.keys(car.image_urls).length > 0) {
+    imageUrl = Object.values(car.image_urls)[0];
+  }
 
   return (
     <Link to={`/car/${encodeURIComponent(car.model_name)}`} style={{ textDecoration: 'none', display: 'block' }}>
@@ -172,7 +175,7 @@ export default function Home() {
   const [topCars, setTopCars] = useState([]);
 
   useEffect(() => {
-    axios.get('https://d1m68rrd1mp2k5.cloudfront.net/api/cars')
+    axios.get('/api/cars')
       .then(res => {
         const byModel = {};
         res.data.forEach(car => {

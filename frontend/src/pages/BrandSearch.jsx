@@ -94,9 +94,12 @@ export default function BrandSearch() {
               const maxP       = Math.max(...prices);
               const first      = variants[0];
               const numSeries  = new Set(variants.map(v => v.series)).size;
-              const imageUrl   = first.image_urls
-                ? Object.values(first.image_urls)[0]
-                : null;
+              let imageUrl = null;
+              if (Array.isArray(first.image_urls) && first.image_urls.length > 0) {
+                imageUrl = first.image_urls[0];
+              } else if (first.image_urls && typeof first.image_urls === 'object' && Object.keys(first.image_urls).length > 0) {
+                imageUrl = Object.values(first.image_urls)[0];
+              }
 
               return (
                 <Link key={modelName} to={`/car/${encodeURIComponent(modelName)}`} style={{ textDecoration: 'none', display: 'block' }}>
