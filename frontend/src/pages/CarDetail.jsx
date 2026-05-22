@@ -87,8 +87,8 @@ function VariantRow({ v, isLast }) {
       padding:'14px 0',
       borderBottom: isLast ? 'none' : `1px solid ${C.border}`,
     }}>
-      <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:'12px' }}>
-        <div style={{ flex:'1 1 200px' }}>
+      <div className="variant-row-inner">
+        <div className="variant-name-section">
           <p style={{ margin:'0 0 7px', fontFamily:C.inter, fontSize:'14px', fontWeight:'600', color:C.black }}>
             {v.trim_name}
           </p>
@@ -104,7 +104,7 @@ function VariantRow({ v, isLast }) {
             </span>
           </div>
         </div>
-        <div style={{ display:'flex', alignItems:'center', gap:'14px', flexShrink:0 }}>
+        <div className="variant-price-section">
           <div style={{ textAlign:'right' }}>
             <span style={{ display:'block', fontSize:'10px', color:C.muted, fontFamily:C.inter, marginBottom:'2px' }}>Ex-Showroom</span>
             <span style={{ fontSize:'18px', fontWeight:'800', color:C.red, fontFamily:C.inter }}>
@@ -121,7 +121,7 @@ function VariantRow({ v, isLast }) {
       </div>
 
       {expanded && (
-        <div style={{ display:'flex', alignItems:'center', justifyContent:'flex-end', gap:'12px', marginTop:'12px', paddingTop:'12px', borderTop:`1px dashed ${C.border}` }}>
+        <div className="variant-expanded-row" style={{ borderTop:`1px dashed ${C.border}` }}>
           <span style={{ fontSize:'13px', fontFamily:C.inter, color:C.muted }}>Select State:</span>
           <select
             value={calcState}
@@ -173,7 +173,7 @@ function SeriesBlock({ name, variants }) {
 // ─── Spec pill ────────────────────────────────────────────────────────────────
 function SpecPill({ label, value }) {
   return (
-    <div style={{ backgroundColor:C.cardBg, border:`1px solid ${C.border}`, borderRadius:'10px', padding:'16px 20px', flex:'1 1 140px' }}>
+    <div className="spec-pill" style={{ backgroundColor:C.cardBg, border:`1px solid ${C.border}`, borderRadius:'10px', padding:'16px 20px' }}>
       <p style={{ margin:'0 0 5px', fontSize:'10px', fontFamily:C.inter, fontWeight:'700', color:C.muted, textTransform:'uppercase', letterSpacing:'1px' }}>{label}</p>
       <p style={{ margin:0, fontSize:'15px', fontFamily:C.inter, fontWeight:'700', color:C.navy }}>{value ?? 'N/A'}</p>
     </div>
@@ -257,8 +257,8 @@ export default function CarDetail() {
     <div style={{ minHeight:'100vh', backgroundColor:C.pageBg, fontFamily:C.inter }}>
       <div style={{ backgroundColor:C.heroBg, borderBottom:`1px solid ${C.border}` }}>
         <div style={{ maxWidth:'1000px', margin:'0 auto', padding:'36px 24px 40px' }}>
-          <div style={{ display:'flex', gap:'48px', alignItems:'flex-start', flexWrap:'wrap' }}>
-            <div style={{ flex:'1 1 340px', minWidth:0 }}>
+          <div className="car-hero-row">
+            <div className="car-info-panel">
               <Link to="/search" style={{ display:'inline-block', marginBottom:'20px', fontSize:'13px', fontWeight:'600', color:C.muted, textDecoration:'none' }}>
                 ← Back to Browse
               </Link>
@@ -326,7 +326,7 @@ export default function CarDetail() {
                 </div>
               )}
             </div>
-            <div style={{ flex:'0 1 380px', minWidth:'240px', alignSelf:'stretch', display:'flex', flexDirection:'column', justifyContent:'center' }}>
+            <div className="car-image-panel">
               {imageUrl ? (
                 <img
                   src={imageUrl} alt={decodedModel}
@@ -395,7 +395,7 @@ export default function CarDetail() {
         </div>
         <div id="specs" style={{ scrollMarginTop:'120px', marginTop:'52px' }}>
           <SectionHead>QUICK SPECS</SectionHead>
-          <div style={{ display:'flex', gap:'12px', flexWrap:'wrap', marginBottom:'20px' }}>
+          <div className="spec-pills">
             <SpecPill label="Power"          value={minPow == null ? 'N/A' : minPow === maxPow ? `${minPow} BHP` : `${minPow}–${maxPow} BHP`} />
             <SpecPill label="Fuel"           value={fuelTypes || 'N/A'} />
             <SpecPill label="Transmission"   value={gearTypes || 'N/A'} />

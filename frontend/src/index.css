@@ -109,3 +109,157 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* ─── Responsive layout helpers ─────────────────────────────────────────────
+   Extracted from Home.jsx, CarDetail.jsx, BrandSearch.jsx so that
+   @media queries can override layout without touching inline styles.
+─────────────────────────────────────────────────────────────────────────── */
+
+/* Home – hero */
+.home-hero-inner {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+.home-hero-text  { flex: 1 1 400px; text-align: left; }
+.home-hero-image { flex: 1 1 400px; }
+
+/* Home – about / mission two-column row */
+.two-col-row       { display: flex; gap: 40px; flex-wrap: wrap; }
+.two-col-row > div { flex: 1 1 400px; }
+
+/* Home – stats strip */
+.stats-strip-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.stat-item {
+  flex: 1 1 140px;
+  padding: 28px 20px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Home – content grids */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+.pulse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+}
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* CarDetail – hero */
+.car-hero-row {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.car-info-panel  { flex: 1 1 340px; min-width: 0; }
+.car-image-panel {
+  flex: 0 1 380px;
+  min-width: 240px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* CarDetail – variant row */
+.variant-row-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.variant-name-section  { flex: 1 1 200px; }
+.variant-price-section { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+
+/* CarDetail – variant on-road estimator */
+.variant-expanded-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  flex-wrap: wrap;
+}
+
+/* CarDetail – spec pills */
+.spec-pills { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.spec-pill  { flex: 1 1 140px; }
+
+/* BrandSearch – cards grid */
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
+  gap: 22px;
+}
+
+/* ─── Mobile  ≤ 768px ────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .home-hero-inner {
+    flex-direction: column;
+    padding: 32px 16px;
+    gap: 24px;
+  }
+  .home-hero-text,
+  .home-hero-image { flex: 1 1 100%; width: 100%; }
+
+  .two-col-row       { flex-direction: column; gap: 24px; }
+  .two-col-row > div { flex: 1 1 100%; }
+
+  .features-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .brand-grid    { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .pulse-grid    { grid-template-columns: 1fr; gap: 16px; }
+  .persona-grid  { grid-template-columns: 1fr; gap: 14px; }
+
+  .stats-strip-inner { padding: 0 16px; }
+  .stat-item {
+    flex: 1 1 calc(50% - 8px);
+    padding: 20px 12px;
+    border-right: none;
+  }
+
+  .car-hero-row    { flex-direction: column; gap: 24px; }
+  .car-info-panel  { flex: 1 1 100%; }
+  .car-image-panel { flex: 1 1 100%; min-width: unset; order: -1; }
+
+  .variant-price-section { flex-shrink: 1; }
+  .variant-expanded-row  { flex-direction: column; align-items: flex-start; }
+
+  .cars-grid { grid-template-columns: 1fr; gap: 16px; }
+  .spec-pill { flex: 1 1 calc(50% - 6px); }
+}
+
+/* ─── Small phones  ≤ 480px ──────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .home-hero-inner { padding: 24px 12px; }
+  .features-grid   { grid-template-columns: 1fr; }
+  .brand-grid      { grid-template-columns: repeat(2, 1fr); }
+  .stat-item       { flex: 1 1 100%; }
+  .spec-pill       { flex: 1 1 100%; }
+}

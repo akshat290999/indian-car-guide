@@ -195,8 +195,8 @@ export default function Home() {
 
       {/* ═══ HERO ══════════════════════════════════════════════════════════════ */}
       <div style={{ backgroundColor: C.white, borderBottom: `1px solid ${C.border}` }}>
-        <div style={{ display: 'flex', gap: '40px', alignItems: 'center', flexWrap: 'wrap', maxWidth: '1100px', margin: '0 auto', padding: '60px 24px' }}>
-          <div style={{ flex: '1 1 400px', textAlign: 'left' }}>
+        <div className="home-hero-inner">
+          <div className="home-hero-text">
 
             {/* Eyebrow */}
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '20px', backgroundColor: C.subBg, border: `1px solid ${C.border}`, marginBottom: '28px' }}>
@@ -259,7 +259,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{ flex: '1 1 400px' }}>
+          <div className="home-hero-image">
             <img
               src="https://carorbis.com/wp-content/uploads/2022/03/02Carorbis-Blog_Top-Car-Brands-in-India-699x400.jpg"
               alt="Top Car Brands in India"
@@ -271,9 +271,9 @@ export default function Home() {
 
       {/* ═══ STATS STRIP ═══════════════════════════════════════════════════════ */}
       <div style={{ backgroundColor: C.navy }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px', display: 'flex', flexWrap: 'wrap' }}>
+        <div className="stats-strip-inner">
           {STATS.map(({ value, label }) => (
-            <div key={label} style={{ flex: '1 1 140px', padding: '28px 20px', textAlign: 'center', borderRight: `1px solid rgba(255,255,255,0.08)` }}>
+            <div key={label} className="stat-item">
               <p style={{ margin: '0 0 4px', fontFamily: C.oswald, fontSize: '32px', fontWeight: '700', color: C.red, letterSpacing: '1px' }}>
                 {value}
               </p>
@@ -287,14 +287,14 @@ export default function Home() {
 
       {/* ═══ INTRO & ABOUT US ═══ */}
       <div style={{ backgroundColor: C.white, padding: '80px 24px' }}>
-        <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
-          <div style={{ flex: '1 1 400px' }}>
+        <div className="two-col-row" style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <div>
             <h2 style={{ fontFamily: C.oswald, fontSize: '32px', color: C.navy, marginBottom: '16px' }}>About Our Platform</h2>
             <p style={{ color: C.muted, fontSize: '16px', lineHeight: '1.8' }}>
               The Indian automotive market is flooded with marketing speak and hidden clauses. We built this platform to cut through the noise. Whether you are hunting for a reliable daily commuter or a rugged SUV, you deserve hard facts, precise specs, and honest insights without the dealership pressure.
             </p>
           </div>
-          <div style={{ flex: '1 1 400px' }}>
+          <div>
             <h2 style={{ fontFamily: C.oswald, fontSize: '32px', color: C.navy, marginBottom: '16px' }}>Our Mission</h2>
             <p style={{ color: C.muted, fontSize: '16px', lineHeight: '1.8' }}>
               We aim to democratize car buying. By consolidating precise variant data, historical lineage, and real market sales trends into one clean interface, we empower you to make an investment that perfectly aligns with your lifestyle and budget.
@@ -306,7 +306,7 @@ export default function Home() {
       {/* ═══ WHAT WE OFFER ═══ */}
       <div style={{ backgroundColor: C.pageBg, padding: '0 24px 80px' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
+          <div className="features-grid">
             {[
               { title: 'Data-Driven Insights', desc: 'Real-world sales trends and market footprint data to show you what India is actually buying.', icon: '📊' },
               { title: 'Granular Filtering', desc: 'Sort through hundreds of variants by exact powertrain, gearbox, and feature set.', icon: '⚙️' },
@@ -337,7 +337,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '16px' }}>
+          <div className="brand-grid">
             {BRANDS.map(({ name, abbr, accent }) => (
               <button
                 key={name}
@@ -406,7 +406,7 @@ export default function Home() {
             </div>
           ) : (
             <>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '22px' }}>
+              <div className="pulse-grid">
                 {topCars.map((car, i) => (
                   <PulseCard key={car.id} car={car} rank={i} />
                 ))}
@@ -431,7 +431,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '20px' }}>
+          <div className="persona-grid">
             {PERSONAS.map(({ icon, title, tag, carType, body, accentColor }) => (
               <Link key={title} to={`/search?type=${carType}`} style={{ textDecoration: 'none', display: 'block' }}>
                 <div

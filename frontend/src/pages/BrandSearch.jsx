@@ -87,7 +87,7 @@ export default function BrandSearch() {
             No models found{typeFilter ? ` for ${typeFilter}` : ''}{selectedBrand !== 'All' ? ` from ${selectedBrand}` : ''}.
           </p>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(284px, 1fr))', gap: '22px' }}>
+          <div className="cars-grid">
             {entries.map(([modelName, variants]) => {
               const prices     = variants.map(v => v.ex_showroom_price).filter(Boolean);
               const minP       = Math.min(...prices);
