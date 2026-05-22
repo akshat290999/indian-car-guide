@@ -290,6 +290,18 @@ code {
   gap: 22px;
 }
 
+/* Calculator – two-column layout */
+.calculator-layout {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.calculator-panel {
+  flex: 1 1 340px;
+  min-width: 0;
+}
+
 /* ─── Mobile  ≤ 768px ────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .home-hero-inner {
@@ -324,6 +336,8 @@ code {
 
   .cars-grid { grid-template-columns: 1fr; gap: 16px; }
   .spec-pill { flex: 1 1 calc(50% - 6px); }
+
+  .calculator-panel { flex: 1 1 100%; }
 }
 
 /* ─── Small phones  ≤ 480px ──────────────────────────────────────────────── */

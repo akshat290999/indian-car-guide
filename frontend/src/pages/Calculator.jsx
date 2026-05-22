@@ -129,9 +129,9 @@ export default function Calculator() {
           Estimate your total on-road cost by variant and state.
         </p>
 
-        <div style={{ display: 'flex', gap: '28px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+        <div className="calculator-layout">
           {/* Left — inputs */}
-          <div style={{ flex: '1 1 340px', minWidth: '280px' }}>
+          <div className="calculator-panel">
             <div style={{
               backgroundColor: C.white,
               border: `1px solid ${C.border}`,
@@ -207,7 +207,7 @@ export default function Calculator() {
           </div>
 
           {/* Right — breakdown */}
-          <div style={{ flex: '1 1 340px', minWidth: '280px' }}>
+          <div className="calculator-panel">
             <div style={{
               backgroundColor: C.navy,
               borderRadius: '14px',
