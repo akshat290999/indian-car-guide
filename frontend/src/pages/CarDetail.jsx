@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import GalleryViewer from '../components/GalleryViewer';
+
+// Per-model interior images — add entries here as more models get photo sets
+const GALLERY_INTERIORS = {
+  'City': [
+    { label: 'Dashboard',     src: '/images/honda-city-interior-dashboard.jpg',     alt: 'Honda City interior dashboard view' },
+    { label: 'Infotainment',  src: '/images/honda-city-interior-infotainment.jpg',  alt: 'Honda City infotainment system' },
+    { label: 'Side Profile',  src: '/images/honda-city-exterior-side.jpg',          alt: 'Honda City side profile' },
+    { label: 'Colour Range',  src: '/images/honda-city-all.jpg',                    alt: 'Honda City full colour lineup' },
+  ],
+};
 
 // ─── Design tokens ─────────────────────────────────────────────────────────────
 const C = {
@@ -21,19 +32,81 @@ const C = {
 
 // ─── Color name → CSS hex ──────────────────────────────────────────────────────
 const COLOR_HEX = {
-  'Atlas White':'#F5F5F5',      'Everest White':'#F5F5F5',    'Candy White':'#FAFAFA',
-  'Calgary White':'#F9F9F9',    'Polar White':'#F8F8FF',       'Arctic White':'#F0F0F0',
-  'Abyss Black':'#0A0A0A',      'Midnight Black':'#0D0D0D',    'Oberon Black':'#1A1A1A',
-  'Napoli Black':'#1C1C1C',     'Carbon Steel':'#3D4348',      'Starry Night':'#1B2A4A',
-  'Deep Grey':'#5D6D7E',        'Pebble Grey':'#95A5A6',       'Magma Grey':'#5C5C5C',
-  'Titan Grey':'#7A7A7A',       'Splendid Silver':'#BFC9CA',   'Brilliant Silver':'#BDC3C7',
-  'Fiery Red':'#E03A3E',        'Red Rage':'#CC0000',           'Flame Red':'#D22B2B',
-  'Coral Red':'#E74C3C',        'Sizzling Red':'#CC2211',      'Tornado Red':'#C0392B',
-  'Electric Blue':'#1F78D4',    'Exuberant Blue':'#154360',    'Fearless Purple':'#8E44AD',
-  'Lucent Orange':'#E67E22',    'Aquamarine':'#7FFFD4',        'Deep Forest':'#228B22',
+  // ── Whites / Creams ──────────────────────────────────────────────────────────
+  'Atlas White':              '#F5F5F5',
+  'Everest White':            '#F5F5F5',
+  'Pristine White':           '#FAFAFA',
+  'Candy White':              '#FAFAFA',
+  'Calgary White':            '#F9F9F9',
+  'Polar White':              '#F8F8FF',
+  'Arctic White':             '#F0F0F0',
+  'Platinum White Pearl':     '#EDEDED',
+  // ── Blacks ───────────────────────────────────────────────────────────────────
+  'Abyss Black':              '#0A0A0A',
+  'Abyss Black Pearl':        '#111111',
+  'Crystal Black Pearl':      '#0F0F0F',
+  'Midnight Black':           '#0D0D0D',
+  'Oberon Black':             '#1A1A1A',
+  'Napoli Black':             '#1C1C1C',
+  'Carbon Steel':             '#3D4348',
+  'Starry Night':             '#1B2A4A',
+  // ── Greys / Silvers ──────────────────────────────────────────────────────────
+  'Deep Grey':                '#5D6D7E',
+  'Pebble Grey':              '#95A5A6',
+  'Magma Grey':               '#5C5C5C',
+  'Titan Grey':               '#7A7A7A',
+  'Daytona Grey':             '#6B6B6B',
+  'Stealth Grey':             '#555555',
+  'Meteoroid Grey Metallic':  '#616A6B',
+  'Stellar Silver':           '#AEBABB',
+  'Lunar Silver Metallic':    '#B2BABB',
+  'Splendid Silver':          '#BFC9CA',
+  'Brilliant Silver':         '#BDC3C7',
+  'Dazzling Silver':          '#C8CDD0',
+  // ── Reds ─────────────────────────────────────────────────────────────────────
+  'Fiery Red':                '#E03A3E',
+  'Red Rage':                 '#CC0000',
+  'Flame Red':                '#D22B2B',
+  'Radiant Red Metallic':     '#C0392B',
+  'Coral Red':                '#E74C3C',
+  'Sizzling Red':             '#CC2211',
+  'Tornado Red':              '#C0392B',
+  // ── Blues ────────────────────────────────────────────────────────────────────
+  'Electric Blue':            '#1F78D4',
+  'Stargazing Blue':          '#1A3A6B',
+  'Obsidian Blue Pearl':      '#1C3A5E',
+  'Exuberant Blue':           '#154360',
+  'Creative Ocean':           '#1A6FA6',
+  // ── Purples ──────────────────────────────────────────────────────────────────
+  'Fearless Purple':          '#7D3CA8',
+  // ── Greens / Olives ──────────────────────────────────────────────────────────
+  'Deep Forest':              '#1F6B2E',
+  'Mystic Olive':             '#6B7C3D',
+  'Savannah Green':           '#5D7A3E',
+  // ── Ambers / Browns / Beiges ─────────────────────────────────────────────────
+  'Robust Amber':             '#C4720A',
+  'Burnt Sienna':             '#C7522A',
+  'Golden Brown Metallic':    '#9C6D2E',
+  'Rocky Beige':              '#C4A882',
+  'Dune':                     '#C2A27A',
+  // ── Other ────────────────────────────────────────────────────────────────────
+  'Lucent Orange':            '#E67E22',
+  'Aquamarine':               '#40BFB0',
 };
-const WHITE_RE = /white|candy|calgary|polar|arctic/i;
-function colorHex(name) { return COLOR_HEX[name] || '#C0C0C0'; }
+
+function colorHex(name) { return COLOR_HEX[name] || '#808080'; }
+
+// Returns true for any hex that's light enough to be invisible on a white/light bg.
+// Uses perceived luminance (Rec. 601 weights) — threshold ~0.72 catches all whites,
+// light silvers, and pale pearls without false-positives on mid-tones.
+function isLightHex(hex) {
+  const h = hex.replace('#', '');
+  if (h.length !== 6) return false;
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.72;
+}
 
 // ─── Fuel badge styles ────────────────────────────────────────────────────────
 const FUEL_BADGE = {
@@ -233,13 +306,22 @@ export default function CarDetail() {
   const maxPow      = powers.length ? Math.max(...powers) : null;
   const fuelTypes   = [...new Set(variants.map(v => v.fuel_type).filter(Boolean))].join(' / ');
   const gearTypes   = [...new Set(variants.map(v => v.gearbox_type).filter(Boolean))].join(' / ');
-  let imageUrl = null;
-  if (Array.isArray(first.image_urls) && first.image_urls.length > 0) {
-    imageUrl = first.image_urls[0];
-  } else if (first.image_urls && typeof first.image_urls === 'object' && Object.keys(first.image_urls).length > 0) {
-    imageUrl = (selectedColor && first.image_urls[selectedColor]) ?? Object.values(first.image_urls)[0];
-  }
-  const colors      = first.colors || [];
+  const colors = first.colors || [];
+
+  // Build exterior image list for GalleryViewer (one entry per color)
+  const imgMap = (first.image_urls && typeof first.image_urls === 'object' && !Array.isArray(first.image_urls))
+    ? first.image_urls
+    : {};
+  const fallbackImgSrc = Array.isArray(first.image_urls) ? first.image_urls[0] : null;
+  const exteriorImages = colors.length > 0
+    ? colors.map(name => ({
+        colorName: name,
+        src:       imgMap[name] || fallbackImgSrc || null,
+        alt:       `${decodedModel} in ${name}`,
+      }))
+    : (fallbackImgSrc ? [{ colorName: null, src: fallbackImgSrc, alt: decodedModel }] : []);
+
+  const interiorImages = GALLERY_INTERIORS[first.model_name] || [];
 
   const filtered = variants.filter(v => {
     const ptOk = powertrain   === 'All' || v.fuel_type    === powertrain;
@@ -305,43 +387,50 @@ export default function CarDetail() {
                 <div>
                   <p style={{ margin:'0 0 10px', fontSize:'11px', fontFamily:C.inter, fontWeight:'700', color:C.muted, textTransform:'uppercase', letterSpacing:'1px' }}>
                     Available Colors
+                    <span style={{ marginLeft:'8px', fontWeight:'400', textTransform:'none', letterSpacing:'0', color:C.bodyText }}>
+                      — {colors.length} options
+                    </span>
                   </p>
-                  <div style={{ display:'flex', gap:'10px', alignItems:'center', flexWrap:'wrap' }}>
+                  <div style={{ display:'flex', gap:'12px', flexWrap:'wrap', alignItems:'flex-start', marginBottom:'10px' }}>
                     {colors.map(name => {
                       const css     = colorHex(name);
-                      const isLight = WHITE_RE.test(name);
+                      const isLight = isLightHex(css);
                       const active  = selectedColor === name;
                       return (
                         <button
                           key={name} title={name} onClick={() => setSelectedColor(name)}
                           style={{
-                            width:'30px', height:'30px', borderRadius:'50%', cursor:'pointer',
+                            width:'34px', height:'34px', borderRadius:'50%', cursor:'pointer',
                             backgroundColor: css,
                             border: isLight ? `2px solid ${C.border}` : '2px solid transparent',
-                            boxShadow: active ? `0 0 0 3px #fff, 0 0 0 5px ${C.red}` : '0 1px 4px rgba(0,0,0,0.2)',
-                            transition:'box-shadow 0.15s ease', flexShrink:0,
+                            boxShadow: active
+                              ? `0 0 0 3px #fff, 0 0 0 5px ${C.red}`
+                              : '0 2px 6px rgba(0,0,0,0.25)',
+                            transition: 'box-shadow 0.15s ease, transform 0.1s ease',
+                            transform: active ? 'scale(1.15)' : 'scale(1)',
+                            flexShrink: 0,
                           }}
                         />
                       );
                     })}
-                    {selectedColor && (
-                      <span style={{ fontSize:'13px', color:C.muted, fontFamily:C.inter }}>{selectedColor}</span>
-                    )}
                   </div>
+                  {selectedColor && (
+                    <p style={{ margin:0, fontSize:'13px', fontFamily:C.inter, fontWeight:'600', color:C.navy }}>
+                      <span style={{ color:C.muted, fontWeight:'400' }}>Selected: </span>
+                      {selectedColor}
+                    </p>
+                  )}
                 </div>
               )}
             </div>
             <div className="car-image-panel">
-              {imageUrl ? (
-                <img
-                  src={imageUrl} alt={decodedModel}
-                  style={{ width:'100%', height:'300px', objectFit:'cover', borderRadius:'14px', boxShadow:'0 8px 32px rgba(10,25,47,0.12)', display:'block' }}
-                />
-              ) : (
-                <div style={{ width:'100%', height:'300px', borderRadius:'14px', backgroundColor:C.subBg, display:'flex', alignItems:'center', justifyContent:'center' }}>
-                  <span style={{ fontSize:'13px', color:C.muted }}>No image available</span>
-                </div>
-              )}
+              <GalleryViewer
+                exteriorImages={exteriorImages}
+                interiorImages={interiorImages}
+                selectedColor={selectedColor}
+                onColorSelect={setSelectedColor}
+                C={C}
+              />
             </div>
           </div>
         </div>

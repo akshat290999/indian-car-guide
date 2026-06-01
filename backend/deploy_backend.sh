@@ -5,8 +5,8 @@ echo "=========================================="
 echo "🚀 AUTOMATING EC2 BACKEND DEPLOYMENT"
 echo "=========================================="
 
-KEY_NAME="unitailz-backend-key-$(date +%s)"
-SG_NAME="unitailz-backend-sg-$(date +%s)"
+KEY_NAME="indian-car-guide-key-$(date +%s)"
+SG_NAME="indian-car-guide-sg-$(date +%s)"
 REGION="ap-south-1"
 
 echo "🔑 1/7 Creating SSH Key Pair..."

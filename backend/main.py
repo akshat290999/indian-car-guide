@@ -1,29 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database.cars_data import CARS_DATA
-
-app = FastAPI()
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from database.car_metadata import CAR_META
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://d1m68rrd1mp2k5.cloudfront.net"],
+    allow_origins=["https://d1m68rrd1mp2k5.cloudfront.net", "http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-origins = ["http://localhost:5173"]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Merge per-model metadata into each trim record once at startup
+_CARS_WITH_META = [{**car, **CAR_META.get(car['model_name'], {})} for car in CARS_DATA]
 
 
 @app.get("/")
@@ -33,4 +24,4 @@ def root():
 
 @app.get("/api/cars")
 def get_cars():
-    return CARS_DATA
+    return _CARS_WITH_META

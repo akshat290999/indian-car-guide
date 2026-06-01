@@ -73,11 +73,16 @@ img {
 /* Kill horizontal scroll at every level — html, body, root */
 html {
   overflow-x: hidden;
+  /* Match the app's light page background so the area outside #root's
+     max-width container never shows a dark column on wide viewports.
+     The dark-mode CSS variable would produce black sidebars without this. */
+  background-color: #F4F7FA;
 }
 
 body {
   margin: 0;
   overflow-x: hidden;
+  background-color: #F4F7FA;
 }
 
 #root {
