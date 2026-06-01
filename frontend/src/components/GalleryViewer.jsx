@@ -46,6 +46,21 @@ export default function GalleryViewer({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedColor, viewFilter]);
 
+  // ── Preload every image as soon as the arrays arrive ────────────────────────
+  // Stores already-queued srcs so we never fire the same request twice even if
+  // the parent re-renders and passes new array references with the same content.
+  const preloadedRef = useRef(new Set());
+  useEffect(() => {
+    const srcs = [...exteriorImages, ...interiorImages]
+      .map(img => img?.src)
+      .filter(src => src && !preloadedRef.current.has(src));
+    srcs.forEach(src => {
+      preloadedRef.current.add(src);
+      const img = new window.Image();
+      img.src = src;
+    });
+  }, [exteriorImages, interiorImages]);
+
   // ── Cross-fade ───────────────────────────────────────────────────────────────
   const targetImg = tabImages[activeIdx] ?? null;
   const [heroSrc, setHeroSrc] = useState(targetImg?.src ?? null);
@@ -59,11 +74,13 @@ export default function GalleryViewer({
     if (newSrc === heroSrc) { setVisible(true); return; }
     clearTimeout(fadeTimer.current);
     setVisible(false);
+    // 120ms — images are already cached so the swap is instant; this delay is
+    // purely the visual fade-out, not a network wait.
     fadeTimer.current = setTimeout(() => {
       setHeroSrc(newSrc);
       setHeroAlt(targetImg?.alt ?? '');
       setVisible(true);
-    }, 160);
+    }, 120);
     return () => clearTimeout(fadeTimer.current);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetImg?.src]);
