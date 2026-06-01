@@ -7,10 +7,10 @@ CAR_META = {
         'lineage_history':  'Launched in 2015, the Creta revolutionized the compact SUV segment in India. Over multiple generations, it has remained the undisputed segment leader, known for its futuristic styling and feature-packed cabin.',
         'monthly_sales':    16000,
     },
-    'XUV 700': {
+    'Thar': {
         'brand_history':   "Mahindra and Mahindra began as a steel trading company in 1945 and assembled Willys Jeeps under licence before building its own rugged utility vehicles. The brand's identity is built on off-road capability and durability, exemplified by the legendary Bolero and Scorpio nameplates that dominate rural and semi-urban India. Mahindra's new-generation platforms underpin the XUV700, Scorpio-N, and XUV 3XO, which have won multiple Indian Car of the Year awards, while the company invests heavily in its BE and XEV electric series for an electrified future.",
-        'lineage_history':  'Arriving in 2021 as the spiritual successor to the XUV500, the XUV700 raised the bar for global Indian engineering. It popularized advanced safety tech like ADAS and high-performance turbo engines at an accessible price point.',
-        'monthly_sales':    6000,
+        'lineage_history':  "The Thar was reborn in 2020 as a lifestyle icon that bridged hardcore off-road capability with everyday usability. Its 2024 Roxx iteration introduced a five-door body, expanding its appeal while keeping the rugged ladder-frame DNA that made the original a cult favourite.",
+        'monthly_sales':    9000,
     },
     'Nexon': {
         'brand_history':   "Tata Motors, part of the 150-year-old Tata Group, has been making commercial vehicles since 1954 and passenger cars since 1991. After acquiring Jaguar Land Rover in 2008, Tata gained global engineering credibility that now filters into its mainstream lineup. A dramatic reinvention began with the Nexon (2017) and Harrier (2019), positioning the brand as a serious lifestyle-SUV contender, and Tata is now India's electric-vehicle leader with the Nexon EV holding dominant segment share.",

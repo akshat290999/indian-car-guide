@@ -19,6 +19,26 @@ const GALLERY_INTERIORS = {
     { label: 'Boot',                 src: '/images/hyundai-creta-interior-boot.jpg',                alt: 'Hyundai Creta boot / trunk' },
     { label: 'Sunroof Controls',     src: '/images/hyundai-creta-interior-sunroof.jpg',             alt: 'Hyundai Creta sunroof controls' },
   ],
+  'Nexon': [
+    { label: 'Dashboard',          src: '/images/tata-nexon-interior-dashboard.jpg',          alt: 'Tata Nexon dashboard' },
+    { label: 'Infotainment',       src: '/images/tata-nexon-interior-infotainment.jpg',       alt: 'Tata Nexon infotainment system' },
+    { label: 'Steering Wheel',     src: '/images/tata-nexon-interior-steering-wheel.jpg',     alt: 'Tata Nexon steering wheel' },
+    { label: 'Instrument Cluster', src: '/images/tata-nexon-interior-instrument-cluster.jpg', alt: 'Tata Nexon instrument cluster' },
+    { label: 'Rear Seats',         src: '/images/tata-nexon-interior-rear-seats.jpg',         alt: 'Tata Nexon rear seats' },
+    { label: 'Gear Lever',         src: '/images/tata-nexon-interior-gear-lever.jpg',         alt: 'Tata Nexon gear lever' },
+    { label: 'Center Console',     src: '/images/tata-nexon-interior-center-console.jpg',     alt: 'Tata Nexon center console' },
+    { label: 'Boot',               src: '/images/tata-nexon-interior-boot.jpg',               alt: 'Tata Nexon boot' },
+  ],
+  'Thar': [
+    { label: 'Dashboard',          src: '/images/mahindra-thar-interior-dashboard.jpg',          alt: 'Mahindra Thar dashboard' },
+    { label: 'Infotainment',       src: '/images/mahindra-thar-interior-infotainment.jpg',       alt: 'Mahindra Thar infotainment system' },
+    { label: 'Steering Wheel',     src: '/images/mahindra-thar-interior-steering-wheel.jpg',     alt: 'Mahindra Thar steering wheel' },
+    { label: 'Instrument Cluster', src: '/images/mahindra-thar-interior-instrument-cluster.jpg', alt: 'Mahindra Thar instrument cluster' },
+    { label: 'Rear Seats',         src: '/images/mahindra-thar-interior-rear-seats.jpg',         alt: 'Mahindra Thar rear seats' },
+    { label: 'Gear Lever',         src: '/images/mahindra-thar-interior-gear-lever.jpg',         alt: 'Mahindra Thar gear lever' },
+    { label: 'Center Console',     src: '/images/mahindra-thar-interior-center-console.jpg',     alt: 'Mahindra Thar center console' },
+    { label: 'Boot',               src: '/images/mahindra-thar-interior-boot.jpg',               alt: 'Mahindra Thar boot' },
+  ],
 };
 
 // ─── Design tokens ─────────────────────────────────────────────────────────────
@@ -106,9 +126,27 @@ const COLOR_HEX = {
   'Golden Brown Metallic':    '#9C6D2E',
   'Rocky Beige':              '#C4A882',
   'Dune':                     '#C2A27A',
+  'Grassland Beige':          '#93917C',
+  'Grassland Beige With Black Roof': '#8D8B74',
   // ── Other ────────────────────────────────────────────────────────────────────
   'Lucent Orange':            '#E67E22',
   'Aquamarine':               '#40BFB0',
+  // ── Thar colors (from CarDekho swatch hex) ──────────────────────────────────
+  'Galaxy Grey':              '#3D414B',
+  'Stealth Black':            '#111111',
+  'Battleship Gray':          '#4D5A6D',
+  'Tango Red':                '#680513',
+  // ── Nexon 2025 colors (from CarDekho swatch hex) ────────────────────────────
+  'Pure Grey':                '#ADADAD',
+  'Pure Grey Black Roof':     '#626262',
+  'Ocean Blue':               '#80A2AB',
+  'Ocean Blue With White Roof': '#203B42',
+  'Daytona Grey Dual Tone':   '#494A4C',
+  'Atlas Black Dark Edition': '#090909',
+  'Atlas Black Red Edition':  '#2C2C2C',
+  'Pristine White Dual Tone': '#E4E4E4',
+  'Royal Blue':               '#354070',
+  'Royal Blue With Black Roof': '#0A112F',
 };
 
 function colorHex(name) { return COLOR_HEX[name] || '#808080'; }
