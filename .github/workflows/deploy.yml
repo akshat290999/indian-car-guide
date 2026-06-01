@@ -50,11 +50,23 @@ jobs:
           script: |
             set -e
 
+            # ── Discover where FastAPI actually runs from ──────────────────────
+            echo "=== systemd service file ==="
+            cat /etc/systemd/system/fastapi.service || cat /lib/systemd/system/fastapi.service || echo "service file not found at standard paths"
+
+            echo "=== running uvicorn process ==="
+            ps aux | grep uvicorn | grep -v grep || echo "no uvicorn process found"
+
+            echo "=== git repos on this host ==="
+            find /home/ubuntu -name ".git" -maxdepth 4 -type d 2>/dev/null || true
+            find /root -name ".git" -maxdepth 4 -type d 2>/dev/null || true
+
+            echo "=== ~/app contents ==="
+            ls ~/app 2>/dev/null || echo "~/app does not exist"
+
             cd ~/app
 
-            # Hard-sync to remote main — git pull can silently no-op on a
-            # diverged or detached HEAD; reset --hard guarantees the worktree
-            # matches origin/main exactly regardless of local state.
+            # Hard-sync to remote main
             git fetch origin main
             git reset --hard origin/main
 
@@ -68,5 +80,6 @@ jobs:
               && echo "✅ FastAPI service is running" \
               || { echo "❌ FastAPI service failed to start"; sudo systemctl status fastapi; exit 1; }
 
-            # Emit the commit SHA so the pipeline log proves exactly what is live
             echo "🔖 EC2 now at: $(git rev-parse --short HEAD)"
+            echo "=== cars_data.py first 3 lines ==="
+            head -3 ~/app/backend/database/cars_data.py 2>/dev/null || echo "file not found at ~/app/backend/database/cars_data.py"
