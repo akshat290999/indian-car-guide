@@ -9,6 +9,16 @@ const GALLERY_INTERIORS = {
     { label: 'Dashboard',    src: '/images/honda-city-interior-dashboard.jpg',    alt: 'Honda City interior dashboard view' },
     { label: 'Infotainment', src: '/images/honda-city-interior-infotainment.jpg', alt: 'Honda City infotainment system' },
   ],
+  'Creta': [
+    { label: 'Dashboard',            src: '/images/hyundai-creta-interior-dashboard.jpg',           alt: 'Hyundai Creta dashboard' },
+    { label: 'Infotainment',         src: '/images/hyundai-creta-interior-infotainment.jpg',        alt: 'Hyundai Creta infotainment system' },
+    { label: 'Steering Wheel',       src: '/images/hyundai-creta-interior-steering-wheel.jpg',      alt: 'Hyundai Creta steering wheel' },
+    { label: 'Instrument Cluster',   src: '/images/hyundai-creta-interior-instrument-cluster.jpg',  alt: 'Hyundai Creta instrument cluster' },
+    { label: 'Rear Seats',           src: '/images/hyundai-creta-interior-rear-seats.jpg',          alt: 'Hyundai Creta rear seats' },
+    { label: 'Gear Lever',           src: '/images/hyundai-creta-interior-gear-lever.jpg',          alt: 'Hyundai Creta gear lever' },
+    { label: 'Boot',                 src: '/images/hyundai-creta-interior-boot.jpg',                alt: 'Hyundai Creta boot / trunk' },
+    { label: 'Sunroof Controls',     src: '/images/hyundai-creta-interior-sunroof.jpg',             alt: 'Hyundai Creta sunroof controls' },
+  ],
 };
 
 // ─── Design tokens ─────────────────────────────────────────────────────────────
