@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 import GalleryViewer from './GalleryViewer';
 
@@ -94,20 +94,17 @@ describe('GalleryViewer — flip orientation', () => {
     expect(heroImg()).toHaveStyle({ transform: 'none' });
   });
 
+  // heroFlip is now a synchronous derived value (not delayed state), so all
+  // orientation assertions are instant — no fake timers needed.
+
   it('keeps scaleX(-1) when navigating between images that all have flip:true', () => {
-    vi.useFakeTimers();
     render(<GalleryViewer exteriorImages={EXTERIOR_FLIPPED} />);
-
     fireEvent.click(screen.getByLabelText('Next image'));
-    act(() => { vi.advanceTimersByTime(120); });
-
     expect(screen.getByText('Stealth Black')).toBeInTheDocument();
     expect(heroImg()).toHaveStyle({ transform: 'scaleX(-1)' });
-    vi.useRealTimers();
   });
 
   it('removes transform when navigating from a flipped image to a non-flipped one', () => {
-    vi.useFakeTimers();
     const mixed = [
       { colorName: 'Flipped',   src: '/images/flip.jpg',   alt: 'Flipped car',   flip: true  },
       { colorName: 'Unflipped', src: '/images/noflip.jpg', alt: 'Unflipped car', flip: false },
@@ -116,54 +113,39 @@ describe('GalleryViewer — flip orientation', () => {
     expect(heroImg()).toHaveStyle({ transform: 'scaleX(-1)' });
 
     fireEvent.click(screen.getByLabelText('Next image'));
-    act(() => { vi.advanceTimersByTime(120); });
-
+    // Flip updates synchronously — no timer needed
     expect(heroImg()).toHaveStyle({ transform: 'none' });
-    vi.useRealTimers();
   });
 
   it('does NOT flip interior images even when exterior images have flip:true', () => {
-    vi.useFakeTimers();
     render(<GalleryViewer exteriorImages={EXTERIOR_FLIPPED} interiorImages={INTERIOR} />);
-    // Initial exterior image is flipped
     expect(heroImg()).toHaveStyle({ transform: 'scaleX(-1)' });
 
-    // Switch to INTERIOR tab
     fireEvent.click(screen.getByText(/^INTERIOR/i));
-    act(() => { vi.advanceTimersByTime(120); });
-
-    // Interior image has no flip field → heroFlip becomes false
+    // Interior images have no flip field → heroFlip = false immediately
     expect(heroImg()).toHaveStyle({ transform: 'none' });
-    vi.useRealTimers();
   });
 
   it('does NOT flip interior images shown inside the ALL tab', () => {
-    vi.useFakeTimers();
     // ALL tab: [...exteriorImages, ...interiorImages] — interior starts at index 3
     render(<GalleryViewer exteriorImages={EXTERIOR_FLIPPED} interiorImages={INTERIOR} />);
 
-    // Click Next 3 times to advance past all 3 exterior images into the interior
+    // Click Next 3 times to step past all 3 exterior images
     for (let i = 0; i < 3; i++) {
       fireEvent.click(screen.getByLabelText('Next image'));
-      act(() => { vi.advanceTimersByTime(120); });
     }
 
     expect(screen.getByText('Dashboard')).toBeInTheDocument();
     expect(heroImg()).toHaveStyle({ transform: 'none' });
-    vi.useRealTimers();
   });
 
-  it('restores flip when switching back from INTERIOR tab to EXTERIOR', () => {
-    vi.useFakeTimers();
+  it('restores flip instantly when switching back from INTERIOR to EXTERIOR tab', () => {
     render(<GalleryViewer exteriorImages={EXTERIOR_FLIPPED} interiorImages={INTERIOR} />);
 
     fireEvent.click(screen.getByText(/^INTERIOR/i));
-    act(() => { vi.advanceTimersByTime(120); });
     expect(heroImg()).toHaveStyle({ transform: 'none' });
 
     fireEvent.click(screen.getByText(/^EXTERIOR/i));
-    act(() => { vi.advanceTimersByTime(120); });
     expect(heroImg()).toHaveStyle({ transform: 'scaleX(-1)' });
-    vi.useRealTimers();
   });
 });

@@ -7,10 +7,13 @@ import GalleryViewer from '../components/GalleryViewer';
 // face the opposite direction to our Honda City baseline (facing right).
 // GalleryViewer XORs this flag with its per-image isBlack heuristic so a
 // model-level flip and a filename-based flip never double-mirror each other.
+// All exterior images are flipped to face left consistently.
+// Add any new model here when its images arrive facing right.
 const MIRROR_EXTERIOR = new Set([
-  'Creta',  // CarDekho images face left — opposite to City baseline
-  'Nexon',  // CarDekho images face left — opposite to City baseline
-  'Thar',   // CarDekho images face left — opposite to City baseline
+  'Creta',
+  'Nexon',
+  'Thar',
+  'City',
 ]);
 
 // Per-model interior images — add entries here as more models get photo sets

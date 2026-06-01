@@ -63,11 +63,16 @@ export default function GalleryViewer({
 
   // ── Cross-fade ───────────────────────────────────────────────────────────────
   const targetImg = tabImages[activeIdx] ?? null;
-  const [heroSrc,  setHeroSrc]  = useState(targetImg?.src  ?? null);
-  const [heroAlt,  setHeroAlt]  = useState(targetImg?.alt  ?? '');
-  const [heroFlip, setHeroFlip] = useState(targetImg?.flip ?? false);
-  const [visible,  setVisible]  = useState(true);
+  const [heroSrc, setHeroSrc] = useState(targetImg?.src ?? null);
+  const [heroAlt, setHeroAlt] = useState(targetImg?.alt ?? '');
+  const [visible, setVisible] = useState(true);
   const fadeTimer = useRef(null);
+
+  // heroFlip is a plain derived value, NOT delayed state.
+  // It updates the instant activeIdx changes — no timer, no stale closure.
+  // Rapid arrow clicks can never produce a mismatched flip because the value
+  // always reflects the currently targeted image, not a scheduled update.
+  const heroFlip = targetImg?.flip ?? false;
 
   useEffect(() => {
     const newSrc = targetImg?.src;
@@ -77,8 +82,7 @@ export default function GalleryViewer({
     setVisible(false);
     fadeTimer.current = setTimeout(() => {
       setHeroSrc(newSrc);
-      setHeroAlt(targetImg?.alt  ?? '');
-      setHeroFlip(targetImg?.flip ?? false);
+      setHeroAlt(targetImg?.alt ?? '');
       setVisible(true);
     }, 120);
     return () => clearTimeout(fadeTimer.current);
