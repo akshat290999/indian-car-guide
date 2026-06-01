@@ -81,6 +81,15 @@ const COLOR_HEX = {
   'Deep Forest':              '#1F6B2E',
   'Mystic Olive':             '#6B7C3D',
   'Savannah Green':           '#5D7A3E',
+  'Robust Emerald Pearl':     '#192219',
+  // ── Creta dual-tone / matte ───────────────────────────────────────────────
+  'Atlas White With Titanium Black':              '#D6DCE3',
+  'Titanium Black Matte':                         '#31363B',
+  'Titan Grey Matte':                             '#474D4E',
+  'Starry Night':                                 '#05142B',
+  'Titan Grey':                                   '#76777A',
+  'Titanium Black':                               '#131415',
+  'King Limited Edition Titanium Black Matte':    '#2A2D30',
   // ── Ambers / Browns / Beiges ─────────────────────────────────────────────────
   'Robust Amber':             '#C4720A',
   'Burnt Sienna':             '#C7522A',

@@ -2,8 +2,8 @@
 # Metadata (brand history, lineage, sales) lives in car_metadata.py — one entry
 # per model, merged by main.py. Archived 27 models are in cars_data_archived.py.
 
-_CRETA_COLORS = ['Atlas White', 'Abyss Black Pearl', 'Titan Grey', 'Stellar Silver', 'Fiery Red', 'Robust Amber', 'Mystic Olive', 'Stargazing Blue']
-_CRETA_IMGS   = ['https://upload.wikimedia.org/wikipedia/commons/5/51/Moscow%2C_Hyundai_Creta_%282nd_gen%29_Aug_2025_01_%28cropped%29.jpg']
+_CRETA_COLORS = ['Robust Emerald Pearl', 'Atlas White With Titanium Black', 'Titanium Black Matte', 'Titan Grey Matte', 'Starry Night', 'Atlas White', 'Titan Grey', 'Titanium Black', 'King Limited Edition Titanium Black Matte']
+_CRETA_IMGS   = {'Robust Emerald Pearl': '/images/hyundai-creta-robust-emerald-pearl.jpg', 'Atlas White With Titanium Black': '/images/hyundai-creta-atlas-white-with-titanium-black.jpg', 'Titanium Black Matte': '/images/hyundai-creta-titanium-black-matte.jpg', 'Titan Grey Matte': '/images/hyundai-creta-titan-grey-matte.jpg', 'Starry Night': '/images/hyundai-creta-starry-night.jpg', 'Atlas White': '/images/hyundai-creta-atlas-white.jpg', 'Titan Grey': '/images/hyundai-creta-titan-grey.jpg', 'Titanium Black': '/images/hyundai-creta-titanium-black.jpg', 'King Limited Edition Titanium Black Matte': '/images/hyundai-creta-king-limited-edition-titanium-black-matte.jpg'}
 _XUV700_COLORS = ['Everest White', 'Midnight Black', 'Electric Blue', 'Dazzling Silver', 'Red Rage', 'Burnt Sienna', 'Deep Forest']
 _XUV700_IMGS   = ['https://upload.wikimedia.org/wikipedia/commons/b/ba/2021_Mahindra_XUV700_2.2_AX7_%28India%29_front_view.png']
 _NEXON_COLORS = ['Pristine White', 'Daytona Grey', 'Flame Red', 'Calgary White', 'Fearless Purple', 'Creative Ocean', 'Savannah Green', 'Dune']
