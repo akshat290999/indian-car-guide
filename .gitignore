@@ -3,3 +3,32 @@ backend/venv/
 __pycache__/
 *.pem
 .DS_Store
+
+# ── Local Claude Code settings (machine-specific, not for version control) ───
+.claude/settings.local.json
+
+# ── One-off automation & scraper scripts ─────────────────────────────────────
+scrape-*.js
+scrape-*.py
+fix_image_urls.py
+patch_cars_data.py
+download_images.py
+
+# ── Scraper output / temp data dumps ─────────────────────────────────────────
+*-colors.json
+*-interior.json
+image_results.json
+
+# ── Database backup files created by editors or manual edits ─────────────────
+*.bak
+*.bak2
+
+# ── Root-level Node artefacts (playwright runner, not the app) ───────────────
+# The real package.json lives at frontend/package.json and IS tracked.
+# Leading slash scopes these rules to the repo root only.
+/package.json
+/package-lock.json
+
+# ── Root-level asset staging folder (pre-migration raw photos) ───────────────
+# Production images live in frontend/public/images/ and are tracked there.
+/public/
