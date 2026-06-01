@@ -373,18 +373,22 @@ export default function CarDetail() {
   const gearTypes   = [...new Set(variants.map(v => v.gearbox_type).filter(Boolean))].join(' / ');
   const colors = first.colors || [];
 
-  // Build exterior image list for GalleryViewer (one entry per color)
+  // Build exterior image list for GalleryViewer (one entry per color).
+  // flip:true is baked into each object — GalleryViewer reads it directly from
+  // targetImg so no prop threading is needed.
   const imgMap = (first.image_urls && typeof first.image_urls === 'object' && !Array.isArray(first.image_urls))
     ? first.image_urls
     : {};
   const fallbackImgSrc = Array.isArray(first.image_urls) ? first.image_urls[0] : null;
+  const needsFlip      = MIRROR_EXTERIOR.has(first.model_name);
   const exteriorImages = colors.length > 0
     ? colors.map(name => ({
         colorName: name,
         src:       imgMap[name] || fallbackImgSrc || null,
         alt:       `${decodedModel} in ${name}`,
+        flip:      needsFlip,
       }))
-    : (fallbackImgSrc ? [{ colorName: null, src: fallbackImgSrc, alt: decodedModel }] : []);
+    : (fallbackImgSrc ? [{ colorName: null, src: fallbackImgSrc, alt: decodedModel, flip: needsFlip }] : []);
 
   const interiorImages = GALLERY_INTERIORS[first.model_name] || [];
 
@@ -494,7 +498,6 @@ export default function CarDetail() {
                 interiorImages={interiorImages}
                 selectedColor={selectedColor}
                 onColorSelect={setSelectedColor}
-                mirrorExterior={MIRROR_EXTERIOR.has(first.model_name)}
                 C={C}
               />
             </div>

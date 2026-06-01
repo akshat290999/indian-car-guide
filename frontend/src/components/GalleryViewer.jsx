@@ -15,7 +15,6 @@ export default function GalleryViewer({
   interiorImages = [],
   selectedColor,
   onColorSelect,
-  mirrorExterior = false,
   C = {},
 }) {
   const NAVY  = C.navy  || '#0A192F';
@@ -64,9 +63,10 @@ export default function GalleryViewer({
 
   // ── Cross-fade ───────────────────────────────────────────────────────────────
   const targetImg = tabImages[activeIdx] ?? null;
-  const [heroSrc, setHeroSrc] = useState(targetImg?.src ?? null);
-  const [heroAlt, setHeroAlt] = useState(targetImg?.alt ?? '');
-  const [visible, setVisible] = useState(true);
+  const [heroSrc,  setHeroSrc]  = useState(targetImg?.src  ?? null);
+  const [heroAlt,  setHeroAlt]  = useState(targetImg?.alt  ?? '');
+  const [heroFlip, setHeroFlip] = useState(targetImg?.flip ?? false);
+  const [visible,  setVisible]  = useState(true);
   const fadeTimer = useRef(null);
 
   useEffect(() => {
@@ -75,11 +75,10 @@ export default function GalleryViewer({
     if (newSrc === heroSrc) { setVisible(true); return; }
     clearTimeout(fadeTimer.current);
     setVisible(false);
-    // 120ms — images are already cached so the swap is instant; this delay is
-    // purely the visual fade-out, not a network wait.
     fadeTimer.current = setTimeout(() => {
       setHeroSrc(newSrc);
-      setHeroAlt(targetImg?.alt ?? '');
+      setHeroAlt(targetImg?.alt  ?? '');
+      setHeroFlip(targetImg?.flip ?? false);
       setVisible(true);
     }, 120);
     return () => clearTimeout(fadeTimer.current);
@@ -121,18 +120,9 @@ export default function GalleryViewer({
     };
   }, [lightboxOpen, closeLightbox]);
 
-  // ── Horizontal flip logic ────────────────────────────────────────────────────
-  // Only flip when BOTH conditions hold:
-  //   1. The currently displayed image is actually an exterior image.
-  //      In 'all' mode the list is [...exteriorImages, ...interiorImages], so we
-  //      check the active index rather than just the tab name — otherwise
-  //      interior images shown in the ALL view would be mirrored too.
-  //   2. The parent has flagged this model's exterior images as facing the wrong
-  //      direction relative to the Honda City baseline (mirrorExterior=true).
-  const isShowingExteriorImage =
-    viewFilter === 'exterior' ||
-    (viewFilter === 'all' && activeIdx < exteriorImages.length);
-  const shouldFlip = isShowingExteriorImage && mirrorExterior;
+  // heroFlip is set directly from targetImg.flip (baked into each exterior image
+  // object by CarDetail.jsx via the MIRROR_EXTERIOR set). Interior images never
+  // carry flip:true so they are never mirrored.
 
   // In 'all' mode, interior images have a label but no colorName — fall through to label
   const activeLabel = viewFilter === 'interior'
@@ -218,7 +208,7 @@ export default function GalleryViewer({
               display: 'block',
               opacity: visible ? 1 : 0,
               transition: 'opacity 0.18s ease',
-              transform: shouldFlip ? 'scaleX(-1)' : 'none',
+              transform: heroFlip ? 'scaleX(-1)' : 'none',
             }}
           />
         ) : (
@@ -375,7 +365,7 @@ export default function GalleryViewer({
               objectFit: 'contain',
               borderRadius: '10px',
               boxShadow: '0 16px 60px rgba(0,0,0,0.6)',
-              transform: shouldFlip ? 'scaleX(-1)' : 'none',
+              transform: heroFlip ? 'scaleX(-1)' : 'none',
             }}
           />
         </div>
