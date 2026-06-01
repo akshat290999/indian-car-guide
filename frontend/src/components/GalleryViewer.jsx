@@ -122,19 +122,17 @@ export default function GalleryViewer({
   }, [lightboxOpen, closeLightbox]);
 
   // ── Horizontal flip logic ────────────────────────────────────────────────────
-  // isBlack: per-image heuristic — some black variants face the opposite
-  // direction within a model's own colour set (filename/alt contains 'black').
-  // mirrorExterior: per-model flag — the entire exterior image set faces the
-  // opposite direction to the Honda City baseline.
-  // XOR: if both are true they cancel (model already accounts for the flip so
-  // the black image doesn't need a second inversion); only flip when exactly one
-  // condition is true. Interior images are never flipped.
-  const isBlack = Boolean(
-    heroSrc?.toLowerCase().includes('black') ||
-    heroAlt?.toLowerCase().includes('black')
-  );
-  const isExteriorView = viewFilter !== 'interior';
-  const shouldFlip = isExteriorView && (mirrorExterior !== isBlack);
+  // Only flip when BOTH conditions hold:
+  //   1. The currently displayed image is actually an exterior image.
+  //      In 'all' mode the list is [...exteriorImages, ...interiorImages], so we
+  //      check the active index rather than just the tab name — otherwise
+  //      interior images shown in the ALL view would be mirrored too.
+  //   2. The parent has flagged this model's exterior images as facing the wrong
+  //      direction relative to the Honda City baseline (mirrorExterior=true).
+  const isShowingExteriorImage =
+    viewFilter === 'exterior' ||
+    (viewFilter === 'all' && activeIdx < exteriorImages.length);
+  const shouldFlip = isShowingExteriorImage && mirrorExterior;
 
   // In 'all' mode, interior images have a label but no colorName — fall through to label
   const activeLabel = viewFilter === 'interior'
