@@ -50,36 +50,41 @@ jobs:
           script: |
             set -e
 
-            # ── Discover where FastAPI actually runs from ──────────────────────
-            echo "=== systemd service file ==="
-            cat /etc/systemd/system/fastapi.service || cat /lib/systemd/system/fastapi.service || echo "service file not found at standard paths"
-
-            echo "=== running uvicorn process ==="
-            ps aux | grep uvicorn | grep -v grep || echo "no uvicorn process found"
-
-            echo "=== git repos on this host ==="
-            find /home/ubuntu -name ".git" -maxdepth 4 -type d 2>/dev/null || true
-            find /root -name ".git" -maxdepth 4 -type d 2>/dev/null || true
-
-            echo "=== ~/app contents ==="
-            ls ~/app 2>/dev/null || echo "~/app does not exist"
-
             cd ~/app
 
             # Hard-sync to remote main
             git fetch origin main
             git reset --hard origin/main
 
-            source venv/bin/activate
-            [ -f requirements.txt ] && pip install -r requirements.txt --quiet || true
+            # ── One-time surgical fix for stale root-level files ──────────────
+            # The EC2 repo root contained an old main.py and database/ folder
+            # (untracked, so git reset never removed them). The systemd service
+            # ran uvicorn from WorkingDirectory=/home/ubuntu/app, which imported
+            # those stale files instead of backend/main.py + backend/database/.
+            # Remove them permanently and redirect the service to backend/.
+            rm -f  ~/app/main.py
+            rm -rf ~/app/database/
+            rm -f  ~/app/download_images.py ~/app/patch_cars_data.py ~/app/image_results.json
+
+            # Update systemd WorkingDirectory to backend/ if it still points to root
+            if grep -q 'WorkingDirectory=/home/ubuntu/app$' /etc/systemd/system/fastapi.service; then
+              sudo sed -i \
+                's|WorkingDirectory=/home/ubuntu/app$|WorkingDirectory=/home/ubuntu/app/backend|' \
+                /etc/systemd/system/fastapi.service
+              echo "✏️  Updated fastapi.service WorkingDirectory → backend/"
+              sudo systemctl daemon-reload
+            fi
+
+            source ~/app/venv/bin/activate
+            [ -f ~/app/backend/requirements.txt ] && pip install -r ~/app/backend/requirements.txt --quiet || true
 
             sudo systemctl restart fastapi
 
             sleep 3
             sudo systemctl is-active --quiet fastapi \
               && echo "✅ FastAPI service is running" \
-              || { echo "❌ FastAPI service failed to start"; sudo systemctl status fastapi; exit 1; }
+              || { echo "❌ FastAPI service failed"; sudo systemctl status fastapi; exit 1; }
 
             echo "🔖 EC2 now at: $(git rev-parse --short HEAD)"
-            echo "=== cars_data.py first 3 lines ==="
-            head -3 ~/app/backend/database/cars_data.py 2>/dev/null || echo "file not found at ~/app/backend/database/cars_data.py"
+            echo "=== cars_data.py Creta check ==="
+            grep '_CRETA_COLORS' ~/app/backend/database/cars_data.py
