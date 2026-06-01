@@ -308,31 +308,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ═══ WHAT WE OFFER ═══ */}
-      <div style={{ backgroundColor: C.pageBg, padding: '0 24px 80px' }}>
-        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          <div className="features-grid">
-            {[
-              { title: 'Data-Driven Insights', desc: 'Real-world sales trends and market footprint data to show you what India is actually buying.', icon: '📊' },
-              { title: 'Granular Filtering', desc: 'Sort through hundreds of variants by exact powertrain, gearbox, and feature set.', icon: '⚙️' },
-              { title: 'Rich Lineage', desc: 'Understand a car\'s DNA with deep dives into brand history and generational evolution.', icon: '🧬' },
-              { title: 'Transparent Pricing', desc: 'Clear ex-showroom figures alongside your preferred variants.', icon: '🏷️' }
-            ].map(feature => (
-              <div key={feature.title} style={{ padding: '24px', backgroundColor: C.white, borderRadius: '12px', border: `1px solid ${C.border}` }}>
-                <div style={{ fontSize: '32px', marginBottom: '16px' }}>{feature.icon}</div>
-                <h3 style={{ fontFamily: C.oswald, fontSize: '18px', color: C.navy, marginBottom: '10px' }}>{feature.title}</h3>
-                <p style={{ color: C.muted, fontSize: '14px', lineHeight: '1.6', margin: 0 }}>{feature.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ═══ BODY ══════════════════════════════════════════════════════════════ */}
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 24px 96px' }}>
-
-        {/* ── BROWSE BY BRAND ─────────────────────────────────────────────── */}
-        <section style={{ marginBottom: '80px' }}>
+      {/* ═══ BROWSE BY BRAND ═══════════════════════════════════════════════════ */}
+      <div style={{ backgroundColor: C.white, padding: '72px 24px 64px', borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <div style={{ marginBottom: '32px' }}>
             <h2 style={{ margin: '0 0 8px', fontFamily: C.oswald, fontSize: '28px', fontWeight: '700', color: C.black, letterSpacing: '0.5px' }}>
               BROWSE BY BRAND
@@ -348,7 +326,7 @@ export default function Home() {
                 key={name}
                 onClick={() => goToBrand(name)}
                 style={{
-                  backgroundColor: C.white,
+                  backgroundColor: C.pageBg,
                   border: `1px solid ${C.border}`,
                   borderRadius: '12px',
                   padding: '24px 16px',
@@ -388,7 +366,31 @@ export default function Home() {
               </button>
             ))}
           </div>
-        </section>
+        </div>
+      </div>
+
+      {/* ═══ WHAT WE OFFER ═══════════════════════════════════════════════════════ */}
+      <div style={{ backgroundColor: C.pageBg, padding: '72px 24px 80px' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <div className="features-grid">
+            {[
+              { title: 'Data-Driven Insights', desc: 'Real-world sales trends and market footprint data to show you what India is actually buying.', icon: '📊' },
+              { title: 'Granular Filtering', desc: 'Sort through hundreds of variants by exact powertrain, gearbox, and feature set.', icon: '⚙️' },
+              { title: 'Rich Lineage', desc: 'Understand a car\'s DNA with deep dives into brand history and generational evolution.', icon: '🧬' },
+              { title: 'Transparent Pricing', desc: 'Clear ex-showroom figures alongside your preferred variants.', icon: '🏷️' }
+            ].map(feature => (
+              <div key={feature.title} style={{ padding: '24px', backgroundColor: C.white, borderRadius: '12px', border: `1px solid ${C.border}` }}>
+                <div style={{ fontSize: '32px', marginBottom: '16px' }}>{feature.icon}</div>
+                <h3 style={{ fontFamily: C.oswald, fontSize: '18px', color: C.navy, marginBottom: '10px' }}>{feature.title}</h3>
+                <p style={{ color: C.muted, fontSize: '14px', lineHeight: '1.6', margin: 0 }}>{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ═══ BODY ══════════════════════════════════════════════════════════════ */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 24px 96px' }}>
 
         {/* ── MARKET PULSE ────────────────────────────────────────────────── */}
         <section style={{ marginBottom: '80px' }}>
