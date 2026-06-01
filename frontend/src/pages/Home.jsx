@@ -101,7 +101,15 @@ function PulseCard({ car, rank }) {
         {/* Image */}
         <div style={{ position: 'relative' }}>
           {imageUrl ? (
-            <img src={imageUrl} alt={car.model_name} style={{ width: '100%', height: '190px', objectFit: 'cover', display: 'block' }} />
+            <img
+              src={imageUrl}
+              alt={car.model_name}
+              style={{
+                width: '100%', height: '190px', objectFit: 'cover', display: 'block',
+                transform: car.mirror ? 'scaleX(-1)' : 'none',
+                transformOrigin: 'center',
+              }}
+            />
           ) : (
             <div style={{ width: '100%', height: '190px', backgroundColor: C.subBg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <span style={{ fontSize: '12px', color: C.muted, fontFamily: C.inter }}>No image</span>

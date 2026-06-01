@@ -7,14 +7,8 @@ import GalleryViewer from '../components/GalleryViewer';
 // face the opposite direction to our Honda City baseline (facing right).
 // GalleryViewer XORs this flag with its per-image isBlack heuristic so a
 // model-level flip and a filename-based flip never double-mirror each other.
-// All exterior images are flipped to face left consistently.
-// Add any new model here when its images arrive facing right.
-const MIRROR_EXTERIOR = new Set([
-  'Creta',
-  'Nexon',
-  'Thar',
-  'City',
-]);
+// Orientation is now controlled by the 'mirror' field served by the API
+// (cars_data.py → FastAPI → /api/cars). No hardcoded model lists here.
 
 // Per-model interior images — add entries here as more models get photo sets
 const GALLERY_INTERIORS = {
@@ -383,7 +377,7 @@ export default function CarDetail() {
     ? first.image_urls
     : {};
   const fallbackImgSrc = Array.isArray(first.image_urls) ? first.image_urls[0] : null;
-  const needsFlip      = MIRROR_EXTERIOR.has(first.model_name);
+  const needsFlip      = first.mirror ?? false;
   const exteriorImages = colors.length > 0
     ? colors.map(name => ({
         colorName: name,
