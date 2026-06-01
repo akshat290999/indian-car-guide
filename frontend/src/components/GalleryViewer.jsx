@@ -111,9 +111,10 @@ export default function GalleryViewer({
     heroAlt?.toLowerCase().includes('black')
   );
 
+  // In 'all' mode, interior images have a label but no colorName — fall through to label
   const activeLabel = viewFilter === 'interior'
     ? (targetImg?.label    || 'Interior')
-    : (targetImg?.colorName || 'Exterior');
+    : (targetImg?.colorName || targetImg?.label || 'Exterior');
 
   // ── Tab bar config ────────────────────────────────────────────────────────────
   const TABS = [
