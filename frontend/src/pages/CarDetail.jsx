@@ -6,10 +6,8 @@ import GalleryViewer from '../components/GalleryViewer';
 // Per-model interior images — add entries here as more models get photo sets
 const GALLERY_INTERIORS = {
   'City': [
-    { label: 'Dashboard',     src: '/images/honda-city-interior-dashboard.jpg',     alt: 'Honda City interior dashboard view' },
-    { label: 'Infotainment',  src: '/images/honda-city-interior-infotainment.jpg',  alt: 'Honda City infotainment system' },
-    { label: 'Side Profile',  src: '/images/honda-city-exterior-side.jpg',          alt: 'Honda City side profile' },
-    { label: 'Colour Range',  src: '/images/honda-city-all.jpg',                    alt: 'Honda City full colour lineup' },
+    { label: 'Dashboard',    src: '/images/honda-city-interior-dashboard.jpg',    alt: 'Honda City interior dashboard view' },
+    { label: 'Infotainment', src: '/images/honda-city-interior-infotainment.jpg', alt: 'Honda City infotainment system' },
   ],
 };
 

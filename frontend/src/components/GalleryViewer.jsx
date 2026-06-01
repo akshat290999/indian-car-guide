@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 /**
- * GalleryViewer v2
+ * GalleryViewer v3
  *
  * Props:
  *   exteriorImages  [{colorName, src, alt}]   — one entry per color
- *   interiorImages  [{label, src, alt}]        — optional; tab only shown when present
+ *   interiorImages  [{label, src, alt}]        — optional
  *   selectedColor   string                     — controlled by parent
  *   onColorSelect   (colorName) => void
  *   C               object                     — design token map
@@ -17,39 +17,40 @@ export default function GalleryViewer({
   onColorSelect,
   C = {},
 }) {
-  const RED   = C.red   || '#E03A3E';
   const NAVY  = C.navy  || '#0A192F';
   const INTER = C.inter || 'system-ui';
   const MUTED = C.muted || '#5A7A9A';
 
   const hasInterior = interiorImages.length > 0;
 
-  // ── Active gallery tab ───────────────────────────────────────────────────────
-  const [galleryTab, setGalleryTab] = useState('exterior');
+  // ── View filter: 'all' | 'exterior' | 'interior' ────────────────────────────
+  const [viewFilter, setViewFilter] = useState('all');
 
-  // Visible image list for the current tab
-  const tabImages = galleryTab === 'exterior' ? exteriorImages : interiorImages;
+  // Computed image list for the active filter
+  const tabImages =
+    viewFilter === 'exterior' ? exteriorImages
+    : viewFilter === 'interior' ? interiorImages
+    : [...exteriorImages, ...interiorImages];   // 'all' — exterior first, then interior
 
-  // ── Active index within the current tab ─────────────────────────────────────
+  // ── Active index within the current filtered list ────────────────────────────
   const [activeIdx, setActiveIdx] = useState(0);
 
-  // Reset index when tab changes
-  useEffect(() => { setActiveIdx(0); }, [galleryTab]);
+  // Reset index whenever the filter changes — prevents out-of-bounds
+  useEffect(() => { setActiveIdx(0); }, [viewFilter]);
 
-  // Keep in sync when parent's selectedColor changes (exterior only)
+  // Keep in sync when parent's selectedColor changes (exterior + all modes)
   useEffect(() => {
-    if (galleryTab !== 'exterior' || !selectedColor) return;
+    if (viewFilter === 'interior' || !selectedColor) return;
     const idx = exteriorImages.findIndex((img) => img.colorName === selectedColor);
     if (idx !== -1 && idx !== activeIdx) setActiveIdx(idx);
-  // Only re-run when selectedColor or the tab changes, not on every render
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedColor, galleryTab]);
+  }, [selectedColor, viewFilter]);
 
   // ── Cross-fade ───────────────────────────────────────────────────────────────
-  const targetImg   = tabImages[activeIdx] ?? null;
-  const [heroSrc, setHeroSrc]   = useState(targetImg?.src ?? null);
-  const [heroAlt, setHeroAlt]   = useState(targetImg?.alt ?? '');
-  const [visible, setVisible]   = useState(true);
+  const targetImg = tabImages[activeIdx] ?? null;
+  const [heroSrc, setHeroSrc] = useState(targetImg?.src ?? null);
+  const [heroAlt, setHeroAlt] = useState(targetImg?.alt ?? '');
+  const [visible, setVisible] = useState(true);
   const fadeTimer = useRef(null);
 
   useEffect(() => {
@@ -67,23 +68,16 @@ export default function GalleryViewer({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetImg?.src]);
 
-  // ── Thumbnail strip auto-scroll ──────────────────────────────────────────────
-  const stripRef = useRef(null);
-  useEffect(() => {
-    if (!stripRef.current) return;
-    const el = stripRef.current.children[activeIdx];
-    if (el) el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-  }, [activeIdx, galleryTab]);
-
-  // ── Thumbnail click ───────────────────────────────────────────────────────────
+  // ── Thumb / arrow click ───────────────────────────────────────────────────────
   function handleThumbClick(idx) {
     setActiveIdx(idx);
-    if (galleryTab === 'exterior' && onColorSelect) {
-      onColorSelect(tabImages[idx]?.colorName);
+    // Only fire color callback for exterior-type images
+    if (viewFilter !== 'interior' && onColorSelect) {
+      const img = tabImages[idx];
+      if (img?.colorName) onColorSelect(img.colorName);
     }
   }
 
-  // ── Arrow navigation (wraps around) ──────────────────────────────────────────
   function handlePrev(e) {
     e.stopPropagation();
     handleThumbClick((activeIdx - 1 + tabImages.length) % tabImages.length);
@@ -109,9 +103,24 @@ export default function GalleryViewer({
     };
   }, [lightboxOpen, closeLightbox]);
 
-  const activeLabel = galleryTab === 'exterior'
-    ? (targetImg?.colorName || 'Exterior')
-    : (targetImg?.label    || 'Interior');
+  // ── Black-car horizontal flip ─────────────────────────────────────────────────
+  // Some black car assets face the opposite direction; flip them via CSS instead
+  // of touching the source files.
+  const isBlack = Boolean(
+    heroSrc?.toLowerCase().includes('black') ||
+    heroAlt?.toLowerCase().includes('black')
+  );
+
+  const activeLabel = viewFilter === 'interior'
+    ? (targetImg?.label    || 'Interior')
+    : (targetImg?.colorName || 'Exterior');
+
+  // ── Tab bar config ────────────────────────────────────────────────────────────
+  const TABS = [
+    { key: 'all',      label: `ALL (${exteriorImages.length + interiorImages.length})` },
+    { key: 'exterior', label: `EXTERIOR (${exteriorImages.length})` },
+    { key: 'interior', label: `INTERIOR (${interiorImages.length})` },
+  ];
 
   return (
     <div style={{ width: '100%' }}>
@@ -126,15 +135,12 @@ export default function GalleryViewer({
           marginBottom: '12px',
           gap: 0,
         }}>
-          {[
-            { key: 'exterior', label: `EXTERIOR (${exteriorImages.length})` },
-            { key: 'interior', label: `INTERIOR (${interiorImages.length})` },
-          ].map(({ key, label }) => {
-            const active = galleryTab === key;
+          {TABS.map(({ key, label }) => {
+            const active = viewFilter === key;
             return (
               <button
                 key={key}
-                onClick={() => setGalleryTab(key)}
+                onClick={() => setViewFilter(key)}
                 style={{
                   flex: 1,
                   padding: '9px 0',
@@ -164,7 +170,6 @@ export default function GalleryViewer({
         style={{
           position: 'relative',
           width: '100%',
-          // Use aspect-ratio so the container grows with the image; min/max keeps it sane
           aspectRatio: '4 / 3',
           minHeight: '220px',
           maxHeight: '340px',
@@ -184,12 +189,12 @@ export default function GalleryViewer({
               inset: 0,
               width: '100%',
               height: '100%',
-              // contain: shows the whole car, no cropping — transparent bg shows beneath
               objectFit: 'contain',
               padding: '10px',
               display: 'block',
               opacity: visible ? 1 : 0,
               transition: 'opacity 0.18s ease',
+              transform: isBlack ? 'scaleX(-1)' : 'none',
             }}
           />
         ) : (
@@ -277,55 +282,7 @@ export default function GalleryViewer({
           </>
         )}
       </div>
-
-      {/* ── Thumbnail strip ──────────────────────────────────────────────────── */}
-      {tabImages.length > 1 && (
-        <div
-          ref={stripRef}
-          style={{
-            display: 'flex',
-            gap: '8px',
-            overflowX: 'auto',
-            padding: '10px 0 2px',
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-          }}
-        >
-          {tabImages.map((img, i) => (
-            <button
-              key={i}
-              onClick={() => handleThumbClick(i)}
-              title={galleryTab === 'exterior' ? img.colorName : img.label}
-              style={{
-                flexShrink: 0,
-                width: '68px',
-                height: '50px',
-                borderRadius: '8px',
-                overflow: 'hidden',
-                cursor: 'pointer',
-                padding: 0,
-                border: i === activeIdx ? `2px solid ${RED}` : '2px solid #DDE4EE',
-                boxShadow: i === activeIdx ? `0 0 0 1px ${RED}` : 'none',
-                transition: 'border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease',
-                transform: i === activeIdx ? 'scale(1.05)' : 'scale(1)',
-                backgroundColor: '#F3F5F8',
-              }}
-            >
-              <img
-                src={img.src}
-                alt={img.alt || ''}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'contain',
-                  padding: '3px',
-                  display: 'block',
-                }}
-              />
-            </button>
-          ))}
-        </div>
-      )}
+      {/* Thumbnail strip removed — arrows + color swatches handle navigation */}
 
       {/* ── Lightbox overlay ─────────────────────────────────────────────────── */}
       {lightboxOpen && (
@@ -335,15 +292,14 @@ export default function GalleryViewer({
             position: 'fixed',
             inset: 0,
             zIndex: 9999,
-            backgroundColor: 'rgba(5,10,20,0.92)',
+            backgroundColor: 'rgba(5,10,20,0.95)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '24px',
             backdropFilter: 'blur(8px)',
           }}
         >
-          {/* Close ×  */}
+          {/* Close × — absolute top-right */}
           <button
             onClick={closeLightbox}
             aria-label="Close"
@@ -356,6 +312,7 @@ export default function GalleryViewer({
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontFamily: 'system-ui',
               transition: 'background 0.15s',
+              zIndex: 1,
             }}
             onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.22)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
@@ -363,35 +320,38 @@ export default function GalleryViewer({
             ×
           </button>
 
-          {/* Label */}
+          {/* Label — top-left */}
           <div style={{
             position: 'absolute', top: '22px', left: '24px',
             color: 'rgba(255,255,255,0.75)', fontSize: '12px',
             fontFamily: INTER, fontWeight: '600', letterSpacing: '0.5px',
-            textTransform: 'uppercase',
+            textTransform: 'uppercase', zIndex: 1,
           }}>
             {activeLabel}
           </div>
 
-          {/* Hint */}
+          {/* Hint — bottom-centre */}
           <div style={{
             position: 'absolute', bottom: '18px', left: '50%', transform: 'translateX(-50%)',
-            color: 'rgba(255,255,255,0.4)', fontSize: '11px', fontFamily: INTER,
+            color: 'rgba(255,255,255,0.4)', fontSize: '11px', fontFamily: INTER, zIndex: 1,
           }}>
             Press Esc or click outside to close
           </div>
 
-          {/* Full-res image — click doesn't propagate so it doesn't close */}
+          {/* Full-res image — fills the viewport frame */}
           <img
             src={heroSrc}
             alt={heroAlt}
             onClick={(e) => e.stopPropagation()}
             style={{
-              maxWidth: '90vw',
-              maxHeight: '82vh',
+              width: '100%',
+              maxWidth: '95vw',
+              height: '100%',
+              maxHeight: '85vh',
               objectFit: 'contain',
               borderRadius: '10px',
               boxShadow: '0 16px 60px rgba(0,0,0,0.6)',
+              transform: isBlack ? 'scaleX(-1)' : 'none',
             }}
           />
         </div>
