@@ -110,7 +110,16 @@ export default function BrandSearch() {
                   >
                     {/* Car image */}
                     {imageUrl ? (
-                      <img src={imageUrl} alt={modelName} style={{ width: '100%', height: '180px', objectFit: 'cover', display: 'block', backgroundColor: '#E8EEF5' }} />
+                      <img
+                        src={imageUrl}
+                        alt={modelName}
+                        style={{
+                          width: '100%', height: '180px', objectFit: 'cover', display: 'block',
+                          backgroundColor: '#E8EEF5',
+                          transform: first.mirror ? 'scaleX(-1)' : 'none',
+                          transformOrigin: 'center',
+                        }}
+                      />
                     ) : (
                       <div style={{ width: '100%', height: '180px', backgroundColor: '#EBF2FF', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <span style={{ fontSize: '12px', color: C.muted }}>No image</span>
