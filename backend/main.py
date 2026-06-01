@@ -1,3 +1,4 @@
+import subprocess
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database.cars_data import CARS_DATA
@@ -20,6 +21,20 @@ _CARS_WITH_META = [{**car, **CAR_META.get(car['model_name'], {})} for car in CAR
 @app.get("/")
 def root():
     return {"message": "Welcome to the Indian Car Guide API"}
+
+
+@app.get("/api/version")
+def version():
+    try:
+        sha = subprocess.check_output(
+            ["git", "rev-parse", "--short", "HEAD"],
+            cwd="/home/ubuntu/app",
+            stderr=subprocess.DEVNULL,
+            text=True,
+        ).strip()
+    except Exception:
+        sha = "unknown"
+    return {"commit": sha, "cars": len(CARS_DATA)}
 
 
 @app.get("/api/cars")

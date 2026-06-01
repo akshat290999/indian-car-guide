@@ -51,14 +51,22 @@ jobs:
             set -e
 
             cd ~/app
-            git pull origin main
+
+            # Hard-sync to remote main — git pull can silently no-op on a
+            # diverged or detached HEAD; reset --hard guarantees the worktree
+            # matches origin/main exactly regardless of local state.
+            git fetch origin main
+            git reset --hard origin/main
 
             source venv/bin/activate
             [ -f requirements.txt ] && pip install -r requirements.txt --quiet || true
 
             sudo systemctl restart fastapi
 
-            sleep 2
+            sleep 3
             sudo systemctl is-active --quiet fastapi \
               && echo "✅ FastAPI service is running" \
               || { echo "❌ FastAPI service failed to start"; sudo systemctl status fastapi; exit 1; }
+
+            # Emit the commit SHA so the pipeline log proves exactly what is live
+            echo "🔖 EC2 now at: $(git rev-parse --short HEAD)"
