@@ -3,6 +3,16 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import GalleryViewer from '../components/GalleryViewer';
 
+// Per-model exterior orientation — set a model name here if its scraped images
+// face the opposite direction to our Honda City baseline (facing right).
+// GalleryViewer XORs this flag with its per-image isBlack heuristic so a
+// model-level flip and a filename-based flip never double-mirror each other.
+const MIRROR_EXTERIOR = new Set([
+  'Creta',  // CarDekho images face left — opposite to City baseline
+  'Nexon',  // CarDekho images face left — opposite to City baseline
+  'Thar',   // CarDekho images face left — opposite to City baseline
+]);
+
 // Per-model interior images — add entries here as more models get photo sets
 const GALLERY_INTERIORS = {
   'City': [
@@ -484,6 +494,7 @@ export default function CarDetail() {
                 interiorImages={interiorImages}
                 selectedColor={selectedColor}
                 onColorSelect={setSelectedColor}
+                mirrorExterior={MIRROR_EXTERIOR.has(first.model_name)}
                 C={C}
               />
             </div>

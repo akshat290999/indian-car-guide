@@ -15,6 +15,7 @@ export default function GalleryViewer({
   interiorImages = [],
   selectedColor,
   onColorSelect,
+  mirrorExterior = false,
   C = {},
 }) {
   const NAVY  = C.navy  || '#0A192F';
@@ -120,13 +121,20 @@ export default function GalleryViewer({
     };
   }, [lightboxOpen, closeLightbox]);
 
-  // ── Black-car horizontal flip ─────────────────────────────────────────────────
-  // Some black car assets face the opposite direction; flip them via CSS instead
-  // of touching the source files.
+  // ── Horizontal flip logic ────────────────────────────────────────────────────
+  // isBlack: per-image heuristic — some black variants face the opposite
+  // direction within a model's own colour set (filename/alt contains 'black').
+  // mirrorExterior: per-model flag — the entire exterior image set faces the
+  // opposite direction to the Honda City baseline.
+  // XOR: if both are true they cancel (model already accounts for the flip so
+  // the black image doesn't need a second inversion); only flip when exactly one
+  // condition is true. Interior images are never flipped.
   const isBlack = Boolean(
     heroSrc?.toLowerCase().includes('black') ||
     heroAlt?.toLowerCase().includes('black')
   );
+  const isExteriorView = viewFilter !== 'interior';
+  const shouldFlip = isExteriorView && (mirrorExterior !== isBlack);
 
   // In 'all' mode, interior images have a label but no colorName — fall through to label
   const activeLabel = viewFilter === 'interior'
@@ -212,7 +220,7 @@ export default function GalleryViewer({
               display: 'block',
               opacity: visible ? 1 : 0,
               transition: 'opacity 0.18s ease',
-              transform: isBlack ? 'scaleX(-1)' : 'none',
+              transform: shouldFlip ? 'scaleX(-1)' : 'none',
             }}
           />
         ) : (
@@ -369,7 +377,7 @@ export default function GalleryViewer({
               objectFit: 'contain',
               borderRadius: '10px',
               boxShadow: '0 16px 60px rgba(0,0,0,0.6)',
-              transform: isBlack ? 'scaleX(-1)' : 'none',
+              transform: shouldFlip ? 'scaleX(-1)' : 'none',
             }}
           />
         </div>
