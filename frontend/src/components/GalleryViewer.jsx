@@ -161,7 +161,7 @@ export default function GalleryViewer({
                 onClick={() => setViewFilter(key)}
                 style={{
                   flex: 1,
-                  padding: '9px 0',
+                  padding: '9px 4px',
                   border: 'none',
                   borderRadius: '8px',
                   cursor: 'pointer',
@@ -170,9 +170,13 @@ export default function GalleryViewer({
                   fontFamily: INTER,
                   fontSize: '11px',
                   fontWeight: active ? '700' : '500',
-                  letterSpacing: '0.8px',
+                  letterSpacing: '0.6px',
                   boxShadow: active ? '0 1px 4px rgba(10,25,47,0.13)' : 'none',
                   transition: 'all 0.15s ease',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  minWidth: 0,
                 }}
               >
                 {label}

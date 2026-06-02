@@ -48,20 +48,23 @@ function Navbar() {
         marginRight: mobile ? 0 : '24px',
         flexShrink: mobile ? 1 : 0,
         justifyContent: 'center',
+        minWidth: 0,
       }}>
         <img
           src="https://carorbis.com/wp-content/uploads/2022/03/02Carorbis-Blog_Top-Car-Brands-in-India-699x400.jpg"
           alt="Company Logo"
-          style={{ height: '40px', width: 'auto', borderRadius: '4px', flexShrink: 0 }}
+          style={{ height: '36px', width: 'auto', borderRadius: '4px', flexShrink: 0 }}
         />
         <h1 style={{
           margin: 0,
-          fontSize: mobile ? '20px' : '24px',
+          fontSize: mobile ? 'clamp(16px, 5vw, 20px)' : '24px',
           fontFamily: OSWALD,
           fontWeight: '700',
           letterSpacing: '1.5px',
           color: '#fff',
           whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
         }}>
           INDIAN CAR GUIDE
         </h1>

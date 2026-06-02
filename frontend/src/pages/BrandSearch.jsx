@@ -45,7 +45,7 @@ export default function BrandSearch() {
   const entries   = Object.entries(grouped);
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: C.pageBg, fontFamily: C.inter, padding: '36px 24px 72px' }}>
+    <div className="browse-page-pad" style={{ minHeight: '100vh', backgroundColor: C.pageBg, fontFamily: C.inter }}>
       <div style={{ maxWidth: '1120px', margin: '0 auto' }}>
 
         {/* ── Page header ─────────────────────────────────────────────────── */}

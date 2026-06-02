@@ -299,7 +299,7 @@ export default function Home() {
       </div>
 
       {/* ═══ INTRO & ABOUT US ═══ */}
-      <div style={{ backgroundColor: C.white, padding: '80px 24px' }}>
+      <div className="home-section-pad" style={{ backgroundColor: C.white }}>
         <div className="two-col-row" style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <div>
             <h2 style={{ fontFamily: C.oswald, fontSize: '32px', color: C.navy, marginBottom: '16px' }}>About Our Platform</h2>
@@ -317,7 +317,7 @@ export default function Home() {
       </div>
 
       {/* ═══ BROWSE BY BRAND ═══════════════════════════════════════════════════ */}
-      <div style={{ backgroundColor: C.white, padding: '72px 24px 64px', borderBottom: `1px solid ${C.border}` }}>
+      <div className="home-browse-section" style={{ backgroundColor: C.white, borderBottom: `1px solid ${C.border}` }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <div style={{ marginBottom: '32px' }}>
             <h2 style={{ margin: '0 0 8px', fontFamily: C.oswald, fontSize: '28px', fontWeight: '700', color: C.black, letterSpacing: '0.5px' }}>
@@ -378,7 +378,7 @@ export default function Home() {
       </div>
 
       {/* ═══ WHAT WE OFFER ═══════════════════════════════════════════════════════ */}
-      <div style={{ backgroundColor: C.pageBg, padding: '72px 24px 80px' }}>
+      <div className="home-features-section" style={{ backgroundColor: C.pageBg }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <div className="features-grid">
             {[
@@ -398,11 +398,11 @@ export default function Home() {
       </div>
 
       {/* ═══ BODY ══════════════════════════════════════════════════════════════ */}
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 24px 96px' }}>
+      <div className="home-body-section">
 
         {/* ── MARKET PULSE ────────────────────────────────────────────────── */}
-        <section style={{ marginBottom: '80px' }}>
-          <div style={{ textAlign: 'center', marginBottom: '48px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <section className="home-market-pulse-section">
+          <div className="home-market-pulse-header" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', backgroundColor: '#E8F8F0', borderRadius: '20px', marginBottom: '16px' }}>
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#22C55E' }} />
               <span style={{ fontFamily: C.inter, fontSize: '11px', fontWeight: '700', color: '#1A7A45', letterSpacing: '1px' }}>LIVE RANKINGS</span>

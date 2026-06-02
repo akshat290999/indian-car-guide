@@ -600,7 +600,7 @@ export default function CarDetail() {
         </div>
         <div id="reviews" style={{ scrollMarginTop:'120px', marginTop:'52px' }}>
           <SectionHead>EXPERT REVIEWS</SectionHead>
-          <div style={{ backgroundColor:C.cardBg, border:`1px solid ${C.border}`, borderRadius:'12px', padding:'52px', textAlign:'center' }}>
+          <div className="reviews-empty-inner" style={{ backgroundColor:C.cardBg, border:`1px solid ${C.border}`, borderRadius:'12px' }}>
             <div style={{ width:'52px', height:'52px', borderRadius:'50%', backgroundColor:C.subBg, margin:'0 auto 16px', display:'flex', alignItems:'center', justifyContent:'center' }}>
               <span style={{ fontSize:'22px' }}>★</span>
             </div>

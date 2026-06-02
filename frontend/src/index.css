@@ -264,7 +264,7 @@ code {
   flex-wrap: wrap;
   gap: 12px;
 }
-.variant-name-section  { flex: 1 1 200px; }
+.variant-name-section  { flex: 1 1 200px; min-width: 0; }
 .variant-price-section { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
 
 /* CarDetail – variant on-road estimator */
@@ -281,6 +281,9 @@ code {
 /* CarDetail – spec pills */
 .spec-pills { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
 .spec-pill  { flex: 1 1 140px; }
+
+/* CarDetail – variant row price label */
+.variant-price-label { font-size: 18px; font-weight: 800; }
 
 /* BrandSearch – cards grid */
 .cars-grid {
@@ -301,6 +304,25 @@ code {
   min-width: 0;
 }
 
+/* ─── Home – section-level vertical padding ─────────────────────────────────
+   Inline styles can't be overridden by @media queries. These classes let each
+   section scale its padding independently at every breakpoint.
+─────────────────────────────────────────────────────────────────────────── */
+.home-section-pad      { padding: 80px 24px; }
+.home-browse-section   { padding: 72px 24px 64px; }
+.home-features-section { padding: 72px 24px 80px; }
+.home-body-section     { max-width: 1100px; margin: 0 auto; padding: 72px 24px 96px; }
+
+/* BrandSearch – outer page padding */
+.browse-page-pad { padding: 36px 24px 72px; }
+
+/* CarDetail – reviews empty-state inner box */
+.reviews-empty-inner { padding: 52px; text-align: center; }
+
+/* Home – Market Pulse section / header spacing */
+.home-market-pulse-section { margin-bottom: 80px; }
+.home-market-pulse-header  { margin-bottom: 48px; }
+
 /* ─── Mobile  ≤ 768px ────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .home-hero-inner {
@@ -314,9 +336,20 @@ code {
   .two-col-row       { flex-direction: column; gap: 24px; }
   .two-col-row > div { flex: 1 1 100%; }
 
+  /* Section paddings – mobile scale-down */
+  .home-section-pad          { padding: 44px 16px; }
+  .home-browse-section       { padding: 40px 16px 36px; }
+  .home-features-section     { padding: 40px 16px 48px; }
+  .home-body-section         { padding: 40px 16px 60px; }
+  .browse-page-pad           { padding: 24px 16px 52px; }
+  .reviews-empty-inner       { padding: 32px 20px; }
+  .home-market-pulse-section { margin-bottom: 52px; }
+  .home-market-pulse-header  { margin-bottom: 28px; }
+
   .features-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .brand-grid    { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .pulse-grid    { grid-template-columns: 1fr; gap: 16px; }
+  /* pulse-grid: intentionally omitted — auto-fill(minmax 280px) naturally gives
+     1-col on phones and 2-col on tablets without a fixed override */
   .persona-grid  { grid-template-columns: 1fr; gap: 14px; }
 
   .stats-strip-inner { padding: 0 16px; }
@@ -333,7 +366,8 @@ code {
   .variant-price-section { flex-shrink: 1; }
   .variant-expanded-row  { flex-direction: column; align-items: flex-start; }
 
-  .cars-grid { grid-template-columns: 1fr; gap: 16px; }
+  /* cars-grid: 2-col on tablets (each card ~265px), 1-col at ≤480px below */
+  .cars-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .spec-pill { flex: 1 1 calc(50% - 6px); }
 
   .calculator-panel { flex: 1 1 100%; }
@@ -342,8 +376,21 @@ code {
 /* ─── Small phones  ≤ 480px ──────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .home-hero-inner { padding: 24px 12px; }
-  .features-grid   { grid-template-columns: 1fr; }
-  .brand-grid      { grid-template-columns: repeat(2, 1fr); }
-  .stat-item       { flex: 1 1 100%; }
-  .spec-pill       { flex: 1 1 100%; }
+
+  /* Section paddings – phone scale-down */
+  .home-section-pad          { padding: 28px 12px; }
+  .home-browse-section       { padding: 28px 12px; }
+  .home-features-section     { padding: 28px 12px 36px; }
+  .home-body-section         { padding: 28px 12px 48px; }
+  .browse-page-pad           { padding: 20px 12px 48px; }
+  .reviews-empty-inner       { padding: 24px 16px; }
+  .home-market-pulse-section { margin-bottom: 40px; }
+  .home-market-pulse-header  { margin-bottom: 20px; }
+
+  .features-grid { grid-template-columns: 1fr; }
+  .brand-grid    { grid-template-columns: repeat(2, 1fr); }
+  /* cars-grid: back to single column on phones */
+  .cars-grid     { grid-template-columns: 1fr; }
+  .stat-item     { flex: 1 1 100%; }
+  .spec-pill     { flex: 1 1 100%; }
 }
