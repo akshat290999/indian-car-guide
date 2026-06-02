@@ -114,8 +114,9 @@ export default function BrandSearch() {
                         src={imageUrl}
                         alt={modelName}
                         style={{
-                          width: '100%', height: '180px', objectFit: 'cover', display: 'block',
-                          backgroundColor: '#E8EEF5',
+                          width: '100%', height: '180px',
+                          objectFit: 'cover', objectPosition: 'center',
+                          display: 'block', backgroundColor: '#E8EEF5',
                           transform: first.mirror ? 'scaleX(-1)' : 'none',
                           transformOrigin: 'center',
                         }}
