@@ -371,21 +371,19 @@ export default function CarDetail() {
   const colors = first.colors || [];
 
   // Build exterior image list for GalleryViewer (one entry per color).
-  // flip:true is baked into each object — GalleryViewer reads it directly from
-  // targetImg so no prop threading is needed.
+  // All images are stored facing left — no flip transform needed.
   const imgMap = (first.image_urls && typeof first.image_urls === 'object' && !Array.isArray(first.image_urls))
     ? first.image_urls
     : {};
   const fallbackImgSrc = Array.isArray(first.image_urls) ? first.image_urls[0] : null;
-  const needsFlip      = first.mirror ?? false;
   const exteriorImages = colors.length > 0
     ? colors.map(name => ({
         colorName: name,
         src:       imgMap[name] || fallbackImgSrc || null,
         alt:       `${decodedModel} in ${name}`,
-        flip:      needsFlip,
+        flip:      false,
       }))
-    : (fallbackImgSrc ? [{ colorName: null, src: fallbackImgSrc, alt: decodedModel, flip: needsFlip }] : []);
+    : (fallbackImgSrc ? [{ colorName: null, src: fallbackImgSrc, alt: decodedModel, flip: false }] : []);
 
   const interiorImages = GALLERY_INTERIORS[first.model_name] || [];
 

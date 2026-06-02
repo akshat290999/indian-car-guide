@@ -68,12 +68,6 @@ export default function GalleryViewer({
   const [visible, setVisible] = useState(true);
   const fadeTimer = useRef(null);
 
-  // heroFlip is a plain derived value, NOT delayed state.
-  // It updates the instant activeIdx changes — no timer, no stale closure.
-  // Rapid arrow clicks can never produce a mismatched flip because the value
-  // always reflects the currently targeted image, not a scheduled update.
-  const heroFlip = targetImg?.flip ?? false;
-
   useEffect(() => {
     const newSrc = targetImg?.src;
     if (!newSrc) return;
@@ -124,9 +118,7 @@ export default function GalleryViewer({
     };
   }, [lightboxOpen, closeLightbox]);
 
-  // heroFlip is set directly from targetImg.flip (baked into each exterior image
-  // object by CarDetail.jsx via the MIRROR_EXTERIOR set). Interior images never
-  // carry flip:true so they are never mirrored.
+
 
   // In 'all' mode, interior images have a label but no colorName — fall through to label
   const activeLabel = viewFilter === 'interior'
@@ -216,7 +208,7 @@ export default function GalleryViewer({
               display: 'block',
               opacity: visible ? 1 : 0,
               transition: 'opacity 0.18s ease',
-              transform: heroFlip ? 'scaleX(-1)' : 'none',
+              transform: 'none',
             }}
           />
         ) : (
@@ -373,7 +365,7 @@ export default function GalleryViewer({
               objectFit: 'contain',
               borderRadius: '10px',
               boxShadow: '0 16px 60px rgba(0,0,0,0.6)',
-              transform: heroFlip ? 'scaleX(-1)' : 'none',
+              transform: 'none',
             }}
           />
         </div>
