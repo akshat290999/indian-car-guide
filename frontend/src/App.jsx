@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
-import BrandSearch from './pages/BrandSearch'
-import Calculator from './pages/Calculator'
-import CarDetail from './pages/CarDetail'
+
+import TuningBasics from './pages/TuningBasics'
+import Platforms from './pages/Platforms'
+import TunersAndCosts from './pages/TunersAndCosts'
+import PlatformDetail from './pages/PlatformDetail'
+import IntlVsIndia from './pages/IntlVsIndia'
 
 function App() {
   return (
@@ -11,9 +14,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<BrandSearch />} />
-        <Route path="/calculator" element={<Calculator />} />
-        <Route path="/car/:modelName" element={<CarDetail />} />
+        <Route path="/basics" element={<TuningBasics />} />
+        <Route path="/platforms" element={<Platforms />} />
+        <Route path="/tuners" element={<TunersAndCosts />} />
+        <Route path="/platform/:id" element={<PlatformDetail />} />
+        <Route path="/intl" element={<IntlVsIndia />} />
       </Routes>
     </BrowserRouter>
   )

@@ -22,49 +22,34 @@ function Navbar() {
   const mobile = useMobile()
 
   return (
-    <nav style={{
-      backgroundColor: '#0A192F',
+    <nav className="glass" style={{
       width: '100%',
       maxWidth: '100%',
       boxSizing: 'border-box',
-      overflow: 'hidden',
       display: 'flex',
       flexDirection: mobile ? 'column' : 'row',
       alignItems: 'center',
-      justifyContent: mobile ? 'center' : 'flex-start',
-      gap: mobile ? '8px' : '4px',
-      padding: mobile ? '12px 16px' : '0 28px',
+      justifyContent: mobile ? 'center' : 'space-between',
+      gap: mobile ? '12px' : '0',
+      padding: mobile ? '16px' : '0 40px',
+      height: mobile ? 'auto' : 'var(--navbar-h)',
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      boxShadow: '0 2px 12px rgba(0,0,0,0.4)',
     }}>
-
       {/* Brand */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '10px',
-        marginRight: mobile ? 0 : '24px',
-        flexShrink: mobile ? 1 : 0,
-        justifyContent: 'center',
-        minWidth: 0,
+        gap: '12px',
       }}>
-        <img
-          src="https://carorbis.com/wp-content/uploads/2022/03/02Carorbis-Blog_Top-Car-Brands-in-India-699x400.jpg"
-          alt="Company Logo"
-          style={{ height: '36px', width: 'auto', borderRadius: '4px', flexShrink: 0 }}
-        />
-        <h1 style={{
+        <h1 className="text-gradient-accent" style={{
           margin: 0,
-          fontSize: mobile ? 'clamp(16px, 5vw, 20px)' : '24px',
-          fontFamily: OSWALD,
-          fontWeight: '700',
-          letterSpacing: '1.5px',
-          color: '#fff',
+          fontSize: mobile ? '20px' : '24px',
+          fontFamily: 'var(--font-heading)',
+          fontWeight: '800',
+          letterSpacing: '1px',
           whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
         }}>
           INDIAN CAR GUIDE
         </h1>
@@ -76,27 +61,29 @@ function Navbar() {
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '4px',
+        gap: '8px',
         width: mobile ? '100%' : 'auto',
       }}>
         {[
-          { to: '/',           label: 'HOME'           },
-          { to: '/search',     label: 'BROWSE'         },
-          { to: '/calculator', label: 'COST CALCULATOR' },
+          { to: '/',           label: 'Home'           },
+          { to: '/basics',     label: 'Tuning Basics'  },
+          { to: '/platforms',  label: 'Platforms'      },
+          { to: '/tuners',     label: 'Tuners & Costs' },
+          { to: '/intl',       label: 'Intl vs India'  },
         ].map(({ to, label }) => (
           <NavLink
             key={to}
             to={to}
             style={({ isActive }) => ({
               textDecoration: 'none',
-              fontFamily: INTER,
-              fontSize: '13px',
-              fontWeight: isActive ? '700' : '500',
-              color: isActive ? '#E03A3E' : '#7EB3D8',
-              padding: '6px 14px',
-              borderRadius: '6px',
-              backgroundColor: isActive ? 'rgba(224,58,62,0.10)' : 'transparent',
-              transition: 'all 0.15s ease',
+              fontFamily: 'var(--font-body)',
+              fontSize: '14px',
+              fontWeight: isActive ? '600' : '500',
+              color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
+              padding: '8px 16px',
+              borderRadius: '8px',
+              backgroundColor: isActive ? 'rgba(255,255,255,0.05)' : 'transparent',
+              transition: 'all 0.2s ease',
               whiteSpace: 'nowrap',
             })}
           >

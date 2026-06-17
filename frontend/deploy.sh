@@ -18,7 +18,7 @@ echo "☁️ 2/3 Syncing fresh 'dist' folder directly to live S3 bucket..."
 aws s3 sync dist/ s3://$BUCKET_NAME --delete
 
 echo "🧹 3/3 Invalidating CloudFront cache to force updates live..."
-aws s3api create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
+aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"
 
 echo "=========================================="
 echo "✅ DEPLOYMENT COMPLETE!"

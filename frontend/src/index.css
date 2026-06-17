@@ -1,396 +1,135 @@
-/* Global box-sizing reset — prevents padding/border from blowing out widths */
-*, *::before, *::after {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #09090b; /* Zinc 950 */
+  --surface: #18181b; /* Zinc 900 */
+  --surface-hover: #27272a; /* Zinc 800 */
+  --border: #27272a;
+  --text-primary: #ffffff;
+  --text-muted: #a1a1aa; /* Zinc 400 */
+  --accent-red: #ef4444; /* Red 500 */
+  --accent-blue: #3b82f6; /* Blue 500 */
+  
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --navbar-h: 70px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-/* Global image safety — no image can exceed its container */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  /* Navbar height token — consumed by .car-subnav-sticky's top offset */
-  --navbar-h: 56px;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 768px) {
-  :root {
-    --navbar-h: 120px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-/* Kill horizontal scroll at every level — html, body, root */
 html {
-  overflow-x: hidden;
-  /* Match the app's light page background so the area outside #root's
-     max-width container never shows a dark column on wide viewports.
-     The dark-mode CSS variable would produce black sidebars without this. */
-  background-color: #F4F7FA;
+  font-size: 14px; /* Scaled down base font size to make layout look less zoomed */
 }
 
 body {
-  margin: 0;
-  overflow-x: hidden;
-  background-color: #F4F7FA;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-#root {
-  width: 100%;
-  max-width: 1126px;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  /* NOTE: overflow-x intentionally omitted here — setting it breaks
-     position:sticky on the Navbar (any non-visible overflow on an ancestor
-     makes that ancestor the sticky scroll container instead of the viewport) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+a:hover {
+  opacity: 0.8;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* Glassmorphic utilities */
+.glass {
+  background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-}
-
-/* ─── Navbar ─────────────────────────────────────────────────────────────── */
-/* Layout is JS-driven (see Navbar.jsx useMobile hook) — these rules are
-   belt-and-suspenders and handle non-JS fallback + sticky positioning. */
-.navbar {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
+.premium-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
   overflow: hidden;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: #0A192F;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* CarDetail – sticky sub-nav offset tracks the navbar height token */
-.car-subnav-sticky {
-  position: sticky;
-  top: var(--navbar-h);
-  z-index: 90;
+.premium-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* Failsafe: if JS hasn't run yet, force column on narrow viewports */
-@media (max-width: 768px) {
-  .navbar {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 12px 16px !important;
-    gap: 8px !important;
-  }
-  .navbar a {
-    white-space: nowrap;
-  }
+/* Typography utilities */
+.text-gradient {
+  background: linear-gradient(to right, #ffffff, #a1a1aa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-accent {
+  background: linear-gradient(to right, var(--accent-red), #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* ─── Responsive layout helpers ─────────────────────────────────────────────
-   Extracted from Home.jsx, CarDetail.jsx, BrandSearch.jsx so that
-   @media queries can override layout without touching inline styles.
-─────────────────────────────────────────────────────────────────────────── */
-
-/* Home – hero */
-.home-hero-inner {
-  display: flex;
-  gap: 40px;
+/* Buttons */
+.btn {
+  display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 60px 24px;
-}
-.home-hero-text  { flex: 1 1 400px; text-align: left; }
-.home-hero-image { flex: 1 1 400px; }
-
-/* Home – about / mission two-column row */
-.two-col-row       { display: flex; gap: 40px; flex-wrap: wrap; }
-.two-col-row > div { flex: 1 1 400px; }
-
-/* Home – stats strip */
-.stats-strip-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  flex-wrap: wrap;
-}
-.stat-item {
-  flex: 1 1 140px;
-  padding: 28px 20px;
-  text-align: center;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Home – content grids */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
-}
-.brand-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
-}
-.pulse-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 22px;
-}
-.persona-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-/* CarDetail – hero */
-.car-hero-row {
-  display: flex;
-  gap: 48px;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-.car-info-panel  { flex: 1 1 340px; min-width: 0; }
-.car-image-panel {
-  flex: 0 1 380px;
-  min-width: 240px;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-body);
 }
 
-/* CarDetail – variant row */
-.variant-row-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
+.btn-primary {
+  background: var(--text-primary);
+  color: var(--bg);
 }
-.variant-name-section  { flex: 1 1 200px; min-width: 0; }
-.variant-price-section { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
-
-/* CarDetail – variant on-road estimator */
-.variant-expanded-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 12px;
-  padding-top: 12px;
-  flex-wrap: wrap;
+.btn-primary:hover {
+  background: #e4e4e7;
+  transform: translateY(-2px);
 }
 
-/* CarDetail – spec pills */
-.spec-pills { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
-.spec-pill  { flex: 1 1 140px; }
-
-/* CarDetail – variant row price label */
-.variant-price-label { font-size: 18px; font-weight: 800; }
-
-/* BrandSearch – cards grid */
-.cars-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(284px, 1fr));
-  gap: 22px;
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+.btn-outline:hover {
+  border-color: var(--text-primary);
+  background: rgba(255,255,255,0.05);
 }
 
-/* Calculator – two-column layout */
-.calculator-layout {
-  display: flex;
-  gap: 28px;
-  flex-wrap: wrap;
-  align-items: flex-start;
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
-.calculator-panel {
-  flex: 1 1 340px;
-  min-width: 0;
+::-webkit-scrollbar-track {
+  background: var(--bg);
 }
-
-/* ─── Home – section-level vertical padding ─────────────────────────────────
-   Inline styles can't be overridden by @media queries. These classes let each
-   section scale its padding independently at every breakpoint.
-─────────────────────────────────────────────────────────────────────────── */
-.home-section-pad      { padding: 80px 24px; }
-.home-browse-section   { padding: 72px 24px 64px; }
-.home-features-section { padding: 72px 24px 80px; }
-.home-body-section     { max-width: 1100px; margin: 0 auto; padding: 72px 24px 96px; }
-
-/* BrandSearch – outer page padding */
-.browse-page-pad { padding: 36px 24px 72px; }
-
-/* CarDetail – reviews empty-state inner box */
-.reviews-empty-inner { padding: 52px; text-align: center; }
-
-/* Home – Market Pulse section / header spacing */
-.home-market-pulse-section { margin-bottom: 80px; }
-.home-market-pulse-header  { margin-bottom: 48px; }
-
-/* ─── Mobile  ≤ 768px ────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .home-hero-inner {
-    flex-direction: column;
-    padding: 32px 16px;
-    gap: 24px;
-  }
-  .home-hero-text,
-  .home-hero-image { flex: 1 1 100%; width: 100%; }
-
-  .two-col-row       { flex-direction: column; gap: 24px; }
-  .two-col-row > div { flex: 1 1 100%; }
-
-  /* Section paddings – mobile scale-down */
-  .home-section-pad          { padding: 44px 16px; }
-  .home-browse-section       { padding: 40px 16px 36px; }
-  .home-features-section     { padding: 40px 16px 48px; }
-  .home-body-section         { padding: 40px 16px 60px; }
-  .browse-page-pad           { padding: 24px 16px 52px; }
-  .reviews-empty-inner       { padding: 32px 20px; }
-  .home-market-pulse-section { margin-bottom: 52px; }
-  .home-market-pulse-header  { margin-bottom: 28px; }
-
-  .features-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .brand-grid    { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  /* pulse-grid: intentionally omitted — auto-fill(minmax 280px) naturally gives
-     1-col on phones and 2-col on tablets without a fixed override */
-  .persona-grid  { grid-template-columns: 1fr; gap: 14px; }
-
-  .stats-strip-inner { padding: 0 16px; }
-  .stat-item {
-    flex: 1 1 calc(50% - 8px);
-    padding: 20px 12px;
-    border-right: none;
-  }
-
-  .car-hero-row    { flex-direction: column; gap: 24px; }
-  .car-info-panel  { flex: 1 1 100%; }
-  .car-image-panel { flex: 1 1 100%; min-width: unset; order: -1; }
-
-  .variant-price-section { flex-shrink: 1; }
-  .variant-expanded-row  { flex-direction: column; align-items: flex-start; }
-
-  /* cars-grid: 2-col on tablets (each card ~265px), 1-col at ≤480px below */
-  .cars-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .spec-pill { flex: 1 1 calc(50% - 6px); }
-
-  .calculator-panel { flex: 1 1 100%; }
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
 }
-
-/* ─── Small phones  ≤ 480px ──────────────────────────────────────────────── */
-@media (max-width: 480px) {
-  .home-hero-inner { padding: 24px 12px; }
-
-  /* Section paddings – phone scale-down */
-  .home-section-pad          { padding: 28px 12px; }
-  .home-browse-section       { padding: 28px 12px; }
-  .home-features-section     { padding: 28px 12px 36px; }
-  .home-body-section         { padding: 28px 12px 48px; }
-  .browse-page-pad           { padding: 20px 12px 48px; }
-  .reviews-empty-inner       { padding: 24px 16px; }
-  .home-market-pulse-section { margin-bottom: 40px; }
-  .home-market-pulse-header  { margin-bottom: 20px; }
-
-  .features-grid { grid-template-columns: 1fr; }
-  .brand-grid    { grid-template-columns: repeat(2, 1fr); }
-  /* cars-grid: back to single column on phones */
-  .cars-grid     { grid-template-columns: 1fr; }
-  .stat-item     { flex: 1 1 100%; }
-  .spec-pill     { flex: 1 1 100%; }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
