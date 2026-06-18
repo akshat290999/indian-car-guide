@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import GalleryViewer from '../components/GalleryViewer';
 
 // Per-model exterior orientation — set a model name here if its scraped images
@@ -335,6 +336,7 @@ export default function CarDetail() {
   const [transmission, setTransmission]   = useState('All');
   const [selectedColor, setSelectedColor] = useState(null);
   const [activeTab, setActiveTab]         = useState('variants');
+  const [openUpgrade, setOpenUpgrade]     = useState(null);
 
   useEffect(() => {
     // Using same absolute CloudFront URL as Home.jsx — avoids relative URL
@@ -400,6 +402,7 @@ export default function CarDetail() {
   const NAV_ITEMS = [
     { id:'variants',      label:'VARIANTS'      },
     { id:'specs',         label:'SPECS'         },
+    { id:'upgrades',      label:'UPGRADES & MODS' },
     { id:'brand-history', label:'BRAND HISTORY' },
     { id:'reviews',       label:'REVIEWS'       },
   ];
@@ -606,6 +609,68 @@ export default function CarDetail() {
             <p style={{ margin:0, fontSize:'13px', color:C.muted, fontFamily:C.inter }}>
               Expert drive impressions and owner ratings for the {decodedModel} are on the way.
             </p>
+          </div>
+        </div>
+
+        <div id="upgrades" style={{ scrollMarginTop:'120px', marginTop:'52px' }}>
+          <SectionHead>UPGRADES & MODS</SectionHead>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            {/* Stage 1 */}
+            <div className="premium-card" style={{ borderLeft: '4px solid var(--accent-red)', overflow: 'hidden' }}>
+              <div 
+                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px', cursor: 'pointer' }}
+                onClick={() => setOpenUpgrade(openUpgrade === 'stage1' ? null : 'stage1')}
+              >
+                <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', margin: 0 }}>Stage 1 Path (Software Only)</h3>
+                {openUpgrade === 'stage1' ? <ChevronUp size={24} color="var(--accent-red)" /> : <ChevronDown size={24} color="var(--accent-red)" />}
+              </div>
+              {openUpgrade === 'stage1' && (
+                <div style={{ padding: '0 20px 20px 20px', animation: 'fadeIn 0.3s ease' }}>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', margin: 0 }}>
+                    A Stage 1 remap is the best bang for your buck. It requires absolutely no hardware changes. The tuner simply connects to your car's OBD port and uploads a modified ECU file. You can expect a 15-25% increase in power and torque, making the car significantly punchier while remaining completely reliable for daily driving.
+                  </p>
+                </div>
+              )}
+            </div>
+            
+            {/* Stage 2 */}
+            <div className="premium-card" style={{ borderLeft: '4px solid var(--accent-red)', overflow: 'hidden' }}>
+              <div 
+                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px', cursor: 'pointer' }}
+                onClick={() => setOpenUpgrade(openUpgrade === 'stage2' ? null : 'stage2')}
+              >
+                <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', margin: 0 }}>Stage 2 Path (Hardware + Software)</h3>
+                {openUpgrade === 'stage2' ? <ChevronUp size={24} color="var(--accent-red)" /> : <ChevronDown size={24} color="var(--accent-red)" />}
+              </div>
+              {openUpgrade === 'stage2' && (
+                <div style={{ padding: '0 20px 20px 20px', animation: 'fadeIn 0.3s ease' }}>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', margin: 0 }}>
+                    Stage 2 pushes the engine further but requires hardware support to handle the heat and exhaust flow. A high-flow downpipe or decat is mandatory to reduce backpressure. You will also need an upgraded intercooler and a performance air intake. Expect a 30-45% power bump and much more aggressive exhaust sound.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Common Hardware */}
+            <div className="premium-card" style={{ borderLeft: '4px solid var(--accent-red)', overflow: 'hidden' }}>
+              <div 
+                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px', cursor: 'pointer' }}
+                onClick={() => setOpenUpgrade(openUpgrade === 'hardware' ? null : 'hardware')}
+              >
+                <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', margin: 0 }}>Common Hardware Upgrades</h3>
+                {openUpgrade === 'hardware' ? <ChevronUp size={24} color="var(--accent-red)" /> : <ChevronDown size={24} color="var(--accent-red)" />}
+              </div>
+              {openUpgrade === 'hardware' && (
+                <div style={{ padding: '0 20px 20px 20px', animation: 'fadeIn 0.3s ease' }}>
+                  <ul style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', margin: 0, paddingLeft: '20px' }}>
+                    <li><strong>Air Intake:</strong> Lets the turbo breathe easier. Adds fantastic induction noises.</li>
+                    <li><strong>Downpipe:</strong> The biggest restriction in the exhaust. Crucial for Stage 2.</li>
+                    <li><strong>Intercooler:</strong> Mandatory for Indian summers. Prevents power loss when the engine gets hot.</li>
+                    <li><strong>Lowering Springs:</strong> Drops the ride height by 20-30mm, giving a better stance and sharper cornering.</li>
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

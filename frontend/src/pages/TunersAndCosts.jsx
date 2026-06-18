@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useLocation } from 'react-router-dom'
 
 export default function TunersAndCosts() {
   const [openTuner, setOpenTuner] = useState(null)
   const [openCost, setOpenCost] = useState(null)
+  
+  const location = useLocation()
+  const tunerRefs = useRef({})
 
   const tuners = [
     {
@@ -45,8 +49,47 @@ export default function TunersAndCosts() {
       desc: "Known for pushing limits, especially on the BMW B58 platform and custom turbo setups. They provide custom dyno calibrations.",
       platforms: "BMW, Mercedes, Custom Builds",
       estimatedCost: "₹50,000 - ₹85,000 (Custom Calibration)"
+    },
+    {
+      id: "bootmod3",
+      name: "Bootmod3",
+      website: "https://www.protuningfreaks.com/",
+      desc: "Cloud-based tuning platform. Extremely popular for BMWs (B48/B58). Allows you to flash off-the-shelf (OTS) maps via your phone.",
+      platforms: "BMW, Mini",
+      estimatedCost: "₹50,000 - ₹60,000"
+    },
+    {
+      id: "mhd",
+      name: "MHD Tuning",
+      website: "https://mhdtuning.com/",
+      desc: "A flasher app for BMWs. Very well known for their precise exhaust burble controls and incredibly smooth power delivery.",
+      platforms: "BMW",
+      estimatedCost: "₹45,000 - ₹55,000"
+    },
+    {
+      id: "renntech",
+      name: "Renntech",
+      website: "https://www.renntechmercedes.com/",
+      desc: "Globally renowned Mercedes-Benz and AMG tuning specialist. Premium maps designed for maximum performance without sacrificing luxury.",
+      platforms: "Mercedes-AMG",
+      estimatedCost: "₹1,20,000+"
     }
   ]
+
+  useEffect(() => {
+    if (location.state && location.state.targetTuner) {
+      const targetId = location.state.targetTuner
+      setOpenTuner(targetId)
+      
+      // Add a slight delay to allow rendering before scrolling
+      setTimeout(() => {
+        if (tunerRefs.current[targetId]) {
+          const y = tunerRefs.current[targetId].getBoundingClientRect().top + window.scrollY - 100
+          window.scrollTo({ top: y, behavior: 'smooth' })
+        }
+      }, 100)
+    }
+  }, [location])
 
   const hardwareCosts = [
     {
@@ -90,17 +133,26 @@ export default function TunersAndCosts() {
           <h2 style={{ fontSize: '1.8rem', marginBottom: '24px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px' }}>Top Indian Tuners</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
             {tuners.map((tuner) => (
-              <div key={tuner.id} className="premium-card" style={{ borderLeft: '4px solid var(--accent-blue)', overflow: 'hidden' }}>
+              <div 
+                key={tuner.id} 
+                ref={el => tunerRefs.current[tuner.id] = el}
+                className="premium-card" 
+                style={{ 
+                  borderLeft: openTuner === tuner.id ? '4px solid var(--accent-red)' : '4px solid var(--accent-blue)', 
+                  overflow: 'hidden',
+                  transition: 'all 0.3s ease'
+                }}
+              >
                 <div 
                   style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px', cursor: 'pointer' }}
                   onClick={() => setOpenTuner(openTuner === tuner.id ? null : tuner.id)}
                 >
                   <h3 style={{ fontSize: '1.4rem', color: 'var(--text-primary)', margin: 0 }}>{tuner.name}</h3>
-                  {openTuner === tuner.id ? <ChevronUp size={24} color="var(--accent-blue)" /> : <ChevronDown size={24} color="var(--accent-blue)" />}
+                  {openTuner === tuner.id ? <ChevronUp size={24} color="var(--accent-red)" /> : <ChevronDown size={24} color="var(--accent-blue)" />}
                 </div>
                 
                 {openTuner === tuner.id && (
-                  <div style={{ padding: '0 20px 20px 20px' }}>
+                  <div style={{ padding: '0 20px 20px 20px', animation: 'fadeIn 0.3s ease' }}>
                     <div style={{ height: '1px', background: 'var(--border)', marginBottom: '15px' }}></div>
                     <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', marginBottom: '16px', lineHeight: '1.6' }}>{tuner.desc}</p>
                     
@@ -138,7 +190,7 @@ export default function TunersAndCosts() {
                 </div>
                 
                 {openCost === cost.id && (
-                  <div style={{ padding: '0 20px 20px 20px' }}>
+                  <div style={{ padding: '0 20px 20px 20px', animation: 'fadeIn 0.3s ease' }}>
                     <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '1rem' }}>{cost.desc}</p>
                   </div>
                 )}
@@ -151,3 +203,4 @@ export default function TunersAndCosts() {
     </div>
   )
 }
+

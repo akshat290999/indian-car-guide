@@ -1,14 +1,32 @@
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { PLATFORMS_DATA } from '../tuningData'
 import { useState } from 'react'
 
 export default function PlatformDetail() {
   const { id } = useParams()
   const data = PLATFORMS_DATA[id]
+  const navigate = useNavigate()
 
   const [activeImage, setActiveImage] = useState(0)
 
   if (!data) return <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-primary)' }}>Platform not found</div>
+
+  const getTunerId = (name) => {
+    const n = name.toLowerCase()
+    if (n.includes('bootmod3')) return 'bootmod3'
+    if (n.includes('mhd')) return 'mhd'
+    if (n.includes('apr')) return 'gttunerz'
+    if (n.includes('harmonixx')) return 'harmonixx'
+    if (n.includes('wolf')) return 'wolf'
+    if (n.includes('code6')) return 'code6'
+    if (n.includes('renntech')) return 'renntech'
+    if (n.includes('pete')) return 'petes'
+    return 'code6' // fallback
+  }
+
+  const handleTunerClick = (name) => {
+    navigate('/tuners', { state: { targetTuner: getTunerId(name) } })
+  }
 
   return (
     <div style={{ padding: '40px 20px', maxWidth: '1200px', margin: '0 auto' }}>
@@ -105,12 +123,22 @@ export default function PlatformDetail() {
           <h2 style={{ fontSize: '2rem', marginBottom: '30px', borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>Tuner Options & Characteristics</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '60px' }}>
             {data.tuner_options.map((tuner, idx) => (
-              <div key={idx} className="premium-card" style={{ padding: '30px', borderLeft: '4px solid var(--accent-red)' }}>
+              <div 
+                key={idx} 
+                className="premium-card tuner-card-hover" 
+                style={{ padding: '30px', borderLeft: '4px solid var(--accent-red)', cursor: 'pointer', transition: 'all 0.2s ease' }}
+                onClick={() => handleTunerClick(tuner.name)}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
+              >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                   <h3 style={{ fontSize: '1.3rem', color: 'var(--text-primary)' }}>{tuner.name}</h3>
                   <span style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>{tuner.price}</span>
                 </div>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>{tuner.style}</p>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '10px' }}>{tuner.style}</p>
+                <div style={{ fontSize: '0.85rem', color: 'var(--accent-blue)', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  View Tuner Details →
+                </div>
               </div>
             ))}
           </div>
