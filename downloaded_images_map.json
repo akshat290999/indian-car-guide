@@ -1,0 +1,50 @@
+{
+  "vw-polo-tsi": {
+    "Stock": "/images/vw-polo-tsi-stock.jpg",
+    "Light Tuned": "/images/vw-polo-tsi-light-tuned.jpg",
+    "Heavy Tuned": "/images/vw-polo-tsi-heavy-tuned.jpg"
+  },
+  "skoda-octavia-vrs": {
+    "Stock": "/images/skoda-octavia-vrs-stock.jpg",
+    "Light Tuned": "/images/skoda-octavia-vrs-light-tuned.jpg",
+    "Heavy Tuned": "/images/skoda-octavia-vrs-heavy-tuned.jpg"
+  },
+  "vw-virtus-gt": {
+    "Stock": "/images/vw-virtus-gt-stock.jpg",
+    "Light Tuned": "/images/vw-virtus-gt-light-tuned.jpg",
+    "Heavy Tuned": "/images/vw-virtus-gt-heavy-tuned.jpg"
+  },
+  "bmw-m340i": {
+    "Stock": "/images/bmw-m340i-stock.jpg",
+    "Light Tuned": "/images/bmw-m340i-light-tuned.jpg",
+    "Heavy Tuned": "/images/bmw-m340i-heavy-tuned.jpg"
+  },
+  "mercedes-amg-c43": {
+    "Stock": "/images/mercedes-amg-c43-stock.jpg",
+    "Light Tuned": "/images/mercedes-amg-c43-light-tuned.jpg",
+    "Heavy Tuned": "/images/mercedes-amg-c43-heavy-tuned.jpg"
+  },
+  "fiat-abarth-punto": {
+    "Stock": "/images/fiat-abarth-punto-stock.jpg",
+    "Light Tuned": "/images/fiat-abarth-punto-light-tuned.jpg",
+    "Heavy Tuned": "/images/fiat-abarth-punto-heavy-tuned.jpg"
+  },
+  "mini-cooper-s": {
+    "Stock": "/images/mini-cooper-s-stock.jpg",
+    "Light Tuned": "/images/mini-cooper-s-light-tuned.jpg",
+    "Heavy Tuned": "/images/mini-cooper-s-heavy-tuned.jpg"
+  },
+  "porsche-911": {
+    "Stock": "/images/porsche-911-stock.jpg",
+    "Heavy Tuned": "/images/porsche-911-heavy-tuned.jpg"
+  },
+  "audi-rs5": {
+    "Stock": "/images/audi-rs5-stock.jpg",
+    "Heavy Tuned": "/images/audi-rs5-heavy-tuned.jpg"
+  },
+  "honda-city-ivtec": {
+    "Stock": "/images/honda-city-ivtec-stock.jpg",
+    "Light Tuned": "/images/honda-city-ivtec-light-tuned.jpg"
+  },
+  "hyundai-i20-nline": {}
+}
