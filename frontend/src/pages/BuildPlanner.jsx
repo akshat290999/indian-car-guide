@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { PLATFORMS_DATA } from '../tuningData'
 import { CheckCircle, Circle, ChevronRight, Zap, DollarSign, Gauge, ArrowRight, RefreshCw } from 'lucide-react'
 
@@ -117,7 +117,7 @@ export default function BuildPlanner() {
 
     // Stage estimation
     let stage = 'Stock'
-    if (selectedMods.has('ecu_s1') || selectedMods.has('ecu_s2')) {
+    if (selectedMods.has('ecu_s1') || selectedMods.has('ecu_s2') || selectedMods.has('ecu_s1_pops') || selectedMods.has('ecu_s2_pops')) {
       const hasHW = selectedMods.has('downpipe') || selectedMods.has('fmic')
       const hasS3 = selectedMods.has('big_turbo') || selectedMods.has('hybrid_turbo') || selectedMods.has('forged')
       stage = hasS3 ? 'Stage 3+' : hasHW ? 'Stage 2' : 'Stage 1'
