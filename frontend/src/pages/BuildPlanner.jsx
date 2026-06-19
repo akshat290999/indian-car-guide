@@ -6,10 +6,11 @@ import { CheckCircle, Circle, ChevronRight, Zap, DollarSign, Gauge, ArrowRight, 
 const MOD_CATALOG = [
   // ── SOFTWARE ──
   { id: 'ecu_s1',     name: 'ECU Stage 1 Remap',         category: 'Software',     stage: 1, cost: 30000,  hpPct: 0.22,  nmPct: 0.28,  compatible: 'all',       note: 'Best first mod. Via OBD port, reversible.' },
+  { id: 'ecu_s1_pops',name: 'ECU Stage 1 (Pops & Bangs)',category: 'Software',     stage: 1, cost: 35000,  hpPct: 0.22,  nmPct: 0.28,  compatible: 'all',       note: 'Stage 1 power plus exhaust crackles on overrun. Pure theatre.' },
   { id: 'tcu',        name: 'TCU Tune (DSG/DCT)',          category: 'Software',     stage: 1, cost: 18000,  hpPct: 0,     nmPct: 0,     compatible: ['vw-polo-tsi','skoda-octavia-vrs','vw-virtus-gt','bmw-m340i','mini-cooper-s'],  note: 'Essential for auto/DSG gearboxes to handle extra torque.' },
   { id: 'ecu_s2',     name: 'ECU Stage 2 Remap',          category: 'Software',     stage: 2, cost: 15000,  hpPct: 0.10,  nmPct: 0.12,  compatible: 'all',       note: 'Upgrade from Stage 1 map to utilise hardware mods.' },
+  { id: 'ecu_s2_pops',name: 'ECU Stage 2 (Pops & Bangs)',category: 'Software',     stage: 2, cost: 20000,  hpPct: 0.10,  nmPct: 0.12,  compatible: 'all',       note: 'Aggressive crackles with Stage 2 power gains.' },
   { id: 'launch',     name: 'Launch Control Map',          category: 'Software',     stage: 2, cost: 8000,   hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Allows flat-foot launches at optimal RPM.' },
-  { id: 'crackle',    name: 'Crackle / Pop Map',           category: 'Software',     stage: 1, cost: 5000,   hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Exhaust pops on overrun. Pure theatre, zero power gain.' },
   // ── INTAKE / BREATHING ──
   { id: 'panel_filt', name: 'Performance Panel Filter',    category: 'Intake',       stage: 1, cost: 8000,   hpPct: 0.02,  nmPct: 0.01,  compatible: 'all',       note: 'Drop-in upgrade. Minimal gains alone, good with a remap.' },
   { id: 'intake',     name: 'Full Performance Intake',     category: 'Intake',       stage: 2, cost: 25000,  hpPct: 0.04,  nmPct: 0.03,  compatible: 'all',       note: 'Cold air box / induction kit for better flow and sound.' },
@@ -143,11 +144,38 @@ export default function BuildPlanner() {
     return { tuneHP, tuneNM, hpGain, nmGain, totalCost, stage, risk, groupedMods }
   }, [selectedMods, platform, stock, selectedFuel])
 
+  useEffect(() => {
+    if (buildStats?.stage === 'Stage 2' || buildStats?.stage === 'Stage 3+') {
+      if (selectedFuel === '91 RON') {
+        setSelectedFuel('XP95')
+      }
+    }
+  }, [buildStats?.stage, selectedFuel])
+
   const toggleMod = (id) => {
     setSelectedMods(prev => {
       const next = new Set(prev)
-      if (next.has(id)) next.delete(id)
-      else next.add(id)
+      const isEcuMod = ['ecu_s1', 'ecu_s2', 'ecu_s1_pops', 'ecu_s2_pops'].includes(id)
+      const isTurboMod = ['hybrid_turbo', 'big_turbo'].includes(id)
+      
+      if (next.has(id)) {
+        next.delete(id)
+      } else {
+        if (isEcuMod) {
+          next.delete('ecu_s1')
+          next.delete('ecu_s2')
+          next.delete('ecu_s1_pops')
+          next.delete('ecu_s2_pops')
+        }
+        if (isTurboMod) {
+          next.delete('hybrid_turbo')
+          next.delete('big_turbo')
+        }
+        next.add(id)
+      }
+
+      // Check if Stage 2/3 mod was added and fuel is 91 RON, then force update fuel
+      // We can't update state directly in here, so we will handle the fuel correction in a useEffect or inside the component body based on buildStats.
       return next
     })
   }
@@ -343,7 +371,12 @@ export default function BuildPlanner() {
             <div style={{ marginBottom: '20px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '10px', padding: '16px' }}>
               <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '10px', letterSpacing: '0.04em' }}>Available Fuel</div>
               <div style={{ display: 'flex', gap: '8px' }}>
-                {['91 RON', 'XP95', 'XP100'].map(fuel => (
+                {['91 RON', 'XP95', 'XP100'].filter(fuel => {
+                  if (buildStats?.stage === 'Stage 2' || buildStats?.stage === 'Stage 3+') {
+                    return fuel !== '91 RON'
+                  }
+                  return true
+                }).map(fuel => (
                   <button key={fuel} onClick={() => setSelectedFuel(fuel)}
                     style={{
                       flex: 1, padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', cursor: 'pointer',
