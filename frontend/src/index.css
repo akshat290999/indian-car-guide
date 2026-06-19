@@ -24,6 +24,23 @@
 
 html {
   font-size: 14px; /* Scaled down base font size to make layout look less zoomed */
+  scroll-behavior: smooth;
+}
+
+/* Page transition animations */
+.page-transition {
+  animation: fadeInPage 0.4s ease-out forwards;
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 body {
