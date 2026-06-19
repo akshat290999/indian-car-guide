@@ -291,7 +291,7 @@ export default function TuningBasics() {
   const [glossaryTab, setGlossaryTab] = useState('Engine')
   const [openGlossaryItem, setOpenGlossaryItem] = useState(null)
   const [explored, setExplored] = useState(new Set())
-  const [isDesktop, setIsDesktop] = useState(typeof window !== 'undefined' && window.innerWidth >= 1024)
+
   const [fact, setFact] = useState(null)
   const [showFact, setShowFact] = useState(false)
   const [quiz, setQuiz] = useState(null)
@@ -301,11 +301,7 @@ export default function TuningBasics() {
   const usedQuiz = useRef(new Set())
   const topicRefs = useRef({})
 
-  useEffect(() => {
-    const h = () => setIsDesktop(window.innerWidth >= 1024)
-    window.addEventListener('resize', h)
-    return () => window.removeEventListener('resize', h)
-  }, [])
+
 
   useEffect(() => {
     const t = setTimeout(() => showRandomFact(), 5000)
@@ -387,29 +383,6 @@ export default function TuningBasics() {
       {/* LAYOUT */}
       <div style={{ display: 'flex', maxWidth: '1280px', margin: '0 auto', padding: '28px 20px 60px', gap: '28px' }}>
 
-        {/* SIDEBAR */}
-        {isDesktop && (
-          <aside style={{ width: '210px', flexShrink: 0, position: 'sticky', top: '72px', alignSelf: 'flex-start', maxHeight: 'calc(100vh - 90px)', overflowY: 'auto' }}>
-            <h4 style={{ fontFamily: "'Outfit', sans-serif", color: 'var(--text-muted)', fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '10px', padding: '0 10px' }}>Quick Jump</h4>
-            <nav style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-              {TOPICS.map(t => {
-                const active = openTopic === t.id
-                const done = explored.has(t.id)
-                return (
-                  <button key={t.id} onClick={() => scrollTo(t.id)}
-                    style={{ display: 'flex', alignItems: 'center', gap: '9px', padding: '9px 10px', background: active ? 'rgba(255,255,255,0.07)' : 'transparent', border: 'none', borderRadius: '8px', cursor: 'pointer', textAlign: 'left', borderLeft: active ? '3px solid var(--accent-red)' : '3px solid transparent' }}
-                    onMouseEnter={e => { if (!active) e.currentTarget.style.background = 'rgba(255,255,255,0.03)' }}
-                    onMouseLeave={e => { if (!active) e.currentTarget.style.background = 'transparent' }}
-                  >
-                    <span style={{ fontSize: '1rem', lineHeight: 1 }}>{t.emoji}</span>
-                    <span style={{ fontSize: '0.82rem', color: active ? 'var(--text-primary)' : 'var(--text-muted)', fontWeight: active ? 600 : 400, lineHeight: 1.3, flex: 1 }}>{t.title}</span>
-                    {done && !active && <CheckCircle size={11} color="#4ade80" style={{ flexShrink: 0 }} />}
-                  </button>
-                )
-              })}
-            </nav>
-          </aside>
-        )}
 
         {/* ACCORDIONS */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px', minWidth: 0 }}>
