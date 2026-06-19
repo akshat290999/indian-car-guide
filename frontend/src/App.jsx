@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import { ThemeProvider } from './components/ThemeProvider'
+import CommandPalette from './components/CommandPalette'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 
@@ -9,6 +11,7 @@ import TunersAndCosts from './pages/TunersAndCosts'
 import PlatformDetail from './pages/PlatformDetail'
 import IntlVsIndia from './pages/IntlVsIndia'
 import BuildPlanner from './pages/BuildPlanner'
+import LegalGuide from './pages/LegalGuide'
 
 function AppContent() {
   const location = useLocation()
@@ -21,6 +24,7 @@ function AppContent() {
   return (
     <>
       <Navbar />
+      <CommandPalette />
       {/* 
         The key attribute forces React to remount this div on every route change,
         which re-triggers the .page-transition CSS animation.
@@ -34,6 +38,7 @@ function AppContent() {
           <Route path="/platform/:id" element={<PlatformDetail />} />
           <Route path="/intl" element={<IntlVsIndia />} />
           <Route path="/build" element={<BuildPlanner />} />
+          <Route path="/legal" element={<LegalGuide />} />
         </Routes>
       </div>
     </>
@@ -42,9 +47,11 @@ function AppContent() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 

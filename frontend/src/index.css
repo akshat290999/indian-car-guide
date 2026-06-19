@@ -1,19 +1,80 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --bg: #09090b; /* Zinc 950 */
-  --surface: #18181b; /* Zinc 900 */
-  --surface-hover: #27272a; /* Zinc 800 */
-  --border: #27272a;
-  --text-primary: #ffffff;
-  --text-muted: #a1a1aa; /* Zinc 400 */
-  --accent-red: #ef4444; /* Red 500 */
-  --accent-blue: #3b82f6; /* Blue 500 */
-  
+  /* Spacing Grid (8px base) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+
+  /* Typography Scale (1.25 ratio) */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  /* Fonts */
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
-
   --navbar-h: 70px;
+  
+  /* Accents (BMW M Performance Colors) */
+  --accent-red: #E21C21; 
+  --accent-blue: #00A1E4; 
+  --accent-dark-blue: #0B1A45;
+  --accent-gradient: linear-gradient(to right, var(--accent-dark-blue), var(--accent-blue), var(--accent-red));
+
+  /* Light Theme */
+  --bg: #F4F5F7;
+  --surface: #FFFFFF; 
+  --surface-hover: #F8F9FA;
+  --border: #E2E8F0;
+  --text-primary: #1A202C;
+  --text-muted: #718096;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --text-gradient: linear-gradient(to right, #1A202C, #4A5568);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 20px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+
+  /* Status Colors Light */
+  --status-red: #E53E3E;
+  --status-orange: #DD6B20;
+  --status-yellow: #D69E2E;
+  --status-green: #38A169;
+  --status-blue: #3182CE;
+  --status-purple: #805AD5;
+}
+
+.dark {
+  /* Dark Theme Overrides (Less colorful, deep blacks and greys) */
+  --bg: #0B0C10; 
+  --surface: #121318; 
+  --surface-hover: #1A1B22; 
+  --border: #22242D;
+  --text-primary: #E2E8F0;
+  --text-muted: #8E9BAE; 
+  --glass-bg: rgba(18, 19, 24, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --text-gradient: linear-gradient(to right, #FFFFFF, #CBD5E0);
+  --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.7);
+
+  /* Status Colors Dark */
+  --status-red: #F87171;
+  --status-orange: #FB923C;
+  --status-yellow: #FACC15;
+  --status-green: #4ADE80;
+  --status-blue: #60A5FA;
+  --status-purple: #A78BFA;
 }
 
 * {
@@ -23,8 +84,10 @@
 }
 
 html {
-  font-size: 14px; /* Scaled down base font size to make layout look less zoomed */
+  font-size: 14px; 
   scroll-behavior: smooth;
+  /* Allow the HTML element to assume the bg color immediately */
+  background-color: var(--bg);
 }
 
 /* Page transition animations */
@@ -49,12 +112,14 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 a {
@@ -69,10 +134,11 @@ a:hover {
 
 /* Glassmorphic utilities */
 .glass {
-  background: rgba(24, 24, 27, 0.7);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--glass-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .premium-card {
@@ -81,23 +147,24 @@ a:hover {
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-sm);
 }
 
 .premium-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border-color: var(--text-muted);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Typography utilities */
 .text-gradient {
-  background: linear-gradient(to right, #ffffff, #a1a1aa);
+  background: var(--text-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 .text-gradient-accent {
-  background: linear-gradient(to right, var(--accent-red), #f97316);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -122,7 +189,7 @@ a:hover {
   color: var(--bg);
 }
 .btn-primary:hover {
-  background: #e4e4e7;
+  opacity: 0.9;
   transform: translateY(-2px);
 }
 
@@ -133,7 +200,7 @@ a:hover {
 }
 .btn-outline:hover {
   border-color: var(--text-primary);
-  background: rgba(255,255,255,0.05);
+  background: var(--surface-hover);
 }
 
 /* Scrollbar */

@@ -5,9 +5,16 @@ export const PLATFORMS_DATA = {
     description: "The definitive hot hatch of India. A massive aftermarket ecosystem exists making this the perfect starter project.",
     img: "/images/polo_stock.png",
     potential: "High",
+    potential_rating: 4,
     stock_power: "110 HP / 175 Nm",
     recommended_fuel: "95 RON minimum (Speed 97 recommended for tuned cars)",
     known_limits: "Stock turbo maxes out around 160 HP. Clutch slippage above 240 Nm on manual gearbox. DQ200 DSG has weak mechatronics.",
+    weak_points: [
+      "Stock clutch on manuals slips above 240Nm.",
+      "DQ200 DSG mechatronics are prone to failure in traffic under high torque.",
+      "Water pump failure is common around 60k kms."
+    ],
+    do_not_exceed: "250 Nm on stock manual clutch. 160 HP on stock turbo.",
     tuning_notes: "The 1.0 TSI is the most forgiving engine to tune in India. It handles Stage 1 on regular 95 octane without issues. Always get a TCU tune with the DSG to prevent clutch pack slippage on higher torque maps.",
     gallery: [
       { type: "Stock", url: "/images/polo_stock.png" },
@@ -40,9 +47,16 @@ export const PLATFORMS_DATA = {
     description: "The EA888 engine is legendary. With just a tune, it competes with sports cars double its price.",
     img: "/images/octavia_stock.png",
     potential: "Extreme",
+    potential_rating: 5,
     stock_power: "230 HP / 350 Nm",
     recommended_fuel: "Speed 97 or higher. E85 blend for Stage 2+.",
     known_limits: "Stock IS20 turbo maxes around 330 HP. Stock clutch packs on DQ381 DSG can slip above 480 Nm. Connecting rods are the weak link above 400 HP.",
+    weak_points: [
+      "Water pump and thermostat housing leaks are very common.",
+      "DQ381 DSG clutches will slip above 480Nm without a TCU tune.",
+      "Ignition coil packs often fail soon after a Stage 2 tune."
+    ],
+    do_not_exceed: "400 HP / 500 Nm on stock connecting rods.",
     tuning_notes: "The EA888 Gen3 is one of the best platforms in the world. The IS20 turbo can be upgraded to IS38 (from Golf R) for a bolt-on 100+ HP gain. Always upgrade your intercooler first in Indian summers — heat soak kills power instantly.",
     gallery: [
       { type: "Stock", url: "/images/octavia_stock.png" },
@@ -108,9 +122,16 @@ export const PLATFORMS_DATA = {
     description: "The B58 is the modern 2JZ. It is famously over-engineered and can handle massive power on stock internals.",
     img: "/images/m340i_stock.png",
     potential: "God-Tier",
+    potential_rating: 5,
     stock_power: "374 HP / 500 Nm",
     recommended_fuel: "Speed 97 mandatory. E30-E50 blend for Stage 2+.",
     known_limits: "Stock B58 internals handle 600+ HP reliably. Stock ZF8 transmission handles up to 700 Nm with a flash. The charge pipe is weak and cracks above Stage 1 boost.",
+    weak_points: [
+      "OEM plastic chargepipe cracks under high boost (Stage 2+).",
+      "PCV valve failure under heavy load.",
+      "ZF8 gearbox may hit torque limiters without xHP flash."
+    ],
+    do_not_exceed: "600 HP on stock engine internals. 700 Nm on stock ZF8 transmission.",
     tuning_notes: "The B58 is the most tunable engine of this generation. It responds to a simple flash tune with 70+ HP gains. Upgrade the chargepipe immediately — the plastic OEM one will pop under higher boost. The ZF8 gearbox is a masterpiece and takes a TCU flash extremely well for sharper shifts.",
     gallery: [
       { type: "Stock", url: "/images/m340i_stock.png" },

@@ -1,7 +1,8 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { PLATFORMS_DATA } from '../tuningData'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ChevronDown, ChevronUp, Fuel, AlertTriangle, Wrench, Flag, Globe, CheckCircle, IndianRupee, BarChart2, Car } from 'lucide-react'
+import Skeleton from '../components/Skeleton'
 
 export default function PlatformDetail() {
   const { id } = useParams()
@@ -10,6 +11,11 @@ export default function PlatformDetail() {
 
   const [activeImage, setActiveImage] = useState(0)
   const [openSection, setOpenSection] = useState(null)
+  const [imgLoaded, setImgLoaded] = useState(false)
+
+  useEffect(() => {
+    setImgLoaded(false)
+  }, [activeImage, id])
 
   if (!data) return <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-primary)' }}>Platform not found</div>
 
@@ -42,7 +48,7 @@ export default function PlatformDetail() {
         <div
           style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '18px 20px', cursor: 'pointer', transition: 'background 0.2s' }}
           onClick={() => toggleSection(sectionKey)}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)' }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-hover)' }}
           onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -70,13 +76,13 @@ export default function PlatformDetail() {
       transition: 'transform 0.2s, box-shadow 0.2s',
       cursor: 'default'
     }}
-      onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.2)' }}
-      onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none' }}
+      onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = 'var(--shadow-lg)' }}
+      onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'var(--shadow-sm)' }}
     >
       {/* Small icon/badge area instead of photo */}
       <div style={{
         width: '52px', height: '52px', borderRadius: '10px', flexShrink: 0,
-        background: 'linear-gradient(135deg, var(--accent-red), #ff6b6b)',
+        background: 'var(--accent-gradient)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         fontSize: '1.4rem'
       }}>
@@ -108,18 +114,25 @@ export default function PlatformDetail() {
       </Link>
 
       {/* Hero section */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '40px', marginBottom: '60px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '40px', marginBottom: '60px' }}>
 
         {/* Gallery */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          <div className="premium-card" style={{ height: '400px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.1)' }}>
+          <div className="premium-card" style={{ height: '400px', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent' }}>
+            {!imgLoaded && (
+              <div style={{ position: 'absolute', inset: 0 }}>
+                <Skeleton width="100%" height="100%" borderRadius="0" />
+              </div>
+            )}
             <img
               src={data.gallery[activeImage].url}
               alt={`${data.name} - ${data.gallery[activeImage].type}`}
-              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain', opacity: imgLoaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
+              onLoad={() => setImgLoaded(true)}
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80';
+                setImgLoaded(true);
               }}
             />
           </div>
@@ -150,7 +163,7 @@ export default function PlatformDetail() {
                   <img
                     src={img.url}
                     alt={img.type}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', background: 'rgba(0,0,0,0.1)' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', background: 'transparent' }}
                     onError={(e) => {
                       e.target.onerror = null;
                       e.target.src = 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80';
@@ -171,7 +184,7 @@ export default function PlatformDetail() {
 
         {/* Info */}
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <div style={{ display: 'inline-block', padding: '4px 12px', background: 'rgba(255,255,255,0.1)', borderRadius: '20px', fontSize: '0.8rem', color: 'var(--text-muted)', alignSelf: 'flex-start', marginBottom: '16px' }}>
+          <div style={{ display: 'inline-block', padding: '4px 12px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '20px', fontSize: '0.8rem', color: 'var(--text-muted)', alignSelf: 'flex-start', marginBottom: '16px' }}>
             {data.category}
           </div>
           <h1 style={{ fontSize: '3rem', marginBottom: '16px', lineHeight: '1.1' }}>{data.name}</h1>
@@ -185,6 +198,13 @@ export default function PlatformDetail() {
             <div style={{ textAlign: 'right' }}>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '4px' }}>Tuning Potential</p>
               <h3 style={{ fontSize: '1.4rem', color: 'var(--accent-red)' }}>{data.potential}</h3>
+              {data.potential_rating && (
+                <div style={{ display: 'flex', gap: '2px', justifyContent: 'flex-end', marginTop: '4px' }}>
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} style={{ color: i < data.potential_rating ? 'var(--status-yellow)' : 'var(--border)', fontSize: '1.1rem', lineHeight: '1' }}>★</span>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -202,9 +222,25 @@ export default function PlatformDetail() {
         </AccordionSection>
       )}
 
-      {data.known_limits && (
-        <AccordionSection sectionKey="limits" icon={<AlertTriangle size={18} color="#f59e0b" />} title="Known Limits & Weak Points">
-          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.7', margin: 0 }}>{data.known_limits}</p>
+      {(data.known_limits || data.weak_points || data.do_not_exceed) && (
+        <AccordionSection sectionKey="limits" icon={<AlertTriangle size={18} color="var(--status-yellow)" />} title="Known Limits & Weak Points">
+          {data.known_limits && <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.7', margin: '0 0 16px 0' }}>{data.known_limits}</p>}
+          
+          {data.weak_points && (
+            <div style={{ marginBottom: '16px' }}>
+              <h4 style={{ color: 'var(--text-primary)', marginBottom: '8px', fontSize: '0.95rem' }}>Specific Weak Points:</h4>
+              <ul style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.6', paddingLeft: '20px', margin: 0 }}>
+                {data.weak_points.map((wp, i) => <li key={i} style={{ marginBottom: '6px' }}>{wp}</li>)}
+              </ul>
+            </div>
+          )}
+
+          {data.do_not_exceed && (
+            <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '8px', padding: '12px', marginTop: '8px' }}>
+              <span style={{ color: '#ef4444', fontWeight: 700, fontSize: '0.9rem', display: 'block', marginBottom: '4px' }}>🛑 DO NOT EXCEED</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{data.do_not_exceed}</span>
+            </div>
+          )}
         </AccordionSection>
       )}
 
@@ -215,7 +251,7 @@ export default function PlatformDetail() {
       )}
 
       {/* India Ownership Reality */}
-      <AccordionSection sectionKey="india" icon={<Car size={18} color="#fb923c" />} title="🇮🇳 India Ownership Reality">
+      <AccordionSection sectionKey="india" icon={<Car size={18} color="var(--status-orange)" />} title="🇮🇳 India Ownership Reality">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           {[
             { label: 'Insurance', detail: 'Any modification technically voids standard car insurance in India. Best practice: keep ECU maps reversible (flash to stock before any repair visit). Avoid visible structural changes.' },
@@ -224,8 +260,8 @@ export default function PlatformDetail() {
             { label: 'RTO & Police Checks', detail: 'ECU tunes are invisible to RTO. Physical mods (exhaust, lowering, wheels) are the actual risk. A flash-revertible tune is the safest approach legally in India.' },
             { label: 'Resale Value', detail: 'A well-tuned car with a clean exterior and stock-looking engine bay holds resale value well among enthusiasts. Avoid obvious mods that scare off mainstream buyers.' },
           ].map(item => (
-            <div key={item.label} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', gap: '12px', padding: '12px 16px', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', border: '1px solid var(--border)' }}>
-              <span style={{ fontWeight: 700, color: '#fb923c', fontSize: '0.9rem' }}>{item.label}</span>
+            <div key={item.label} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', gap: '12px', padding: '12px 16px', background: 'var(--surface)', borderRadius: '8px', border: '1px solid var(--border)' }}>
+              <span style={{ fontWeight: 700, color: 'var(--status-orange)', fontSize: '0.9rem' }}>{item.label}</span>
               <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6 }}>{item.detail}</span>
             </div>
           ))}
@@ -233,9 +269,9 @@ export default function PlatformDetail() {
       </AccordionSection>
 
       {/* Pre-Tune Checklist */}
-      <AccordionSection sectionKey="checklist" icon={<CheckCircle size={18} color="#4ade80" />} title="✅ Pre-Tune Checklist">
+      <AccordionSection sectionKey="checklist" icon={<CheckCircle size={18} color="var(--status-green)" />} title="✅ Pre-Tune Checklist">
         <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.95rem', lineHeight: 1.6 }}>Complete this checklist before booking your tune. A tuner should refuse to remap a car that isn't in good mechanical health.</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '10px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '10px' }}>
           {[
             { item: 'Fresh engine oil (within 3,000 km)', priority: 'Critical' },
             { item: 'Spark plugs at correct gap & within service interval', priority: 'Critical' },
@@ -248,11 +284,11 @@ export default function PlatformDetail() {
             { item: 'Gearbox oil fresh (auto/DSG especially)', priority: 'Recommended' },
             { item: 'Charge pipe / boost pipes intact (no cracks)', priority: 'Recommended' },
           ].map(c => (
-            <div key={c.item} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', padding: '10px 12px', borderRadius: '8px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-              <CheckCircle size={14} color={c.priority === 'Critical' ? '#f87171' : c.priority === 'Important' ? '#facc15' : '#4ade80'} style={{ flexShrink: 0, marginTop: '2px' }} />
+            <div key={c.item} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', padding: '10px 12px', borderRadius: '8px', background: 'var(--surface)', border: '1px solid var(--border)' }}>
+              <CheckCircle size={14} color={c.priority === 'Critical' ? 'var(--status-red)' : c.priority === 'Important' ? 'var(--status-yellow)' : 'var(--status-green)'} style={{ flexShrink: 0, marginTop: '2px' }} />
               <div>
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-primary)', lineHeight: 1.4 }}>{c.item}</div>
-                <div style={{ fontSize: '0.75rem', color: c.priority === 'Critical' ? '#f87171' : c.priority === 'Important' ? '#facc15' : '#4ade80', marginTop: '3px' }}>{c.priority}</div>
+                <div style={{ fontSize: '0.75rem', color: c.priority === 'Critical' ? 'var(--status-red)' : c.priority === 'Important' ? 'var(--status-yellow)' : 'var(--status-green)', marginTop: '3px' }}>{c.priority}</div>
               </div>
             </div>
           ))}
@@ -260,7 +296,7 @@ export default function PlatformDetail() {
       </AccordionSection>
 
       {/* Common Failure Points */}
-      <AccordionSection sectionKey="failures" icon={<AlertTriangle size={18} color="#f87171" />} title="⚠️ Common Failure Points by Stage">
+      <AccordionSection sectionKey="failures" icon={<AlertTriangle size={18} color="var(--status-red)" />} title="⚠️ Common Failure Points by Stage">
         <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.95rem', lineHeight: 1.6 }}>As power increases, different components become the weak link. Know what breaks before it breaks.</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           {[
@@ -269,12 +305,12 @@ export default function PlatformDetail() {
             { stage: 'Stage 3+', fails: 'Connecting rods bend or snap. Pistons crack from detonation. Clutch/axles cannot handle extreme torque.', fix: 'Forged internals + built transmission + upgraded axles' },
             { stage: 'All Stages', fails: 'Dirty fuel in India causes knock sensor to pull timing. Heat soak degrades power consistency.', fix: 'Always use Speed 97. WMI for hot days. Baseline your tune in heat, not just cold mornings.' },
           ].map(f => (
-            <div key={f.stage} style={{ padding: '14px 16px', borderRadius: '8px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)' }}>
+            <div key={f.stage} style={{ padding: '14px 16px', borderRadius: '8px', background: 'var(--surface)', border: '1px solid var(--border)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <span style={{ fontWeight: 700, color: f.stage === 'Stage 1' ? '#60a5fa' : f.stage === 'Stage 2' ? '#facc15' : f.stage === 'Stage 3+' ? '#f87171' : '#a78bfa', fontSize: '0.9rem' }}>{f.stage}</span>
+                <span style={{ fontWeight: 700, color: f.stage === 'Stage 1' ? 'var(--status-blue)' : f.stage === 'Stage 2' ? 'var(--status-yellow)' : f.stage === 'Stage 3+' ? 'var(--status-red)' : 'var(--status-purple)', fontSize: '0.9rem' }}>{f.stage}</span>
               </div>
-              <div style={{ fontSize: '0.85rem', color: '#f87171', marginBottom: '6px' }}>⚠️ {f.fails}</div>
-              <div style={{ fontSize: '0.85rem', color: '#4ade80' }}>✅ Fix: {f.fix}</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--status-red)', marginBottom: '6px' }}>⚠️ {f.fails}</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--status-green)' }}>✅ Fix: {f.fix}</div>
             </div>
           ))}
         </div>
@@ -283,14 +319,14 @@ export default function PlatformDetail() {
       {/* Dyno Numbers */}
       <AccordionSection sectionKey="dyno" icon={<BarChart2 size={18} color="var(--accent-blue)" />} title="📊 Reading Dyno Numbers">
         <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.95rem', lineHeight: 1.6 }}>Indian dyno pulls have quirks. Here's how to interpret your power numbers correctly.</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px', marginBottom: '18px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '14px', marginBottom: '18px' }}>
           {[
             { label: 'Crank HP vs Wheel HP', detail: 'Indian dynos typically measure at the wheel (WHP). Subtract ~12–18% for drivetrain losses to get crank HP. A 300 WHP car is ~350 crank HP.' },
             { label: 'Dyno Correction Factor', detail: 'Indian summers (high temp, lower density air) can make the same car read 5–8% less power than a winter pull. Always compare pulls in similar conditions.' },
             { label: 'Rolling Road vs Hub Dyno', detail: 'Hub dynos (wheels off, direct bolt-on) are more accurate. Rolling road dynos add tyre slip error. Most Indian shops use rolling roads — add ~5% for tyre loss.' },
             { label: 'What a Good Tune Looks Like', detail: 'A smooth, linear torque curve with no sudden dips. Power should climb steadily from ~2,000 RPM and hold flat through the rev range. Any sharp drops indicate lean AFR or knock.' },
           ].map(d => (
-            <div key={d.label} style={{ padding: '14px 16px', borderRadius: '8px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)' }}>
+            <div key={d.label} style={{ padding: '14px 16px', borderRadius: '8px', background: 'var(--surface)', border: '1px solid var(--border)' }}>
               <div style={{ fontWeight: 700, color: 'var(--accent-blue)', fontSize: '0.85rem', marginBottom: '8px' }}>{d.label}</div>
               <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>{d.detail}</div>
             </div>
@@ -306,15 +342,31 @@ export default function PlatformDetail() {
 
       {/* ─── Stages ─── */}
       <h2 style={{ fontSize: '2rem', marginBottom: '30px', borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>Tuning Stages</h2>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '60px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '60px' }}>
         {data.tuning_stages.map((stage, idx) => (
-          <div key={idx} className="premium-card" style={{ padding: '30px' }}>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '16px', color: idx === 0 ? 'var(--accent-blue)' : idx === 1 ? '#f59e0b' : 'var(--accent-red)' }}>{stage.stage}</h3>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', color: 'var(--text-primary)' }}>
-              <span><strong>{stage.power}</strong></span>
-              <span style={{ color: 'var(--text-muted)' }}>{stage.cost}</span>
+          <div key={idx} className="premium-card" style={{ borderLeft: `4px solid ${idx === 0 ? 'var(--accent-blue)' : idx === 1 ? '#f59e0b' : 'var(--accent-red)'}`, overflow: 'hidden' }}>
+            <div 
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '24px', cursor: 'pointer', transition: 'background 0.2s' }}
+              onClick={() => toggleSection(`stage-${idx}`)}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-hover)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
+            >
+              <div>
+                <h3 style={{ fontSize: '1.5rem', margin: '0 0 8px 0', color: idx === 0 ? 'var(--accent-blue)' : idx === 1 ? '#f59e0b' : 'var(--accent-red)' }}>{stage.stage}</h3>
+                <span style={{ color: 'var(--text-primary)', fontWeight: 'bold' }}>{stage.power}</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <span style={{ color: 'var(--text-muted)', fontSize: '1rem' }}>{stage.cost}</span>
+                {openSection === `stage-${idx}` ? <ChevronUp size={24} color="var(--text-muted)" /> : <ChevronDown size={24} color="var(--text-muted)" />}
+              </div>
             </div>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>{stage.mods}</p>
+            {openSection === `stage-${idx}` && (
+              <div style={{ padding: '0 24px 24px 24px', animation: 'fadeIn 0.3s ease' }}>
+                <div style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
+                  <p style={{ margin: 0 }}>{stage.mods}</p>
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -323,7 +375,7 @@ export default function PlatformDetail() {
       {data.tuner_options && data.tuner_options.length > 0 && (
         <>
           <h2 style={{ fontSize: '2rem', marginBottom: '30px', borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>Tuner Options & Characteristics</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '60px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '20px', marginBottom: '60px' }}>
             {data.tuner_options.map((tuner, idx) => (
               <div
                 key={idx}
@@ -362,7 +414,7 @@ export default function PlatformDetail() {
               <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '400', marginLeft: '10px' }}>🇮🇳</span>
             </h3>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '14px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, ), 1fr))', gap: '14px' }}>
             {data.indian_builds.map((build, idx) => (
               <BuildCard key={idx} build={build} flag="🇮🇳" />
             ))}
@@ -380,7 +432,7 @@ export default function PlatformDetail() {
               <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '400', marginLeft: '10px' }}>🌍</span>
             </h3>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '14px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, ), 1fr))', gap: '14px' }}>
             {data.intl_builds.map((build, idx) => (
               <BuildCard key={idx} build={build} flag="🌍" />
             ))}

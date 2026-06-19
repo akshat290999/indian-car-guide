@@ -70,6 +70,7 @@ export default function BuildPlanner() {
   const [selectedPlatform, setSelectedPlatform] = useState('')
   const [selectedMods, setSelectedMods] = useState(new Set())
   const [openCat, setOpenCat] = useState('Software')
+  const [selectedFuel, setSelectedFuel] = useState('XP95')
 
   const platforms = Object.entries(PLATFORMS_DATA).map(([id, d]) => ({ id, ...d }))
   const platform = platforms.find(p => p.id === selectedPlatform)
@@ -95,29 +96,52 @@ export default function BuildPlanner() {
     let totalCost = 0
     let hpMultiplier = 1
     let nmMultiplier = 1
+    
+    const groupedMods = { Power: [], Reliability: [], Safety: [] }
+
     selectedMods.forEach(id => {
       const mod = MOD_CATALOG.find(m => m.id === id)
       if (!mod) return
       totalCost += mod.cost
       hpMultiplier += mod.hpPct
       nmMultiplier += mod.nmPct
+
+      if (['Cooling', 'Engine'].includes(mod.category)) groupedMods.Reliability.push(mod)
+      else if (['Braking', 'Suspension', 'Drivetrain'].includes(mod.category)) groupedMods.Safety.push(mod)
+      else groupedMods.Power.push(mod)
     })
-    const tuneHP = Math.round(stock.hp * hpMultiplier)
-    const tuneNM = Math.round(stock.nm * nmMultiplier)
-    const hpGain = tuneHP - stock.hp
-    const nmGain = tuneNM - stock.nm
+
+    let hpGain = Math.round(stock.hp * hpMultiplier) - stock.hp
+    let nmGain = Math.round(stock.nm * nmMultiplier) - stock.nm
+
     // Stage estimation
     let stage = 'Stock'
     if (selectedMods.has('ecu_s1') || selectedMods.has('ecu_s2')) {
-      const hasSoftOnly = !selectedMods.has('downpipe') && !selectedMods.has('fmic') && !selectedMods.has('intake')
       const hasHW = selectedMods.has('downpipe') || selectedMods.has('fmic')
       const hasS3 = selectedMods.has('big_turbo') || selectedMods.has('hybrid_turbo') || selectedMods.has('forged')
       stage = hasS3 ? 'Stage 3+' : hasHW ? 'Stage 2' : 'Stage 1'
     } else if (selectedMods.size > 0) {
       stage = 'Hardware Only'
     }
-    return { tuneHP, tuneNM, hpGain, nmGain, totalCost, stage }
-  }, [selectedMods, platform, stock])
+
+    // Fuel Risk
+    let risk = 'Low'
+    if (stage === 'Stage 2' || stage === 'Stage 3+') {
+      if (selectedFuel === '91 RON') {
+        risk = 'High'
+      }
+    }
+
+    if (stage === 'Stage 3+' && !selectedMods.has('forged')) risk = 'High'
+    else if ((stage === 'Stage 2' || stage === 'Stage 3+') && selectedFuel === '91 RON') risk = 'High'
+    else if (stage === 'Stage 2') risk = 'Medium'
+    else if (stage === 'Hardware Only' && selectedMods.size > 2) risk = 'Medium'
+
+    const tuneHP = stock.hp + hpGain
+    const tuneNM = stock.nm + nmGain
+
+    return { tuneHP, tuneNM, hpGain, nmGain, totalCost, stage, risk, groupedMods }
+  }, [selectedMods, platform, stock, selectedFuel])
 
   const toggleMod = (id) => {
     setSelectedMods(prev => {
@@ -161,7 +185,7 @@ export default function BuildPlanner() {
         <div style={{ padding: '40px 20px', maxWidth: '1100px', margin: '0 auto', width: '100%' }}>
           <h2 style={{ fontSize: '1.5rem', marginBottom: '8px', fontFamily: "'Outfit', sans-serif", textAlign: 'center' }}>Step 1 — Choose Your Platform</h2>
           <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '32px', fontSize: '0.95rem' }}>Pick the car you want to build. All power estimates are based on verified Indian tuning data.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, ), 1fr))', gap: '16px' }}>
             {platforms.map(p => (
               <div
                 key={p.id}
@@ -216,70 +240,93 @@ export default function BuildPlanner() {
               )}
             </div>
 
-            {/* Mod Categories */}
-            {CATEGORIES.map(cat => {
-              const catMods = compatibleMods.filter(m => m.category === cat)
-              if (catMods.length === 0) return null
-              const isOpen = openCat === cat
-              const selectedInCat = catMods.filter(m => selectedMods.has(m.id)).length
-              return (
-                <div key={cat} style={{ marginBottom: '8px', border: '1px solid var(--border)', borderRadius: '10px', overflow: 'hidden' }}>
-                  <div
+            {/* Block Square Categories Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '24px' }}>
+              {CATEGORIES.map(cat => {
+                const catMods = compatibleMods.filter(m => m.category === cat)
+                if (catMods.length === 0) return null
+                const isOpen = openCat === cat
+                const selectedInCat = catMods.filter(m => selectedMods.has(m.id)).length
+                
+                return (
+                  <div key={cat} 
                     onClick={() => setOpenCat(isOpen ? null : cat)}
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 18px', cursor: 'pointer', background: isOpen ? 'rgba(255,255,255,0.03)' : 'transparent', userSelect: 'none' }}
-                    onMouseEnter={e => { if (!isOpen) e.currentTarget.style.background = 'rgba(255,255,255,0.02)' }}
-                    onMouseLeave={e => { if (!isOpen) e.currentTarget.style.background = 'transparent' }}
+                    style={{ 
+                      aspectRatio: '1', 
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center',
+                      background: isOpen ? `${CAT_COLORS[cat]}15` : 'rgba(255,255,255,0.03)',
+                      border: `1px solid ${isOpen ? CAT_COLORS[cat] : 'var(--border)'}`,
+                      borderRadius: '16px',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s',
+                      position: 'relative'
+                    }}
+                    onMouseEnter={e => { if (!isOpen) e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
+                    onMouseLeave={e => { if (!isOpen) e.currentTarget.style.background = 'rgba(255,255,255,0.03)' }}
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <span style={{ fontSize: '1.1rem' }}>{CAT_EMOJI[cat]}</span>
-                      <span style={{ fontWeight: 600, color: isOpen ? CAT_COLORS[cat] : 'var(--text-primary)', fontSize: '0.95rem', fontFamily: "'Outfit', sans-serif" }}>{cat}</span>
-                      {selectedInCat > 0 && (
-                        <span style={{ background: CAT_COLORS[cat] + '20', color: CAT_COLORS[cat], fontSize: '0.72rem', fontWeight: 700, padding: '2px 8px', borderRadius: '99px', border: `1px solid ${CAT_COLORS[cat]}40` }}>{selectedInCat} selected</span>
-                      )}
-                    </div>
-                    <span style={{ color: 'var(--text-muted)', fontSize: '1.1rem' }}>{isOpen ? '−' : '+'}</span>
+                    {selectedInCat > 0 && (
+                      <div style={{ position: 'absolute', top: '8px', right: '8px', width: '22px', height: '22px', background: CAT_COLORS[cat], color: '#111', borderRadius: '50%', fontSize: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800 }}>
+                        {selectedInCat}
+                      </div>
+                    )}
+                    <span style={{ fontSize: '2.2rem', marginBottom: '10px' }}>{CAT_EMOJI[cat]}</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 600, color: isOpen ? CAT_COLORS[cat] : 'var(--text-primary)', fontFamily: "'Outfit', sans-serif" }}>{cat}</span>
                   </div>
-                  {isOpen && (
-                    <div style={{ padding: '4px 12px 12px' }}>
-                      {catMods.map(mod => {
-                        const isSelected = selectedMods.has(mod.id)
-                        return (
-                          <div
-                            key={mod.id}
-                            onClick={() => toggleMod(mod.id)}
-                            style={{
-                              display: 'flex', gap: '12px', alignItems: 'flex-start',
-                              padding: '12px 14px', borderRadius: '8px', cursor: 'pointer',
-                              marginBottom: '6px',
-                              background: isSelected ? `${CAT_COLORS[cat]}10` : 'rgba(255,255,255,0.02)',
-                              border: isSelected ? `1px solid ${CAT_COLORS[cat]}40` : '1px solid rgba(255,255,255,0.05)',
-                              transition: 'all 0.15s'
-                            }}
-                            onMouseEnter={e => { if (!isSelected) e.currentTarget.style.background = 'rgba(255,255,255,0.04)' }}
-                            onMouseLeave={e => { if (!isSelected) e.currentTarget.style.background = 'rgba(255,255,255,0.02)' }}
-                          >
-                            {isSelected
-                              ? <CheckCircle size={18} color={CAT_COLORS[cat]} style={{ flexShrink: 0, marginTop: '1px' }} />
-                              : <Circle size={18} color="var(--text-muted)" style={{ flexShrink: 0, marginTop: '1px' }} />}
-                            <div style={{ flex: 1, minWidth: 0 }}>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                                <span style={{ fontWeight: isSelected ? 600 : 400, color: isSelected ? CAT_COLORS[cat] : 'var(--text-primary)', fontSize: '0.9rem' }}>{mod.name}</span>
-                                <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
-                                  {mod.hpPct > 0 && <span style={{ fontSize: '0.72rem', color: '#4ade80', fontWeight: 600, background: 'rgba(74,222,128,0.1)', padding: '2px 7px', borderRadius: '99px' }}>+{Math.round(mod.hpPct * 100)}% HP</span>}
-                                  <span style={{ fontSize: '0.72rem', color: 'var(--accent-red)', fontWeight: 600, background: 'rgba(239,68,68,0.1)', padding: '2px 7px', borderRadius: '99px' }}>{formatINR(mod.cost)}</span>
-                                  <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', background: 'rgba(255,255,255,0.05)', padding: '2px 7px', borderRadius: '99px' }}>Stage {mod.stage}</span>
-                                </div>
-                              </div>
-                              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '4px', lineHeight: 1.5 }}>{mod.note}</div>
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  )}
+                )
+              })}
+            </div>
+
+            {/* Selected Category Items */}
+            {openCat && (
+              <div style={{ animation: 'fadeIn 0.3s ease', background: 'rgba(0,0,0,0.1)', padding: '20px', borderRadius: '16px', border: '1px solid var(--border)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                  <h3 style={{ fontSize: '1.2rem', color: CAT_COLORS[openCat], margin: 0, fontFamily: "'Outfit', sans-serif", display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    {CAT_EMOJI[openCat]} {openCat} Upgrades
+                  </h3>
                 </div>
-              )
-            })}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 250px), 1fr))', gap: '12px' }}>
+                  {compatibleMods.filter(m => m.category === openCat).map(mod => {
+                    const isSel = selectedMods.has(mod.id)
+                    return (
+                      <div key={mod.id} onClick={() => toggleMod(mod.id)}
+                        style={{ 
+                          display: 'flex', flexDirection: 'column', 
+                          padding: '16px', borderRadius: '12px', cursor: 'pointer', 
+                          background: isSel ? `${CAT_COLORS[openCat]}10` : 'var(--surface)', 
+                          border: isSel ? `2px solid ${CAT_COLORS[openCat]}` : '2px solid transparent', 
+                          transition: 'all 0.15s',
+                          position: 'relative',
+                          minHeight: '130px',
+                          boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+                        }}
+                        onMouseEnter={e => { if (!isSel) e.currentTarget.style.transform = 'translateY(-2px)' }}
+                        onMouseLeave={e => { if (!isSel) e.currentTarget.style.transform = 'translateY(0)' }}
+                      >
+                        <div style={{ position: 'absolute', top: '14px', right: '14px' }}>
+                          {isSel
+                            ? <CheckCircle size={22} color={CAT_COLORS[openCat]} fill={`${CAT_COLORS[openCat]}20`} />
+                            : <Circle size={22} color="var(--text-muted)" opacity={0.4} />}
+                        </div>
+                        
+                        <span style={{ fontWeight: isSel ? 700 : 600, color: isSel ? CAT_COLORS[openCat] : 'var(--text-primary)', fontSize: '0.95rem', marginBottom: '10px', paddingRight: '28px', lineHeight: 1.3, fontFamily: "'Outfit', sans-serif" }}>
+                          {mod.name}
+                        </span>
+                        
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px' }}>
+                          {mod.hpPct > 0 && <span style={{ fontSize: '0.7rem', color: '#4ade80', fontWeight: 700, background: 'rgba(74,222,128,0.1)', padding: '3px 8px', borderRadius: '99px' }}>+{Math.round(mod.hpPct * 100)}% HP</span>}
+                          <span style={{ fontSize: '0.7rem', color: 'var(--accent-red)', fontWeight: 700, background: 'rgba(239,68,68,0.1)', padding: '3px 8px', borderRadius: '99px' }}>{formatINR(mod.cost)}</span>
+                          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', background: 'rgba(255,255,255,0.06)', padding: '3px 8px', borderRadius: '99px' }}>S{mod.stage}</span>
+                        </div>
+                        
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, marginTop: 'auto' }}>
+                          {mod.note}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* RIGHT — Build Summary (sticky) */}
@@ -292,12 +339,37 @@ export default function BuildPlanner() {
                 onError={e => { e.target.onerror = null; e.target.src = 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=600&q=80' }} />
             </div>
 
-            {/* Stage Badge */}
+            {/* Fuel Selector */}
+            <div style={{ marginBottom: '20px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '10px', padding: '16px' }}>
+              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '10px', letterSpacing: '0.04em' }}>Available Fuel</div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                {['91 RON', 'XP95', 'XP100'].map(fuel => (
+                  <button key={fuel} onClick={() => setSelectedFuel(fuel)}
+                    style={{
+                      flex: 1, padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', cursor: 'pointer',
+                      background: selectedFuel === fuel ? 'var(--accent-blue)' : 'transparent',
+                      color: selectedFuel === fuel ? '#fff' : 'var(--text-primary)',
+                      fontWeight: selectedFuel === fuel ? 600 : 400, fontSize: '0.85rem', fontFamily: "'Outfit', sans-serif",
+                      transition: 'all 0.2s'
+                    }}
+                  >
+                    {fuel}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Stage Badge & Risk Level */}
             {buildStats && (
-              <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-                <span style={{ background: stageColor(buildStats.stage) + '20', color: stageColor(buildStats.stage), border: `1px solid ${stageColor(buildStats.stage)}50`, borderRadius: '99px', padding: '6px 20px', fontWeight: 800, fontSize: '1rem', fontFamily: "'Outfit', sans-serif" }}>
+              <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
+                <div style={{ flex: 1, textAlign: 'center', background: stageColor(buildStats.stage) + '15', color: stageColor(buildStats.stage), border: `1px solid ${stageColor(buildStats.stage)}40`, borderRadius: '8px', padding: '10px', fontWeight: 700, fontSize: '1rem', fontFamily: "'Outfit', sans-serif" }}>
                   {buildStats.stage}
-                </span>
+                </div>
+                {buildStats.stage !== 'Stock' && (
+                  <div style={{ flex: 1, textAlign: 'center', background: buildStats.risk === 'Low' ? 'rgba(74,222,128,0.1)' : buildStats.risk === 'Medium' ? 'rgba(250,204,21,0.1)' : 'rgba(239,68,68,0.1)', color: buildStats.risk === 'Low' ? '#4ade80' : buildStats.risk === 'Medium' ? '#facc15' : '#ef4444', border: `1px solid ${buildStats.risk === 'Low' ? 'rgba(74,222,128,0.3)' : buildStats.risk === 'Medium' ? 'rgba(250,204,21,0.3)' : 'rgba(239,68,68,0.3)'}`, borderRadius: '8px', padding: '10px', fontWeight: 700, fontSize: '0.9rem', fontFamily: "'Outfit', sans-serif" }}>
+                    Risk: {buildStats.risk}
+                  </div>
+                )}
               </div>
             )}
 
@@ -339,14 +411,18 @@ export default function BuildPlanner() {
                   <span style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--accent-red)', fontFamily: "'Outfit', sans-serif" }}>{formatINR(buildStats.totalCost)}</span>
                 </div>
                 {/* Mod list */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '180px', overflowY: 'auto' }}>
-                  {[...selectedMods].map(id => {
-                    const mod = MOD_CATALOG.find(m => m.id === id)
-                    if (!mod) return null
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '240px', overflowY: 'auto', paddingRight: '4px' }}>
+                  {['Power', 'Reliability', 'Safety'].map(group => {
+                    if (buildStats.groupedMods[group].length === 0) return null;
                     return (
-                      <div key={id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem' }}>
-                        <span style={{ color: 'var(--text-muted)', flex: 1, paddingRight: '8px' }}>{mod.name}</span>
-                        <span style={{ color: 'var(--accent-red)', fontWeight: 600, whiteSpace: 'nowrap' }}>{formatINR(mod.cost)}</span>
+                      <div key={group}>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-primary)', fontWeight: 700, marginBottom: '6px', borderBottom: '1px solid var(--border)', paddingBottom: '4px' }}>{group}</div>
+                        {buildStats.groupedMods[group].map(mod => (
+                          <div key={mod.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', marginBottom: '4px' }}>
+                            <span style={{ color: 'var(--text-muted)', flex: 1, paddingRight: '8px' }}>{mod.name}</span>
+                            <span style={{ color: 'var(--accent-red)', fontWeight: 600, whiteSpace: 'nowrap' }}>{formatINR(mod.cost)}</span>
+                          </div>
+                        ))}
                       </div>
                     )
                   })}
@@ -358,9 +434,10 @@ export default function BuildPlanner() {
             {buildStats && buildStats.stage !== 'Stock' && (
               <div style={{ background: 'rgba(250,204,21,0.08)', border: '1px solid rgba(250,204,21,0.2)', borderRadius: '8px', padding: '12px 14px', fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
                 <strong style={{ color: '#facc15' }}>💡 Build Tip: </strong>
-                {buildStats.stage === 'Stage 1' && 'Great start! Stage 1 is the most reliable and reversible mod. Consider adding Speed 97 fuel to maximise your tune.'}
-                {buildStats.stage === 'Stage 2' && 'Stage 2 is where it gets serious. Make sure your intercooler is upgraded — it\'s mandatory in Indian heat.'}
-                {buildStats.stage === 'Stage 3+' && 'Stage 3 territory. You need forged internals and a trusted tuner for a custom dyno calibration. Not for daily use without proper planning.'}
+                {buildStats.risk === 'High' && selectedFuel === '91 RON' && 'Your stage requires better fuel! Running 91 RON on this build dramatically increases the risk of engine knock and failure, and power gains are restricted.'}
+                {buildStats.risk === 'High' && selectedFuel !== '91 RON' && 'This is a serious build. Forged internals are strongly recommended to safely hold this much torque.'}
+                {buildStats.risk !== 'High' && buildStats.stage === 'Stage 1' && 'Great start! Stage 1 is the most reliable and reversible mod.'}
+                {buildStats.risk !== 'High' && buildStats.stage === 'Stage 2' && 'Stage 2 is where it gets serious. Make sure your intercooler is upgraded — it\'s mandatory in Indian heat.'}
                 {buildStats.stage === 'Hardware Only' && 'You have hardware mods but no ECU remap. Add a Stage 1 remap to unlock the full potential of your parts.'}
               </div>
             )}

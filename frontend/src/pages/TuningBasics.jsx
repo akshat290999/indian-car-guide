@@ -237,6 +237,11 @@ const TOPICS = [
   },
 ]
 
+TOPICS.sort((a, b) => {
+  const order = { Beginner: 1, Intermediate: 2, Advanced: 3 }
+  return order[a.difficulty] - order[b.difficulty]
+})
+
 const FUN_FACTS = [
   'Did you know? A decat downpipe makes your turbo spool almost 500 RPM earlier.',
   'E85 fuel burns so cool that intake manifolds can form ice condensation on them.',
@@ -261,6 +266,19 @@ const QUIZ = [
   { question: 'Which is the most impactful hardware mod on a turbo car?', options: ['Cat-back exhaust', 'Decat downpipe', 'Panel air filter'], correct: 1 },
 ]
 
+const GLOSSARY = [
+  { category: 'Engine', term: 'AFR (Air-Fuel Ratio)', desc: 'The mass ratio of air to solid, liquid, or gaseous fuel present in combustion. Ideal for petrol is ~14.7:1 (stoichiometric), but turbo cars run richer (11.5-12.5:1) under boost for safety.', india: 'Indian 91 RON fuel burns hotter, requiring richer AFRs than UK/US tunes to prevent melt.' },
+  { category: 'Engine', term: 'EGT (Exhaust Gas Temp)', desc: 'Temperature of the exhaust gases leaving the cylinder. Dangerously high EGTs can melt turbo impellers and exhaust valves.', india: 'Indian summers push EGTs to the limit. A safe tune monitors EGTs and adds fuel (runs richer) to cool the cylinder.' },
+  { category: 'Engine', term: 'Knock (Detonation)', desc: 'When the air-fuel mixture ignites spontaneously before the spark plug fires. It causes massive pressure spikes and can destroy pistons instantly.', india: 'The #1 enemy of tuned cars in India due to poor 91 RON fuel quality. Always log for knock retard.' },
+  { category: 'Engine', term: 'IAT (Intake Air Temp)', desc: 'The temperature of the air entering the engine. Hot air is less dense = less oxygen = less power.', india: 'In 45°C ambient, stock intercoolers heat soak instantly. A larger intercooler is required to keep IATs low.' },
+  { category: 'Engine', term: 'Timing Advance', desc: 'Igniting the spark plug earlier in the compression stroke. More advance = more power, but heavily increases knock risk.', india: 'Tuners must pull (reduce) timing for Indian 91 RON to prevent engine failure. A 95/97 RON map has more timing advance.' },
+  { category: 'Turbo', term: 'Boost & Spool', desc: 'Boost is the pressure created by the turbo (measured in PSI or Bar). Spool is how fast the turbo reaches its target boost.', india: 'Stop-and-go Indian traffic makes fast-spooling hybrid turbos much more enjoyable for daily driving than laggy big turbos.' },
+  { category: 'Engine', term: 'Lambda', desc: 'Another way to express AFR. Lambda 1.0 = Stoichiometric. Lambda 0.85 = Rich (safe for boost).', india: 'Most modern ECU logs (like VW/Skoda) use Lambda instead of AFR.' },
+  { category: 'Transmission', term: 'DSG / DCT', desc: 'Direct-Shift Gearbox / Dual-Clutch Transmission. Uses two clutches for lightning-fast gear changes.', india: 'Very common on VW/Skoda (DQ200, DQ250). The dry-clutch DQ200 is notoriously fragile and requires strict torque limits in tuning.' },
+  { category: 'Software', term: 'Piggyback', desc: 'An external box (like a JB4) that intercepts sensor signals to trick the ECU into making more boost.', india: 'Popular for cars under warranty since they can be physically removed before service, though deep ECU scans can still detect them.' },
+  { category: 'Transmission', term: 'TCU', desc: 'Transmission Control Unit. The computer that controls shift points, shift speed, and clutch clamping pressure.', india: 'A TCU tune is mandatory on DQ200/DQ250 gearboxes in India when going Stage 1+ to prevent the clutch from slipping.' },
+]
+
 const DIFF_STYLE = {
   Beginner:     { bg: 'rgba(74,222,128,0.14)',  text: '#4ade80', border: 'rgba(74,222,128,0.3)' },
   Intermediate: { bg: 'rgba(250,204,21,0.14)',  text: '#facc15', border: 'rgba(250,204,21,0.3)' },
@@ -269,6 +287,9 @@ const DIFF_STYLE = {
 
 export default function TuningBasics() {
   const [openTopic, setOpenTopic] = useState(null)
+  const [filterDiff, setFilterDiff] = useState('All')
+  const [glossaryTab, setGlossaryTab] = useState('Engine')
+  const [openGlossaryItem, setOpenGlossaryItem] = useState(null)
   const [explored, setExplored] = useState(new Set())
   const [isDesktop, setIsDesktop] = useState(typeof window !== 'undefined' && window.innerWidth >= 1024)
   const [fact, setFact] = useState(null)
@@ -392,7 +413,23 @@ export default function TuningBasics() {
 
         {/* ACCORDIONS */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px', minWidth: 0 }}>
-          {TOPICS.map(topic => {
+          {/* TABS */}
+          <div style={{ display: 'flex', gap: '10px', marginBottom: '10px', overflowX: 'auto', paddingBottom: '4px' }}>
+            {['All', 'Beginner', 'Intermediate', 'Advanced'].map(tab => (
+              <button key={tab} onClick={() => setFilterDiff(tab)}
+                style={{
+                  padding: '8px 16px', borderRadius: '8px', border: 'none', cursor: 'pointer',
+                  background: filterDiff === tab ? 'var(--accent-red)' : 'rgba(255,255,255,0.05)',
+                  color: filterDiff === tab ? '#fff' : 'var(--text-muted)',
+                  fontWeight: filterDiff === tab ? 600 : 400, fontFamily: "'Outfit', sans-serif"
+                }}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          {TOPICS.filter(t => filterDiff === 'All' || t.difficulty === filterDiff).map(topic => {
             const isOpen = openTopic === topic.id
             const ds = DIFF_STYLE[topic.difficulty]
             return (
@@ -430,7 +467,7 @@ export default function TuningBasics() {
                     <p style={{ color: 'var(--text-primary)', fontSize: '1.02rem', lineHeight: 1.72, marginBottom: '22px' }}>{topic.content}</p>
 
                     {/* Subtopics */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '9px', marginBottom: '18px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '9px', marginBottom: '18px' }}>
                       {topic.subtopics.map((sub, i) => (
                         <div key={i} style={{ background: 'rgba(255,255,255,0.03)', padding: '13px 15px', borderRadius: '9px', borderLeft: `3px solid ${topic.color}` }}
                           onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.055)'}
@@ -472,6 +509,59 @@ export default function TuningBasics() {
               </div>
             )
           })}
+
+          {/* GLOSSARY SECTION */}
+          <div style={{ marginTop: '30px' }} id="glossary">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', flexWrap: 'wrap', gap: '16px' }}>
+              <div>
+                <h2 style={{ fontSize: '1.8rem', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif", margin: '0 0 4px' }}>Tuning Glossary</h2>
+                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Confused by tuner jargon? Learn the terms.</p>
+              </div>
+            </div>
+            
+            {/* Glossary Tabs */}
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
+              {Array.from(new Set(GLOSSARY.map(g => g.category))).map(cat => (
+                <button key={cat} onClick={() => setGlossaryTab(cat)}
+                  style={{
+                    padding: '6px 14px', borderRadius: '99px', border: '1px solid var(--border)', cursor: 'pointer',
+                    background: glossaryTab === cat ? 'var(--accent-blue)' : 'var(--surface)',
+                    color: glossaryTab === cat ? '#fff' : 'var(--text-primary)',
+                    fontWeight: glossaryTab === cat ? 600 : 400, fontFamily: "'Outfit', sans-serif", fontSize: '0.85rem'
+                  }}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Glossary Dropdowns */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {GLOSSARY.filter(g => g.category === glossaryTab).map((item, idx) => {
+                const isOpen = openGlossaryItem === item.term;
+                return (
+                  <div key={idx} className="glass" style={{ borderRadius: '10px', border: '1px solid var(--border)', overflow: 'hidden' }}>
+                    <div 
+                      onClick={() => setOpenGlossaryItem(isOpen ? null : item.term)}
+                      style={{ padding: '16px 20px', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: isOpen ? 'rgba(255,255,255,0.02)' : 'transparent' }}
+                    >
+                      <h4 style={{ color: 'var(--accent-blue)', fontSize: '1.05rem', margin: 0, fontFamily: "'Outfit', sans-serif" }}>{item.term}</h4>
+                      {isOpen ? <ChevronUp size={18} color="var(--accent-blue)" /> : <ChevronDown size={18} color="var(--text-muted)" />}
+                    </div>
+                    {isOpen && (
+                      <div style={{ padding: '0 20px 20px' }}>
+                        <p style={{ color: 'var(--text-primary)', fontSize: '0.88rem', lineHeight: 1.5, margin: '0 0 10px' }}>{item.desc}</p>
+                        <div style={{ background: 'rgba(251,146,60,0.08)', border: '1px solid rgba(251,146,60,0.2)', padding: '10px', borderRadius: '6px' }}>
+                          <div style={{ fontSize: '0.75rem', color: '#fb923c', fontWeight: 700, textTransform: 'uppercase', marginBottom: '4px' }}>🇮🇳 India Context</div>
+                          <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.45 }}>{item.india}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         </div>
       </div>
 

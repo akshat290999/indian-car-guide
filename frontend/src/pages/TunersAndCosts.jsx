@@ -7,6 +7,11 @@ export default function TunersAndCosts() {
   const [openCost, setOpenCost] = useState(null)
   const [openBudget, setOpenBudget] = useState(null)
   const [openSection, setOpenSection] = useState(null)
+  const [openHardwareCat, setOpenHardwareCat] = useState('Software')
+
+  const [filterCity, setFilterCity] = useState('All')
+  const [filterSpec, setFilterSpec] = useState('All')
+  const [filterDyno, setFilterDyno] = useState(false)
 
   const location = useLocation()
   const tunerRefs = useRef({})
@@ -232,8 +237,64 @@ export default function TunersAndCosts() {
         <section>
           <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px', fontFamily: "'Outfit', sans-serif" }}>Top Indian Tuners</h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '0.95rem' }}>Click any tuner to see their specialities, pricing, location, and community reputation.</p>
+
+          {/* FILTER BAR */}
+          <div className="glass" style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '16px 20px', borderRadius: '12px', marginBottom: '20px', border: '1px solid var(--border)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', flex: 1, minWidth: '150px' }}>
+              <label style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>City</label>
+              <select value={filterCity} onChange={e => setFilterCity(e.target.value)} style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text-primary)', outline: 'none' }}>
+                <option value="All">All Locations</option>
+                <option value="Delhi">Delhi NCR</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Pune">Pune</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Remote">Remote / Self-Flash</option>
+              </select>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', flex: 1, minWidth: '150px' }}>
+              <label style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Specialization</label>
+              <select value={filterSpec} onChange={e => setFilterSpec(e.target.value)} style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text-primary)', outline: 'none' }}>
+                <option value="All">All Platforms</option>
+                <option value="VAG">VAG (VW/Skoda/Audi)</option>
+                <option value="BMW">BMW</option>
+                <option value="Mercedes">Mercedes-Benz</option>
+                <option value="Hyundai">Hyundai / Kia</option>
+                <option value="Ford">Ford</option>
+              </select>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', flexShrink: 0 }}>
+              <label style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Features</label>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', height: '100%', padding: '0 8px' }}>
+                <input type="checkbox" checked={filterDyno} onChange={e => setFilterDyno(e.target.checked)} style={{ width: '16px', height: '16px', accentColor: 'var(--accent-red)' }} />
+                <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)' }}>Requires Dyno</span>
+              </label>
+            </div>
+          </div>
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {tuners.map((tuner) => (
+            {tuners.filter(t => {
+              if (filterCity !== 'All') {
+                if (filterCity === 'Remote' && !t.remoteTune && !t.location.toLowerCase().includes('remote')) return false;
+                if (filterCity !== 'Remote' && !t.location.toLowerCase().includes(filterCity.toLowerCase())) return false;
+              }
+              if (filterSpec !== 'All') {
+                if (!t.platforms.toLowerCase().includes(filterSpec.toLowerCase())) return false;
+              }
+              if (filterDyno && !t.dynoPull) return false;
+              return true;
+            }).length === 0 ? (
+              <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>No tuners match your criteria. Try loosening the filters.</div>
+            ) : tuners.filter(t => {
+              if (filterCity !== 'All') {
+                if (filterCity === 'Remote' && !t.remoteTune && !t.location.toLowerCase().includes('remote')) return false;
+                if (filterCity !== 'Remote' && !t.location.toLowerCase().includes(filterCity.toLowerCase())) return false;
+              }
+              if (filterSpec !== 'All') {
+                if (!t.platforms.toLowerCase().includes(filterSpec.toLowerCase())) return false;
+              }
+              if (filterDyno && !t.dynoPull) return false;
+              return true;
+            }).map((tuner) => (
               <div
                 key={tuner.id}
                 ref={el => tunerRefs.current[tuner.id] = el}
@@ -259,7 +320,7 @@ export default function TunersAndCosts() {
                     <p style={{ color: 'var(--text-muted)', fontSize: '1rem', marginBottom: '20px', lineHeight: '1.65' }}>{tuner.desc}</p>
 
                     {/* Info grid */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', marginBottom: '18px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '10px', marginBottom: '18px' }}>
                       {[
                         { label: 'Specialities', value: tuner.platforms, color: 'var(--accent-blue)' },
                         { label: 'Estimated Cost', value: tuner.estimatedCost, color: 'var(--accent-red)' },
@@ -314,7 +375,7 @@ export default function TunersAndCosts() {
                 <p style={{ color: 'var(--text-muted)', marginBottom: '20px', lineHeight: 1.7 }}>
                   Your tuner is the most important decision in your build. A bad tune can destroy your engine. A good one can unlock its full potential. Here's exactly what to look for:
                 </p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '20px' }}>
                   <div style={{ background: 'rgba(74,222,128,0.06)', border: '1px solid rgba(74,222,128,0.2)', borderRadius: '10px', padding: '18px' }}>
                     <h4 style={{ color: '#4ade80', margin: '0 0 14px', fontSize: '1rem' }}>✅ Green Flags — Hire Them</h4>
                     {choosingTips.green.map((tip, i) => (
@@ -387,32 +448,50 @@ export default function TunersAndCosts() {
         {/* ── HARDWARE COSTS ── */}
         <section>
           <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px', fontFamily: "'Outfit', sans-serif" }}>Hardware Cost Reference</h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '0.95rem' }}>Real Indian market pricing for every major performance upgrade. Click for details and "when to buy" guidance.</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {hardwareCosts.map(cost => (
-              <div key={cost.id} className="glass" style={{ borderRadius: '12px', overflow: 'hidden' }}>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '0.95rem' }}>Real Indian market pricing for every major performance upgrade. Categorized by stage. Click for details and "when to buy" guidance.</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {Object.entries(hardwareCosts.reduce((acc, cost) => {
+              if (!acc[cost.category]) acc[cost.category] = []
+              acc[cost.category].push(cost)
+              return acc
+            }, {})).map(([category, items]) => (
+              <div key={category} className="premium-card" style={{ borderLeft: '4px solid var(--accent-blue)', overflow: 'hidden' }}>
                 <div
-                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 20px', cursor: 'pointer' }}
-                  onClick={() => setOpenCost(openCost === cost.id ? null : cost.id)}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
+                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '18px 24px', cursor: 'pointer', transition: 'background 0.2s' }}
+                  onClick={() => setOpenHardwareCat(openHardwareCat === category ? null : category)}
+                  onMouseEnter={e => e.currentTarget.style.background = 'var(--surface-hover)'}
                   onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                 >
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                      <h3 style={{ fontSize: '1rem', color: 'var(--text-primary)', margin: 0, fontFamily: "'Outfit', sans-serif" }}>{cost.item}</h3>
-                      <span style={{ fontSize: '0.7rem', padding: '2px 8px', borderRadius: '99px', background: 'rgba(255,255,255,0.06)', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>{cost.category}</span>
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexShrink: 0 }}>
-                    <span style={{ fontWeight: 700, color: 'var(--accent-red)', fontSize: '0.95rem', whiteSpace: 'nowrap' }}>{cost.price}</span>
-                    {openCost === cost.id ? <ChevronUp size={20} color="var(--text-muted)" /> : <ChevronDown size={20} color="var(--text-muted)" />}
-                  </div>
+                  <h3 style={{ margin: 0, fontSize: '1.2rem', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif" }}>{category}</h3>
+                  {openHardwareCat === category ? <ChevronUp size={22} color="var(--accent-blue)" /> : <ChevronDown size={22} color="var(--accent-blue)" />}
                 </div>
-                {openCost === cost.id && (
-                  <div style={{ padding: '0 20px 18px', animation: 'fadeIn 0.3s ease' }}>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.65, margin: '0 0 10px' }}>{cost.desc}</p>
-                    <div style={{ fontSize: '0.85rem', color: '#facc15' }}>
-                      <strong>⏱ When to buy:</strong> {cost.when}
+                {openHardwareCat === category && (
+                  <div style={{ padding: '0 24px 24px', animation: 'fadeIn 0.3s ease' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                      {items.map(cost => (
+                        <div key={cost.id} className="glass" style={{ borderRadius: '8px', border: '1px solid var(--border)', overflow: 'hidden' }}>
+                          <div
+                            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 18px', cursor: 'pointer', transition: 'background 0.2s' }}
+                            onClick={() => setOpenCost(openCost === cost.id ? null : cost.id)}
+                            onMouseEnter={e => e.currentTarget.style.background = 'var(--surface-hover)'}
+                            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                          >
+                            <h4 style={{ fontSize: '1rem', color: 'var(--text-primary)', margin: 0 }}>{cost.item}</h4>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                              <span style={{ fontWeight: 700, color: 'var(--accent-red)', fontSize: '0.95rem' }}>{cost.price}</span>
+                              {openCost === cost.id ? <ChevronUp size={18} color="var(--text-muted)" /> : <ChevronDown size={18} color="var(--text-muted)" />}
+                            </div>
+                          </div>
+                          {openCost === cost.id && (
+                            <div style={{ padding: '0 18px 16px', animation: 'fadeIn 0.2s ease' }}>
+                              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6, margin: '0 0 10px' }}>{cost.desc}</p>
+                              <div style={{ fontSize: '0.85rem', color: '#facc15' }}>
+                                <strong>⏱ When to buy:</strong> {cost.when}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 )}

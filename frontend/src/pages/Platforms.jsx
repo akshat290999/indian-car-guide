@@ -4,21 +4,21 @@ import { useState, useMemo } from 'react'
 import { Search } from 'lucide-react'
 
 const DIFFICULTY = {
-  'High': { label: 'Moderate', color: '#facc15', bg: 'rgba(250,204,21,0.12)' },
-  'Very High': { label: 'Expert', color: '#fb923c', bg: 'rgba(251,146,60,0.12)' },
-  'Extreme': { label: 'Expert+', color: '#f87171', bg: 'rgba(248,113,113,0.12)' },
-  'God-Tier': { label: 'God-Tier', color: '#e879f9', bg: 'rgba(232,121,249,0.12)' },
-  'Medium': { label: 'Easy', color: '#4ade80', bg: 'rgba(74,222,128,0.12)' },
-  'Medium-High': { label: 'Moderate', color: '#facc15', bg: 'rgba(250,204,21,0.12)' },
+  'High': { label: 'Moderate', color: 'var(--status-yellow)' },
+  'Very High': { label: 'Expert', color: 'var(--status-orange)' },
+  'Extreme': { label: 'Expert+', color: 'var(--status-red)' },
+  'God-Tier': { label: 'God-Tier', color: 'var(--status-purple)' },
+  'Medium': { label: 'Easy', color: 'var(--status-green)' },
+  'Medium-High': { label: 'Moderate', color: 'var(--status-yellow)' },
 }
 
 const TAGS = {
-  'vw-polo-tsi': { tag: '🏆 Most Popular', tagColor: '#facc15' },
-  'skoda-octavia-vrs': { tag: '🔥 Best Value', tagColor: '#f87171' },
-  'bmw-m340i': { tag: '👑 God-Tier Platform', tagColor: '#e879f9' },
-  'fiat-abarth-punto': { tag: '🇮🇳 India Icon', tagColor: '#fb923c' },
-  'hyundai-i20-nline': { tag: '⭐ Rising Star', tagColor: '#4ade80' },
-  'porsche-911': { tag: '🏎️ Supercar', tagColor: '#a78bfa' },
+  'vw-polo-tsi': { tag: '🏆 Most Popular', tagColor: 'var(--status-yellow)' },
+  'skoda-octavia-vrs': { tag: '🔥 Best Value', tagColor: 'var(--status-red)' },
+  'bmw-m340i': { tag: '👑 God-Tier Platform', tagColor: 'var(--status-purple)' },
+  'fiat-abarth-punto': { tag: '🇮🇳 India Icon', tagColor: 'var(--status-orange)' },
+  'hyundai-i20-nline': { tag: '⭐ Rising Star', tagColor: 'var(--status-green)' },
+  'porsche-911': { tag: '🏎️ Supercar', tagColor: 'var(--status-purple)' },
 }
 
 export default function Platforms() {
@@ -83,7 +83,7 @@ export default function Platforms() {
       </p>
 
       {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))', gap: '24px' }}>
         {filtered.map(platform => {
           const diff = DIFFICULTY[platform.potential] || { label: 'Moderate', color: '#facc15', bg: 'rgba(250,204,21,0.12)' }
           const tag = TAGS[platform.id]
@@ -94,38 +94,38 @@ export default function Platforms() {
               to={`/platform/${platform.id}`}
               className="premium-card"
               style={{ display: 'flex', flexDirection: 'column', color: 'inherit', transition: 'transform 0.2s, box-shadow 0.2s', position: 'relative', overflow: 'hidden' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 30px rgba(0,0,0,0.3)' }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none' }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = 'var(--shadow-lg)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'var(--shadow-sm)' }}
             >
               {/* Tag badge */}
               {tag && (
-                <div style={{ position: 'absolute', top: '12px', left: '12px', zIndex: 2, background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)', border: `1px solid ${tag.tagColor}40`, borderRadius: '99px', padding: '4px 12px', fontSize: '0.75rem', fontWeight: 700, color: tag.tagColor }}>
+                <div style={{ position: 'absolute', top: '12px', left: '12px', zIndex: 2, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '99px', padding: '4px 12px', fontSize: '0.75rem', fontWeight: 700, color: tag.tagColor }}>
                   {tag.tag}
                 </div>
               )}
 
               {/* Difficulty badge */}
-              <div style={{ position: 'absolute', top: '12px', right: '12px', zIndex: 2, background: diff.bg, border: `1px solid ${diff.color}40`, borderRadius: '99px', padding: '4px 10px', fontSize: '0.7rem', fontWeight: 700, color: diff.color }}>
+              <div style={{ position: 'absolute', top: '12px', right: '12px', zIndex: 2, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '99px', padding: '4px 10px', fontSize: '0.7rem', fontWeight: 700, color: diff.color }}>
                 {diff.label}
               </div>
 
               {/* Car image */}
-              <div style={{ height: '190px', overflow: 'hidden', background: 'rgba(0,0,0,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ height: '150px', overflow: 'hidden', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src={platform.img}
                   alt={platform.name}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }}
                   onError={e => { e.target.onerror = null; e.target.src = 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80' }}
                 />
               </div>
 
-              <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+              <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column', borderTop: '1px solid var(--border)' }}>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{platform.category}</div>
                 <h3 style={{ fontSize: '1.2rem', marginBottom: '8px', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif" }}>{platform.name}</h3>
                 <p style={{ color: 'var(--text-muted)', marginBottom: '16px', flex: 1, fontSize: '0.88rem', lineHeight: 1.55 }}>{platform.description}</p>
 
                 {/* HP Arrow */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', padding: '10px 12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', background: 'var(--surface-hover)', borderRadius: '8px', padding: '10px 12px' }}>
                   <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 500 }}>{platform.stock_power.split('/')[0].trim()}</span>
                   <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <div style={{ flex: 1, height: '2px', background: 'linear-gradient(90deg, var(--accent-blue), var(--accent-red))' }} />

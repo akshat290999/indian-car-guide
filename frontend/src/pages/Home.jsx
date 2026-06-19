@@ -212,7 +212,7 @@ export default function Home() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))',
             gap: '24px'
           }}>
             {navCards.map(card => {
@@ -620,7 +620,7 @@ function StartHereStepper() {
     },
   ]
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '16px' }}>
       {steps.map((s, i) => (
         <div key={i}>
           <div
@@ -752,7 +752,7 @@ function GlossarySection() {
         onFocus={e => e.target.style.borderColor = 'var(--accent-red)'}
         onBlur={e => e.target.style.borderColor = 'var(--border)'}
       />
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '10px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, ), 1fr))', gap: '10px' }}>
         {filtered.map((t, i) => (
           <div key={i} style={{ padding: '14px 16px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '8px' }}>
             <div style={{ fontWeight: 700, color: 'var(--accent-red)', fontSize: '0.9rem', marginBottom: '6px', fontFamily: "'Outfit', sans-serif" }}>{t.term}</div>
