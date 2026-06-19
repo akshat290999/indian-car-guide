@@ -7,6 +7,7 @@ import Platforms from './pages/Platforms'
 import TunersAndCosts from './pages/TunersAndCosts'
 import PlatformDetail from './pages/PlatformDetail'
 import IntlVsIndia from './pages/IntlVsIndia'
+import BuildPlanner from './pages/BuildPlanner'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/tuners" element={<TunersAndCosts />} />
         <Route path="/platform/:id" element={<PlatformDetail />} />
         <Route path="/intl" element={<IntlVsIndia />} />
+        <Route path="/build" element={<BuildPlanner />} />
       </Routes>
     </BrowserRouter>
   )

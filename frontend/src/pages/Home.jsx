@@ -574,21 +574,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── FAQ ─── */}
+      {/* ─── GLOSSARY (collapsible, moved up) ─── */}
       <section style={{ padding: '60px 20px', borderTop: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <GlossaryAccordion />
+        </div>
+      </section>
+
+      {/* ─── FAQ ─── */}
+      <section style={{ padding: '60px 20px', background: 'rgba(255,255,255,0.02)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <h2 style={{ fontSize: '2rem', marginBottom: '8px', fontFamily: "'Outfit', sans-serif" }}>❓ Frequently Asked Questions</h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: '32px', fontSize: '1rem' }}>Everything a first-time tuner asks — answered honestly.</p>
           <FAQSection />
-        </div>
-      </section>
-
-      {/* ─── GLOSSARY ─── */}
-      <section style={{ padding: '60px 20px', background: 'rgba(255,255,255,0.02)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: '8px', fontFamily: "'Outfit', sans-serif" }}>📖 Tuning Glossary</h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '28px', fontSize: '1rem' }}>New to the jargon? Every term you'll encounter, explained in plain English.</p>
-          <GlossarySection />
         </div>
       </section>
 
@@ -763,6 +761,33 @@ function GlossarySection() {
         ))}
       </div>
       {filtered.length === 0 && <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginTop: '20px' }}>No terms found for "{search}"</p>}
+    </div>
+  )
+}
+
+/* ─── GLOSSARY ACCORDION WRAPPER ─── */
+function GlossaryAccordion() {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="premium-card" style={{ borderLeft: '4px solid var(--accent-red)', overflow: 'hidden' }}>
+      <div
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '22px 28px', cursor: 'pointer', userSelect: 'none' }}
+        onClick={() => setOpen(o => !o)}
+        onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
+        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+      >
+        <div>
+          <h2 style={{ margin: '0 0 4px', fontSize: '1.6rem', fontFamily: "'Outfit', sans-serif" }}>📖 Tuning Glossary</h2>
+          <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>26 essential terms — click to expand and search</p>
+        </div>
+        {open ? <ChevronUp size={24} color="var(--accent-red)" /> : <ChevronDown size={24} color="var(--accent-red)" />}
+      </div>
+      {open && (
+        <div style={{ padding: '0 28px 28px', animation: 'fadeIn 0.3s ease' }}>
+          <div style={{ height: '1px', background: 'var(--border)', marginBottom: '20px' }} />
+          <GlossarySection />
+        </div>
+      )}
     </div>
   )
 }

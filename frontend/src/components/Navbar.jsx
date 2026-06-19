@@ -65,11 +65,12 @@ function Navbar() {
         width: mobile ? '100%' : 'auto',
       }}>
         {[
-          { to: '/',           label: 'Home'           },
-          { to: '/basics',     label: 'Tuning Basics'  },
-          { to: '/platforms',  label: 'Platforms'      },
-          { to: '/tuners',     label: 'Tuners & Costs' },
-          { to: '/intl',       label: 'Intl vs India'  },
+          { to: '/',           label: 'Home'             },
+          { to: '/basics',     label: 'Tuning Basics'    },
+          { to: '/platforms',  label: 'Platforms'        },
+          { to: '/tuners',     label: 'Tuners & Costs'   },
+          { to: '/intl',       label: 'Intl vs India'    },
+          { to: '/build',      label: '🔧 Plan Your Build' },
         ].map(({ to, label }) => (
           <NavLink
             key={to}
