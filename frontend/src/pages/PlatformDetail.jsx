@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { PLATFORMS_DATA } from '../tuningData'
 import { useState } from 'react'
-import { ChevronDown, ChevronUp, Fuel, AlertTriangle, Wrench, Flag, Globe } from 'lucide-react'
+import { ChevronDown, ChevronUp, Fuel, AlertTriangle, Wrench, Flag, Globe, CheckCircle, IndianRupee, BarChart2, Car } from 'lucide-react'
 
 export default function PlatformDetail() {
   const { id } = useParams()
@@ -213,6 +213,94 @@ export default function PlatformDetail() {
           <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.7', margin: 0 }}>{data.tuning_notes}</p>
         </AccordionSection>
       )}
+
+      {/* India Ownership Reality */}
+      <AccordionSection sectionKey="india" icon={<Car size={18} color="#fb923c" />} title="🇮🇳 India Ownership Reality">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          {[
+            { label: 'Insurance', detail: 'Any modification technically voids standard car insurance in India. Best practice: keep ECU maps reversible (flash to stock before any repair visit). Avoid visible structural changes.' },
+            { label: 'Service Center', detail: 'Authorised service centers (e.g., VW, BMW, Hyundai dealers) will flag modifications and void warranty. Most tuned cars are maintained at trusted independent workshops.' },
+            { label: 'Fuel Cost on a Tune', detail: 'A Stage 1 tune on 95 RON fuel adds roughly ₹3–8/km in extra fuel cost at aggressive driving. At highway cruise, fuel economy actually improves by 5–10% due to better combustion efficiency.' },
+            { label: 'RTO & Police Checks', detail: 'ECU tunes are invisible to RTO. Physical mods (exhaust, lowering, wheels) are the actual risk. A flash-revertible tune is the safest approach legally in India.' },
+            { label: 'Resale Value', detail: 'A well-tuned car with a clean exterior and stock-looking engine bay holds resale value well among enthusiasts. Avoid obvious mods that scare off mainstream buyers.' },
+          ].map(item => (
+            <div key={item.label} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', gap: '12px', padding: '12px 16px', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', border: '1px solid var(--border)' }}>
+              <span style={{ fontWeight: 700, color: '#fb923c', fontSize: '0.9rem' }}>{item.label}</span>
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6 }}>{item.detail}</span>
+            </div>
+          ))}
+        </div>
+      </AccordionSection>
+
+      {/* Pre-Tune Checklist */}
+      <AccordionSection sectionKey="checklist" icon={<CheckCircle size={18} color="#4ade80" />} title="✅ Pre-Tune Checklist">
+        <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.95rem', lineHeight: 1.6 }}>Complete this checklist before booking your tune. A tuner should refuse to remap a car that isn't in good mechanical health.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '10px' }}>
+          {[
+            { item: 'Fresh engine oil (within 3,000 km)', priority: 'Critical' },
+            { item: 'Spark plugs at correct gap & within service interval', priority: 'Critical' },
+            { item: 'No active fault codes (clear DTC logs)', priority: 'Critical' },
+            { item: 'Coolant level full, no leaks', priority: 'Critical' },
+            { item: 'Air filter clean or replaced', priority: 'Important' },
+            { item: 'No boost leaks (check intercooler hoses)', priority: 'Important' },
+            { item: 'Fuel injectors clean (no misfire)', priority: 'Important' },
+            { item: 'MAF sensor clean and reading correctly', priority: 'Important' },
+            { item: 'Gearbox oil fresh (auto/DSG especially)', priority: 'Recommended' },
+            { item: 'Charge pipe / boost pipes intact (no cracks)', priority: 'Recommended' },
+          ].map(c => (
+            <div key={c.item} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', padding: '10px 12px', borderRadius: '8px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
+              <CheckCircle size={14} color={c.priority === 'Critical' ? '#f87171' : c.priority === 'Important' ? '#facc15' : '#4ade80'} style={{ flexShrink: 0, marginTop: '2px' }} />
+              <div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-primary)', lineHeight: 1.4 }}>{c.item}</div>
+                <div style={{ fontSize: '0.75rem', color: c.priority === 'Critical' ? '#f87171' : c.priority === 'Important' ? '#facc15' : '#4ade80', marginTop: '3px' }}>{c.priority}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </AccordionSection>
+
+      {/* Common Failure Points */}
+      <AccordionSection sectionKey="failures" icon={<AlertTriangle size={18} color="#f87171" />} title="⚠️ Common Failure Points by Stage">
+        <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.95rem', lineHeight: 1.6 }}>As power increases, different components become the weak link. Know what breaks before it breaks.</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {[
+            { stage: 'Stage 1', fails: 'Clutch pack (DSG) slips above rated torque. Charge pipe cracks under boost. Stock BOV flutters.', fix: 'TCU tune + charge pipe upgrade + Forge BOV' },
+            { stage: 'Stage 2', fails: 'Stock intercooler heat-soaks in Indian summers. Stock turbo inlet restricts airflow. OEM downpipe creates back pressure.', fix: 'FMIC + performance intake + decat downpipe + WMI' },
+            { stage: 'Stage 3+', fails: 'Connecting rods bend or snap. Pistons crack from detonation. Clutch/axles cannot handle extreme torque.', fix: 'Forged internals + built transmission + upgraded axles' },
+            { stage: 'All Stages', fails: 'Dirty fuel in India causes knock sensor to pull timing. Heat soak degrades power consistency.', fix: 'Always use Speed 97. WMI for hot days. Baseline your tune in heat, not just cold mornings.' },
+          ].map(f => (
+            <div key={f.stage} style={{ padding: '14px 16px', borderRadius: '8px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <span style={{ fontWeight: 700, color: f.stage === 'Stage 1' ? '#60a5fa' : f.stage === 'Stage 2' ? '#facc15' : f.stage === 'Stage 3+' ? '#f87171' : '#a78bfa', fontSize: '0.9rem' }}>{f.stage}</span>
+              </div>
+              <div style={{ fontSize: '0.85rem', color: '#f87171', marginBottom: '6px' }}>⚠️ {f.fails}</div>
+              <div style={{ fontSize: '0.85rem', color: '#4ade80' }}>✅ Fix: {f.fix}</div>
+            </div>
+          ))}
+        </div>
+      </AccordionSection>
+
+      {/* Dyno Numbers */}
+      <AccordionSection sectionKey="dyno" icon={<BarChart2 size={18} color="var(--accent-blue)" />} title="📊 Reading Dyno Numbers">
+        <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.95rem', lineHeight: 1.6 }}>Indian dyno pulls have quirks. Here's how to interpret your power numbers correctly.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px', marginBottom: '18px' }}>
+          {[
+            { label: 'Crank HP vs Wheel HP', detail: 'Indian dynos typically measure at the wheel (WHP). Subtract ~12–18% for drivetrain losses to get crank HP. A 300 WHP car is ~350 crank HP.' },
+            { label: 'Dyno Correction Factor', detail: 'Indian summers (high temp, lower density air) can make the same car read 5–8% less power than a winter pull. Always compare pulls in similar conditions.' },
+            { label: 'Rolling Road vs Hub Dyno', detail: 'Hub dynos (wheels off, direct bolt-on) are more accurate. Rolling road dynos add tyre slip error. Most Indian shops use rolling roads — add ~5% for tyre loss.' },
+            { label: 'What a Good Tune Looks Like', detail: 'A smooth, linear torque curve with no sudden dips. Power should climb steadily from ~2,000 RPM and hold flat through the rev range. Any sharp drops indicate lean AFR or knock.' },
+          ].map(d => (
+            <div key={d.label} style={{ padding: '14px 16px', borderRadius: '8px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)' }}>
+              <div style={{ fontWeight: 700, color: 'var(--accent-blue)', fontSize: '0.85rem', marginBottom: '8px' }}>{d.label}</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>{d.detail}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ background: 'rgba(59,130,246,0.08)', border: '1px solid rgba(59,130,246,0.2)', borderRadius: '8px', padding: '14px 18px' }}>
+          <div style={{ fontWeight: 700, color: 'var(--accent-blue)', fontSize: '0.85rem', marginBottom: '6px' }}>💡 Pro Tip</div>
+          <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>Always ask your tuner for a <strong>data log</strong> — not just the dyno graph. The log should show boost pressure, AFR (Air-Fuel Ratio), IAT (Intake Air Temp), and knock count on every pull. A good tune has 0 knock events and AFR between 11.5–12.5:1 at peak power.</p>
+        </div>
+      </AccordionSection>
 
       <div style={{ marginBottom: '60px' }} />
 

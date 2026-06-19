@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
-import { Cpu, BookOpen, DollarSign, Globe, Zap, Heart, Users, ChevronRight, ArrowRight } from 'lucide-react'
+import { Cpu, BookOpen, DollarSign, Globe, Zap, Heart, Users, ChevronRight, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react'
 import { PLATFORMS_DATA } from '../tuningData'
 
 /* ───────── Animated Counter Hook ───────── */
@@ -565,6 +565,204 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── START HERE STEPPER ─── */}
+      <section style={{ padding: '60px 20px', background: 'rgba(255,255,255,0.02)', borderTop: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '8px', fontFamily: "'Outfit', sans-serif" }}>🗺️ New Here? Start Your Journey</h2>
+          <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '40px', fontSize: '1rem' }}>Follow this path from zero to hero. Click each step for a quick overview.</p>
+          <StartHereStepper />
+        </div>
+      </section>
+
+      {/* ─── FAQ ─── */}
+      <section style={{ padding: '60px 20px', borderTop: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '2rem', marginBottom: '8px', fontFamily: "'Outfit', sans-serif" }}>❓ Frequently Asked Questions</h2>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '32px', fontSize: '1rem' }}>Everything a first-time tuner asks — answered honestly.</p>
+          <FAQSection />
+        </div>
+      </section>
+
+      {/* ─── GLOSSARY ─── */}
+      <section style={{ padding: '60px 20px', background: 'rgba(255,255,255,0.02)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '2rem', marginBottom: '8px', fontFamily: "'Outfit', sans-serif" }}>📖 Tuning Glossary</h2>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '28px', fontSize: '1rem' }}>New to the jargon? Every term you'll encounter, explained in plain English.</p>
+          <GlossarySection />
+        </div>
+      </section>
+
+    </div>
+  )
+}
+
+/* ─── START HERE STEPPER ─── */
+function StartHereStepper() {
+  const [open, setOpen] = useState(null)
+  const steps = [
+    {
+      num: '01', label: 'Understand the Basics', color: '#4ade80', link: '/basics',
+      desc: 'Before spending a rupee, know what an ECU is, how turbochargers work, and what Stage 1/2/3 actually means. Start with the Learn Tuning page.',
+      actions: ['Read: ECU Tuning (Software)', 'Read: Turbochargers & Boost', 'Read: Cooling & Airflow']
+    },
+    {
+      num: '02', label: 'Pick Your Platform', color: '#60a5fa', link: '/platforms',
+      desc: 'Not every car is equally tunable. Browse our platforms guide to see the tuning potential, weak points, and realistic power numbers for your specific car.',
+      actions: ['Check your car\'s tuning potential', 'Read the Known Limits section', 'Look at real Indian builds on your platform']
+    },
+    {
+      num: '03', label: 'Set Your Budget', color: '#facc15', link: '/tuners',
+      desc: '₹50,000 gets you a Stage 1 remap. ₹2 Lakh gets you Stage 2. ₹5 Lakh+ unlocks serious territory. Our budget presets show exactly what you get at each level.',
+      actions: ['Read the ₹50K, ₹2L, and ₹5L+ budget breakdowns', 'Compare hardware costs', 'Understand India\'s import duty on parts']
+    },
+    {
+      num: '04', label: 'Choose a Tuner', color: '#fb923c', link: '/tuners',
+      desc: 'Your tuner makes or breaks the build. Use our green/red flag guide to evaluate any shop. Always insist on a dyno baseline pull and post-tune data logs.',
+      actions: ['Review top Indian tuners', 'Check the How To Choose a Tuner guide', 'Verify dyno pull + data logs policy']
+    },
+  ]
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+      {steps.map((s, i) => (
+        <div key={i}>
+          <div
+            className="premium-card"
+            style={{ padding: '20px', borderTop: `3px solid ${s.color}`, cursor: 'pointer', transition: 'box-shadow 0.2s' }}
+            onClick={() => setOpen(open === i ? null : i)}
+            onMouseEnter={e => e.currentTarget.style.boxShadow = `0 8px 24px ${s.color}20`}
+            onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
+          >
+            <div style={{ fontSize: '0.7rem', color: s.color, fontWeight: 800, letterSpacing: '0.1em', marginBottom: '8px' }}>STEP {s.num}</div>
+            <h3 style={{ fontSize: '1rem', margin: '0 0 12px', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif" }}>{s.label}</h3>
+            {open === i ? <ChevronUp size={16} color={s.color} /> : <ChevronDown size={16} color={s.color} />}
+            {open === i && (
+              <div style={{ marginTop: '14px', animation: 'fadeIn 0.25s ease' }}>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: '14px' }}>{s.desc}</p>
+                <ul style={{ paddingLeft: '16px', margin: '0 0 14px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  {s.actions.map((a, j) => <li key={j} style={{ color: 'var(--text-muted)', fontSize: '0.82rem', lineHeight: 1.5 }}>{a}</li>)}
+                </ul>
+                <Link to={s.link} style={{ fontSize: '0.82rem', color: s.color, fontWeight: 600 }}>Go to this section →</Link>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/* ─── FAQ ─── */
+function FAQSection() {
+  const [open, setOpen] = useState(null)
+  const faqs = [
+    {
+      q: 'Is car tuning legal in India?',
+      a: 'Technically, Section 52 of the Motor Vehicles Act prohibits any modification not in the manufacturer\'s original specification — including ECU tunes. However, an ECU remap is completely invisible and reversible. Most tuners flash maps via OBD port, which leaves no permanent trace. Physical mods (exhausts, lowering) carry more risk. The scene operates in a legal grey zone — thousands of cars are tuned daily.'
+    },
+    {
+      q: 'Will tuning void my car warranty?',
+      a: 'Yes, in theory. An authorised service center can use a diagnostic tool to detect that the ECU has been flashed with non-factory software. However, flash tunes from tools like Bootmod3 and MHD can be fully reverted to stock in under 5 minutes. Most enthusiasts revert to stock before any warranty work and flash back afterward.'
+    },
+    {
+      q: 'How much does it cost to get started?',
+      a: 'A Stage 1 ECU remap is the best entry point — ranging from ₹25,000 (Code6/Wolf Moto for everyday cars) to ₹60,000 (APR/Harmonixx for premium platforms). This single modification typically adds 20–60+ HP depending on your car, with no hardware required. It\'s the highest value-per-rupee modification in all of tuning.'
+    },
+    {
+      q: 'What is the safest first mod?',
+      a: 'A Stage 1 ECU remap from a reputable tuner — full stop. It adds significant power, is completely reversible, requires no mechanical installation, and is invisible to the naked eye. Before the remap: fresh engine oil, new spark plugs, and a clean air filter. Do not tune a car that isn\'t in perfect mechanical health.'
+    },
+    {
+      q: 'What is the difference between a remap and a piggyback?',
+      a: 'A remap (flash tune) completely overwrites the factory ECU software via the OBD2 port. It is the gold standard — precise, clean, and reversible. A piggyback (like JB4) is a physical box that intercepts sensor signals to trick the ECU. Piggybacks are cheaper and easier to remove, but are less precise, can confuse the OBD diagnostics, and are limited in how much they can change. Serious builds always use a flash tune.'
+    },
+    {
+      q: 'What\'s the best fuel to use on a tuned car in India?',
+      a: 'Speed 97 (95-97 RON) from BPCL/HPCL is widely recommended for Stage 1-tuned cars. For Stage 2+, some tuners build maps specifically around Speed 97. Regular 91 RON is too low for aggressive maps — the ECU will pull timing to protect the engine, negating much of your tune\'s gains. Avoid fuel adulteration by buying from reputable stations.'
+    },
+    {
+      q: 'Can I tune a naturally aspirated (NA) car?',
+      a: 'Yes, but gains are much smaller than turbo cars. An NA engine has no boost to increase — so a remap can only optimise fueling and valve timing. Expect 5–15 HP from a remap alone. Real NA power requires physical changes: intake, headers, exhaust, cam upgrades, or ultimately forced induction (turbo/supercharger kit). The Honda City i-VTEC is a prime example of an NA car with a strong turbo kit community.'
+    },
+    {
+      q: 'How do I know if my tune is safe?',
+      a: 'Ask your tuner for the data log from your tune session. A safe tune shows: (1) boost at target levels with no overboost spikes, (2) Air-Fuel Ratio (AFR) between 11.5–12.5:1 at full throttle, (3) zero knock events, (4) Intake Air Temps staying below 45°C after the intercooler. If your tuner cannot provide this data, find a different tuner.'
+    },
+  ]
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      {faqs.map((faq, i) => (
+        <div key={i} className="glass" style={{ borderRadius: '10px', overflow: 'hidden' }}>
+          <div
+            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 20px', cursor: 'pointer', userSelect: 'none' }}
+            onClick={() => setOpen(open === i ? null : i)}
+            onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+          >
+            <h4 style={{ margin: 0, fontSize: '1rem', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif", fontWeight: 600, paddingRight: '20px' }}>{faq.q}</h4>
+            {open === i ? <ChevronUp size={18} color="var(--accent-red)" style={{ flexShrink: 0 }} /> : <ChevronDown size={18} color="var(--text-muted)" style={{ flexShrink: 0 }} />}
+          </div>
+          {open === i && (
+            <div style={{ padding: '0 20px 18px', animation: 'fadeIn 0.25s ease' }}>
+              <div style={{ height: '1px', background: 'var(--border)', marginBottom: '14px' }} />
+              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.7 }}>{faq.a}</p>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/* ─── GLOSSARY ─── */
+function GlossarySection() {
+  const [search, setSearch] = useState('')
+  const terms = [
+    { term: 'ECU', def: 'Engine Control Unit — the car\'s main computer. Controls boost, fuel injection, ignition timing, and more.' },
+    { term: 'TCU', def: 'Transmission Control Unit — the gearbox computer. Tuning this sharpens shift speed and prevents clutch slip.' },
+    { term: 'Stage 1', def: 'A software-only ECU remap with no hardware changes. The entry point for tuning.' },
+    { term: 'Stage 2', def: 'ECU remap + hardware upgrades (downpipe, intercooler, intake). Requires physical parts.' },
+    { term: 'Stage 3', def: 'Turbo upgrade or engine internals. Serious power levels requiring significant investment.' },
+    { term: 'Boost', def: 'The pressure above atmospheric pressure created by a turbocharger. Measured in PSI or Bar.' },
+    { term: 'Turbocharger', def: 'A device that uses exhaust gases to compress intake air, forcing more air (and fuel) into the engine.' },
+    { term: 'Downpipe', def: 'The exhaust pipe connecting directly to the turbo. Upgrading to a decat dramatically reduces backpressure.' },
+    { term: 'Intercooler', def: 'A heat exchanger that cools the hot compressed air from the turbo before it enters the engine.' },
+    { term: 'FMIC', def: 'Front-Mount Intercooler — mounted at the front of the car for maximum cooling efficiency.' },
+    { term: 'AFR', def: 'Air-Fuel Ratio — the ratio of air to fuel in the combustion mix. 14.7:1 is stoichiometric (ideal efficiency); 11.5–12.5:1 is ideal for max power.' },
+    { term: 'Knock / Detonation', def: 'Premature ignition of the fuel-air mixture before the spark plug fires. Can destroy pistons. Caused by low octane fuel or too much timing advance.' },
+    { term: 'IAT', def: 'Intake Air Temperature — the temperature of air entering the engine. High IATs = less power and more knock risk.' },
+    { term: 'OBD2', def: 'On-Board Diagnostics port (usually under the dashboard). Used to flash ECU tunes, read fault codes, and log data.' },
+    { term: 'DTC', def: 'Diagnostic Trouble Code — fault codes stored in the ECU. Clear these before a tune.' },
+    { term: 'MAF', def: 'Mass Airflow Sensor — measures how much air is entering the engine. Crucial for correct fueling.' },
+    { term: 'BOV / BPV', def: 'Blow-Off Valve / Bypass Valve — releases compressed air when you lift off the throttle to prevent compressor surge.' },
+    { term: 'WMI', def: 'Water-Methanol Injection — a system that sprays water + methanol to cool intake temps and effectively raise octane.' },
+    { term: 'LSD', def: 'Limited Slip Differential — distributes power between driven wheels to improve traction and corner exit speed.' },
+    { term: 'DSG / DCT', def: 'Dual-Clutch automatic Gearbox — used by VW/Skoda (DSG) and others. Fast shifting, tunes well with TCU flash.' },
+    { term: 'RON', def: 'Research Octane Number — the fuel quality rating used in India and Europe. India regular = 91 RON. Speed 97 = 97 RON.' },
+    { term: 'AKI', def: 'Anti-Knock Index — the US/Canada octane rating. AKI = (RON + MON) / 2. 93 AKI ≈ 98 RON.' },
+    { term: 'Dyno', def: 'Dynamometer — a machine that measures your engine\'s power output at the wheels.' },
+    { term: 'E-tuning', def: 'Remote tuning via data logs and OBD flasher tools, without visiting the tuner in person.' },
+    { term: 'Forged internals', def: 'Stronger pistons and connecting rods made from forged steel/aluminum. Required for Stage 3+ builds.' },
+    { term: 'Heat soak', def: 'When the intercooler, intake, or engine bay gets so hot that it can\'t cool the intake air effectively — leading to power loss.' },
+  ]
+  const filtered = terms.filter(t => t.term.toLowerCase().includes(search.toLowerCase()) || t.def.toLowerCase().includes(search.toLowerCase()))
+  return (
+    <div>
+      <input
+        type="text" placeholder="Search terms (e.g. ECU, boost, knock)..."
+        value={search} onChange={e => setSearch(e.target.value)}
+        style={{ width: '100%', padding: '12px 16px', background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)', borderRadius: '10px', color: 'var(--text-primary)', fontSize: '0.95rem', outline: 'none', marginBottom: '20px', boxSizing: 'border-box' }}
+        onFocus={e => e.target.style.borderColor = 'var(--accent-red)'}
+        onBlur={e => e.target.style.borderColor = 'var(--border)'}
+      />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '10px' }}>
+        {filtered.map((t, i) => (
+          <div key={i} style={{ padding: '14px 16px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '8px' }}>
+            <div style={{ fontWeight: 700, color: 'var(--accent-red)', fontSize: '0.9rem', marginBottom: '6px', fontFamily: "'Outfit', sans-serif" }}>{t.term}</div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>{t.def}</div>
+          </div>
+        ))}
+      </div>
+      {filtered.length === 0 && <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginTop: '20px' }}>No terms found for "{search}"</p>}
     </div>
   )
 }
