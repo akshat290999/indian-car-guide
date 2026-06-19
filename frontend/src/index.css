@@ -33,10 +33,10 @@
   --accent-gradient: linear-gradient(to right, var(--accent-dark-blue), var(--accent-blue), var(--accent-red));
 
   /* Light Theme */
-  --bg: #F4F5F7;
+  --bg: #FDFCF4;
   --surface: #FFFFFF; 
-  --surface-hover: #F8F9FA;
-  --border: #E2E8F0;
+  --surface-hover: #F8F7EE;
+  --border: #E5E4DD;
   --text-primary: #1A202C;
   --text-muted: #718096;
   --glass-bg: rgba(255, 255, 255, 0.85);

@@ -185,7 +185,7 @@ export default function BuildPlanner() {
         <div style={{ padding: '40px 20px', maxWidth: '1100px', margin: '0 auto', width: '100%' }}>
           <h2 style={{ fontSize: '1.5rem', marginBottom: '8px', fontFamily: "'Outfit', sans-serif", textAlign: 'center' }}>Step 1 — Choose Your Platform</h2>
           <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '32px', fontSize: '0.95rem' }}>Pick the car you want to build. All power estimates are based on verified Indian tuning data.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, ), 1fr))', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))', gap: '20px' }}>
             {platforms.map(p => (
               <div
                 key={p.id}

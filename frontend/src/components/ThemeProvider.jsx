@@ -8,10 +8,7 @@ export function ThemeProvider({ children }) {
     const saved = localStorage.getItem('theme')
     if (saved) return saved
     
-    // Fallback to system preference
-    if (typeof window !== 'undefined') {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    }
+    // Always default to dark mode per user request
     return 'dark'
   })
 
