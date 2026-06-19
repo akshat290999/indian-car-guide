@@ -252,11 +252,11 @@ export default function BuildPlanner() {
                   <div key={cat} 
                     onClick={() => setOpenCat(isOpen ? null : cat)}
                     style={{ 
-                      aspectRatio: '1', 
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
+                      padding: '12px 8px',
                       background: isOpen ? `${CAT_COLORS[cat]}15` : 'rgba(255,255,255,0.03)',
                       border: `1px solid ${isOpen ? CAT_COLORS[cat] : 'var(--border)'}`,
-                      borderRadius: '16px',
+                      borderRadius: '12px',
                       cursor: 'pointer',
                       transition: 'all 0.2s',
                       position: 'relative'
@@ -265,11 +265,11 @@ export default function BuildPlanner() {
                     onMouseLeave={e => { if (!isOpen) e.currentTarget.style.background = 'rgba(255,255,255,0.03)' }}
                   >
                     {selectedInCat > 0 && (
-                      <div style={{ position: 'absolute', top: '8px', right: '8px', width: '22px', height: '22px', background: CAT_COLORS[cat], color: '#111', borderRadius: '50%', fontSize: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800 }}>
+                      <div style={{ position: 'absolute', top: '-6px', right: '-6px', width: '20px', height: '20px', background: CAT_COLORS[cat], color: '#111', borderRadius: '50%', fontSize: '0.7rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, boxShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>
                         {selectedInCat}
                       </div>
                     )}
-                    <span style={{ fontSize: '2.2rem', marginBottom: '10px' }}>{CAT_EMOJI[cat]}</span>
+                    <span style={{ fontSize: '1.2rem' }}>{CAT_EMOJI[cat]}</span>
                     <span style={{ fontSize: '0.85rem', fontWeight: 600, color: isOpen ? CAT_COLORS[cat] : 'var(--text-primary)', fontFamily: "'Outfit', sans-serif" }}>{cat}</span>
                   </div>
                 )
