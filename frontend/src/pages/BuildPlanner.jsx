@@ -7,7 +7,7 @@ const MOD_CATALOG = [
   // ── SOFTWARE ──
   { id: 'ecu_s1',     name: 'ECU Stage 1 Remap',         category: 'Software',     stage: 1, cost: 30000,  hpPct: 0.22,  nmPct: 0.28,  compatible: 'all',       note: 'Best first mod. Via OBD port, reversible.' },
   { id: 'ecu_s1_pops',name: 'ECU Stage 1 (Pops & Bangs)',category: 'Software',     stage: 1, cost: 35000,  hpPct: 0.22,  nmPct: 0.28,  compatible: 'all',       note: 'Stage 1 power plus exhaust crackles on overrun. Pure theatre.' },
-  { id: 'tcu',        name: 'TCU Tune (DSG/DCT)',          category: 'Software',     stage: 1, cost: 18000,  hpPct: 0,     nmPct: 0,     compatible: ['vw-polo-tsi','skoda-octavia-vrs','vw-virtus-gt','bmw-m340i','mini-cooper-s'],  note: 'Essential for auto/DSG gearboxes to handle extra torque.' },
+  { id: 'tcu',        name: 'TCU Tune (DSG/DCT)',          category: 'Software',     stage: 1, cost: 18000,  hpPct: 0,     nmPct: 0.05,  compatible: ['vw-polo-tsi','skoda-octavia-vrs','vw-virtus-gt','bmw-m340i','mini-cooper-s'],  note: 'Essential for auto gearboxes. Unlocks higher torque limiters.' },
   { id: 'ecu_s2',     name: 'ECU Stage 2 Remap',          category: 'Software',     stage: 2, cost: 15000,  hpPct: 0.10,  nmPct: 0.12,  compatible: 'all',       note: 'Upgrade from Stage 1 map to utilise hardware mods.' },
   { id: 'ecu_s2_pops',name: 'ECU Stage 2 (Pops & Bangs)',category: 'Software',     stage: 2, cost: 20000,  hpPct: 0.10,  nmPct: 0.12,  compatible: 'all',       note: 'Aggressive crackles with Stage 2 power gains.' },
   { id: 'launch',     name: 'Launch Control Map',          category: 'Software',     stage: 2, cost: 8000,   hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Allows flat-foot launches at optimal RPM.' },
@@ -127,16 +127,21 @@ export default function BuildPlanner() {
 
     // Fuel Risk
     let risk = 'Low'
-    if (stage === 'Stage 2' || stage === 'Stage 3+') {
-      if (selectedFuel === '91 RON') {
-        risk = 'High'
-      }
-    }
-
     if (stage === 'Stage 3+' && !selectedMods.has('forged')) risk = 'High'
     else if ((stage === 'Stage 2' || stage === 'Stage 3+') && selectedFuel === '91 RON') risk = 'High'
     else if (stage === 'Stage 2') risk = 'Medium'
     else if (stage === 'Hardware Only' && selectedMods.size > 2) risk = 'Medium'
+
+    // Fuel Modifier for Power
+    if (stage !== 'Stock' && stage !== 'Hardware Only') {
+      if (selectedFuel === '91 RON') {
+        hpGain = Math.round(hpGain * 0.90) // 10% penalty on gains
+        nmGain = Math.round(nmGain * 0.90)
+      } else if (selectedFuel === 'XP100') {
+        hpGain = Math.round(hpGain * 1.05) // 5% bonus on gains
+        nmGain = Math.round(nmGain * 1.05)
+      }
+    }
 
     const tuneHP = stock.hp + hpGain
     const tuneNM = stock.nm + nmGain
@@ -144,13 +149,14 @@ export default function BuildPlanner() {
     return { tuneHP, tuneNM, hpGain, nmGain, totalCost, stage, risk, groupedMods }
   }, [selectedMods, platform, stock, selectedFuel])
 
+  const requiresHighOctane = ['bmw-m340i', 'mercedes-amg-c43', 'mini-cooper-s', 'porsche-911', 'audi-rs5'].includes(selectedPlatform)
+  const disable91 = requiresHighOctane || buildStats?.stage === 'Stage 2' || buildStats?.stage === 'Stage 3+'
+
   useEffect(() => {
-    if (buildStats?.stage === 'Stage 2' || buildStats?.stage === 'Stage 3+') {
-      if (selectedFuel === '91 RON') {
-        setSelectedFuel('XP95')
-      }
+    if (disable91 && selectedFuel === '91 RON') {
+      setSelectedFuel('XP95')
     }
-  }, [buildStats?.stage, selectedFuel])
+  }, [disable91, selectedFuel])
 
   const toggleMod = (id) => {
     setSelectedMods(prev => {
@@ -372,7 +378,7 @@ export default function BuildPlanner() {
               <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '10px', letterSpacing: '0.04em' }}>Available Fuel</div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 {['91 RON', 'XP95', 'XP100'].filter(fuel => {
-                  if (buildStats?.stage === 'Stage 2' || buildStats?.stage === 'Stage 3+') {
+                  if (disable91) {
                     return fuel !== '91 RON'
                   }
                   return true
