@@ -307,15 +307,15 @@ export const PLATFORMS_DATA = {
     name: "Honda City 1.5 i-VTEC",
     category: "The NA Legends",
     description: "Naturally Aspirated engines are harder to tune, but the i-VTEC is legendary for its high-revving nature.",
-    img: "/images/city_stock.jpg",
+    img: "/images/city_stock.png",
     potential: "Medium",
     stock_power: "119 HP / 145 Nm",
     recommended_fuel: "91 RON sufficient for stock. 95 RON for turbo builds.",
     known_limits: "NA engines have limited power ceiling without forced induction. Stock internals handle up to ~200 HP. The CVT is fragile and should be swapped for manual on serious builds.",
     tuning_notes: "This is a fundamentally different tuning experience compared to turbo cars. You cannot simply 'flash' an NA engine for major gains. Real power requires physical changes: intake, headers, exhaust, and ultimately forced induction. A Hondata ECU is the key to unlocking this engine. The VTEC crossover point can be adjusted for more aggressive cam engagement.",
     gallery: [
-      { type: "Stock", url: "/images/city_stock.jpg" },
-      { type: "Tuned", url: "/images/city_tuned.jpg" }
+      { type: "Stock", url: "/images/city_stock.png" },
+      { type: "Tuned", url: "/images/city_tuned.png" }
     ],
     tuning_stages: [
       { stage: "Stage 1", power: "135 HP / 155 Nm", cost: "₹60,000", mods: "Intake, Full Exhaust, Piggyback." },
@@ -340,15 +340,15 @@ export const PLATFORMS_DATA = {
     name: "Hyundai i20 N Line",
     category: "Modern Hot Hatches",
     description: "Hyundai's sporty offering. The 3-cylinder turbo is surprisingly robust.",
-    img: "/images/i20_stock.jpg",
+    img: "/images/i20_stock.png",
     potential: "Medium-High",
     stock_power: "120 HP / 172 Nm",
     recommended_fuel: "95 RON standard. Speed 97 for Stage 2.",
     known_limits: "Stock turbo maxes at around 160 HP. 3-cylinder engines are inherently vibey at high RPMs. The iMT clutchless manual has software limitations for tunes.",
     tuning_notes: "The i20 N Line is a newcomer to the Indian tuning scene. The 1.0 T-GDi engine is still being explored by tuners, but Code6 has cracked it wide open. The key challenge is that the iMT (clutchless manual) has electronic clutch actuation, meaning TCU tunes are tricky. If you have the manual, tuning is much more straightforward.",
     gallery: [
-      { type: "Stock", url: "/images/i20_stock.jpg" },
-      { type: "Tuned", url: "/images/i20_tuned.jpg" }
+      { type: "Stock", url: "/images/i20_stock.png" },
+      { type: "Tuned", url: "/images/i20_tuned.png" }
     ],
     tuning_stages: [
       { stage: "Stage 1", power: "140 HP / 210 Nm", cost: "₹30,000", mods: "ECU Remap." },

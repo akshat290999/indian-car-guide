@@ -8,7 +8,7 @@ const TOPICS = [
     emoji: "⚡",
     difficulty: "Beginner",
     color: "#facc15",
-    img: "/images/hardware_ecu.jpg",
+    img: "/images/hardware_ecu.png",
     content: "Modern cars are controlled by an Engine Control Unit (ECU). A 'Tune' or 'Remap' changes the software parameters to increase boost, adjust fueling, and change ignition timing.",
     subtopics: [
       { name: "Flash Tune", desc: "Completely overwrites the factory ECU software via the OBD2 port (e.g., Bootmod3, Revo, APR)." },
@@ -22,7 +22,7 @@ const TOPICS = [
     emoji: "🌀",
     difficulty: "Intermediate",
     color: "#38bdf8",
-    img: "/images/hardware_turbo.jpg",
+    img: "/images/hardware_turbo.png",
     content: "A turbocharger forces more air into the engine, allowing it to burn more fuel and make more power. Upgrading the turbo is the key to massive horsepower gains.",
     subtopics: [
       { name: "Compressor Wheel", desc: "Sucks in fresh air and compresses it. Bigger wheels mean more air." },
@@ -37,7 +37,7 @@ const TOPICS = [
     emoji: "❄️",
     difficulty: "Beginner",
     color: "#67e8f9",
-    img: "/images/hardware_intercooler.jpg",
+    img: "/images/hardware_cooling.png",
     content: "Compressing air makes it extremely hot. Hot air is less dense and causes engine knock. Upgrading cooling is mandatory in India.",
     subtopics: [
       { name: "Intercooler", desc: "Cools the hot compressed air from the turbo before it enters the engine." },
@@ -51,7 +51,7 @@ const TOPICS = [
     emoji: "💨",
     difficulty: "Intermediate",
     color: "#a78bfa",
-    img: "/images/hardware_intake.jpg",
+    img: "/images/hardware_exhaust.png",
     content: "Getting exhaust gases out of the engine quickly reduces backpressure, allowing the turbo to spool faster.",
     subtopics: [
       { name: "Downpipe", desc: "The most critical exhaust component. Connects directly to the turbo. Upgrading to a 'Decat' or High-Flow Cat downpipe gives huge gains." },
@@ -65,7 +65,7 @@ const TOPICS = [
     emoji: "🔩",
     difficulty: "Advanced",
     color: "#f87171",
-    img: "/images/hardware_piston.jpg",
+    img: "/images/hardware_piston.png",
     content: "When increasing power past Stage 2, the stock pistons and connecting rods can bend or break under extreme cylinder pressures. 'Forging' an engine means replacing cast components with much stronger forged steel/aluminum parts.",
     subtopics: [
       { name: "Forged Pistons", desc: "Can withstand higher heat and pressure than stock cast pistons." },
@@ -79,7 +79,7 @@ const TOPICS = [
     emoji: "⚙️",
     difficulty: "Advanced",
     color: "#fb923c",
-    img: "/images/hardware_piston.jpg",
+    img: "/images/hardware_transmission.png",
     content: "Power is useless if it can't reach the wheels. Building the drivetrain ensures you don't burn up your clutch or snap your axles under heavy load.",
     subtopics: [
       { name: "Upgraded Clutch Pack", desc: "For DSG/DCT automatics and manual gearboxes. Stronger friction plates prevent the clutch from slipping." },
@@ -93,7 +93,7 @@ const TOPICS = [
     emoji: "🏎️",
     difficulty: "Intermediate",
     color: "#4ade80",
-    img: "/images/hardware_intercooler.jpg",
+    img: "/images/hardware_suspension.png",
     content: "Speed isn't just about straight lines. Upgrading your suspension and chassis makes the car corner flatter and respond quicker.",
     subtopics: [
       { name: "Lowering Springs", desc: "Drops the ride height for a better center of gravity and slightly stiffer ride. A great entry-level mod." },
@@ -107,7 +107,7 @@ const TOPICS = [
     emoji: "⛽",
     difficulty: "Advanced",
     color: "#e879f9",
-    img: "/images/hardware_ecu.jpg",
+    img: "/images/hardware_fuels.png",
     content: "Standard 91/95 octane petrol limits how much boost you can run. Switching to specialized fuels acts like a chemical intercooler.",
     subtopics: [
       { name: "E85 (Ethanol)", desc: "A blend of 85% ethanol and 15% petrol. It burns much cooler and has a massive octane rating (105+), allowing for aggressive timing." },
@@ -546,6 +546,28 @@ export default function TuningBasics() {
                       background: 'var(--border)',
                       marginBottom: '20px',
                     }} />
+
+                    {topic.img && (
+                      <div style={{
+                        width: '100%',
+                        height: '250px',
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        marginBottom: '20px',
+                        border: '1px solid var(--border)',
+                        background: 'rgba(0,0,0,0.1)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}>
+                        <img 
+                          src={topic.img} 
+                          alt={topic.title} 
+                          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                          onError={(e) => { e.target.style.display = 'none' }}
+                        />
+                      </div>
+                    )}
 
                     {/* Content Text */}
                     <p style={{

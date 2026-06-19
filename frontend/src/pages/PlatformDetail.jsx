@@ -112,42 +112,58 @@ export default function PlatformDetail() {
 
         {/* Gallery */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          <div className="premium-card" style={{ height: '400px', overflow: 'hidden' }}>
+          <div className="premium-card" style={{ height: '400px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.1)' }}>
             <img
               src={data.gallery[activeImage].url}
               alt={`${data.name} - ${data.gallery[activeImage].type}`}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80';
               }}
             />
           </div>
-          <div style={{ display: 'flex', gap: '10px' }}>
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginTop: '10px' }}>
             {data.gallery.map((img, idx) => (
               <div
                 key={idx}
                 onClick={() => setActiveImage(idx)}
                 style={{
-                  flex: 1,
+                  width: '120px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                  cursor: 'pointer',
+                  opacity: activeImage === idx ? 1 : 0.5,
+                  transition: 'all 0.2s',
+                  alignItems: 'center'
+                }}
+              >
+                <div style={{
+                  width: '100%',
                   height: '80px',
                   borderRadius: '8px',
                   overflow: 'hidden',
-                  cursor: 'pointer',
                   border: activeImage === idx ? '2px solid var(--accent-red)' : '2px solid transparent',
-                  opacity: activeImage === idx ? 1 : 0.5,
-                  transition: 'all 0.2s'
-                }}
-              >
-                <img
-                  src={img.url}
-                  alt={img.type}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80';
-                  }}
-                />
+                  boxShadow: activeImage === idx ? '0 0 15px rgba(255,59,48,0.3)' : 'none'
+                }}>
+                  <img
+                    src={img.url}
+                    alt={img.type}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', background: 'rgba(0,0,0,0.1)' }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80';
+                    }}
+                  />
+                </div>
+                <span style={{
+                  fontSize: '0.9rem',
+                  fontWeight: activeImage === idx ? '600' : '400',
+                  color: activeImage === idx ? 'var(--text-primary)' : 'var(--text-muted)'
+                }}>
+                  {img.type}
+                </span>
               </div>
             ))}
           </div>
