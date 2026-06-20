@@ -5,46 +5,46 @@ import { CheckCircle, Circle, ChevronRight, Zap, DollarSign, Gauge, ArrowRight, 
 /* ─── Mod Catalog ─── Each mod has: id, name, category, stage, cost (INR), hpGain (%), nmGain (%), compatible (array of platform IDs or 'all'), note */
 const MOD_CATALOG = [
   // ── SOFTWARE ──
-  { id: 'ecu_s1',     name: 'ECU Stage 1 Remap',         category: 'Software',     stage: 1, cost: 30000,  hpPct: 0.22,  nmPct: 0.28,  compatible: 'all',       note: 'Best first mod. Via OBD port, reversible.' },
-  { id: 'ecu_s1_pops',name: 'ECU Stage 1 (Pops & Bangs)',category: 'Software',     stage: 1, cost: 35000,  hpPct: 0.22,  nmPct: 0.28,  compatible: 'all',       note: 'Stage 1 power plus exhaust crackles on overrun. Pure theatre.' },
-  { id: 'tcu',        name: 'TCU Tune (DSG/DCT)',          category: 'Software',     stage: 1, cost: 18000,  hpPct: 0,     nmPct: 0.05,  compatible: ['vw-polo-tsi','skoda-octavia-vrs','vw-virtus-gt','bmw-m340i','mini-cooper-s'],  note: 'Essential for auto gearboxes. Unlocks higher torque limiters.' },
-  { id: 'ecu_s2',     name: 'ECU Stage 2 Remap',          category: 'Software',     stage: 2, cost: 15000,  hpPct: 0.10,  nmPct: 0.12,  compatible: 'all',       note: 'Upgrade from Stage 1 map to utilise hardware mods.' },
-  { id: 'ecu_s2_pops',name: 'ECU Stage 2 (Pops & Bangs)',category: 'Software',     stage: 2, cost: 20000,  hpPct: 0.10,  nmPct: 0.12,  compatible: 'all',       note: 'Aggressive crackles with Stage 2 power gains.' },
-  { id: 'launch',     name: 'Launch Control Map',          category: 'Software',     stage: 2, cost: 8000,   hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Allows flat-foot launches at optimal RPM.' },
+  { id: 'ecu_s1',     name: 'ECU Stage 1 Remap',         category: 'Software',     stage: 1, cost: 30000,  gainBadge: { text: 'Up to +20% Power', type: 'power' }, compatible: 'all',       note: 'Best first mod. Via OBD port, reversible.' },
+  { id: 'ecu_s1_pops',name: 'ECU Stage 1 (Pops & Bangs)',category: 'Software',     stage: 1, cost: 35000,  gainBadge: { text: 'Up to +20% Power', type: 'power' }, compatible: 'all',       note: 'Stage 1 power plus exhaust crackles on overrun. Pure theatre.' },
+  { id: 'tcu',        name: 'TCU Tune (DSG/DCT)',          category: 'Software',     stage: 1, cost: 18000,  gainBadge: { text: 'Unlocks Torque Limits', type: 'power' }, compatible: ['vw-polo-tsi','skoda-octavia-vrs','vw-virtus-gt','bmw-m340i','mini-cooper-s'],  note: 'Essential for auto gearboxes. Unlocks higher torque limiters.' },
+  { id: 'ecu_s2',     name: 'ECU Stage 2 Remap',          category: 'Software',     stage: 2, cost: 15000,  gainBadge: { text: 'Hardware Dependent', type: 'power' }, compatible: 'all',       note: 'Upgrade from Stage 1 map to utilise hardware mods.' },
+  { id: 'ecu_s2_pops',name: 'ECU Stage 2 (Pops & Bangs)',category: 'Software',     stage: 2, cost: 20000,  gainBadge: { text: 'Hardware Dependent', type: 'power' }, compatible: 'all',       note: 'Aggressive crackles with Stage 2 power gains.' },
+  { id: 'launch',     name: 'Launch Control Map',          category: 'Software',     stage: 2, cost: 8000,   gainBadge: { text: 'Launch Assist', type: 'power' }, compatible: 'all',       note: 'Allows flat-foot launches at optimal RPM.' },
   // ── INTAKE / BREATHING ──
-  { id: 'panel_filt', name: 'Performance Panel Filter',    category: 'Intake',       stage: 1, cost: 8000,   hpPct: 0.02,  nmPct: 0.01,  compatible: 'all',       note: 'Drop-in upgrade. Minimal gains alone, good with a remap.' },
-  { id: 'intake',     name: 'Full Performance Intake',     category: 'Intake',       stage: 2, cost: 25000,  hpPct: 0.04,  nmPct: 0.03,  compatible: 'all',       note: 'Cold air box / induction kit for better flow and sound.' },
-  { id: 'chargepipe', name: 'Aluminium Charge Pipe',       category: 'Intake',       stage: 1, cost: 18000,  hpPct: 0.01,  nmPct: 0.01,  compatible: ['bmw-m340i','mini-cooper-s'],  note: 'Replaces plastic OEM pipe that splits under boost. Critical on B48/B58.' },
-  { id: 'bov',        name: 'Forge Blow-Off Valve',        category: 'Intake',       stage: 2, cost: 12000,  hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Prevents compressor surge. Better reliability at high boost.' },
+  { id: 'panel_filt', name: 'Performance Panel Filter',    category: 'Intake',       stage: 1, cost: 8000,   gainBadge: { text: '+2% Spool', type: 'power' }, compatible: 'all',       note: 'Drop-in upgrade. Minimal gains alone, good with a remap.' },
+  { id: 'intake',     name: 'Full Performance Intake',     category: 'Intake',       stage: 2, cost: 25000,  gainBadge: { text: '+4% Spool', type: 'power' }, compatible: 'all',       note: 'Cold air box / induction kit for better flow and sound.' },
+  { id: 'chargepipe', name: 'Aluminium Charge Pipe',       category: 'Intake',       stage: 1, cost: 18000,  gainBadge: { text: '🛡️ Reliability', type: 'safety' }, compatible: ['bmw-m340i','mini-cooper-s'],  note: 'Replaces plastic OEM pipe that splits under boost. Critical on B48/B58.' },
+  { id: 'bov',        name: 'Forge Blow-Off Valve',        category: 'Intake',       stage: 2, cost: 12000,  gainBadge: { text: '🛡️ Reliability', type: 'safety' }, compatible: 'all',       note: 'Prevents compressor surge. Better reliability at high boost.' },
   // ── EXHAUST ──
-  { id: 'downpipe',   name: 'Decat Downpipe',              category: 'Exhaust',      stage: 2, cost: 30000,  hpPct: 0.12,  nmPct: 0.10,  compatible: 'all',       note: 'Most impactful hardware mod. Turbo spools 300-500 RPM earlier.' },
-  { id: 'catback',    name: 'Cat-Back Exhaust',            category: 'Exhaust',      stage: 1, cost: 35000,  hpPct: 0.03,  nmPct: 0.02,  compatible: 'all',       note: 'Mainly for sound. Minor flow improvement.' },
-  { id: 'res_delete', name: 'Resonator Delete',            category: 'Exhaust',      stage: 1, cost: 8000,   hpPct: 0.01,  nmPct: 0.01,  compatible: 'all',       note: 'Removes mid-pipe resonator. Louder, more aggressive tone.' },
+  { id: 'downpipe',   name: 'Decat Downpipe',              category: 'Exhaust',      stage: 2, cost: 30000,  gainBadge: { text: 'Unlocks Stage 2', type: 'power' }, compatible: 'all',       note: 'Most impactful hardware mod. Turbo spools 300-500 RPM earlier.' },
+  { id: 'catback',    name: 'Cat-Back Exhaust',            category: 'Exhaust',      stage: 1, cost: 35000,  gainBadge: { text: 'Aesthetics', type: 'power' }, compatible: 'all',       note: 'Mainly for sound. Minor flow improvement.' },
+  { id: 'res_delete', name: 'Resonator Delete',            category: 'Exhaust',      stage: 1, cost: 8000,   gainBadge: { text: 'Aesthetics', type: 'power' }, compatible: 'all',       note: 'Removes mid-pipe resonator. Louder, more aggressive tone.' },
   // ── COOLING ──
-  { id: 'fmic',       name: 'Front-Mount Intercooler',     category: 'Cooling',      stage: 2, cost: 65000,  hpPct: 0.08,  nmPct: 0.06,  compatible: 'all',       note: 'Mandatory in India. Prevents heat soak in 45°C summers.' },
-  { id: 'wmi',        name: 'Water-Methanol Injection',    category: 'Cooling',      stage: 2, cost: 40000,  hpPct: 0.06,  nmPct: 0.05,  compatible: 'all',       note: 'Liquid intercooler + octane booster. India\'s E85 substitute.' },
-  { id: 'oil_cooler', name: 'Oil Cooler Kit',              category: 'Cooling',      stage: 2, cost: 22000,  hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Keeps engine oil temp in check during hard use or track days.' },
+  { id: 'fmic',       name: 'Front-Mount Intercooler',     category: 'Cooling',      stage: 2, cost: 65000,  gainBadge: { text: '🧊 Cooling', type: 'cooling' }, compatible: 'all',       note: 'Mandatory in India. Prevents heat soak in 45°C summers.' },
+  { id: 'wmi',        name: 'Water-Methanol Injection',    category: 'Cooling',      stage: 2, cost: 40000,  gainBadge: { text: '🧊 Octane Boost', type: 'cooling' }, compatible: 'all',       note: 'Liquid intercooler + octane booster. India\'s E85 substitute.' },
+  { id: 'oil_cooler', name: 'Oil Cooler Kit',              category: 'Cooling',      stage: 2, cost: 22000,  gainBadge: { text: '🧊 Cooling', type: 'cooling' }, compatible: 'all',       note: 'Keeps engine oil temp in check during hard use or track days.' },
   // ── TURBO / POWER ──
-  { id: 'hybrid_turbo',name: 'Hybrid Turbo Upgrade',      category: 'Forced Induction', stage: 3, cost: 150000, hpPct: 0.25, nmPct: 0.22, compatible: ['vw-polo-tsi','fiat-abarth-punto','skoda-octavia-vrs','vw-virtus-gt'], note: 'Modified stock frame turbo. Bolt-on gains with larger compressor.' },
-  { id: 'big_turbo',  name: 'Full Turbo Upgrade',         category: 'Forced Induction', stage: 3, cost: 300000, hpPct: 0.50, nmPct: 0.45, compatible: ['bmw-m340i','skoda-octavia-vrs','mercedes-amg-c43','porsche-911','audi-rs5'], note: 'Pure800/IS38/IS470 etc. Stage 3 territory. Needs built engine.' },
-  { id: 'port_inj',   name: 'Port Injection Kit',         category: 'Forced Induction', stage: 3, cost: 80000,  hpPct: 0.06, nmPct: 0.04, compatible: ['bmw-m340i','mini-cooper-s'], note: 'Secondary injectors for E30/E50 fuelling on B48/B58.' },
+  { id: 'hybrid_turbo',name: 'Hybrid Turbo Upgrade',      category: 'Forced Induction', stage: 3, cost: 150000, gainBadge: { text: 'Massive Gains (Tuned)', type: 'power' }, compatible: ['vw-polo-tsi','fiat-abarth-punto','skoda-octavia-vrs','vw-virtus-gt'], note: 'Modified stock frame turbo. Bolt-on gains with larger compressor.' },
+  { id: 'big_turbo',  name: 'Full Turbo Upgrade',         category: 'Forced Induction', stage: 3, cost: 300000, gainBadge: { text: 'Extreme Gains (Tuned)', type: 'power' }, compatible: ['bmw-m340i','skoda-octavia-vrs','mercedes-amg-c43','porsche-911','audi-rs5'], note: 'Pure800/IS38/IS470 etc. Stage 3 territory. Needs built engine.' },
+  { id: 'port_inj',   name: 'Port Injection Kit',         category: 'Forced Induction', stage: 3, cost: 80000,  gainBadge: { text: 'Fueling Support', type: 'power' }, compatible: ['bmw-m340i','mini-cooper-s'], note: 'Secondary injectors for E30/E50 fuelling on B48/B58.' },
   // ── ENGINE INTERNALS ──
-  { id: 'spark_plugs', name: 'Iridium Spark Plugs',       category: 'Engine',       stage: 1, cost: 8000,   hpPct: 0.01,  nmPct: 0.01,  compatible: 'all',       note: 'Better ignition efficiency. Mandatory before any remap.' },
-  { id: 'forged',     name: 'Forged Pistons + Rods',      category: 'Engine',       stage: 3, cost: 250000, hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Structural upgrade. Doesn\'t add power — allows you to safely hold more.' },
-  { id: 'head_studs', name: 'ARP Head Studs',             category: 'Engine',       stage: 3, cost: 35000,  hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Prevents head gasket failure under extreme boost.' },
+  { id: 'spark_plugs', name: 'Iridium Spark Plugs',       category: 'Engine',       stage: 1, cost: 8000,   gainBadge: { text: '🛡️ Reliability', type: 'safety' }, compatible: 'all',       note: 'Better ignition efficiency. Mandatory before any remap.' },
+  { id: 'forged',     name: 'Forged Pistons + Rods',      category: 'Engine',       stage: 3, cost: 250000, gainBadge: { text: '🛡️ Reliability', type: 'safety' }, compatible: 'all',       note: 'Structural upgrade. Doesn\'t add power — allows you to safely hold more.' },
+  { id: 'head_studs', name: 'ARP Head Studs',             category: 'Engine',       stage: 3, cost: 35000,  gainBadge: { text: '🛡️ Reliability', type: 'safety' }, compatible: 'all',       note: 'Prevents head gasket failure under extreme boost.' },
   // ── DRIVETRAIN ──
-  { id: 'clutch',     name: 'Upgraded Clutch Kit',        category: 'Drivetrain',   stage: 2, cost: 65000,  hpPct: 0,     nmPct: 0,     compatible: ['vw-polo-tsi','fiat-abarth-punto','honda-city-ivtec','hyundai-i20-nline'], note: 'Required when torque exceeds stock clutch rating.' },
-  { id: 'lsd',        name: 'Limited Slip Differential',  category: 'Drivetrain',   stage: 2, cost: 120000, hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Transforms corner exit traction and launch performance.' },
-  { id: 'axles',      name: 'Upgraded CV Axles',          category: 'Drivetrain',   stage: 3, cost: 45000,  hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Prevents driveshaft snap under extreme torque.' },
+  { id: 'clutch',     name: 'Upgraded Clutch Kit',        category: 'Drivetrain',   stage: 2, cost: 65000,  gainBadge: { text: '⚙️ Drivetrain', type: 'safety' }, compatible: ['vw-polo-tsi','fiat-abarth-punto','honda-city-ivtec','hyundai-i20-nline'], note: 'Required when torque exceeds stock clutch rating.' },
+  { id: 'lsd',        name: 'Limited Slip Differential',  category: 'Drivetrain',   stage: 2, cost: 120000, gainBadge: { text: '⚙️ Traction', type: 'safety' }, compatible: 'all',       note: 'Transforms corner exit traction and launch performance.' },
+  { id: 'axles',      name: 'Upgraded CV Axles',          category: 'Drivetrain',   stage: 3, cost: 45000,  gainBadge: { text: '🛡️ Reliability', type: 'safety' }, compatible: 'all',       note: 'Prevents driveshaft snap under extreme torque.' },
   // ── SUSPENSION ──
-  { id: 'sway_bars',  name: 'Upgraded Sway Bars',         category: 'Suspension',   stage: 1, cost: 22000,  hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Reduces body roll massively. Cheapest handling upgrade.' },
-  { id: 'lowering_springs', name: 'Lowering Springs',     category: 'Suspension',   stage: 1, cost: 18000,  hpPct: 0,     nmPct: 0,     compatible: 'all',       note: '20mm drop. Better CoG, stiffer ride. Great for Indian roads.' },
-  { id: 'coilovers',  name: 'Coilover Kit (KW V1/Bilstein)', category: 'Suspension', stage: 2, cost: 100000, hpPct: 0,    nmPct: 0,     compatible: 'all',       note: 'Fully adjustable. Best balance for Indian roads.' },
-  { id: 'coilovers_hi', name: 'Premium Coilovers (KW V3/Öhlins)', category: 'Suspension', stage: 3, cost: 250000, hpPct: 0, nmPct: 0, compatible: 'all', note: 'Track-level damping control. For serious performance builds.' },
+  { id: 'sway_bars',  name: 'Upgraded Sway Bars',         category: 'Suspension',   stage: 1, cost: 22000,  gainBadge: { text: '🏎️ Handling', type: 'safety' }, compatible: 'all',       note: 'Reduces body roll massively. Cheapest handling upgrade.' },
+  { id: 'lowering_springs', name: 'Lowering Springs',     category: 'Suspension',   stage: 1, cost: 18000,  gainBadge: { text: '🏎️ Handling', type: 'safety' }, compatible: 'all',       note: '20mm drop. Better CoG, stiffer ride. Great for Indian roads.' },
+  { id: 'coilovers',  name: 'Coilover Kit (KW V1/Bilstein)', category: 'Suspension', stage: 2, cost: 100000, gainBadge: { text: '🏎️ Handling', type: 'safety' }, compatible: 'all',       note: 'Fully adjustable. Best balance for Indian roads.' },
+  { id: 'coilovers_hi', name: 'Premium Coilovers (KW V3/Öhlins)', category: 'Suspension', stage: 3, cost: 250000, gainBadge: { text: '🏎️ Track Use', type: 'safety' }, compatible: 'all', note: 'Track-level damping control. For serious performance builds.' },
   // ── BRAKING ──
-  { id: 'brake_pads', name: 'Performance Brake Pads',     category: 'Braking',      stage: 1, cost: 12000,  hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Higher temp threshold. Reduces brake fade on track.' },
-  { id: 'bbk',        name: 'Big Brake Kit (Brembo)',     category: 'Braking',      stage: 3, cost: 200000, hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Required for serious track use. 6-piston, 380mm+ rotors.' },
-  { id: 'braided_lines', name: 'Stainless Braided Brake Lines', category: 'Braking', stage: 1, cost: 8000,  hpPct: 0,     nmPct: 0,     compatible: 'all',       note: 'Firmer pedal feel. Better modulation.' },
+  { id: 'brake_pads', name: 'Performance Brake Pads',     category: 'Braking',      stage: 1, cost: 12000,  gainBadge: { text: '🛑 Braking', type: 'safety' }, compatible: 'all',       note: 'Higher temp threshold. Reduces brake fade on track.' },
+  { id: 'bbk',        name: 'Big Brake Kit (Brembo)',     category: 'Braking',      stage: 3, cost: 200000, gainBadge: { text: '🛑 Braking', type: 'safety' }, compatible: 'all',       note: 'Required for serious track use. 6-piston, 380mm+ rotors.' },
+  { id: 'braided_lines', name: 'Stainless Braided Brake Lines', category: 'Braking', stage: 1, cost: 8000,  gainBadge: { text: '🛑 Braking', type: 'safety' }, compatible: 'all',       note: 'Firmer pedal feel. Better modulation.' },
 ]
 
 const CATEGORIES = ['Software', 'Intake', 'Exhaust', 'Cooling', 'Forced Induction', 'Engine', 'Drivetrain', 'Suspension', 'Braking']
@@ -72,6 +72,8 @@ export default function BuildPlanner() {
   const [selectedMods, setSelectedMods] = useState(new Set())
   const [openCat, setOpenCat] = useState('Software')
   const [selectedFuel, setSelectedFuel] = useState('XP95')
+  const [buildPhase, setBuildPhase] = useState('editing')
+  const [showBreakdown, setShowBreakdown] = useState(false)
 
   const platforms = Object.entries(PLATFORMS_DATA).map(([id, d]) => ({ id, ...d }))
   const platform = platforms.find(p => p.id === selectedPlatform)
@@ -95,39 +97,87 @@ export default function BuildPlanner() {
   const buildStats = useMemo(() => {
     if (!platform) return null
     let totalCost = 0
-    let hpMultiplier = 1
-    let nmMultiplier = 1
     
     const groupedMods = { Power: [], Reliability: [], Safety: [] }
+
+    let hasStage1 = selectedMods.has('ecu_s1') || selectedMods.has('ecu_s1_pops')
+    let hasStage2 = selectedMods.has('ecu_s2') || selectedMods.has('ecu_s2_pops')
+    let hasDownpipe = selectedMods.has('downpipe')
+    let hasFmic = selectedMods.has('fmic')
+    let hasHybridTurbo = selectedMods.has('hybrid_turbo')
+    let hasBigTurbo = selectedMods.has('big_turbo')
+    let hasWMI = selectedMods.has('wmi')
+    let hasIntake = selectedMods.has('intake')
+    let hasForged = selectedMods.has('forged')
 
     selectedMods.forEach(id => {
       const mod = MOD_CATALOG.find(m => m.id === id)
       if (!mod) return
       totalCost += mod.cost
-      hpMultiplier += mod.hpPct
-      nmMultiplier += mod.nmPct
 
       if (['Cooling', 'Engine'].includes(mod.category)) groupedMods.Reliability.push(mod)
       else if (['Braking', 'Suspension', 'Drivetrain'].includes(mod.category)) groupedMods.Safety.push(mod)
       else groupedMods.Power.push(mod)
     })
 
+    // STRICT STAGE-DRIVEN LOGIC
+    let activeStage = 0;
+    if (hasStage2) activeStage = 2;
+    else if (hasStage1) activeStage = 1;
+
+    let bottleneck = null;
+
+    if (activeStage === 2) {
+      if (!hasDownpipe) {
+        activeStage = 1; // Fallback
+        bottleneck = "Stage 2 requires a Decat Downpipe. Power is limited to Stage 1 levels.";
+      }
+    }
+
+    let hpMultiplier = 1.0;
+    let nmMultiplier = 1.0;
+
+    if (activeStage === 2) {
+      hpMultiplier = 1.30; 
+      nmMultiplier = 1.35;
+    } else if (activeStage === 1) {
+      hpMultiplier = 1.20;
+      nmMultiplier = 1.25;
+    }
+
+    // Hardware mods do not add power additively.
+    if (hasHybridTurbo || hasBigTurbo) {
+      if (activeStage >= 1) {
+        hpMultiplier = hasBigTurbo ? 1.70 : 1.50;
+        nmMultiplier = hasBigTurbo ? 1.60 : 1.45;
+        
+        if (!hasDownpipe || !hasFmic) {
+          hpMultiplier = 1.30;
+          nmMultiplier = 1.35;
+          bottleneck = "Upgraded Turbo requires Downpipe & FMIC. Power throttled.";
+        }
+      } else {
+        bottleneck = "Upgraded Turbo requires ECU Tuning. Zero power gained.";
+      }
+    }
+
     let hpGain = Math.round(stock.hp * hpMultiplier) - stock.hp
     let nmGain = Math.round(stock.nm * nmMultiplier) - stock.nm
 
     // Stage estimation
     let stage = 'Stock'
-    if (selectedMods.has('ecu_s1') || selectedMods.has('ecu_s2') || selectedMods.has('ecu_s1_pops') || selectedMods.has('ecu_s2_pops')) {
-      const hasHW = selectedMods.has('downpipe') || selectedMods.has('fmic')
-      const hasS3 = selectedMods.has('big_turbo') || selectedMods.has('hybrid_turbo') || selectedMods.has('forged')
-      stage = hasS3 ? 'Stage 3+' : hasHW ? 'Stage 2' : 'Stage 1'
+    if (hasStage1 || hasStage2) {
+      const hasHW = hasDownpipe || hasFmic
+      const hasS3 = hasBigTurbo || hasHybridTurbo || hasForged
+      stage = hasS3 ? 'Stage 3+' : (hasStage2 || hasHW) ? 'Stage 2' : 'Stage 1'
     } else if (selectedMods.size > 0) {
       stage = 'Hardware Only'
     }
 
     // Fuel Risk
     let risk = 'Low'
-    if (stage === 'Stage 3+' && !selectedMods.has('forged')) risk = 'High'
+    if ((hasBigTurbo || hasHybridTurbo) && !hasForged) risk = 'High'
+    else if (hasStage2 && !hasDownpipe) risk = 'High'
     else if ((stage === 'Stage 2' || stage === 'Stage 3+') && selectedFuel === '91 RON') risk = 'High'
     else if (stage === 'Stage 2') risk = 'Medium'
     else if (stage === 'Hardware Only' && selectedMods.size > 2) risk = 'Medium'
@@ -146,7 +196,7 @@ export default function BuildPlanner() {
     const tuneHP = stock.hp + hpGain
     const tuneNM = stock.nm + nmGain
 
-    return { tuneHP, tuneNM, hpGain, nmGain, totalCost, stage, risk, groupedMods }
+    return { tuneHP, tuneNM, hpGain, nmGain, totalCost, stage, risk, groupedMods, hasDownpipe, hasStage2, hasFmic, hasBigTurbo, hasHybridTurbo, hasForged }
   }, [selectedMods, platform, stock, selectedFuel])
 
   const requiresHighOctane = ['bmw-m340i', 'mercedes-amg-c43', 'mini-cooper-s', 'porsche-911', 'audi-rs5'].includes(selectedPlatform)
@@ -159,6 +209,7 @@ export default function BuildPlanner() {
   }, [disable91, selectedFuel])
 
   const toggleMod = (id) => {
+    setBuildPhase('editing')
     setSelectedMods(prev => {
       const next = new Set(prev)
       const isEcuMod = ['ecu_s1', 'ecu_s2', 'ecu_s1_pops', 'ecu_s2_pops'].includes(id)
@@ -247,7 +298,7 @@ export default function BuildPlanner() {
         </div>
       ) : (
         /* ── BUILDER VIEW ── */
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 340px', gap: '0', minHeight: 'calc(100vh - 160px)', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 340px', gap: '40px', padding: '0 20px', minHeight: 'calc(100vh - 160px)', maxWidth: '1400px', margin: '40px auto', width: '100%', boxSizing: 'border-box' }}>
 
           {/* LEFT — Mod Selector */}
           <div style={{ padding: '28px 24px', borderRight: '1px solid var(--border)', overflowY: 'auto', backgroundImage: `radial-gradient(circle, var(--border) 1px, transparent 1px)`, backgroundSize: '24px 24px' }}>
@@ -349,7 +400,7 @@ export default function BuildPlanner() {
                         </span>
                         
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '12px' }}>
-                          {mod.hpPct > 0 && <span style={{ fontSize: '0.7rem', color: '#4ade80', fontWeight: 700, background: 'rgba(74,222,128,0.1)', padding: '3px 8px', borderRadius: '99px' }}>+{Math.round(mod.hpPct * 100)}% HP</span>}
+                          {mod.gainBadge && <span style={{ fontSize: '0.7rem', color: mod.gainBadge.type === 'power' ? '#4ade80' : mod.gainBadge.type === 'cooling' ? '#38bdf8' : '#fb923c', fontWeight: 700, background: mod.gainBadge.type === 'power' ? 'rgba(74,222,128,0.1)' : mod.gainBadge.type === 'cooling' ? 'rgba(56,189,248,0.1)' : 'rgba(251,146,60,0.1)', padding: '3px 8px', borderRadius: '99px' }}>{mod.gainBadge.text}</span>}
                           <span style={{ fontSize: '0.7rem', color: 'var(--accent-red)', fontWeight: 700, background: 'rgba(239,68,68,0.1)', padding: '3px 8px', borderRadius: '99px' }}>{formatINR(mod.cost)}</span>
                           <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', background: 'rgba(255,255,255,0.06)', padding: '3px 8px', borderRadius: '99px' }}>S{mod.stage}</span>
                         </div>
@@ -400,7 +451,7 @@ export default function BuildPlanner() {
               </div>
             </div>
 
-            {/* Stage Badge & Risk Level */}
+            {/* Stage Badge & Feasibility Checker */}
             {buildStats && (
               <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
                 <div style={{ flex: 1, textAlign: 'center', background: stageColor(buildStats.stage) + '15', color: stageColor(buildStats.stage), border: `1px solid ${stageColor(buildStats.stage)}40`, borderRadius: '8px', padding: '10px', fontWeight: 700, fontSize: '1rem', fontFamily: 'var(--font-heading)' }}>
@@ -408,9 +459,22 @@ export default function BuildPlanner() {
                 </div>
                 {buildStats.stage !== 'Stock' && (
                   <div style={{ flex: 1, textAlign: 'center', background: buildStats.risk === 'Low' ? 'rgba(74,222,128,0.1)' : buildStats.risk === 'Medium' ? 'rgba(250,204,21,0.1)' : 'rgba(239,68,68,0.1)', color: buildStats.risk === 'Low' ? '#4ade80' : buildStats.risk === 'Medium' ? '#facc15' : '#ef4444', border: `1px solid ${buildStats.risk === 'Low' ? 'rgba(74,222,128,0.3)' : buildStats.risk === 'Medium' ? 'rgba(250,204,21,0.3)' : 'rgba(239,68,68,0.3)'}`, borderRadius: '8px', padding: '10px', fontWeight: 700, fontSize: '0.9rem', fontFamily: 'var(--font-heading)' }}>
-                    Risk: {buildStats.risk}
+                    Feasibility: {buildStats.risk === 'Low' ? 'Green' : buildStats.risk === 'Medium' ? 'Amber' : 'Red'}
                   </div>
                 )}
+              </div>
+            )}
+
+            {/* Feasibility Explanation */}
+            {buildStats && buildStats.stage !== 'Stock' && (
+              <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '10px', padding: '14px', marginBottom: '20px' }}>
+                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.04em' }}>Feasibility Status</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-primary)', lineHeight: 1.5 }}>
+                  {buildStats.risk === 'High' && selectedFuel === '91 RON' && '⚠️ Red: You are asking for serious power on 91 RON. Knock risk is critical.'}
+                  {buildStats.risk === 'High' && selectedFuel !== '91 RON' && '⚠️ Red: Serious power levels. Engine internals are at their limits without forged components.'}
+                  {buildStats.risk === 'Medium' && '⚠️ Amber: Achievable, but cooling and supporting hardware are highly recommended for reliability.'}
+                  {buildStats.risk === 'Low' && '✅ Green: Safe and highly realistic on stock internals with selected mods.'}
+                </div>
               </div>
             )}
 
@@ -444,42 +508,150 @@ export default function BuildPlanner() {
               <div style={{ textAlign: 'center', padding: '20px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>Select a car and mods to see live estimates</div>
             )}
 
-            {/* Cost */}
+            {/* Cost & Budget Meter */}
             {buildStats && selectedMods.size > 0 && (
               <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '10px', padding: '16px', marginBottom: '16px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                   <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Build Cost</span>
                   <span style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--accent-red)', fontFamily: 'var(--font-heading)' }}>{formatINR(buildStats.totalCost)}</span>
                 </div>
-                {/* Mod list */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '240px', overflowY: 'auto', paddingRight: '4px' }}>
-                  {['Power', 'Reliability', 'Safety'].map(group => {
-                    if (buildStats.groupedMods[group].length === 0) return null;
-                    return (
-                      <div key={group}>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--text-primary)', fontWeight: 700, marginBottom: '6px', borderBottom: '1px solid var(--border)', paddingBottom: '4px' }}>{group}</div>
-                        {buildStats.groupedMods[group].map(mod => (
-                          <div key={mod.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', marginBottom: '4px' }}>
-                            <span style={{ color: 'var(--text-muted)', flex: 1, paddingRight: '8px' }}>{mod.name}</span>
-                            <span style={{ color: 'var(--accent-red)', fontWeight: 600, whiteSpace: 'nowrap' }}>{formatINR(mod.cost)}</span>
-                          </div>
-                        ))}
+                {/* Budget Meter */}
+                <div style={{ height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden', marginBottom: '16px' }}>
+                  <div style={{ height: '100%', width: barWidth(buildStats.totalCost, 500000), background: 'var(--accent-red)', borderRadius: '99px', transition: 'width 0.5s ease' }} />
+                </div>
+                
+                {/* Visual Mod List */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
+                  {Array.from(selectedMods).map(modId => {
+                    const mod = MOD_CATALOG.find(m => m.id === modId)
+                    return mod ? (
+                      <div key={modId} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)', padding: '4px 10px', borderRadius: '16px', fontSize: '0.75rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <span>{CAT_EMOJI[mod.category]}</span> {mod.name}
                       </div>
-                    )
+                    ) : null
                   })}
                 </div>
-              </div>
-            )}
 
-            {/* Tip box */}
-            {buildStats && buildStats.stage !== 'Stock' && (
-              <div style={{ background: 'rgba(250,204,21,0.08)', border: '1px solid rgba(250,204,21,0.2)', borderRadius: '8px', padding: '12px 14px', fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-                <strong style={{ color: '#facc15' }}>💡 Build Tip: </strong>
-                {buildStats.risk === 'High' && selectedFuel === '91 RON' && 'Your stage requires better fuel! Running 91 RON on this build dramatically increases the risk of engine knock and failure, and power gains are restricted.'}
-                {buildStats.risk === 'High' && selectedFuel !== '91 RON' && 'This is a serious build. Forged internals are strongly recommended to safely hold this much torque.'}
-                {buildStats.risk !== 'High' && buildStats.stage === 'Stage 1' && 'Great start! Stage 1 is the most reliable and reversible mod.'}
-                {buildStats.risk !== 'High' && buildStats.stage === 'Stage 2' && 'Stage 2 is where it gets serious. Make sure your intercooler is upgraded — it\'s mandatory in Indian heat.'}
-                {buildStats.stage === 'Hardware Only' && 'You have hardware mods but no ECU remap. Add a Stage 1 remap to unlock the full potential of your parts.'}
+                {/* Cost Breakdown Dropdown */}
+                <div style={{ marginBottom: '16px' }}>
+                  <button 
+                    onClick={() => setShowBreakdown(!showBreakdown)}
+                    style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', padding: '10px 12px', borderRadius: '8px', color: 'var(--text-muted)', fontSize: '0.85rem', cursor: 'pointer' }}
+                  >
+                    <span>Detailed Cost Breakdown</span>
+                    <span style={{ transform: showBreakdown ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }}>▼</span>
+                  </button>
+                  {showBreakdown && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '12px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--border)', borderTop: 'none', borderBottomLeftRadius: '8px', borderBottomRightRadius: '8px', marginTop: '-4px' }}>
+                      {['Power', 'Reliability', 'Safety'].map(group => {
+                        if (buildStats.groupedMods[group].length === 0) return null;
+                        return (
+                          <div key={group}>
+                            <div style={{ fontSize: '0.75rem', color: 'var(--text-primary)', fontWeight: 700, marginBottom: '6px', borderBottom: '1px solid var(--border)', paddingBottom: '4px' }}>{group}</div>
+                            {buildStats.groupedMods[group].map(mod => (
+                              <div key={mod.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', marginBottom: '4px' }}>
+                                <span style={{ color: 'var(--text-muted)', flex: 1, paddingRight: '8px' }}>{mod.name}</span>
+                                <span style={{ color: 'var(--accent-red)', fontWeight: 600, whiteSpace: 'nowrap' }}>{formatINR(mod.cost)}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
+                </div>
+                
+                <button
+                  onClick={() => {
+                    const lines = [`🔧 My ${platform?.name} Build`, `Fuel: ${selectedFuel}`, `Stage: ${buildStats.stage}`, `Power: ${buildStats.tuneHP} HP / ${buildStats.tuneNM} Nm`, `Cost: ${formatINR(buildStats.totalCost)}`, ``, `Parts:`];
+                    ['Power', 'Reliability', 'Safety'].forEach(g => {
+                      if (buildStats.groupedMods[g].length > 0) {
+                        buildStats.groupedMods[g].forEach(m => lines.push(`- ${m.name} (${formatINR(m.cost)})`));
+                      }
+                    });
+                    navigator.clipboard.writeText(lines.join('\n'));
+                    alert('Shopping list copied to clipboard!');
+                  }}
+                  style={{ width: '100%', background: 'var(--accent-charcoal)', color: '#fff', border: 'none', borderRadius: '8px', padding: '10px', cursor: 'pointer', fontWeight: 600, transition: 'all 0.2s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                  onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+                  onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+                >
+                  <ArrowRight size={16} /> Export Shopping List
+                </button>
+
+                {/* Finish Build & Review Logic */}
+                {buildPhase === 'editing' && (
+                  <button
+                    onClick={() => setBuildPhase('finished')}
+                    style={{ width: '100%', background: 'var(--accent-red)', color: '#fff', border: 'none', borderRadius: '8px', padding: '12px', cursor: 'pointer', fontWeight: 700, transition: 'all 0.2s', marginTop: '16px' }}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+                  >
+                    Finish Build
+                  </button>
+                )}
+
+                {buildPhase !== 'editing' && (
+                  <div style={{ display: 'flex', gap: '10px', marginTop: '16px' }}>
+                    <button
+                      onClick={() => setBuildPhase('reviewing')}
+                      style={{ flex: 1, background: buildPhase === 'reviewing' ? 'var(--accent-red)' : 'rgba(255,255,255,0.05)', border: buildPhase === 'reviewing' ? '1px solid var(--accent-red)' : '1px solid var(--border)', color: '#fff', borderRadius: '8px', padding: '10px', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, transition: 'all 0.2s' }}
+                    >
+                      Review Build
+                    </button>
+                    <button
+                      onClick={() => setBuildPhase('suggested')}
+                      style={{ flex: 1, background: buildPhase === 'suggested' ? 'var(--accent-red)' : 'rgba(255,255,255,0.05)', border: buildPhase === 'suggested' ? '1px solid var(--accent-red)' : '1px solid var(--border)', color: '#fff', borderRadius: '8px', padding: '10px', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, transition: 'all 0.2s' }}
+                    >
+                      Suggested Build
+                    </button>
+                  </div>
+                )}
+
+                {/* AI Review Output */}
+                {buildPhase === 'reviewing' && (
+                  <div style={{ marginTop: '20px', padding: '16px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '10px', animation: 'fadeIn 0.3s ease' }}>
+                    <h4 style={{ color: 'var(--text-primary)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>🔍 Build Review</h4>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                      <div style={{ fontSize: '2rem', fontWeight: 800, color: (buildStats.risk === 'Low' && buildStats.groupedMods.Reliability.length > 0) ? '#4ade80' : buildStats.risk === 'High' ? '#f87171' : '#facc15' }}>
+                        {(buildStats.risk === 'Low' && buildStats.groupedMods.Reliability.length > 0) ? '9/10' : buildStats.risk === 'High' ? '4/10' : '7/10'}
+                      </div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.3 }}>Reliability & Real-world Usability Score</div>
+                    </div>
+                    <ul style={{ paddingLeft: '20px', margin: 0, color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                      {buildStats.hasStage2 && !buildStats.hasDownpipe && <li><strong style={{color: '#f87171'}}>⚠️ The Danger Zone:</strong> Stage 2 ECU tune without a downpipe causes extreme backpressure and extreme EGTs. Your catalytic converter will melt.</li>}
+                      {(buildStats.hasBigTurbo || buildStats.hasHybridTurbo) && (!buildStats.hasStage1 && !buildStats.hasStage2) && <li><strong style={{color: '#f87171'}}>⚠️ The Bottleneck:</strong> You bolted on a huge turbo but didn't tune the ECU. The engine will run lean or throw a CEL. Zero power gained.</li>}
+                      {buildStats.hasDownpipe && !buildStats.hasStage2 && <li><strong style={{color: '#facc15'}}>⚠️ Missing Potential:</strong> You installed a high-flow downpipe but are still on a Stage 1 (or stock) map. Flash Stage 2 to unlock the real power.</li>}
+                      {buildStats.stage === 'Stage 3+' && !buildStats.hasForged && <li><strong style={{color: '#f87171'}}>⚠️ Ticking Timebomb:</strong> Running massive turbo torque on stock engine internals usually results in a bent rod. Get Forged Pistons + Rods.</li>}
+                      {buildStats.hpGain > 40 && !buildStats.hasFmic && <li><strong style={{color: '#facc15'}}>🥵 Heat Soak City:</strong> You are pushing big power without an upgraded Intercooler. You will lose all your gains after one pull in the Indian summer.</li>}
+                      {buildStats.hpGain > 60 && buildStats.groupedMods.Safety.length === 0 && <li><strong style={{color: '#facc15'}}>🛑 Stopping Power:</strong> You added massive power but still have stock brakes and suspension. This is a safety hazard.</li>}
+                      {buildStats.risk === 'Low' && buildStats.groupedMods.Reliability.length > 0 && buildStats.hasDownpipe === buildStats.hasStage2 && <li><strong style={{color: '#4ade80'}}>✅ Balanced Build:</strong> Excellent! Your hardware matches your software perfectly, and you've invested in reliability.</li>}
+                      {buildStats.risk === 'Medium' && !buildStats.hasStage2 && <li>Good starting point. Ensure you run the right octane fuel for these modifications.</li>}
+                    </ul>
+                  </div>
+                )}
+
+                {/* AI Suggested Output */}
+                {buildPhase === 'suggested' && (
+                  <div style={{ marginTop: '20px', padding: '16px', background: 'rgba(74, 222, 128, 0.05)', border: '1px solid rgba(74, 222, 128, 0.3)', borderRadius: '10px', animation: 'fadeIn 0.3s ease' }}>
+                    <h4 style={{ color: '#4ade80', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>💡 Suggested Build</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                      For a reliable, real-world Indian setup on the {platform?.name}, we recommend sticking to a strong Stage 2 build with cooling.
+                      This gives you 90% of the fun without needing forged internals or dealing with massive turbo lag.
+                    </p>
+                    <button 
+                      onClick={() => {
+                        const safeMods = new Set(['ecu_s2', 'downpipe', 'fmic', 'panel_filt', 'brake_pads', 'lowering_springs'])
+                        setSelectedMods(new Set(compatibleMods.filter(m => safeMods.has(m.id)).map(m => m.id)))
+                        setSelectedFuel('XP95')
+                        setBuildPhase('editing')
+                      }}
+                      style={{ marginTop: '12px', background: '#4ade80', color: '#000', border: 'none', padding: '8px 16px', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer', width: '100%', transition: 'all 0.2s' }}
+                    >
+                      Apply Suggested Build
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 
