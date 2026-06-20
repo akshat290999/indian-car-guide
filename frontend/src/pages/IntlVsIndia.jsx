@@ -171,7 +171,7 @@ export default function IntlVsIndia() {
             🌍 International Builds
           </button>
         </div>
-        <div style={{ padding: '24px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '16px', animation: 'fadeIn 0.3s ease' }}>
+        <div style={{ padding: '24px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', animation: 'fadeIn 0.3s ease' }}>
           {buildImages[activeTab].map((img, i) => (
             <div key={i} style={{ borderRadius: '10px', overflow: 'hidden', background: 'rgba(0,0,0,0.2)' }}>
               <div style={{ height: '180px', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
