@@ -8,8 +8,8 @@ const MOD_CATALOG = [
   { id: 'ecu_s1',     name: 'ECU Stage 1 Remap',         category: 'Software',     stage: 1, cost: 30000,  gainBadge: { text: 'Up to +20% Power', type: 'power' }, compatible: 'all',       note: 'Best first mod. Via OBD port, reversible.' },
   { id: 'ecu_s1_pops',name: 'ECU Stage 1 (Pops & Bangs)',category: 'Software',     stage: 1, cost: 35000,  gainBadge: { text: 'Up to +20% Power', type: 'power' }, compatible: 'all',       note: 'Stage 1 power plus exhaust crackles on overrun. Pure theatre.' },
   { id: 'tcu',        name: 'TCU Tune (DSG/DCT)',          category: 'Software',     stage: 1, cost: 18000,  gainBadge: { text: 'Unlocks Torque Limits', type: 'power' }, compatible: ['vw-polo-tsi','skoda-octavia-vrs','vw-virtus-gt','bmw-m340i','mini-cooper-s'],  note: 'Essential for auto gearboxes. Unlocks higher torque limiters.' },
-  { id: 'ecu_s2',     name: 'ECU Stage 2 Remap',          category: 'Software',     stage: 2, cost: 15000,  gainBadge: { text: 'Hardware Dependent', type: 'power' }, compatible: 'all',       note: 'Upgrade from Stage 1 map to utilise hardware mods.' },
-  { id: 'ecu_s2_pops',name: 'ECU Stage 2 (Pops & Bangs)',category: 'Software',     stage: 2, cost: 20000,  gainBadge: { text: 'Hardware Dependent', type: 'power' }, compatible: 'all',       note: 'Aggressive crackles with Stage 2 power gains.' },
+  { id: 'ecu_s2',     name: 'ECU Stage 2 Remap',          category: 'Software',     stage: 2, cost: 15000,  gainBadge: { text: 'Up to +30% Power', type: 'power' }, compatible: 'all',       note: 'Requires Downpipe to unlock full potential.' },
+  { id: 'ecu_s2_pops',name: 'ECU Stage 2 (Pops & Bangs)',category: 'Software',     stage: 2, cost: 20000,  gainBadge: { text: 'Up to +30% Power', type: 'power' }, compatible: 'all',       note: 'Aggressive crackles with Stage 2 power gains.' },
   { id: 'launch',     name: 'Launch Control Map',          category: 'Software',     stage: 2, cost: 8000,   gainBadge: { text: 'Launch Assist', type: 'power' }, compatible: 'all',       note: 'Allows flat-foot launches at optimal RPM.' },
   // ── INTAKE / BREATHING ──
   { id: 'panel_filt', name: 'Performance Panel Filter',    category: 'Intake',       stage: 1, cost: 8000,   gainBadge: { text: '+2% Spool', type: 'power' }, compatible: 'all',       note: 'Drop-in upgrade. Minimal gains alone, good with a remap.' },
@@ -196,7 +196,7 @@ export default function BuildPlanner() {
     const tuneHP = stock.hp + hpGain
     const tuneNM = stock.nm + nmGain
 
-    return { tuneHP, tuneNM, hpGain, nmGain, totalCost, stage, risk, groupedMods, hasDownpipe, hasStage2, hasFmic, hasBigTurbo, hasHybridTurbo, hasForged }
+    return { tuneHP, tuneNM, hpGain, nmGain, totalCost, stage, risk, groupedMods, hasDownpipe, hasStage2, hasFmic, hasBigTurbo, hasHybridTurbo, hasForged, bottleneck }
   }, [selectedMods, platform, stock, selectedFuel])
 
   const requiresHighOctane = ['bmw-m340i', 'mercedes-amg-c43', 'mini-cooper-s', 'porsche-911', 'audi-rs5'].includes(selectedPlatform)
@@ -475,6 +475,11 @@ export default function BuildPlanner() {
                   {buildStats.risk === 'Medium' && '⚠️ Amber: Achievable, but cooling and supporting hardware are highly recommended for reliability.'}
                   {buildStats.risk === 'Low' && '✅ Green: Safe and highly realistic on stock internals with selected mods.'}
                 </div>
+                {buildStats.bottleneck && (
+                  <div style={{ fontSize: '0.85rem', color: 'var(--accent-red)', fontWeight: 600, marginTop: '8px', paddingTop: '8px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                    🛑 Throttled: {buildStats.bottleneck}
+                  </div>
+                )}
               </div>
             )}
 
