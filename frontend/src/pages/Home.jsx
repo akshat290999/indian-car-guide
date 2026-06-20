@@ -49,7 +49,7 @@ function StatCounter({ value, suffix, label }) {
       <span style={{
         fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
         fontWeight: 800,
-        fontFamily: "'Outfit', sans-serif",
+        fontFamily: 'var(--font-heading)',
         background: 'linear-gradient(135deg, #ef4444, #f97316)',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -143,7 +143,7 @@ export default function Home() {
         justifyContent: 'center',
         padding: '80px 20px 60px',
         textAlign: 'center',
-        background: 'radial-gradient(circle at center, #18181b 0%, #09090b 100%)',
+        background: `radial-gradient(circle at 30% 50%, rgba(196,30,36,0.06) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(0,144,204,0.04) 0%, transparent 50%), #0B0C10`,
         position: 'relative',
         overflow: 'hidden'
       }}>
@@ -168,8 +168,7 @@ export default function Home() {
           lineHeight: 1.7,
           zIndex: 1
         }}>
-          From forging engine internals to extracting massive horsepower on Indian roads.
-          Discover platforms, parts, and the true cost of speed.
+          No fluff, no flexing — just the stuff an Indian enthusiast actually needs before spending a rupee.
         </p>
 
         {/* Animated Stats */}
@@ -204,7 +203,7 @@ export default function Home() {
             fontSize: 'clamp(1.8rem, 4vw, 2.4rem)',
             marginBottom: '12px',
             textAlign: 'center',
-            fontFamily: "'Outfit', sans-serif"
+            fontFamily: 'var(--font-heading)'
           }} className="text-gradient">Jump Right In</h2>
           <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '48px', fontSize: '1.1rem' }}>
             Everything you need, one click away.
@@ -212,16 +211,16 @@ export default function Home() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))',
+            gridTemplateColumns: 'repeat(4, 1fr)',
             gap: '24px'
           }}>
-            {navCards.map(card => {
+            {navCards.map((card, cardIdx) => {
               const Icon = card.icon
               return (
                 <Link
                   key={card.to}
                   to={card.to}
-                  className="premium-card"
+                  className={`premium-card ${['card-stripe-red','card-stripe-blue','card-stripe-yellow','card-stripe-green'][cardIdx]}`}
                   style={{
                     padding: '32px 28px',
                     textDecoration: 'none',
@@ -229,7 +228,8 @@ export default function Home() {
                     flexDirection: 'column',
                     gap: '16px',
                     transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    gridColumn: cardIdx < 2 ? 'span 2' : 'span 1'
                   }}
                   onMouseEnter={e => {
                     e.currentTarget.style.transform = 'translateY(-6px)'
@@ -251,7 +251,7 @@ export default function Home() {
                   }}>
                     <Icon size={24} color="var(--accent-red)" />
                   </div>
-                  <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif", margin: 0 }}>
+                  <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)', margin: 0 }}>
                     {card.title}
                   </h3>
                   <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '0.95rem', lineHeight: 1.5 }}>
@@ -280,7 +280,7 @@ export default function Home() {
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', flexWrap: 'wrap', gap: '12px' }}>
             <div>
-              <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontFamily: "'Outfit', sans-serif", margin: 0 }} className="text-gradient">
+              <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontFamily: 'var(--font-heading)', margin: 0 }} className="text-gradient">
                 Featured Platforms
               </h2>
               <p style={{ color: 'var(--text-muted)', marginTop: '8px', fontSize: '1.05rem' }}>
@@ -300,7 +300,7 @@ export default function Home() {
             scrollSnapType: 'x mandatory',
             WebkitOverflowScrolling: 'touch'
           }}>
-            {featured.map(car => (
+            {featured.map((car, carIdx) => (
               <Link
                 key={car.id}
                 to={`/platform/${car.id}`}
@@ -329,7 +329,8 @@ export default function Home() {
                   overflow: 'hidden',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  position: 'relative'
                 }}>
                   <img
                     src={car.img}
@@ -337,13 +338,16 @@ export default function Home() {
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     loading="lazy"
                   />
+                  {carIdx === 0 && <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0,0,0,0.7)', color: '#facc15', fontSize: '0.7rem', fontWeight: 700, padding: '3px 10px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Most Tuned</span>}
+                  {carIdx === 1 && <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0,0,0,0.7)', color: '#f97316', fontSize: '0.7rem', fontWeight: 700, padding: '3px 10px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Highest Ceiling</span>}
+                  {carIdx === 2 && <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0,0,0,0.7)', color: '#4ade80', fontSize: '0.7rem', fontWeight: 700, padding: '3px 10px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' }}>India's Favourite</span>}
                 </div>
 
                 <div style={{ padding: '24px' }}>
                   <h3 style={{
                     fontSize: '1.2rem',
                     color: 'var(--text-primary)',
-                    fontFamily: "'Outfit', sans-serif",
+                    fontFamily: 'var(--font-heading)',
                     margin: '0 0 12px'
                   }}>
                     {car.name}
@@ -387,7 +391,7 @@ export default function Home() {
             fontSize: 'clamp(1.8rem, 4vw, 2.4rem)',
             textAlign: 'center',
             marginBottom: '12px',
-            fontFamily: "'Outfit', sans-serif"
+            fontFamily: 'var(--font-heading)'
           }} className="text-gradient">
             The Evolution of Indian Tuning
           </h2>
@@ -448,7 +452,7 @@ export default function Home() {
                 <h3 style={{
                   fontSize: '1.4rem',
                   color: 'var(--text-primary)',
-                  fontFamily: "'Outfit', sans-serif",
+                  fontFamily: 'var(--font-heading)',
                   margin: '0 0 10px'
                 }}>
                   {item.era}
@@ -478,7 +482,7 @@ export default function Home() {
             fontSize: 'clamp(1.8rem, 4vw, 2.4rem)',
             textAlign: 'center',
             marginBottom: '40px',
-            fontFamily: "'Outfit', sans-serif"
+            fontFamily: 'var(--font-heading)'
           }} className="text-gradient">
             What Drives Us
           </h2>
@@ -548,7 +552,7 @@ export default function Home() {
               fontSize: '1.8rem',
               marginBottom: '16px',
               color: 'var(--text-primary)',
-              fontFamily: "'Outfit', sans-serif"
+              fontFamily: 'var(--font-heading)'
             }}>
               {tabs[activeTab].title}
             </h3>
@@ -561,6 +565,9 @@ export default function Home() {
             }}>
               {tabs[activeTab].content}
             </p>
+            <p className="microcopy" style={{ marginTop: '20px', maxWidth: '500px', margin: '20px auto 0' }}>
+              "This is what separates a tuner from someone who just bought parts."
+            </p>
           </div>
         </div>
       </section>
@@ -568,7 +575,7 @@ export default function Home() {
       {/* ─── START HERE STEPPER ─── */}
       <section style={{ padding: '60px 20px', background: 'rgba(255,255,255,0.02)', borderTop: '1px solid var(--border)' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '8px', fontFamily: "'Outfit', sans-serif" }}>🗺️ New Here? Start Your Journey</h2>
+          <h2 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '8px', fontFamily: 'var(--font-heading)' }}>🗺️ New Here? Start Your Journey</h2>
           <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '40px', fontSize: '1rem' }}>Follow this path from zero to hero. Click each step for a quick overview.</p>
           <StartHereStepper />
         </div>
@@ -584,7 +591,7 @@ export default function Home() {
       {/* ─── FAQ ─── */}
       <section style={{ padding: '60px 20px', background: 'rgba(255,255,255,0.02)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: '8px', fontFamily: "'Outfit', sans-serif" }}>❓ Frequently Asked Questions</h2>
+          <h2 style={{ fontSize: '2rem', marginBottom: '8px', fontFamily: 'var(--font-heading)' }}>❓ Frequently Asked Questions</h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: '32px', fontSize: '1rem' }}>Everything a first-time tuner asks — answered honestly.</p>
           <FAQSection />
         </div>
@@ -631,7 +638,7 @@ function StartHereStepper() {
             onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
           >
             <div style={{ fontSize: '0.7rem', color: s.color, fontWeight: 800, letterSpacing: '0.1em', marginBottom: '8px' }}>STEP {s.num}</div>
-            <h3 style={{ fontSize: '1rem', margin: '0 0 12px', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif" }}>{s.label}</h3>
+            <h3 style={{ fontSize: '1rem', margin: '0 0 12px', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)' }}>{s.label}</h3>
             {open === i ? <ChevronUp size={16} color={s.color} /> : <ChevronDown size={16} color={s.color} />}
             {open === i && (
               <div style={{ marginTop: '14px', animation: 'fadeIn 0.25s ease' }}>
@@ -696,7 +703,7 @@ function FAQSection() {
             onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
             onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
           >
-            <h4 style={{ margin: 0, fontSize: '1rem', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif", fontWeight: 600, paddingRight: '20px' }}>{faq.q}</h4>
+            <h4 style={{ margin: 0, fontSize: '1rem', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)', fontWeight: 600, paddingRight: '20px' }}>{faq.q}</h4>
             {open === i ? <ChevronUp size={18} color="var(--accent-red)" style={{ flexShrink: 0 }} /> : <ChevronDown size={18} color="var(--text-muted)" style={{ flexShrink: 0 }} />}
           </div>
           {open === i && (
@@ -755,7 +762,7 @@ function GlossarySection() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, ), 1fr))', gap: '10px' }}>
         {filtered.map((t, i) => (
           <div key={i} style={{ padding: '14px 16px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '8px' }}>
-            <div style={{ fontWeight: 700, color: 'var(--accent-red)', fontSize: '0.9rem', marginBottom: '6px', fontFamily: "'Outfit', sans-serif" }}>{t.term}</div>
+            <div style={{ fontWeight: 700, color: 'var(--accent-red)', fontSize: '0.9rem', marginBottom: '6px', fontFamily: 'var(--font-heading)' }}>{t.term}</div>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>{t.def}</div>
           </div>
         ))}
@@ -777,7 +784,7 @@ function GlossaryAccordion() {
         onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
       >
         <div>
-          <h2 style={{ margin: '0 0 4px', fontSize: '1.6rem', fontFamily: "'Outfit', sans-serif" }}>📖 Tuning Glossary</h2>
+          <h2 style={{ margin: '0 0 4px', fontSize: '1.6rem', fontFamily: 'var(--font-heading)' }}>📖 Tuning Glossary</h2>
           <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>26 essential terms — click to expand and search</p>
         </div>
         {open ? <ChevronUp size={24} color="var(--accent-red)" /> : <ChevronDown size={24} color="var(--accent-red)" />}

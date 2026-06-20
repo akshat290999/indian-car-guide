@@ -21,6 +21,12 @@ function Navbar() {
   const mobile = useMobile()
   const { theme, toggleTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   // Trigger Cmd+K by simulating keyboard event
   const openCommandPalette = () => {
@@ -36,7 +42,8 @@ function Navbar() {
       display: 'flex',
       flexDirection: 'column',
       padding: mobile ? '16px 20px' : '0 40px',
-      minHeight: 'var(--navbar-h)',
+      minHeight: scrolled ? '56px' : 'var(--navbar-h)',
+      boxShadow: scrolled ? '0 2px 12px rgba(0,0,0,0.08)' : 'none',
       position: 'sticky',
       top: 0,
       zIndex: 100,
@@ -52,7 +59,7 @@ function Navbar() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <h1 className="text-gradient-accent" style={{
             margin: 0,
-            fontSize: mobile ? '20px' : '24px',
+            fontSize: mobile ? '20px' : scrolled ? '20px' : '24px',
             fontFamily: 'var(--font-heading)',
             fontWeight: '800',
             letterSpacing: '1px',
@@ -86,7 +93,8 @@ function Navbar() {
                     color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
                     padding: '8px 16px',
                     borderRadius: '8px',
-                    backgroundColor: isActive ? 'var(--surface-hover)' : 'transparent',
+                    backgroundColor: 'transparent',
+                    borderBottom: isActive ? '2px solid var(--accent-red)' : '2px solid transparent',
                     transition: 'all 0.2s ease',
                     whiteSpace: 'nowrap',
                   })}
@@ -182,7 +190,8 @@ function Navbar() {
                 color: isActive ? 'var(--text-primary)' : 'var(--text-muted)',
                 padding: '12px 16px',
                 borderRadius: '8px',
-                backgroundColor: isActive ? 'var(--surface-hover)' : 'transparent',
+                backgroundColor: 'transparent',
+                borderBottom: isActive ? '2px solid var(--accent-red)' : '2px solid transparent',
               })}
             >
               {label}

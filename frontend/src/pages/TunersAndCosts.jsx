@@ -226,7 +226,7 @@ export default function TunersAndCosts() {
   return (
     <div style={{ padding: '40px 20px', maxWidth: '1000px', margin: '0 auto' }}>
 
-      <h1 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '10px', fontFamily: "'Outfit', sans-serif" }}>Tuners & Costs</h1>
+      <h1 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '10px', fontFamily: 'var(--font-heading)' }}>Tuners & Costs</h1>
       <p style={{ color: 'var(--text-muted)', marginBottom: '50px', fontSize: '1.1rem' }}>
         Who to trust, what to spend, and how to build your dream machine on an Indian budget.
       </p>
@@ -235,8 +235,9 @@ export default function TunersAndCosts() {
 
         {/* ── TUNERS SECTION ── */}
         <section>
-          <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px', fontFamily: "'Outfit', sans-serif" }}>Top Indian Tuners</h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '0.95rem' }}>Click any tuner to see their specialities, pricing, location, and community reputation.</p>
+          <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px', fontFamily: 'var(--font-heading)' }}>Top Indian Tuners</h2>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '12px', fontSize: '0.95rem' }}>Click any tuner to see their specialities, pricing, location, and community reputation.</p>
+          <p className="microcopy" style={{ marginBottom: '24px' }}>Your tuner makes or breaks the build. A cheap tune that knocks your engine is the most expensive tune you'll ever buy.</p>
 
           {/* FILTER BAR */}
           <div className="glass" style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '16px 20px', borderRadius: '12px', marginBottom: '20px', border: '1px solid var(--border)' }}>
@@ -308,7 +309,7 @@ export default function TunersAndCosts() {
                   onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                 >
                   <div>
-                    <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', margin: '0 0 4px', fontFamily: "'Outfit', sans-serif" }}>{tuner.name}</h3>
+                    <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', margin: '0 0 4px', fontFamily: 'var(--font-heading)' }}>{tuner.name}</h3>
                     <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>📍 {tuner.location}</span>
                   </div>
                   {openTuner === tuner.id ? <ChevronUp size={22} color="var(--accent-red)" /> : <ChevronDown size={22} color="var(--accent-blue)" />}
@@ -366,7 +367,7 @@ export default function TunersAndCosts() {
               onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
               onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
             >
-              <h2 style={{ margin: 0, fontSize: '1.4rem', fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}>🔍 How to Choose Your Tuner</h2>
+              <h2 style={{ margin: 0, fontSize: '1.4rem', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)' }}>🔍 How to Choose Your Tuner</h2>
               {openSection === 'choose' ? <ChevronUp size={22} color="#facc15" /> : <ChevronDown size={22} color="#facc15" />}
             </div>
             {openSection === 'choose' && (
@@ -402,7 +403,7 @@ export default function TunersAndCosts() {
 
         {/* ── BUDGET PRESETS ── */}
         <section>
-          <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px', fontFamily: "'Outfit', sans-serif" }}>Build Budget Presets</h2>
+          <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px', fontFamily: 'var(--font-heading)' }}>Build Budget Presets</h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '0.95rem' }}>What do you get at each budget level? Click to expand a realistic breakdown.</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {budgets.map(b => (
@@ -414,7 +415,7 @@ export default function TunersAndCosts() {
                   onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                 >
                   <div>
-                    <h3 style={{ margin: '0 0 4px', fontSize: '1.2rem', color: b.color, fontFamily: "'Outfit', sans-serif" }}>{b.label}</h3>
+                    <h3 style={{ margin: '0 0 4px', fontSize: '1.2rem', color: b.color, fontFamily: 'var(--font-heading)' }}>{b.label}</h3>
                     <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{b.subtitle}</span>
                   </div>
                   {openBudget === b.id ? <ChevronUp size={22} color={b.color} /> : <ChevronDown size={22} color={b.color} />}
@@ -447,7 +448,7 @@ export default function TunersAndCosts() {
 
         {/* ── HARDWARE COSTS ── */}
         <section>
-          <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px', fontFamily: "'Outfit', sans-serif" }}>Hardware Cost Reference</h2>
+          <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px', fontFamily: 'var(--font-heading)' }}>Hardware Cost Reference</h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '0.95rem' }}>Real Indian market pricing for every major performance upgrade. Categorized by stage. Click for details and "when to buy" guidance.</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {Object.entries(hardwareCosts.reduce((acc, cost) => {
@@ -462,7 +463,7 @@ export default function TunersAndCosts() {
                   onMouseEnter={e => e.currentTarget.style.background = 'var(--surface-hover)'}
                   onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                 >
-                  <h3 style={{ margin: 0, fontSize: '1.2rem', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif" }}>{category}</h3>
+                  <h3 style={{ margin: 0, fontSize: '1.2rem', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)' }}>{category}</h3>
                   {openHardwareCat === category ? <ChevronUp size={22} color="var(--accent-blue)" /> : <ChevronDown size={22} color="var(--accent-blue)" />}
                 </div>
                 {openHardwareCat === category && (

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
   /* Spacing Grid (8px base) */
@@ -22,47 +22,50 @@
   --text-5xl: 3rem;
 
   /* Fonts */
-  --font-heading: 'Outfit', sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --navbar-h: 70px;
   
-  /* Accents (BMW M Performance Colors) */
-  --accent-red: #E21C21; 
-  --accent-blue: #00A1E4; 
+  /* Accents — Muted Racing Palette */
+  --accent-red: #C41E24;
+  --accent-blue: #0090CC;
   --accent-dark-blue: #0B1A45;
+  --accent-charcoal: #2A2D35;
   --accent-gradient: linear-gradient(to right, var(--accent-dark-blue), var(--accent-blue), var(--accent-red));
 
   /* Light Theme */
   --bg: #FDFCF4;
   --surface: #FFFFFF; 
-  --surface-hover: #F8F7EE;
-  --border: #E5E4DD;
-  --text-primary: #1A202C;
-  --text-muted: #718096;
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --text-gradient: linear-gradient(to right, #1A202C, #4A5568);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 10px 20px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --surface-alt: #F6F5EE;
+  --surface-hover: #F0EFE6;
+  --border: #E0DFD6;
+  --text-primary: #1C1E23;
+  --text-muted: #6B7280;
+  --glass-bg: rgba(253, 252, 244, 0.88);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --text-gradient: linear-gradient(to right, #1C1E23, #4A5568);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 24px -4px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
 
   /* Status Colors Light */
-  --status-red: #E53E3E;
-  --status-orange: #DD6B20;
-  --status-yellow: #D69E2E;
-  --status-green: #38A169;
-  --status-blue: #3182CE;
-  --status-purple: #805AD5;
+  --status-red: #DC2626;
+  --status-orange: #D97706;
+  --status-yellow: #CA8A04;
+  --status-green: #16A34A;
+  --status-blue: #2563EB;
+  --status-purple: #7C3AED;
 }
 
 .dark {
-  /* Dark Theme Overrides (Less colorful, deep blacks and greys) */
+  /* Dark Theme Overrides */
   --bg: #0B0C10; 
   --surface: #121318; 
+  --surface-alt: #161820;
   --surface-hover: #1A1B22; 
   --border: #22242D;
   --text-primary: #E2E8F0;
   --text-muted: #8E9BAE; 
-  --glass-bg: rgba(18, 19, 24, 0.85);
+  --glass-bg: rgba(11, 12, 16, 0.88);
   --glass-border: rgba(255, 255, 255, 0.06);
   --text-gradient: linear-gradient(to right, #FFFFFF, #CBD5E0);
   --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.6);
@@ -86,7 +89,6 @@
 html {
   font-size: 14px; 
   scroll-behavior: smooth;
-  /* Allow the HTML element to assume the bg color immediately */
   background-color: var(--bg);
 }
 
@@ -106,6 +108,22 @@ html {
   }
 }
 
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 body {
   background-color: var(--bg);
   color: var(--text-primary);
@@ -118,8 +136,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
 a {
@@ -129,32 +147,39 @@ a {
 }
 
 a:hover {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 /* Glassmorphic utilities */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--glass-border);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, padding 0.25s ease, box-shadow 0.25s ease;
 }
 
 .premium-card {
   background-color: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: var(--shadow-sm);
 }
 
 .premium-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--text-muted);
   box-shadow: var(--shadow-lg);
 }
+
+/* Motorsport accent stripe on left */
+.card-stripe-red { border-left: 3px solid var(--accent-red); }
+.card-stripe-blue { border-left: 3px solid var(--accent-blue); }
+.card-stripe-green { border-left: 3px solid var(--status-green); }
+.card-stripe-yellow { border-left: 3px solid var(--status-yellow); }
+.card-stripe-purple { border-left: 3px solid var(--status-purple); }
 
 /* Typography utilities */
 .text-gradient {
@@ -170,6 +195,15 @@ a:hover {
   background-clip: text;
 }
 
+/* Microcopy — italic conversational notes */
+.microcopy {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
@@ -178,19 +212,36 @@ a:hover {
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 500;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   cursor: pointer;
   border: none;
   font-family: var(--font-body);
 }
 
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .btn-primary {
-  background: var(--text-primary);
-  color: var(--bg);
+  background: var(--accent-charcoal);
+  color: #F0F0F0;
+}
+.dark .btn-primary {
+  background: #E8E8E8;
+  color: #111;
 }
 .btn-primary:hover {
-  opacity: 0.9;
+  opacity: 0.92;
   transform: translateY(-2px);
+}
+.btn-primary:active {
+  transform: scale(0.97);
 }
 
 .btn-outline {
@@ -199,13 +250,14 @@ a:hover {
   color: var(--text-primary);
 }
 .btn-outline:hover {
-  border-color: var(--text-primary);
+  border-color: var(--text-muted);
   background: var(--surface-hover);
+  transform: translateY(-1px);
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg);
@@ -215,5 +267,8 @@ a:hover {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-charcoal);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }

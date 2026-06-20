@@ -14,7 +14,7 @@ function Accordion({ title, icon, color = 'var(--accent-red)', children, default
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           {icon && <span style={{ color }}>{icon}</span>}
-          <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif", fontWeight: 600 }}>{title}</h3>
+          <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)', fontWeight: 600 }}>{title}</h3>
         </div>
         {open ? <ChevronUp size={20} color={color} /> : <ChevronDown size={20} color={color} />}
       </div>
@@ -117,12 +117,13 @@ export default function IntlVsIndia() {
 
       {/* ── HERO ── */}
       <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-        <h1 className="text-gradient" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', marginBottom: '16px', fontFamily: "'Outfit', sans-serif" }}>
+        <h1 className="text-gradient" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', marginBottom: '16px', fontFamily: 'var(--font-heading)' }}>
           🇮🇳 India vs 🌍 International
         </h1>
-        <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '700px', margin: '0 auto 30px', lineHeight: 1.7 }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '700px', margin: '0 auto 16px', lineHeight: 1.7 }}>
           A Stage 1 tune in Germany adds 90 HP. The same tune in India adds 60 HP. A Stage 2 abroad uses E85 ethanol. In India, it uses water-methanol injection as a substitute. Here's the complete story of why the same car is a fundamentally different animal on Indian roads.
         </p>
+        <p className="microcopy" style={{ marginBottom: '30px' }}>That 400hp build you saw on YouTube probably lives on 98/100RON and cool weather. We tune for Gurgaon summer traffic and 91RON reality.</p>
 
         {/* Quick stat pills */}
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -133,7 +134,7 @@ export default function IntlVsIndia() {
             { label: 'Legal Mods in India', value: '~0', color: '#f87171' },
           ].map(s => (
             <div key={s.label} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)', borderRadius: '99px', padding: '8px 20px', display: 'flex', gap: '8px', alignItems: 'center' }}>
-              <span style={{ fontWeight: 800, color: s.color, fontFamily: "'Outfit', sans-serif" }}>{s.value}</span>
+              <span style={{ fontWeight: 800, color: s.color, fontFamily: 'var(--font-heading)' }}>{s.value}</span>
               <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{s.label}</span>
             </div>
           ))}
@@ -151,7 +152,7 @@ export default function IntlVsIndia() {
               fontWeight: activeTab === 'india' ? 700 : 400,
               borderBottom: activeTab === 'india' ? '2px solid var(--accent-red)' : '2px solid transparent',
               marginBottom: '-1px', fontSize: '1rem', transition: 'all 0.2s',
-              fontFamily: "'Outfit', sans-serif"
+              fontFamily: 'var(--font-heading)'
             }}
           >
             🇮🇳 Indian Builds
@@ -164,7 +165,7 @@ export default function IntlVsIndia() {
               fontWeight: activeTab === 'intl' ? 700 : 400,
               borderBottom: activeTab === 'intl' ? '2px solid var(--accent-blue)' : '2px solid transparent',
               marginBottom: '-1px', fontSize: '1rem', transition: 'all 0.2s',
-              fontFamily: "'Outfit', sans-serif"
+              fontFamily: 'var(--font-heading)'
             }}
           >
             🌍 International Builds

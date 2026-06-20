@@ -206,7 +206,7 @@ export default function BuildPlanner() {
         background: 'linear-gradient(180deg, rgba(239,68,68,0.07) 0%, transparent 100%)',
         borderBottom: '1px solid var(--border)'
       }}>
-        <h1 className="text-gradient" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', marginBottom: '12px', fontFamily: "'Outfit', sans-serif" }}>
+        <h1 className="text-gradient" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', marginBottom: '12px', fontFamily: 'var(--font-heading)' }}>
           🔧 Plan Your Build
         </h1>
         <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto', fontSize: '1.05rem', lineHeight: 1.6 }}>
@@ -217,7 +217,7 @@ export default function BuildPlanner() {
       {/* ── PLATFORM SELECT ── */}
       {!selectedPlatform ? (
         <div style={{ padding: '40px 20px', maxWidth: '1100px', margin: '0 auto', width: '100%' }}>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '8px', fontFamily: "'Outfit', sans-serif", textAlign: 'center' }}>Step 1 — Choose Your Platform</h2>
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '8px', fontFamily: 'var(--font-heading)', textAlign: 'center' }}>Step 1 — Choose Your Platform</h2>
           <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '32px', fontSize: '0.95rem' }}>Pick the car you want to build. All power estimates are based on verified Indian tuning data.</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))', gap: '20px' }}>
             {platforms.map(p => (
@@ -235,7 +235,7 @@ export default function BuildPlanner() {
                 </div>
                 <div style={{ padding: '14px' }}>
                   <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>{p.category}</div>
-                  <h3 style={{ margin: '0 0 6px', fontSize: '0.98rem', fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}>{p.name}</h3>
+                  <h3 style={{ margin: '0 0 6px', fontSize: '0.98rem', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)' }}>{p.name}</h3>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem' }}>
                     <span style={{ color: 'var(--text-muted)' }}>Stock: <strong style={{ color: 'var(--text-primary)' }}>{p.stock_power}</strong></span>
                   </div>
@@ -250,7 +250,7 @@ export default function BuildPlanner() {
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 340px', gap: '0', minHeight: 'calc(100vh - 160px)', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
 
           {/* LEFT — Mod Selector */}
-          <div style={{ padding: '28px 24px', borderRight: '1px solid var(--border)', overflowY: 'auto' }}>
+          <div style={{ padding: '28px 24px', borderRight: '1px solid var(--border)', overflowY: 'auto', backgroundImage: `radial-gradient(circle, var(--border) 1px, transparent 1px)`, backgroundSize: '24px 24px' }}>
 
             {/* Back + Platform Name */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px', flexWrap: 'wrap' }}>
@@ -261,7 +261,7 @@ export default function BuildPlanner() {
                 ← Change Car
               </button>
               <div>
-                <h2 style={{ margin: 0, fontSize: '1.3rem', fontFamily: "'Outfit', sans-serif", color: 'var(--text-primary)' }}>{platform?.name}</h2>
+                <h2 style={{ margin: 0, fontSize: '1.3rem', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)' }}>{platform?.name}</h2>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Stock: {platform?.stock_power}</span>
               </div>
               {selectedMods.size > 0 && (
@@ -304,17 +304,19 @@ export default function BuildPlanner() {
                       </div>
                     )}
                     <span style={{ fontSize: '1.2rem' }}>{CAT_EMOJI[cat]}</span>
-                    <span style={{ fontSize: '0.85rem', fontWeight: 600, color: isOpen ? CAT_COLORS[cat] : 'var(--text-primary)', fontFamily: "'Outfit', sans-serif" }}>{cat}</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 600, color: isOpen ? CAT_COLORS[cat] : 'var(--text-primary)', fontFamily: 'var(--font-heading)' }}>{cat}</span>
                   </div>
                 )
               })}
             </div>
 
+            <p className="microcopy" style={{ margin: '0 0 20px', padding: '0 4px' }}>Think of this like an honest friend who's built a few cars and tells you what's realistic.</p>
+
             {/* Selected Category Items */}
             {openCat && (
               <div style={{ animation: 'fadeIn 0.3s ease', background: 'rgba(0,0,0,0.1)', padding: '20px', borderRadius: '16px', border: '1px solid var(--border)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-                  <h3 style={{ fontSize: '1.2rem', color: CAT_COLORS[openCat], margin: 0, fontFamily: "'Outfit', sans-serif", display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <h3 style={{ fontSize: '1.2rem', color: CAT_COLORS[openCat], margin: 0, fontFamily: 'var(--font-heading)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                     {CAT_EMOJI[openCat]} {openCat} Upgrades
                   </h3>
                 </div>
@@ -342,7 +344,7 @@ export default function BuildPlanner() {
                             : <Circle size={22} color="var(--text-muted)" opacity={0.4} />}
                         </div>
                         
-                        <span style={{ fontWeight: isSel ? 700 : 600, color: isSel ? CAT_COLORS[openCat] : 'var(--text-primary)', fontSize: '0.95rem', marginBottom: '10px', paddingRight: '28px', lineHeight: 1.3, fontFamily: "'Outfit', sans-serif" }}>
+                        <span style={{ fontWeight: isSel ? 700 : 600, color: isSel ? CAT_COLORS[openCat] : 'var(--text-primary)', fontSize: '0.95rem', marginBottom: '10px', paddingRight: '28px', lineHeight: 1.3, fontFamily: 'var(--font-heading)' }}>
                           {mod.name}
                         </span>
                         
@@ -365,7 +367,7 @@ export default function BuildPlanner() {
 
           {/* RIGHT — Build Summary (sticky) */}
           <div style={{ padding: '28px 20px', position: 'sticky', top: '0', alignSelf: 'start', maxHeight: 'calc(100vh - var(--navbar-h))', overflowY: 'auto' }}>
-            <h3 style={{ fontSize: '1.1rem', fontFamily: "'Outfit', sans-serif", marginBottom: '20px', color: 'var(--text-primary)' }}>📋 Your Build Summary</h3>
+            <h3 style={{ fontSize: '1.1rem', fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'var(--text-primary)' }}>📋 Your Build Summary</h3>
 
             {/* Car image */}
             <div style={{ height: '160px', borderRadius: '10px', overflow: 'hidden', background: 'rgba(0,0,0,0.2)', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -388,7 +390,7 @@ export default function BuildPlanner() {
                       flex: 1, padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', cursor: 'pointer',
                       background: selectedFuel === fuel ? 'var(--accent-blue)' : 'transparent',
                       color: selectedFuel === fuel ? '#fff' : 'var(--text-primary)',
-                      fontWeight: selectedFuel === fuel ? 600 : 400, fontSize: '0.85rem', fontFamily: "'Outfit', sans-serif",
+                      fontWeight: selectedFuel === fuel ? 600 : 400, fontSize: '0.85rem', fontFamily: 'var(--font-heading)',
                       transition: 'all 0.2s'
                     }}
                   >
@@ -401,11 +403,11 @@ export default function BuildPlanner() {
             {/* Stage Badge & Risk Level */}
             {buildStats && (
               <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-                <div style={{ flex: 1, textAlign: 'center', background: stageColor(buildStats.stage) + '15', color: stageColor(buildStats.stage), border: `1px solid ${stageColor(buildStats.stage)}40`, borderRadius: '8px', padding: '10px', fontWeight: 700, fontSize: '1rem', fontFamily: "'Outfit', sans-serif" }}>
+                <div style={{ flex: 1, textAlign: 'center', background: stageColor(buildStats.stage) + '15', color: stageColor(buildStats.stage), border: `1px solid ${stageColor(buildStats.stage)}40`, borderRadius: '8px', padding: '10px', fontWeight: 700, fontSize: '1rem', fontFamily: 'var(--font-heading)' }}>
                   {buildStats.stage}
                 </div>
                 {buildStats.stage !== 'Stock' && (
-                  <div style={{ flex: 1, textAlign: 'center', background: buildStats.risk === 'Low' ? 'rgba(74,222,128,0.1)' : buildStats.risk === 'Medium' ? 'rgba(250,204,21,0.1)' : 'rgba(239,68,68,0.1)', color: buildStats.risk === 'Low' ? '#4ade80' : buildStats.risk === 'Medium' ? '#facc15' : '#ef4444', border: `1px solid ${buildStats.risk === 'Low' ? 'rgba(74,222,128,0.3)' : buildStats.risk === 'Medium' ? 'rgba(250,204,21,0.3)' : 'rgba(239,68,68,0.3)'}`, borderRadius: '8px', padding: '10px', fontWeight: 700, fontSize: '0.9rem', fontFamily: "'Outfit', sans-serif" }}>
+                  <div style={{ flex: 1, textAlign: 'center', background: buildStats.risk === 'Low' ? 'rgba(74,222,128,0.1)' : buildStats.risk === 'Medium' ? 'rgba(250,204,21,0.1)' : 'rgba(239,68,68,0.1)', color: buildStats.risk === 'Low' ? '#4ade80' : buildStats.risk === 'Medium' ? '#facc15' : '#ef4444', border: `1px solid ${buildStats.risk === 'Low' ? 'rgba(74,222,128,0.3)' : buildStats.risk === 'Medium' ? 'rgba(250,204,21,0.3)' : 'rgba(239,68,68,0.3)'}`, borderRadius: '8px', padding: '10px', fontWeight: 700, fontSize: '0.9rem', fontFamily: 'var(--font-heading)' }}>
                     Risk: {buildStats.risk}
                   </div>
                 )}
@@ -447,7 +449,7 @@ export default function BuildPlanner() {
               <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '10px', padding: '16px', marginBottom: '16px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                   <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Build Cost</span>
-                  <span style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--accent-red)', fontFamily: "'Outfit', sans-serif" }}>{formatINR(buildStats.totalCost)}</span>
+                  <span style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--accent-red)', fontFamily: 'var(--font-heading)' }}>{formatINR(buildStats.totalCost)}</span>
                 </div>
                 {/* Mod list */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '240px', overflowY: 'auto', paddingRight: '4px' }}>

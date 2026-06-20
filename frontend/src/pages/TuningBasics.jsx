@@ -359,18 +359,19 @@ export default function TuningBasics() {
 
       {/* HERO */}
       <div style={{ padding: '56px 40px 44px', textAlign: 'center', background: 'linear-gradient(180deg, rgba(239,68,68,0.09) 0%, rgba(59,130,246,0.06) 60%, transparent 100%)', borderBottom: '1px solid var(--border)' }}>
-        <h1 className="text-gradient" style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '16px', letterSpacing: '-0.02em' }}>
+        <h1 className="text-gradient" style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 800, marginBottom: '16px', letterSpacing: '-0.02em' }}>
           The Tuning Encyclopedia
         </h1>
         <p style={{ color: 'var(--text-muted)', fontSize: 'clamp(0.95rem, 2vw, 1.15rem)', maxWidth: '580px', margin: '0 auto', lineHeight: 1.65 }}>
           From OBD ports to forged internals — 13 topics, India-specific tips, and a quiz to test your knowledge.
         </p>
+        <p className="microcopy" style={{ maxWidth: '480px', margin: '16px auto 0' }}>Assume you’re starting with "I like cars but I’m not an engineer". That’s who this is written for.</p>
       </div>
 
       {/* PROGRESS TRACKER */}
       <div style={{ padding: '18px 32px', background: 'var(--surface)', borderBottom: '1px solid var(--border)', position: 'sticky', top: 0, zIndex: 50, backdropFilter: 'blur(12px)' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
-          <span style={{ color: 'var(--text-primary)', fontSize: '0.88rem', fontWeight: 600, whiteSpace: 'nowrap', fontFamily: "'Outfit', sans-serif" }}>
+          <span style={{ color: 'var(--text-primary)', fontSize: '0.88rem', fontWeight: 600, whiteSpace: 'nowrap', fontFamily: 'var(--font-heading)' }}>
             {explored.size} / {TOPICS.length} topics explored
           </span>
           <div style={{ flex: 1, minWidth: '100px', height: '7px', background: 'rgba(255,255,255,0.06)', borderRadius: '99px', overflow: 'hidden' }}>
@@ -394,7 +395,7 @@ export default function TuningBasics() {
                   padding: '8px 16px', borderRadius: '8px', border: 'none', cursor: 'pointer',
                   background: filterDiff === tab ? 'var(--accent-red)' : 'rgba(255,255,255,0.05)',
                   color: filterDiff === tab ? '#fff' : 'var(--text-muted)',
-                  fontWeight: filterDiff === tab ? 600 : 400, fontFamily: "'Outfit', sans-serif"
+                  fontWeight: filterDiff === tab ? 600 : 400, fontFamily: 'var(--font-heading)'
                 }}
               >
                 {tab}
@@ -415,7 +416,7 @@ export default function TuningBasics() {
                   onClick={() => handleTopicToggle(topic.id)}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '13px', flex: 1, minWidth: 0 }}>
                     <div style={{ width: '42px', height: '42px', borderRadius: '10px', background: `${topic.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.35rem', flexShrink: 0, border: `1px solid ${topic.color}28` }}>{topic.emoji}</div>
-                    <h3 style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.15rem)', color: 'var(--text-primary)', margin: 0, fontFamily: "'Outfit', sans-serif", fontWeight: 600 }}>{topic.title}</h3>
+                    <h3 style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.15rem)', color: 'var(--text-primary)', margin: 0, fontFamily: 'var(--font-heading)', fontWeight: 600 }}>{topic.title}</h3>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '7px', flexShrink: 0 }}>
                     <span style={{ padding: '3px 8px', fontSize: '0.66rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', borderRadius: '99px', background: ds.bg, color: ds.text, border: `1px solid ${ds.border}`, whiteSpace: 'nowrap' }}>{topic.difficulty}</span>
@@ -446,7 +447,7 @@ export default function TuningBasics() {
                           onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.055)'}
                           onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
                         >
-                          <h4 style={{ color: 'var(--text-primary)', fontSize: '0.92rem', marginBottom: '4px', fontFamily: "'Outfit', sans-serif", fontWeight: 600 }}>{sub.name}</h4>
+                          <h4 style={{ color: 'var(--text-primary)', fontSize: '0.92rem', marginBottom: '4px', fontFamily: 'var(--font-heading)', fontWeight: 600 }}>{sub.name}</h4>
                           <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.55, margin: 0 }}>{sub.desc}</p>
                         </div>
                       ))}
@@ -487,7 +488,7 @@ export default function TuningBasics() {
           <div style={{ marginTop: '30px' }} id="glossary">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', flexWrap: 'wrap', gap: '16px' }}>
               <div>
-                <h2 style={{ fontSize: '1.8rem', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif", margin: '0 0 4px' }}>Tuning Glossary</h2>
+                <h2 style={{ fontSize: '1.8rem', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)', margin: '0 0 4px' }}>Tuning Glossary</h2>
                 <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Confused by tuner jargon? Learn the terms.</p>
               </div>
             </div>
@@ -500,7 +501,7 @@ export default function TuningBasics() {
                     padding: '6px 14px', borderRadius: '99px', border: '1px solid var(--border)', cursor: 'pointer',
                     background: glossaryTab === cat ? 'var(--accent-blue)' : 'var(--surface)',
                     color: glossaryTab === cat ? '#fff' : 'var(--text-primary)',
-                    fontWeight: glossaryTab === cat ? 600 : 400, fontFamily: "'Outfit', sans-serif", fontSize: '0.85rem'
+                    fontWeight: glossaryTab === cat ? 600 : 400, fontFamily: 'var(--font-heading)', fontSize: '0.85rem'
                   }}
                 >
                   {cat}
@@ -518,7 +519,7 @@ export default function TuningBasics() {
                       onClick={() => setOpenGlossaryItem(isOpen ? null : item.term)}
                       style={{ padding: '16px 20px', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: isOpen ? 'rgba(255,255,255,0.02)' : 'transparent' }}
                     >
-                      <h4 style={{ color: 'var(--accent-blue)', fontSize: '1.05rem', margin: 0, fontFamily: "'Outfit', sans-serif" }}>{item.term}</h4>
+                      <h4 style={{ color: 'var(--accent-blue)', fontSize: '1.05rem', margin: 0, fontFamily: 'var(--font-heading)' }}>{item.term}</h4>
                       {isOpen ? <ChevronUp size={18} color="var(--accent-blue)" /> : <ChevronDown size={18} color="var(--text-muted)" />}
                     </div>
                     {isOpen && (
@@ -558,7 +559,7 @@ export default function TuningBasics() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
               <div style={{ width: '34px', height: '34px', borderRadius: '8px', background: 'rgba(59,130,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem' }}>🧠</div>
               <div>
-                <h3 style={{ margin: 0, fontFamily: "'Outfit', sans-serif", fontSize: '1.1rem', color: 'var(--text-primary)', fontWeight: 700 }}>Quick Quiz!</h3>
+                <h3 style={{ margin: 0, fontFamily: 'var(--font-heading)', fontSize: '1.1rem', color: 'var(--text-primary)', fontWeight: 700 }}>Quick Quiz!</h3>
                 <p style={{ margin: 0, fontSize: '0.77rem', color: 'var(--text-muted)' }}>Test your knowledge</p>
               </div>
             </div>

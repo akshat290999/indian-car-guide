@@ -39,10 +39,11 @@ export default function Platforms() {
 
   return (
     <div style={{ padding: '40px 20px', maxWidth: '1200px', margin: '0 auto' }}>
-      <h1 className="text-gradient" style={{ fontSize: '3rem', marginBottom: '10px', fontFamily: "'Outfit', sans-serif" }}>Tuning Platforms</h1>
-      <p style={{ color: 'var(--text-muted)', marginBottom: '32px', fontSize: '1.1rem' }}>
+      <h1 className="text-gradient" style={{ fontSize: '3rem', marginBottom: '10px', fontFamily: 'var(--font-heading)' }}>Tuning Platforms</h1>
+      <p style={{ color: 'var(--text-muted)', marginBottom: '12px', fontSize: '1.1rem' }}>
         Select a platform to explore its full tuning potential — stages, costs, tuner options, and real builds.
       </p>
+      <p className="microcopy" style={{ marginBottom: '32px' }}>Every car listed here has been tuned by at least one reputable shop in India. No guesswork.</p>
 
       {/* Search Bar */}
       <div style={{ position: 'relative', marginBottom: '20px', maxWidth: '480px' }}>
@@ -92,7 +93,7 @@ export default function Platforms() {
             <Link
               key={platform.id}
               to={`/platform/${platform.id}`}
-              className="premium-card"
+              className={`premium-card ${platform.category === 'The VAG Turbo Legends' ? 'card-stripe-blue' : platform.category === 'Premium Performance' ? 'card-stripe-red' : platform.category === 'The Classics' ? 'card-stripe-yellow' : platform.category === 'Modern Hot Hatches' ? 'card-stripe-green' : platform.category === 'The NA Legends' ? 'card-stripe-purple' : ''}`}
               style={{ display: 'flex', flexDirection: 'column', color: 'inherit', transition: 'transform 0.2s, box-shadow 0.2s', position: 'relative', overflow: 'hidden' }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = 'var(--shadow-lg)' }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'var(--shadow-sm)' }}
@@ -121,7 +122,7 @@ export default function Platforms() {
 
               <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column', borderTop: '1px solid var(--border)' }}>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{platform.category}</div>
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '8px', color: 'var(--text-primary)', fontFamily: "'Outfit', sans-serif" }}>{platform.name}</h3>
+                <h3 style={{ fontSize: '1.2rem', marginBottom: '8px', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)' }}>{platform.name}</h3>
                 <p style={{ color: 'var(--text-muted)', marginBottom: '16px', flex: 1, fontSize: '0.88rem', lineHeight: 1.55 }}>{platform.description}</p>
 
                 {/* HP Arrow */}
