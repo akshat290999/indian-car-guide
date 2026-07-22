@@ -55,19 +55,32 @@ function Navbar() {
         width: '100%',
         height: mobile ? 'auto' : 'var(--navbar-h)',
       }}>
-        {/* Brand */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <h1 className="text-gradient-accent" style={{
+        {/* Brand Logo */}
+        <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+          <svg width={mobile ? 28 : scrolled ? 26 : 30} height={mobile ? 28 : scrolled ? 26 : 30} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+            <rect width="32" height="32" rx="8" fill="#0A0A0A"/>
+            <path d="M5 20 A11 11 0 0 1 27 20" stroke="#333" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            <path d="M5 20 A11 11 0 0 1 22 10.5" stroke="#E63946" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            <line x1="16" y1="20" x2="22" y2="11" stroke="#E63946" strokeWidth="2" strokeLinecap="round"/>
+            <circle cx="16" cy="20" r="2.5" fill="#E63946"/>
+            <line x1="5.5" y1="19.5" x2="7.5" y2="19" stroke="#555" strokeWidth="1" strokeLinecap="round"/>
+            <line x1="27" y1="19.5" x2="25" y2="19" stroke="#555" strokeWidth="1" strokeLinecap="round"/>
+            <line x1="16" y1="9.2" x2="16" y2="11.2" stroke="#555" strokeWidth="1" strokeLinecap="round"/>
+          </svg>
+          <span className="text-gradient-accent" style={{
             margin: 0,
-            fontSize: mobile ? '20px' : scrolled ? '20px' : '24px',
+            fontSize: mobile ? '18px' : scrolled ? '18px' : '22px',
             fontFamily: 'var(--font-heading)',
-            fontWeight: '800',
-            letterSpacing: '1px',
+            fontWeight: '900',
+            letterSpacing: '2px',
             whiteSpace: 'nowrap',
+            textTransform: 'uppercase',
+            lineHeight: 1,
           }}>
-            INDIAN CAR GUIDE
-          </h1>
-        </div>
+            Indian Car Guide
+          </span>
+        </NavLink>
+
 
         {/* Desktop Links & Actions */}
         {!mobile && (

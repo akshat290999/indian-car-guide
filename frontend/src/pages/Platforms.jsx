@@ -12,6 +12,15 @@ const DIFFICULTY = {
   'Medium-High': { label: 'Moderate', color: 'var(--status-yellow)' },
 }
 
+const POTENTIAL_PCT = {
+  'Medium':      35,
+  'High':        55,
+  'Medium-High': 50,
+  'Very High':   75,
+  'Extreme':     88,
+  'God-Tier':    100,
+}
+
 const TAGS = {
   'vw-polo-tsi': { tag: '🏆 Most Popular', tagColor: 'var(--status-yellow)' },
   'skoda-octavia-vrs': { tag: '🔥 Best Value', tagColor: 'var(--status-red)' },
@@ -93,10 +102,8 @@ export default function Platforms() {
             <Link
               key={platform.id}
               to={`/platform/${platform.id}`}
-              className={`premium-card ${platform.category === 'The VAG Turbo Legends' ? 'card-stripe-blue' : platform.category === 'Premium Performance' ? 'card-stripe-red' : platform.category === 'The Classics' ? 'card-stripe-yellow' : platform.category === 'Modern Hot Hatches' ? 'card-stripe-green' : platform.category === 'The NA Legends' ? 'card-stripe-purple' : ''}`}
-              style={{ display: 'flex', flexDirection: 'column', color: 'inherit', transition: 'transform 0.2s, box-shadow 0.2s', position: 'relative', overflow: 'hidden' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = 'var(--shadow-lg)' }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'var(--shadow-sm)' }}
+              className={`premium-card glow-on-hover ${platform.category === 'The VAG Turbo Legends' ? 'card-stripe-blue' : platform.category === 'Premium Performance' ? 'card-stripe-red' : platform.category === 'The Classics' ? 'card-stripe-yellow' : platform.category === 'Modern Hot Hatches' ? 'card-stripe-green' : platform.category === 'The NA Legends' ? 'card-stripe-purple' : ''}`}
+              style={{ display: 'flex', flexDirection: 'column', color: 'inherit', position: 'relative', overflow: 'hidden' }}
             >
               {/* Tag badge */}
               {tag && (
@@ -116,6 +123,7 @@ export default function Platforms() {
                   src={platform.img}
                   alt={platform.name}
                   style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }}
+                  loading="lazy"
                   onError={e => { e.target.onerror = null; e.target.src = 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80' }}
                 />
               </div>
@@ -125,14 +133,15 @@ export default function Platforms() {
                 <h3 style={{ fontSize: '1.2rem', marginBottom: '8px', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)' }}>{platform.name}</h3>
                 <p style={{ color: 'var(--text-muted)', marginBottom: '16px', flex: 1, fontSize: '0.88rem', lineHeight: 1.55 }}>{platform.description}</p>
 
-                {/* HP Arrow */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', background: 'var(--surface-hover)', borderRadius: '8px', padding: '10px 12px' }}>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 500 }}>{platform.stock_power.split('/')[0].trim()}</span>
-                  <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <div style={{ flex: 1, height: '2px', background: 'linear-gradient(90deg, var(--accent-blue), var(--accent-red))' }} />
-                    <span style={{ fontSize: '0.7rem', color: 'var(--accent-red)' }}>▶</span>
+                {/* HP Potential bar */}
+                <div style={{ marginBottom: '14px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>Stock: {platform.stock_power?.split('/')[0]?.trim()}</span>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--accent-red)', fontWeight: 700 }}>{platform.potential} Potential</span>
                   </div>
-                  <span style={{ fontSize: '0.9rem', color: 'var(--accent-red)', fontWeight: 700 }}>{platform.potential} Potential</span>
+                  <div className="hp-bar-track">
+                    <div className="hp-bar-fill" style={{ width: `${POTENTIAL_PCT[platform.potential] || 50}%` }} />
+                  </div>
                 </div>
 
                 <div style={{ fontSize: '0.8rem', color: 'var(--accent-blue)', fontWeight: 500 }}>View Full Tuning Guide →</div>

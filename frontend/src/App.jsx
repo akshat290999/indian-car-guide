@@ -12,6 +12,7 @@ import PlatformDetail from './pages/PlatformDetail'
 import IntlVsIndia from './pages/IntlVsIndia'
 import BuildPlanner from './pages/BuildPlanner'
 import LegalGuide from './pages/LegalGuide'
+import Footer from './components/Footer'
 
 function AppContent() {
   const location = useLocation()
@@ -41,6 +42,7 @@ function AppContent() {
           <Route path="/legal" element={<LegalGuide />} />
         </Routes>
       </div>
+      <Footer />
     </>
   )
 }

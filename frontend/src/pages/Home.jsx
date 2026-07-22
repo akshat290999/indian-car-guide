@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
-import { Cpu, BookOpen, DollarSign, Globe, Zap, Heart, Users, ChevronRight, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react'
+import { Cpu, BookOpen, DollarSign, Globe, Zap, Heart, Users, ChevronRight, ArrowRight, ChevronDown, ChevronUp, Map, Wrench, Search, Plus } from 'lucide-react'
 import { PLATFORMS_DATA } from '../tuningData'
 
 /* ───────── Animated Counter Hook ───────── */
@@ -73,6 +73,22 @@ function StatCounter({ value, suffix, label }) {
 export default function Home() {
   const [activeTab, setActiveTab] = useState('philosophy')
   const [tabFade, setTabFade] = useState(true)
+  const heroBgRef = useRef(null)
+  const revealRefs = useRef([])
+
+  useEffect(() => {
+    const el = heroBgRef.current
+    if (el) requestAnimationFrame(() => el.classList.add('loaded'))
+  }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
+      { threshold: 0.15 }
+    )
+    revealRefs.current.forEach(el => { if (el) observer.observe(el) })
+    return () => observer.disconnect()
+  }, [])
 
   const handleTabChange = (key) => {
     setTabFade(false)
@@ -113,18 +129,21 @@ export default function Home() {
   const timeline = [
     {
       color: '#ef4444',
+      icon: '🚗',
       era: 'The Early Days',
       year: '2000s',
       text: 'Tuning was a niche hobby — free-flow exhausts, K&N filters, piggyback ECUs on NA engines like the Honda City VTEC. Pioneers like Raj Hingorani (Rajs) and RaceDynamics laid the foundation.'
     },
     {
       color: '#3b82f6',
+      icon: '⚙️',
       era: 'The Diesel Boom & VAG Era',
       year: '2010s',
       text: "The real revolution. Turbo-diesels from VW, Skoda & Hyundai responded insanely well to OBD remaps. Pete's Automotive and Code6 Tuning pioneered ECU flashing — a diesel hatchback could suddenly out-run a petrol sedan."
     },
     {
       color: '#10b981',
+      icon: '🏁',
       era: 'The Modern Turbo-Petrol Era',
       year: '2020s',
       text: 'International heavyweights like APR, Bootmod3 & TVS Engineering arrived. Indian tuners like Wolf Moto and Harmonixx custom-calibrate maps for our 91-95 octane fuel. 600+ HP street cars now cruise Indian roads daily.'
@@ -134,65 +153,34 @@ export default function Home() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - var(--navbar-h))' }}>
 
-      {/* ─── HERO SECTION ─── */}
-      <section style={{
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '80px 20px 60px',
-        textAlign: 'center',
-        background: `radial-gradient(circle at 30% 50%, rgba(196,30,36,0.06) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(0,144,204,0.04) 0%, transparent 50%), #0B0C10`,
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        {/* ambient glow – red */}
-        <div style={{ position: 'absolute', top: '-20%', left: '-10%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(239,68,68,0.12) 0%, transparent 70%)', filter: 'blur(80px)', pointerEvents: 'none' }} />
-        {/* ambient glow – blue */}
-        <div style={{ position: 'absolute', bottom: '-20%', right: '-10%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 70%)', filter: 'blur(80px)', pointerEvents: 'none' }} />
+      {/* ─── CINEMATIC HERO ─── */}
+      <section className="hero-section">
+        <div className="hero-bg" ref={heroBgRef} />
+        <div className="hero-overlay" />
+        <div className="hero-content" style={{ paddingTop: 'clamp(80px, 15vh, 140px)', paddingBottom: 'clamp(60px, 10vh, 100px)' }}>
+          <span className="hero-eyebrow">India's #1 Car Tuning Resource</span>
+          <h1 className="hero-title">
+            <span className="line-1">The Ultimate</span>
+            <span className="line-2">Tuning Guide</span>
+          </h1>
+          <p className="hero-subtitle">
+            No fluff, no flexing — just the stuff an Indian enthusiast actually needs before spending a rupee.
+          </p>
+          <div className="hero-ctas">
+            <Link to="/build" className="hero-cta-primary">
+              Start Your Build <ArrowRight size={18} />
+            </Link>
+            <Link to="/platforms" className="hero-cta-ghost">
+              Explore Platforms
+            </Link>
+          </div>
 
-        <h1
-          style={{ fontSize: 'clamp(3rem, 8vw, 6rem)', lineHeight: 1.05, marginBottom: '20px', zIndex: 1 }}
-          className="text-gradient"
-        >
-          THE ULTIMATE <br />
-          <span className="text-gradient-accent">TUNING GUIDE</span>
-        </h1>
-
-        <p style={{
-          fontSize: 'clamp(1.1rem, 2.5vw, 1.35rem)',
-          color: 'var(--text-muted)',
-          maxWidth: '680px',
-          margin: '0 auto 40px',
-          lineHeight: 1.7,
-          zIndex: 1
-        }}>
-          No fluff, no flexing — just the stuff an Indian enthusiast actually needs before spending a rupee.
-        </p>
-
-        {/* Animated Stats */}
-        <div style={{
-          display: 'flex',
-          gap: 'clamp(24px, 5vw, 56px)',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          marginBottom: '48px',
-          zIndex: 1
-        }}>
-          <StatCounter value={11} suffix="+" label="Platforms" />
-          <StatCounter value={8}  suffix="+" label="Tuners" />
-          <StatCounter value={100} suffix="+" label="Builds" />
-        </div>
-
-        {/* CTA Buttons */}
-        <div style={{ display: 'flex', gap: '20px', zIndex: 1, flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Link to="/platforms" className="btn btn-primary" style={{ fontSize: '1.15rem', padding: '16px 36px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            Explore Platforms <ArrowRight size={18} />
-          </Link>
-          <Link to="/basics" className="btn btn-outline" style={{ fontSize: '1.15rem', padding: '16px 36px' }}>
-            Learn Tuning Basics
-          </Link>
+          {/* Animated Stats */}
+          <div className="hero-stats">
+            <HeroStat value={11} suffix="+" label="Platforms" />
+            <HeroStat value={8}  suffix="+" label="Tuners" />
+            <HeroStat value={100} suffix="+" label="Builds" />
+          </div>
         </div>
       </section>
 
@@ -386,24 +374,19 @@ export default function Home() {
 
       {/* ─── EVOLUTION TIMELINE ─── */}
       <section style={{ padding: '80px 20px', background: 'var(--bg)', borderTop: '1px solid var(--border)' }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h2 style={{
-            fontSize: 'clamp(1.8rem, 4vw, 2.4rem)',
-            textAlign: 'center',
-            marginBottom: '12px',
-            fontFamily: 'var(--font-heading)'
-          }} className="text-gradient">
+        <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+          <h2 style={{ textAlign: 'center', marginBottom: '12px' }} className="text-gradient">
             The Evolution of Indian Tuning
           </h2>
           <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '56px', fontSize: '1.05rem' }}>
             Two decades of pushing boundaries.
           </p>
 
-          <div style={{ position: 'relative', paddingLeft: '40px' }}>
+          <div style={{ position: 'relative', paddingLeft: '48px' }}>
             {/* vertical line */}
             <div style={{
               position: 'absolute',
-              left: '11px',
+              left: '15px',
               top: '8px',
               bottom: '8px',
               width: '2px',
@@ -412,30 +395,26 @@ export default function Home() {
             }} />
 
             {timeline.map((item, i) => (
-              <div key={i} style={{
+              <div key={i} className={`reveal reveal-delay-${i + 1}`} ref={el => { if (el) revealRefs.current.push(el) }} style={{
                 position: 'relative',
-                marginBottom: i < timeline.length - 1 ? '48px' : 0
+                marginBottom: i < timeline.length - 1 ? '52px' : 0
               }}>
-                {/* dot */}
+                {/* dot with icon */}
                 <div style={{
                   position: 'absolute',
-                  left: '-40px',
-                  top: '4px',
-                  width: '24px',
-                  height: '24px',
+                  left: '-48px',
+                  top: '2px',
+                  width: '32px',
+                  height: '32px',
                   borderRadius: '50%',
                   background: item.color,
-                  boxShadow: `0 0 16px ${item.color}44`,
+                  boxShadow: `0 0 20px ${item.color}55`,
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  fontSize: '14px'
                 }}>
-                  <div style={{
-                    width: '10px',
-                    height: '10px',
-                    borderRadius: '50%',
-                    background: '#09090b',
-                  }} />
+                  {item.icon}
                 </div>
 
                 <span style={{
@@ -572,12 +551,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── START HERE STEPPER ─── */}
-      <section style={{ padding: '60px 20px', background: 'rgba(255,255,255,0.02)', borderTop: '1px solid var(--border)' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2rem', textAlign: 'center', marginBottom: '8px', fontFamily: 'var(--font-heading)' }}>🗺️ New Here? Start Your Journey</h2>
-          <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '40px', fontSize: '1rem' }}>Follow this path from zero to hero. Click each step for a quick overview.</p>
-          <StartHereStepper />
+      {/* ─── JOURNEY STEPS ─── */}
+      <section style={{ padding: '80px 20px', background: 'var(--surface)', borderTop: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+          <h2 style={{ textAlign: 'center', marginBottom: '12px' }} className="text-gradient">New Here? Start Your Journey</h2>
+          <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginBottom: '56px', fontSize: '1.05rem', maxWidth: '500px', margin: '0 auto 56px' }}>Follow this path from zero to hero.</p>
+          <JourneySteps />
         </div>
       </section>
 
@@ -589,11 +568,17 @@ export default function Home() {
       </section>
 
       {/* ─── FAQ ─── */}
-      <section style={{ padding: '60px 20px', background: 'rgba(255,255,255,0.02)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+      <section style={{ padding: '80px 20px', background: 'var(--bg)', borderTop: '1px solid var(--border)' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: '8px', fontFamily: 'var(--font-heading)' }}>❓ Frequently Asked Questions</h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '32px', fontSize: '1rem' }}>Everything a first-time tuner asks — answered honestly.</p>
+          <h2 style={{ marginBottom: '8px' }} className="text-gradient">Frequently Asked</h2>
+          <p style={{ color: 'var(--text-muted)', marginBottom: '40px', fontSize: '1.05rem' }}>Everything a first-time tuner asks — answered honestly.</p>
           <FAQSection />
+          <div style={{ marginTop: '48px', padding: '32px', background: 'rgba(230,57,70,0.05)', border: '1px solid rgba(230,57,70,0.2)', borderRadius: '12px', textAlign: 'center' }}>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '1rem' }}>Still have questions?</p>
+            <Link to="/basics" className="hero-cta-primary" style={{ display: 'inline-flex', fontSize: '0.95rem', padding: '12px 28px' }}>
+              Read the Full Tuning Guide
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -601,55 +586,48 @@ export default function Home() {
   )
 }
 
-/* ─── START HERE STEPPER ─── */
-function StartHereStepper() {
-  const [open, setOpen] = useState(null)
+/* ─── HERO STAT (for hero section) ─── */
+function HeroStat({ value, suffix, label }) {
+  const { count, ref } = useCounter(value)
+  return (
+    <div ref={ref}>
+      <span className="hero-stat-value">{count}{suffix}</span>
+      <span className="hero-stat-label">{label}</span>
+    </div>
+  )
+}
+
+/* ─── JOURNEY STEPS ─── */
+function JourneySteps() {
   const steps = [
     {
-      num: '01', label: 'Understand the Basics', color: '#4ade80', link: '/basics',
-      desc: 'Before spending a rupee, know what an ECU is, how turbochargers work, and what Stage 1/2/3 actually means. Start with the Learn Tuning page.',
-      actions: ['Read: ECU Tuning (Software)', 'Read: Turbochargers & Boost', 'Read: Cooling & Airflow']
+      num: 1, icon: <BookOpen size={22} />, label: 'Learn the Basics', link: '/basics',
+      desc: 'Before spending a rupee — understand ECUs, turbochargers, stages, and what each modification actually does to your car.'
     },
     {
-      num: '02', label: 'Pick Your Platform', color: '#60a5fa', link: '/platforms',
-      desc: 'Not every car is equally tunable. Browse our platforms guide to see the tuning potential, weak points, and realistic power numbers for your specific car.',
-      actions: ['Check your car\'s tuning potential', 'Read the Known Limits section', 'Look at real Indian builds on your platform']
+      num: 2, icon: <Cpu size={22} />, label: 'Pick Your Platform', link: '/platforms',
+      desc: 'Not every car is equally tunable. Find your car, check its real-world power ceiling, weak points, and known India-specific issues.'
     },
     {
-      num: '03', label: 'Set Your Budget', color: '#facc15', link: '/tuners',
-      desc: '₹50,000 gets you a Stage 1 remap. ₹2 Lakh gets you Stage 2. ₹5 Lakh+ unlocks serious territory. Our budget presets show exactly what you get at each level.',
-      actions: ['Read the ₹50K, ₹2L, and ₹5L+ budget breakdowns', 'Compare hardware costs', 'Understand India\'s import duty on parts']
+      num: 3, icon: <DollarSign size={22} />, label: 'Set Your Budget', link: '/tuners',
+      desc: '₹50K → Stage 1. ₹2L → Stage 2. ₹5L+ → serious territory. Our tuner page breaks down exactly what each level buys you.'
     },
     {
-      num: '04', label: 'Choose a Tuner', color: '#fb923c', link: '/tuners',
-      desc: 'Your tuner makes or breaks the build. Use our green/red flag guide to evaluate any shop. Always insist on a dyno baseline pull and post-tune data logs.',
-      actions: ['Review top Indian tuners', 'Check the How To Choose a Tuner guide', 'Verify dyno pull + data logs policy']
+      num: 4, icon: <Wrench size={22} />, label: 'Build It', link: '/build',
+      desc: 'Use the Build Planner to configure your ideal setup — mods, costs, and realistic power numbers all in one place.'
     },
   ]
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '16px' }}>
+    <div className="journey-steps">
       {steps.map((s, i) => (
-        <div key={i}>
-          <div
-            className="premium-card"
-            style={{ padding: '20px', borderTop: `3px solid ${s.color}`, cursor: 'pointer', transition: 'box-shadow 0.2s' }}
-            onClick={() => setOpen(open === i ? null : i)}
-            onMouseEnter={e => e.currentTarget.style.boxShadow = `0 8px 24px ${s.color}20`}
-            onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
-          >
-            <div style={{ fontSize: '0.7rem', color: s.color, fontWeight: 800, letterSpacing: '0.1em', marginBottom: '8px' }}>STEP {s.num}</div>
-            <h3 style={{ fontSize: '1rem', margin: '0 0 12px', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)' }}>{s.label}</h3>
-            {open === i ? <ChevronUp size={16} color={s.color} /> : <ChevronDown size={16} color={s.color} />}
-            {open === i && (
-              <div style={{ marginTop: '14px', animation: 'fadeIn 0.25s ease' }}>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.6, marginBottom: '14px' }}>{s.desc}</p>
-                <ul style={{ paddingLeft: '16px', margin: '0 0 14px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  {s.actions.map((a, j) => <li key={j} style={{ color: 'var(--text-muted)', fontSize: '0.82rem', lineHeight: 1.5 }}>{a}</li>)}
-                </ul>
-                <Link to={s.link} style={{ fontSize: '0.82rem', color: s.color, fontWeight: 600 }}>Go to this section →</Link>
-              </div>
-            )}
-          </div>
+        <div key={i} className="journey-step">
+          <div className="journey-step-num">{s.num}</div>
+          <div style={{ color: 'var(--accent-red)', marginBottom: '12px' }}>{s.icon}</div>
+          <h3 style={{ fontSize: '1.15rem', marginBottom: '10px', color: 'var(--text-primary)' }}>{s.label}</h3>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.65, marginBottom: '16px' }}>{s.desc}</p>
+          <Link to={s.link} style={{ fontSize: '0.85rem', color: 'var(--accent-red)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            Learn More <ArrowRight size={14} />
+          </Link>
         </div>
       ))}
     </div>
@@ -658,7 +636,7 @@ function StartHereStepper() {
 
 /* ─── FAQ ─── */
 function FAQSection() {
-  const [open, setOpen] = useState(null)
+  const [openIdx, setOpenIdx] = useState(null)
   const faqs = [
     {
       q: 'Is car tuning legal in India?',
@@ -694,24 +672,16 @@ function FAQSection() {
     },
   ]
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+    <div>
       {faqs.map((faq, i) => (
-        <div key={i} className="glass" style={{ borderRadius: '10px', overflow: 'hidden' }}>
-          <div
-            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 20px', cursor: 'pointer', userSelect: 'none' }}
-            onClick={() => setOpen(open === i ? null : i)}
-            onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-          >
-            <h4 style={{ margin: 0, fontSize: '1rem', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)', fontWeight: 600, paddingRight: '20px' }}>{faq.q}</h4>
-            {open === i ? <ChevronUp size={18} color="var(--accent-red)" style={{ flexShrink: 0 }} /> : <ChevronDown size={18} color="var(--text-muted)" style={{ flexShrink: 0 }} />}
+        <div key={i} className={`faq-item${openIdx === i ? ' open' : ''}`}>
+          <button className="faq-question" onClick={() => setOpenIdx(openIdx === i ? null : i)}>
+            <span>{faq.q}</span>
+            <span className="faq-icon"><Plus size={14} /></span>
+          </button>
+          <div className="faq-body">
+            <div className="faq-body-inner">{faq.a}</div>
           </div>
-          {open === i && (
-            <div style={{ padding: '0 20px 18px', animation: 'fadeIn 0.25s ease' }}>
-              <div style={{ height: '1px', background: 'var(--border)', marginBottom: '14px' }} />
-              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.7 }}>{faq.a}</p>
-            </div>
-          )}
         </div>
       ))}
     </div>
