@@ -12,8 +12,11 @@ import PlatformDetail from './pages/PlatformDetail'
 import IntlVsIndia from './pages/IntlVsIndia'
 import BuildPlanner from './pages/BuildPlanner'
 import LegalGuide from './pages/LegalGuide'
+import Builds from './pages/Builds'
+import Guides from './pages/Guides'
+import About from './pages/About'
+import Community from './pages/Community'
 import Footer from './components/Footer'
-
 function AppContent() {
   const location = useLocation()
 
@@ -40,6 +43,10 @@ function AppContent() {
           <Route path="/intl" element={<IntlVsIndia />} />
           <Route path="/build" element={<BuildPlanner />} />
           <Route path="/legal" element={<LegalGuide />} />
+          <Route path="/builds" element={<Builds />} />
+          <Route path="/guides" element={<Guides />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/community" element={<Community />} />
         </Routes>
       </div>
       <Footer />

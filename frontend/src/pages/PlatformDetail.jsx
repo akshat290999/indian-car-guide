@@ -1,8 +1,7 @@
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { PLATFORMS_DATA } from '../tuningData'
-import { useState, useEffect } from 'react'
-import { ChevronDown, ChevronUp, Fuel, AlertTriangle, Wrench, Flag, Globe, CheckCircle, IndianRupee, BarChart2, Car } from 'lucide-react'
-import Skeleton from '../components/Skeleton'
+import { ChevronDown, ChevronUp, Fuel, AlertTriangle, Wrench, Flag, Globe, CheckCircle, Car, Settings, HelpCircle, Activity, DollarSign } from 'lucide-react'
 
 export default function PlatformDetail() {
   const { id } = useParams()
@@ -10,14 +9,46 @@ export default function PlatformDetail() {
   const navigate = useNavigate()
 
   const [activeImage, setActiveImage] = useState(0)
-  const [openSection, setOpenSection] = useState(null)
-  const [imgLoaded, setImgLoaded] = useState(false)
+  const [openAccordion, setOpenAccordion] = useState(null)
+  const [calcStage, setCalcStage] = useState(0)
+  const [activeTab, setActiveTab] = useState('overview')
+
+  const sectionRefs = {
+    overview: useRef(null),
+    stages: useRef(null),
+    calculator: useRef(null),
+    tuners: useRef(null),
+    faq: useRef(null),
+  }
 
   useEffect(() => {
-    setImgLoaded(false)
-  }, [activeImage, id])
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 200
+      let currentTab = 'overview'
+      for (const [key, ref] of Object.entries(sectionRefs)) {
+        if (ref.current && ref.current.offsetTop <= scrollPos) {
+          currentTab = key
+        }
+      }
+      if (activeTab !== currentTab) {
+        setActiveTab(currentTab)
+      }
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [activeTab])
 
-  if (!data) return <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-primary)' }}>Platform not found</div>
+  const scrollTo = (id) => {
+    setActiveTab(id)
+    if (sectionRefs[id].current) {
+      const y = sectionRefs[id].current.getBoundingClientRect().top + window.scrollY - 140
+      window.scrollTo({ top: y, behavior: 'smooth' })
+    }
+  }
+
+  if (!data) return <div className="empty-state"><h3>Platform not found</h3></div>
+
+  const toggleAccordion = (key) => setOpenAccordion(openAccordion === key ? null : key)
 
   const getTunerId = (name) => {
     const n = name.toLowerCase()
@@ -29,417 +60,263 @@ export default function PlatformDetail() {
     if (n.includes('code6')) return 'code6'
     if (n.includes('renntech')) return 'renntech'
     if (n.includes('pete')) return 'petes'
-    return 'code6' // fallback
+    return 'code6'
   }
 
-  const handleTunerClick = (name) => {
-    navigate('/tuners', { state: { targetTuner: getTunerId(name) } })
-  }
-
-  const toggleSection = (key) => {
-    setOpenSection(openSection === key ? null : key)
-  }
-
-  // Accordion section component
-  const AccordionSection = ({ sectionKey, icon, title, children }) => {
-    const isOpen = openSection === sectionKey
+  const Accordion = ({ id, icon: Icon, title, children }) => {
+    const isOpen = openAccordion === id
     return (
-      <div className="premium-card" style={{ borderLeft: '4px solid var(--accent-red)', overflow: 'hidden', marginBottom: '12px' }}>
-        <div
-          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '18px 20px', cursor: 'pointer', transition: 'background 0.2s' }}
-          onClick={() => toggleSection(sectionKey)}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-hover)' }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
+      <div className="premium-card" style={{ marginBottom: '16px', overflow: 'hidden' }}>
+        <div 
+          onClick={() => toggleAccordion(id)}
+          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px', cursor: 'pointer', background: isOpen ? 'var(--surface-hover)' : 'transparent', transition: 'background 0.2s' }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            {icon}
-            <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', margin: 0 }}>{title}</h3>
+            <Icon size={20} color="var(--accent-red)" />
+            <h3 style={{ fontSize: '1.1rem', color: 'var(--text-primary)', margin: 0, fontFamily: 'var(--font-heading)' }}>{title}</h3>
           </div>
-          {isOpen ? <ChevronUp size={20} color="var(--accent-red)" /> : <ChevronDown size={20} color="var(--accent-red)" />}
+          {isOpen ? <ChevronUp size={20} color="var(--text-muted)" /> : <ChevronDown size={20} color="var(--text-muted)" />}
         </div>
         {isOpen && (
-          <div style={{ padding: '0 20px 20px 20px', animation: 'fadeIn 0.3s ease' }}>
-            {children}
+          <div style={{ padding: '0 20px 20px', animation: 'fadeIn 0.3s ease' }}>
+            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '16px', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+              {children}
+            </div>
           </div>
         )}
       </div>
     )
   }
 
-  // Build card - compact with small thumbnail area
-  const BuildCard = ({ build, flag }) => (
-    <div className="premium-card" style={{
-      padding: '16px',
-      display: 'flex',
-      gap: '14px',
-      alignItems: 'flex-start',
-      transition: 'transform 0.2s, box-shadow 0.2s',
-      cursor: 'default'
-    }}
-      onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = 'var(--shadow-lg)' }}
-      onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'var(--shadow-sm)' }}
-    >
-      {/* Small icon/badge area instead of photo */}
-      <div style={{
-        width: '52px', height: '52px', borderRadius: '10px', flexShrink: 0,
-        background: 'var(--accent-gradient)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: '1.4rem'
-      }}>
-        {flag}
-      </div>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px', flexWrap: 'wrap', gap: '8px' }}>
-          <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--text-primary)' }}>{build.title}</h4>
-          <span style={{
-            padding: '2px 10px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '700',
-            background: 'rgba(255,59,48,0.15)', color: 'var(--accent-red)', whiteSpace: 'nowrap'
-          }}>
-            {build.power}
-          </span>
-        </div>
-        <p style={{ margin: '0 0 6px', fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-          {build.desc}
-        </p>
-        <span style={{ fontSize: '0.75rem', color: 'var(--accent-blue)' }}>Tuned by {build.tuner}</span>
-      </div>
-    </div>
-  )
-
   return (
-    <div style={{ padding: '40px 20px', maxWidth: '1200px', margin: '0 auto' }}>
-
-      <Link to="/platforms" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', marginBottom: '30px' }}>
-        ← Back to Platforms
-      </Link>
-
-      {/* Hero section */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '40px', marginBottom: '60px' }}>
-
-        {/* Gallery */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          <div className="premium-card" style={{ height: '400px', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent' }}>
-            {!imgLoaded && (
-              <div style={{ position: 'absolute', inset: 0 }}>
-                <Skeleton width="100%" height="100%" borderRadius="0" />
-              </div>
-            )}
-            <img
-              src={data.gallery[activeImage].url}
-              alt={`${data.name} - ${data.gallery[activeImage].type}`}
-              style={{ width: '100%', height: '100%', objectFit: 'contain', opacity: imgLoaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
-              onLoad={() => setImgLoaded(true)}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80';
-                setImgLoaded(true);
-              }}
-            />
-          </div>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginTop: '10px' }}>
-            {data.gallery.map((img, idx) => (
-              <div
-                key={idx}
-                onClick={() => setActiveImage(idx)}
-                style={{
-                  width: '120px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
-                  cursor: 'pointer',
-                  opacity: activeImage === idx ? 1 : 0.5,
-                  transition: 'all 0.2s',
-                  alignItems: 'center'
-                }}
-              >
-                <div style={{
-                  width: '100%',
-                  height: '80px',
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  border: activeImage === idx ? '2px solid var(--accent-red)' : '2px solid transparent',
-                  boxShadow: activeImage === idx ? '0 0 15px rgba(255,59,48,0.3)' : 'none'
-                }}>
-                  <img
-                    src={img.url}
-                    alt={img.type}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', background: 'transparent' }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80';
-                    }}
-                  />
-                </div>
-                <span style={{
-                  fontSize: '0.9rem',
-                  fontWeight: activeImage === idx ? '600' : '400',
-                  color: activeImage === idx ? 'var(--text-primary)' : 'var(--text-muted)'
-                }}>
-                  {img.type}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Info */}
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <div style={{ display: 'inline-block', padding: '4px 12px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '20px', fontSize: '0.8rem', color: 'var(--text-muted)', alignSelf: 'flex-start', marginBottom: '16px' }}>
-            {data.category}
-          </div>
-          <h1 style={{ fontSize: '3rem', marginBottom: '16px', lineHeight: '1.1' }}>{data.name}</h1>
-          <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', marginBottom: '30px' }}>{data.description}</p>
-
-          <div className="glass" style={{ padding: '24px', borderRadius: '12px', display: 'flex', justifyContent: 'space-between' }}>
-            <div>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '4px' }}>Stock Power</p>
-              <h3 style={{ fontSize: '1.4rem' }}>{data.stock_power}</h3>
-            </div>
-            <div style={{ textAlign: 'right' }}>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '4px' }}>Tuning Potential</p>
-              <h3 style={{ fontSize: '1.4rem', color: 'var(--accent-red)' }}>{data.potential}</h3>
-              {data.potential_rating && (
-                <div style={{ display: 'flex', gap: '2px', justifyContent: 'flex-end', marginTop: '4px' }}>
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} style={{ color: i < data.potential_rating ? 'var(--status-yellow)' : 'var(--border)', fontSize: '1.1rem', lineHeight: '1' }}>★</span>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      {/* ─── Engine Intel Section (Accordions) ─── */}
-      <h2 style={{ fontSize: '2rem', marginBottom: '20px', borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>
-        Engine Intel
-      </h2>
-
-      {data.recommended_fuel && (
-        <AccordionSection sectionKey="fuel" icon={<Fuel size={18} color="var(--accent-blue)" />} title="Recommended Fuel">
-          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.7', margin: 0 }}>{data.recommended_fuel}</p>
-        </AccordionSection>
-      )}
-
-      {(data.known_limits || data.weak_points || data.do_not_exceed) && (
-        <AccordionSection sectionKey="limits" icon={<AlertTriangle size={18} color="var(--status-yellow)" />} title="Known Limits & Weak Points">
-          {data.known_limits && <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.7', margin: '0 0 16px 0' }}>{data.known_limits}</p>}
+    <div className="page-container" style={{ paddingBottom: '100px' }}>
+      
+      {/* ── HEADER (Split Layout) ── */}
+      <div className="page-hero" style={{ padding: '60px 20px', textAlign: 'left' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <Link to="/platforms" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', marginBottom: '24px', textDecoration: 'none', fontSize: '0.9rem' }}>
+            ← Back to Platforms
+          </Link>
           
-          {data.weak_points && (
-            <div style={{ marginBottom: '16px' }}>
-              <h4 style={{ color: 'var(--text-primary)', marginBottom: '8px', fontSize: '0.95rem' }}>Specific Weak Points:</h4>
-              <ul style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: '1.6', paddingLeft: '20px', margin: 0 }}>
-                {data.weak_points.map((wp, i) => <li key={i} style={{ marginBottom: '6px' }}>{wp}</li>)}
-              </ul>
-            </div>
-          )}
-
-          {data.do_not_exceed && (
-            <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '8px', padding: '12px', marginTop: '8px' }}>
-              <span style={{ color: '#ef4444', fontWeight: 700, fontSize: '0.9rem', display: 'block', marginBottom: '4px' }}>🛑 DO NOT EXCEED</span>
-              <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{data.do_not_exceed}</span>
-            </div>
-          )}
-        </AccordionSection>
-      )}
-
-      {data.tuning_notes && (
-        <AccordionSection sectionKey="notes" icon={<Wrench size={18} color="var(--accent-red)" />} title="Expert Tuning Notes">
-          <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.7', margin: 0 }}>{data.tuning_notes}</p>
-        </AccordionSection>
-      )}
-
-      {/* India Ownership Reality */}
-      <AccordionSection sectionKey="india" icon={<Car size={18} color="var(--status-orange)" />} title="🇮🇳 India Ownership Reality">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-          {[
-            { label: 'Insurance', detail: 'Any modification technically voids standard car insurance in India. Best practice: keep ECU maps reversible (flash to stock before any repair visit). Avoid visible structural changes.' },
-            { label: 'Service Center', detail: 'Authorised service centers (e.g., VW, BMW, Hyundai dealers) will flag modifications and void warranty. Most tuned cars are maintained at trusted independent workshops.' },
-            { label: 'Fuel Cost on a Tune', detail: 'A Stage 1 tune on 95 RON fuel adds roughly ₹3–8/km in extra fuel cost at aggressive driving. At highway cruise, fuel economy actually improves by 5–10% due to better combustion efficiency.' },
-            { label: 'RTO & Police Checks', detail: 'ECU tunes are invisible to RTO. Physical mods (exhaust, lowering, wheels) are the actual risk. A flash-revertible tune is the safest approach legally in India.' },
-            { label: 'Resale Value', detail: 'A well-tuned car with a clean exterior and stock-looking engine bay holds resale value well among enthusiasts. Avoid obvious mods that scare off mainstream buyers.' },
-          ].map(item => (
-            <div key={item.label} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', gap: '12px', padding: '12px 16px', background: 'var(--surface)', borderRadius: '8px', border: '1px solid var(--border)' }}>
-              <span style={{ fontWeight: 700, color: 'var(--status-orange)', fontSize: '0.9rem' }}>{item.label}</span>
-              <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6 }}>{item.detail}</span>
-            </div>
-          ))}
-        </div>
-      </AccordionSection>
-
-      {/* Pre-Tune Checklist */}
-      <AccordionSection sectionKey="checklist" icon={<CheckCircle size={18} color="var(--status-green)" />} title="✅ Pre-Tune Checklist">
-        <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.95rem', lineHeight: 1.6 }}>Complete this checklist before booking your tune. A tuner should refuse to remap a car that isn't in good mechanical health.</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '10px' }}>
-          {[
-            { item: 'Fresh engine oil (within 3,000 km)', priority: 'Critical' },
-            { item: 'Spark plugs at correct gap & within service interval', priority: 'Critical' },
-            { item: 'No active fault codes (clear DTC logs)', priority: 'Critical' },
-            { item: 'Coolant level full, no leaks', priority: 'Critical' },
-            { item: 'Air filter clean or replaced', priority: 'Important' },
-            { item: 'No boost leaks (check intercooler hoses)', priority: 'Important' },
-            { item: 'Fuel injectors clean (no misfire)', priority: 'Important' },
-            { item: 'MAF sensor clean and reading correctly', priority: 'Important' },
-            { item: 'Gearbox oil fresh (auto/DSG especially)', priority: 'Recommended' },
-            { item: 'Charge pipe / boost pipes intact (no cracks)', priority: 'Recommended' },
-          ].map(c => (
-            <div key={c.item} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', padding: '10px 12px', borderRadius: '8px', background: 'var(--surface)', border: '1px solid var(--border)' }}>
-              <CheckCircle size={14} color={c.priority === 'Critical' ? 'var(--status-red)' : c.priority === 'Important' ? 'var(--status-yellow)' : 'var(--status-green)'} style={{ flexShrink: 0, marginTop: '2px' }} />
-              <div>
-                <div style={{ fontSize: '0.85rem', color: 'var(--text-primary)', lineHeight: 1.4 }}>{c.item}</div>
-                <div style={{ fontSize: '0.75rem', color: c.priority === 'Critical' ? 'var(--status-red)' : c.priority === 'Important' ? 'var(--status-yellow)' : 'var(--status-green)', marginTop: '3px' }}>{c.priority}</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px', alignItems: 'center' }}>
+            {/* Left: Image */}
+            <div style={{ position: 'relative', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle, var(--surface-hover) 0%, transparent 70%)', zIndex: 0 }}></div>
+              <img src={data.gallery[activeImage].url} alt={data.name} style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 1, filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))' }} />
+              
+              <div style={{ position: 'absolute', bottom: '-20px', left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: '12px', zIndex: 2 }}>
+                {data.gallery.map((img, idx) => (
+                  <div key={idx} onClick={() => setActiveImage(idx)} style={{ width: '60px', height: '40px', borderRadius: '6px', overflow: 'hidden', border: activeImage === idx ? '2px solid var(--accent-red)' : '2px solid var(--border)', cursor: 'pointer', opacity: activeImage === idx ? 1 : 0.5 }}>
+                    <img src={img.url} alt="thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-      </AccordionSection>
 
-      {/* Common Failure Points */}
-      <AccordionSection sectionKey="failures" icon={<AlertTriangle size={18} color="var(--status-red)" />} title="⚠️ Common Failure Points by Stage">
-        <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.95rem', lineHeight: 1.6 }}>As power increases, different components become the weak link. Know what breaks before it breaks.</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {[
-            { stage: 'Stage 1', fails: 'Clutch pack (DSG) slips above rated torque. Charge pipe cracks under boost. Stock BOV flutters.', fix: 'TCU tune + charge pipe upgrade + Forge BOV' },
-            { stage: 'Stage 2', fails: 'Stock intercooler heat-soaks in Indian summers. Stock turbo inlet restricts airflow. OEM downpipe creates back pressure.', fix: 'FMIC + performance intake + decat downpipe + WMI' },
-            { stage: 'Stage 3+', fails: 'Connecting rods bend or snap. Pistons crack from detonation. Clutch/axles cannot handle extreme torque.', fix: 'Forged internals + built transmission + upgraded axles' },
-            { stage: 'All Stages', fails: 'Dirty fuel in India causes knock sensor to pull timing. Heat soak degrades power consistency.', fix: 'Always use Speed 97. WMI for hot days. Baseline your tune in heat, not just cold mornings.' },
-          ].map(f => (
-            <div key={f.stage} style={{ padding: '14px 16px', borderRadius: '8px', background: 'var(--surface)', border: '1px solid var(--border)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <span style={{ fontWeight: 700, color: f.stage === 'Stage 1' ? 'var(--status-blue)' : f.stage === 'Stage 2' ? 'var(--status-yellow)' : f.stage === 'Stage 3+' ? 'var(--status-red)' : 'var(--status-purple)', fontSize: '0.9rem' }}>{f.stage}</span>
-              </div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--status-red)', marginBottom: '6px' }}>⚠️ {f.fails}</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--status-green)' }}>✅ Fix: {f.fix}</div>
-            </div>
-          ))}
-        </div>
-      </AccordionSection>
-
-      {/* Dyno Numbers */}
-      <AccordionSection sectionKey="dyno" icon={<BarChart2 size={18} color="var(--accent-blue)" />} title="📊 Reading Dyno Numbers">
-        <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.95rem', lineHeight: 1.6 }}>Indian dyno pulls have quirks. Here's how to interpret your power numbers correctly.</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '14px', marginBottom: '18px' }}>
-          {[
-            { label: 'Crank HP vs Wheel HP', detail: 'Indian dynos typically measure at the wheel (WHP). Subtract ~12–18% for drivetrain losses to get crank HP. A 300 WHP car is ~350 crank HP.' },
-            { label: 'Dyno Correction Factor', detail: 'Indian summers (high temp, lower density air) can make the same car read 5–8% less power than a winter pull. Always compare pulls in similar conditions.' },
-            { label: 'Rolling Road vs Hub Dyno', detail: 'Hub dynos (wheels off, direct bolt-on) are more accurate. Rolling road dynos add tyre slip error. Most Indian shops use rolling roads — add ~5% for tyre loss.' },
-            { label: 'What a Good Tune Looks Like', detail: 'A smooth, linear torque curve with no sudden dips. Power should climb steadily from ~2,000 RPM and hold flat through the rev range. Any sharp drops indicate lean AFR or knock.' },
-          ].map(d => (
-            <div key={d.label} style={{ padding: '14px 16px', borderRadius: '8px', background: 'var(--surface)', border: '1px solid var(--border)' }}>
-              <div style={{ fontWeight: 700, color: 'var(--accent-blue)', fontSize: '0.85rem', marginBottom: '8px' }}>{d.label}</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>{d.detail}</div>
-            </div>
-          ))}
-        </div>
-        <div style={{ background: 'rgba(59,130,246,0.08)', border: '1px solid rgba(59,130,246,0.2)', borderRadius: '8px', padding: '14px 18px' }}>
-          <div style={{ fontWeight: 700, color: 'var(--accent-blue)', fontSize: '0.85rem', marginBottom: '6px' }}>💡 Pro Tip</div>
-          <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>Always ask your tuner for a <strong>data log</strong> — not just the dyno graph. The log should show boost pressure, AFR (Air-Fuel Ratio), IAT (Intake Air Temp), and knock count on every pull. A good tune has 0 knock events and AFR between 11.5–12.5:1 at peak power.</p>
-        </div>
-      </AccordionSection>
-
-      <div style={{ marginBottom: '60px' }} />
-
-      {/* ─── Stages ─── */}
-      <h2 style={{ fontSize: '2rem', marginBottom: '30px', borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>Tuning Stages</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '60px' }}>
-        {data.tuning_stages.map((stage, idx) => (
-          <div key={idx} className="premium-card" style={{ borderLeft: `4px solid ${idx === 0 ? 'var(--accent-blue)' : idx === 1 ? '#f59e0b' : 'var(--accent-red)'}`, overflow: 'hidden' }}>
-            <div 
-              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '24px', cursor: 'pointer', transition: 'background 0.2s' }}
-              onClick={() => toggleSection(`stage-${idx}`)}
-              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--surface-hover)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
-            >
-              <div>
-                <h3 style={{ fontSize: '1.5rem', margin: '0 0 8px 0', color: idx === 0 ? 'var(--accent-blue)' : idx === 1 ? '#f59e0b' : 'var(--accent-red)' }}>{stage.stage}</h3>
-                <span style={{ color: 'var(--text-primary)', fontWeight: 'bold' }}>{stage.power}</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                <span style={{ color: 'var(--text-muted)', fontSize: '1rem' }}>{stage.cost}</span>
-                {openSection === `stage-${idx}` ? <ChevronUp size={24} color="var(--text-muted)" /> : <ChevronDown size={24} color="var(--text-muted)" />}
-              </div>
-            </div>
-            {openSection === `stage-${idx}` && (
-              <div style={{ padding: '0 24px 24px 24px', animation: 'fadeIn 0.3s ease' }}>
-                <div style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: '1.6', borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
-                  <p style={{ margin: 0 }}>{stage.mods}</p>
+            {/* Right: Stats */}
+            <div>
+              <span className="chip" style={{ marginBottom: '16px' }}>{data.category}</span>
+              <h1 style={{ fontSize: 'var(--text-4xl)', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)', marginBottom: '16px', lineHeight: 1.1 }}>{data.name}</h1>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', marginBottom: '32px', lineHeight: 1.5 }}>{data.description}</p>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="premium-card" style={{ padding: '20px', borderLeft: '3px solid var(--accent-blue)' }}>
+                  <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '8px' }}>Stock Power</div>
+                  <div style={{ fontSize: '1.5rem', color: 'var(--text-primary)', fontWeight: 'bold' }}>{data.stock_power?.split('/')[0]}</div>
                 </div>
+                <div className="premium-card" style={{ padding: '20px', borderLeft: '3px solid var(--status-green)' }}>
+                  <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '8px' }}>Tuning Potential</div>
+                  <div style={{ fontSize: '1.5rem', color: 'var(--status-green)', fontWeight: 'bold' }}>{data.potential}</div>
+                </div>
+                <div className="premium-card" style={{ padding: '20px', borderLeft: '3px solid var(--status-orange)' }}>
+                  <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '8px' }}>Drive</div>
+                  <div style={{ fontSize: '1.1rem', color: 'var(--text-primary)', fontWeight: '600' }}>FWD / AWD / RWD</div>
+                </div>
+                <div className="premium-card" style={{ padding: '20px', borderLeft: '3px solid var(--status-yellow)' }}>
+                  <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '8px' }}>Reliability</div>
+                  <div style={{ display: 'flex', gap: '2px', color: 'var(--status-yellow)', fontSize: '1.2rem' }}>
+                    {[...Array(5)].map((_, i) => <span key={i} style={{ opacity: i < (data.potential_rating || 4) ? 1 : 0.2 }}>★</span>)}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+        
+        {/* ── STICKY TABS ── */}
+        <div className="sticky-tabs" style={{ 
+          position: 'sticky', top: '70px', zIndex: 40, 
+          display: 'flex', gap: '8px', overflowX: 'auto', padding: '16px', 
+          background: 'var(--bg)', borderBottom: '1px solid var(--border)', marginBottom: '40px'
+        }}>
+          {[
+            { id: 'overview', label: 'Overview', icon: Activity },
+            { id: 'stages', label: 'Stages', icon: Settings },
+            { id: 'calculator', label: 'Calculator', icon: DollarSign },
+            { id: 'tuners', label: 'Tuners', icon: Wrench },
+            { id: 'faq', label: 'FAQ', icon: HelpCircle },
+          ].map(tab => (
+            <button 
+              key={tab.id}
+              onClick={() => scrollTo(tab.id)}
+              className="chip"
+              style={{
+                background: activeTab === tab.id ? 'var(--text-primary)' : 'var(--surface)',
+                color: activeTab === tab.id ? 'var(--bg)' : 'var(--text-muted)',
+                border: '1px solid', borderColor: activeTab === tab.id ? 'var(--text-primary)' : 'var(--border)',
+                display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', fontSize: '0.9rem'
+              }}
+            >
+              <tab.icon size={16} /> {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* ── OVERVIEW ── */}
+        <section ref={sectionRefs.overview} style={{ scrollMarginTop: '160px', marginBottom: '80px' }}>
+          <h2 style={{ fontSize: 'var(--text-3xl)', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)', marginBottom: '24px' }}>Overview & Engine Intel</h2>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+            <div className="premium-card" style={{ padding: '24px' }}>
+              <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}><Fuel size={20} color="var(--accent-blue)" /> Fuel Requirements</h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>{data.recommended_fuel || '95 RON minimum. 97+ RON recommended for Stage 2 and above.'}</p>
+            </div>
+            
+            <div className="premium-card" style={{ padding: '24px' }}>
+              <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}><AlertTriangle size={20} color="var(--status-yellow)" /> Known Limits</h3>
+              <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>{data.known_limits || 'Platform specific limits apply. Ensure proper maintenance before tuning.'}</p>
+            </div>
+
+            {data.do_not_exceed && (
+              <div className="premium-card" style={{ padding: '24px', border: '1px dashed var(--status-red)', background: 'rgba(239, 68, 68, 0.05)' }}>
+                <h3 style={{ fontSize: '1.2rem', color: 'var(--status-red)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>🛑 Do Not Exceed</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>{data.do_not_exceed}</p>
               </div>
             )}
           </div>
-        ))}
-      </div>
+        </section>
 
-      {/* ─── Tuner Options ─── */}
-      {data.tuner_options && data.tuner_options.length > 0 && (
-        <>
-          <h2 style={{ fontSize: '2rem', marginBottom: '30px', borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>Tuner Options & Characteristics</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '20px', marginBottom: '60px' }}>
-            {data.tuner_options.map((tuner, idx) => (
-              <div
-                key={idx}
-                className="premium-card tuner-card-hover"
-                style={{ padding: '30px', borderLeft: '4px solid var(--accent-red)', cursor: 'pointer', transition: 'all 0.2s ease' }}
-                onClick={() => handleTunerClick(tuner.name)}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                  <h3 style={{ fontSize: '1.3rem', color: 'var(--text-primary)' }}>{tuner.name}</h3>
-                  <span style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>{tuner.price}</span>
+        {/* ── STAGES ── */}
+        <section ref={sectionRefs.stages} style={{ scrollMarginTop: '160px', marginBottom: '80px' }}>
+          <h2 style={{ fontSize: 'var(--text-3xl)', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)', marginBottom: '24px' }}>Tuning Stages</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {data.tuning_stages?.map((stage, idx) => (
+              <Accordion key={idx} id={`stage-${idx}`} icon={Settings} title={`${stage.stage} — ${stage.power}`}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '20px', alignItems: 'flex-start' }}>
+                  <div>
+                    <strong style={{ display: 'block', color: 'var(--text-primary)', marginBottom: '8px' }}>Required Mods:</strong>
+                    <p style={{ margin: 0, whiteSpace: 'pre-line' }}>{stage.mods}</p>
+                  </div>
+                  <div style={{ background: 'var(--bg)', padding: '12px 20px', borderRadius: '8px', border: '1px solid var(--border)', textAlign: 'right' }}>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Estimated Cost</div>
+                    <div style={{ fontSize: '1.2rem', color: 'var(--status-green)', fontWeight: 'bold' }}>{stage.cost}</div>
+                  </div>
                 </div>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '10px' }}>{tuner.style}</p>
-                <div style={{ fontSize: '0.85rem', color: 'var(--accent-blue)', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                  View Tuner Details →
-                </div>
+              </Accordion>
+            ))}
+          </div>
+        </section>
+
+        {/* ── BUILD CALCULATOR ── */}
+        <section ref={sectionRefs.calculator} style={{ scrollMarginTop: '160px', marginBottom: '80px' }}>
+          <h2 style={{ fontSize: 'var(--text-3xl)', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)', marginBottom: '24px' }}>Build Cost Calculator</h2>
+          
+          <div className="premium-card" style={{ padding: '32px', display: 'flex', flexWrap: 'wrap', gap: '40px' }}>
+            <div style={{ flex: '1', minWidth: '300px' }}>
+              <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: '20px' }}>Select Target Stage</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {data.tuning_stages?.map((stage, idx) => (
+                  <label key={idx} style={{ 
+                    display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', 
+                    borderRadius: '8px', border: '1px solid', 
+                    borderColor: calcStage === idx ? 'var(--accent-red)' : 'var(--border)',
+                    background: calcStage === idx ? 'var(--surface-hover)' : 'var(--surface)',
+                    cursor: 'pointer', transition: 'all 0.2s'
+                  }}>
+                    <input type="radio" name="calcStage" checked={calcStage === idx} onChange={() => setCalcStage(idx)} style={{ accentColor: 'var(--accent-red)' }} />
+                    <div style={{ flex: 1 }}>
+                      <div style={{ color: 'var(--text-primary)', fontWeight: 'bold' }}>{stage.stage}</div>
+                      <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{stage.power}</div>
+                    </div>
+                  </label>
+                ))}
               </div>
-            ))}
+            </div>
+            
+            <div style={{ flex: '1', minWidth: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <div style={{ background: 'var(--surface-hover)', border: '1px solid var(--border)', borderRadius: '12px', padding: '32px', textAlign: 'center' }}>
+                <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>Estimated Investment</div>
+                <div style={{ fontSize: '3rem', color: 'var(--status-green)', fontWeight: 'bold', fontFamily: 'var(--font-heading)', marginBottom: '16px' }}>
+                  {data.tuning_stages?.[calcStage]?.cost || '₹0'}
+                </div>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.5 }}>
+                  Includes estimated hardware and software costs. Labour and local taxes may vary.
+                </p>
+                <Link to="/tuners" className="btn btn-primary" style={{ marginTop: '24px', width: '100%', display: 'block', textAlign: 'center' }}>
+                  Find Tuners for this Stage →
+                </Link>
+              </div>
+            </div>
           </div>
-        </>
-      )}
+        </section>
 
-      {/* ─── Community Builds ─── */}
-      <h2 style={{ fontSize: '2rem', marginBottom: '30px', borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>
-        Community Builds
-      </h2>
+        {/* ── TUNERS ── */}
+        <section ref={sectionRefs.tuners} style={{ scrollMarginTop: '160px', marginBottom: '80px' }}>
+          <h2 style={{ fontSize: 'var(--text-3xl)', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)', marginBottom: '24px' }}>Recommended Tuners</h2>
+          {data.tuner_options && data.tuner_options.length > 0 ? (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+              {data.tuner_options.map((tuner, idx) => (
+                <div key={idx} onClick={() => handleTunerClick(tuner.name)} className="premium-card glow-on-hover" style={{ padding: '24px', cursor: 'pointer' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+                    <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)' }}>{tuner.name}</h3>
+                    <span style={{ color: 'var(--status-green)', fontSize: '0.9rem', fontWeight: 'bold' }}>{tuner.price}</span>
+                  </div>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: '20px' }}>{tuner.style}</p>
+                  <span style={{ color: 'var(--accent-blue)', fontSize: '0.85rem', fontWeight: '600' }}>View Tuner Profile →</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="premium-card" style={{ padding: '24px' }}>
+              <p style={{ color: 'var(--text-muted)', margin: 0 }}>No specific tuner recommendations available for this platform yet. Check our general Tuners directory.</p>
+            </div>
+          )}
+        </section>
 
-      {/* Indian Builds */}
-      {data.indian_builds && data.indian_builds.length > 0 && (
-        <div style={{ marginBottom: '40px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-            <Flag size={18} color="var(--accent-red)" />
-            <h3 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--text-primary)' }}>
-              Indian Builds
-              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '400', marginLeft: '10px' }}>🇮🇳</span>
-            </h3>
+        {/* ── FAQ ── */}
+        <section ref={sectionRefs.faq} style={{ scrollMarginTop: '160px' }}>
+          <h2 style={{ fontSize: 'var(--text-3xl)', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)', marginBottom: '24px' }}>FAQ & Ownership Reality</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <Accordion id="faq-1" icon={Flag} title="🇮🇳 Indian Ownership Reality">
+              <ul style={{ paddingLeft: '20px', margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <li><strong>Insurance:</strong> Modifications technically void standard car insurance. Keep ECU maps reversible.</li>
+                <li><strong>Service Centers:</strong> Authorised service centers will flag modifications and void warranty. Build a relationship with a trusted independent garage.</li>
+                <li><strong>Fuel Costs:</strong> Stage 1 on 95 RON adds roughly ₹3–8/km in extra fuel cost at aggressive driving. Highway cruise economy may actually improve by 5–10%.</li>
+              </ul>
+            </Accordion>
+            <Accordion id="faq-2" icon={CheckCircle} title="✅ Pre-Tune Checklist">
+              <ul style={{ paddingLeft: '20px', margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <li>Fresh engine oil (within 3,000 km)</li>
+                <li>Spark plugs at correct gap & within service interval</li>
+                <li>No active fault codes (clear DTC logs)</li>
+                <li>Coolant level full, no leaks</li>
+                <li>No boost leaks (check intercooler hoses)</li>
+              </ul>
+            </Accordion>
+            <Accordion id="faq-3" icon={AlertTriangle} title="⚠️ Common Failure Points">
+              <ul style={{ paddingLeft: '20px', margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <li><strong>Stage 1:</strong> Stock BOV flutters, charge pipes may crack under boost.</li>
+                <li><strong>Stage 2:</strong> Intercooler heat-soaks in Indian summers. Downpipe creates backpressure.</li>
+                <li><strong>All Stages:</strong> Poor fuel quality causes knock. Always use 95+ RON (Speed 97 / XP95).</li>
+              </ul>
+            </Accordion>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, ), 1fr))', gap: '14px' }}>
-            {data.indian_builds.map((build, idx) => (
-              <BuildCard key={idx} build={build} flag="🇮🇳" />
-            ))}
-          </div>
-        </div>
-      )}
+        </section>
 
-      {/* International Builds */}
-      {data.intl_builds && data.intl_builds.length > 0 && (
-        <div style={{ marginBottom: '40px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-            <Globe size={18} color="var(--accent-blue)" />
-            <h3 style={{ margin: 0, fontSize: '1.3rem', color: 'var(--text-primary)' }}>
-              International Builds
-              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '400', marginLeft: '10px' }}>🌍</span>
-            </h3>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, ), 1fr))', gap: '14px' }}>
-            {data.intl_builds.map((build, idx) => (
-              <BuildCard key={idx} build={build} flag="🌍" />
-            ))}
-          </div>
-        </div>
-      )}
-
+      </div>
     </div>
   )
 }

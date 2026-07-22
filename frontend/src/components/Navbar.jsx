@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Search, Sun, Moon, Menu, X } from 'lucide-react'
+import { Search, Sun, Moon, Menu, X, ChevronDown } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
 
 function useMobile() {
@@ -21,6 +21,7 @@ function Navbar() {
   const mobile = useMobile()
   const { theme, toggleTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -85,15 +86,13 @@ function Navbar() {
         {/* Desktop Links & Actions */}
         {!mobile && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-            <div style={{ display: 'flex', gap: '4px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
               {[
                 { to: '/',           label: 'Home'             },
-                { to: '/basics',     label: 'Tuning Basics'    },
                 { to: '/platforms',  label: 'Platforms'        },
-                { to: '/tuners',     label: 'Tuners & Costs'   },
-                { to: '/intl',       label: 'Intl vs India'    },
-                { to: '/legal',      label: 'Legal Guide'      },
-                { to: '/build',      label: '🔧 Plan Your Build' },
+                { to: '/basics',     label: 'Basics'           },
+                { to: '/tuners',     label: 'Tuners'           },
+                { to: '/build',      label: '🔧 Planner'       },
               ].map(({ to, label }) => (
                 <NavLink
                   key={to}
@@ -115,6 +114,48 @@ function Navbar() {
                   {label}
                 </NavLink>
               ))}
+
+              <div 
+                onMouseEnter={() => setDropdownOpen(true)}
+                onMouseLeave={() => setDropdownOpen(false)}
+                style={{ position: 'relative' }}
+              >
+                <div style={{
+                  fontFamily: 'var(--font-body)', fontSize: '14px', fontWeight: '500',
+                  color: 'var(--text-muted)', padding: '8px 16px', cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', gap: '4px'
+                }}>
+                  More <ChevronDown size={14} />
+                </div>
+                {dropdownOpen && (
+                  <div style={{
+                    position: 'absolute', top: '100%', right: 0,
+                    background: 'var(--surface)', border: '1px solid var(--border)',
+                    borderRadius: '8px', padding: '8px', minWidth: '160px',
+                    boxShadow: 'var(--shadow-lg)', zIndex: 50
+                  }}>
+                    {[
+                      { to: '/builds', label: 'Real Builds' },
+                      { to: '/guides', label: 'Guides' },
+                      { to: '/community', label: 'Community' },
+                      { to: '/about', label: 'About Us' },
+                      { to: '/intl', label: 'Intl vs India' },
+                      { to: '/legal', label: 'Legal Guide' }
+                    ].map(({to, label}) => (
+                      <NavLink key={to} to={to} style={{
+                        display: 'block', padding: '8px 12px', color: 'var(--text-primary)',
+                        textDecoration: 'none', fontSize: '14px', borderRadius: '4px',
+                        transition: 'background 0.2s'
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.background = 'var(--surface-hover)'}
+                      onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                      >
+                        {label}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             <div style={{ width: '1px', height: '24px', background: 'var(--border)' }} />
@@ -181,14 +222,15 @@ function Navbar() {
         <div style={{
           display: 'flex', flexDirection: 'column', gap: '8px',
           paddingTop: '16px', borderTop: '1px solid var(--border)',
-          marginTop: '12px'
         }}>
           {[
             { to: '/',           label: 'Home'             },
-            { to: '/basics',     label: 'Tuning Basics'    },
             { to: '/platforms',  label: 'Platforms'        },
+            { to: '/basics',     label: 'Tuning Basics'    },
             { to: '/tuners',     label: 'Tuners & Costs'   },
-            { to: '/intl',       label: 'Intl vs India'    },
+            { to: '/builds',     label: 'Real Builds'      },
+            { to: '/guides',     label: 'Guides'           },
+            { to: '/community',  label: 'Community'        },
             { to: '/build',      label: '🔧 Plan Your Build' },
           ].map(({ to, label }) => (
             <NavLink

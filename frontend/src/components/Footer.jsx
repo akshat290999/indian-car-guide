@@ -37,9 +37,11 @@ export default function Footer() {
             { to: '/platforms', label: 'Platforms'       },
             { to: '/basics',    label: 'Tuning Basics'   },
             { to: '/tuners',    label: 'Tuners & Costs'  },
-            { to: '/intl',      label: 'India vs World'  },
+            { to: '/builds',    label: 'Real Builds'     },
+            { to: '/guides',    label: 'Knowledge Guides'},
+            { to: '/community', label: 'Community'       },
             { to: '/build',     label: 'Build Planner'   },
-            { to: '/legal',     label: 'Legal Guide'     },
+            { to: '/about',     label: 'About Us'        },
           ].map(link => (
             <Link key={link.to} to={link.to} className="footer-link">{link.label}</Link>
           ))}

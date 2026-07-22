@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { ChevronDown, ChevronUp, CheckCircle, XCircle } from 'lucide-react'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
+import { ChevronDown, ChevronUp, CheckCircle, XCircle, Search, MapPin, Wrench, Globe } from 'lucide-react'
 import { useLocation } from 'react-router-dom'
 
 export default function TunersAndCosts() {
   const [openTuner, setOpenTuner] = useState(null)
-  const [openCost, setOpenCost] = useState(null)
   const [openBudget, setOpenBudget] = useState(null)
-  const [openSection, setOpenSection] = useState(null)
-  const [openHardwareCat, setOpenHardwareCat] = useState('Software')
-
+  const [searchQuery, setSearchQuery] = useState('')
   const [filterCity, setFilterCity] = useState('All')
   const [filterSpec, setFilterSpec] = useState('All')
   const [filterDyno, setFilterDyno] = useState(false)
+  const [filterRemote, setFilterRemote] = useState(false)
 
   const location = useLocation()
   const tunerRefs = useRef({})
@@ -29,6 +27,7 @@ export default function TunersAndCosts() {
       dynoPull: true,
       remoteTune: true,
       reputation: 'Best network coverage in India. Consistent, reliable Stage 1/2 maps. Aggressive torque delivery style.',
+      priceBand: '₹₹'
     },
     {
       id: 'wolf',
@@ -42,6 +41,7 @@ export default function TunersAndCosts() {
       dynoPull: true,
       remoteTune: false,
       reputation: 'The gold standard for Fiat T-Jet and VAG tuning in Pune. Every map is custom dyno-calibrated. Trusted by the community for 10+ years.',
+      priceBand: '₹₹'
     },
     {
       id: 'gttunerz',
@@ -55,6 +55,7 @@ export default function TunersAndCosts() {
       dynoPull: true,
       remoteTune: false,
       reputation: 'The only official APR dealer in India. Exceptional for EA888 engines. Premium service, premium price — worth every rupee on the right platform.',
+      priceBand: '₹₹₹'
     },
     {
       id: 'petes',
@@ -68,6 +69,7 @@ export default function TunersAndCosts() {
       dynoPull: true,
       remoteTune: false,
       reputation: "The OGs. Founded the Indian tuning culture. Best for VAG and BMW. Extremely trustworthy — they will tell you if a mod isn't worth it for your car.",
+      priceBand: '₹₹₹'
     },
     {
       id: 'harmonixx',
@@ -81,6 +83,7 @@ export default function TunersAndCosts() {
       dynoPull: true,
       remoteTune: true,
       reputation: "The best BMW tuner in North India. Their custom B58 maps are legendary in the community. No shortcuts — full data logging on every build.",
+      priceBand: '₹₹₹'
     },
     {
       id: 'bootmod3',
@@ -94,6 +97,7 @@ export default function TunersAndCosts() {
       dynoPull: false,
       remoteTune: true,
       reputation: 'Best self-flash ecosystem for BMW. OTS maps are thoroughly tested. For custom tunes, pair with a Harmonixx or local calibrator for India-specific adjustments.',
+      priceBand: '₹₹'
     },
     {
       id: 'mhd',
@@ -107,6 +111,7 @@ export default function TunersAndCosts() {
       dynoPull: false,
       remoteTune: true,
       reputation: 'Best self-tune UX for BMW. The burble/crackle maps are unmatched. Great community with extensive India-specific map feedback in forums.',
+      priceBand: '₹₹'
     },
     {
       id: 'renntech',
@@ -120,6 +125,7 @@ export default function TunersAndCosts() {
       dynoPull: false,
       remoteTune: true,
       reputation: "World-class AMG calibration. The only choice for C43, E63, GT owners who want the best. Remote flashing available — they mail you the tool.",
+      priceBand: '₹₹₹'
     },
   ]
 
@@ -210,6 +216,26 @@ export default function TunersAndCosts() {
     ],
   }
 
+  // Filter Logic
+  const filteredTuners = useMemo(() => {
+    return tuners.filter(t => {
+      const matchSearch = t.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          t.platforms.toLowerCase().includes(searchQuery.toLowerCase())
+      if (!matchSearch) return false
+
+      if (filterCity !== 'All') {
+        if (filterCity === 'Remote' && !t.location.toLowerCase().includes('remote')) return false
+        if (filterCity !== 'Remote' && !t.location.toLowerCase().includes(filterCity.toLowerCase())) return false
+      }
+      if (filterSpec !== 'All') {
+        if (!t.platforms.toLowerCase().includes(filterSpec.toLowerCase())) return false
+      }
+      if (filterDyno && !t.dynoPull) return false
+      if (filterRemote && !t.remoteTune) return false
+      return true
+    })
+  }, [searchQuery, filterCity, filterSpec, filterDyno, filterRemote, tuners])
+
   useEffect(() => {
     if (location.state && location.state.targetTuner) {
       const targetId = location.state.targetTuner
@@ -224,280 +250,229 @@ export default function TunersAndCosts() {
   }, [location])
 
   return (
-    <div style={{ padding: '40px 20px', maxWidth: '1000px', margin: '0 auto' }}>
+    <div className="page-container" style={{ paddingBottom: '80px' }}>
+      
+      <div className="page-hero">
+        <h1 style={{ fontSize: 'var(--text-4xl)', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)', marginBottom: '16px' }}>TUNERS & COSTS</h1>
+        <p style={{ color: 'var(--text-muted)', fontSize: 'var(--text-lg)', maxWidth: '600px', margin: '0 auto' }}>
+          Who to trust, what to spend, and how to build your dream machine on an Indian budget.
+        </p>
+      </div>
 
-      <h1 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '10px', fontFamily: 'var(--font-heading)' }}>Tuners & Costs</h1>
-      <p style={{ color: 'var(--text-muted)', marginBottom: '50px', fontSize: '1.1rem' }}>
-        Who to trust, what to spend, and how to build your dream machine on an Indian budget.
-      </p>
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '60px' }}>
+      <div style={{ maxWidth: '1200px', margin: '40px auto', padding: '0 20px', display: 'flex', flexDirection: 'column', gap: '80px' }}>
 
         {/* ── TUNERS SECTION ── */}
         <section>
-          <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px', fontFamily: 'var(--font-heading)' }}>Top Indian Tuners</h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '12px', fontSize: '0.95rem' }}>Click any tuner to see their specialities, pricing, location, and community reputation.</p>
-          <p className="microcopy" style={{ marginBottom: '24px' }}>Your tuner makes or breaks the build. A cheap tune that knocks your engine is the most expensive tune you'll ever buy.</p>
-
-          {/* FILTER BAR */}
-          <div className="glass" style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '16px 20px', borderRadius: '12px', marginBottom: '20px', border: '1px solid var(--border)' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', flex: 1, minWidth: '150px' }}>
-              <label style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>City</label>
-              <select value={filterCity} onChange={e => setFilterCity(e.target.value)} style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text-primary)', outline: 'none' }}>
-                <option value="All">All Locations</option>
-                <option value="Delhi">Delhi NCR</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Pune">Pune</option>
-                <option value="Bangalore">Bangalore</option>
-                <option value="Remote">Remote / Self-Flash</option>
-              </select>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', flex: 1, minWidth: '150px' }}>
-              <label style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Specialization</label>
-              <select value={filterSpec} onChange={e => setFilterSpec(e.target.value)} style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--surface)', color: 'var(--text-primary)', outline: 'none' }}>
-                <option value="All">All Platforms</option>
-                <option value="VAG">VAG (VW/Skoda/Audi)</option>
-                <option value="BMW">BMW</option>
-                <option value="Mercedes">Mercedes-Benz</option>
-                <option value="Hyundai">Hyundai / Kia</option>
-                <option value="Ford">Ford</option>
-              </select>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', flexShrink: 0 }}>
-              <label style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Features</label>
-              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', height: '100%', padding: '0 8px' }}>
-                <input type="checkbox" checked={filterDyno} onChange={e => setFilterDyno(e.target.checked)} style={{ width: '16px', height: '16px', accentColor: 'var(--accent-red)' }} />
-                <span style={{ fontSize: '0.9rem', color: 'var(--text-primary)' }}>Requires Dyno</span>
-              </label>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '24px' }}>
+            <div>
+              <span className="section-label">The Network</span>
+              <h2 style={{ fontSize: 'var(--text-3xl)', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)' }}>Top Indian Tuners</h2>
             </div>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {tuners.filter(t => {
-              if (filterCity !== 'All') {
-                if (filterCity === 'Remote' && !t.remoteTune && !t.location.toLowerCase().includes('remote')) return false;
-                if (filterCity !== 'Remote' && !t.location.toLowerCase().includes(filterCity.toLowerCase())) return false;
-              }
-              if (filterSpec !== 'All') {
-                if (!t.platforms.toLowerCase().includes(filterSpec.toLowerCase())) return false;
-              }
-              if (filterDyno && !t.dynoPull) return false;
-              return true;
-            }).length === 0 ? (
-              <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>No tuners match your criteria. Try loosening the filters.</div>
-            ) : tuners.filter(t => {
-              if (filterCity !== 'All') {
-                if (filterCity === 'Remote' && !t.remoteTune && !t.location.toLowerCase().includes('remote')) return false;
-                if (filterCity !== 'Remote' && !t.location.toLowerCase().includes(filterCity.toLowerCase())) return false;
-              }
-              if (filterSpec !== 'All') {
-                if (!t.platforms.toLowerCase().includes(filterSpec.toLowerCase())) return false;
-              }
-              if (filterDyno && !t.dynoPull) return false;
-              return true;
-            }).map((tuner) => (
-              <div
-                key={tuner.id}
-                ref={el => tunerRefs.current[tuner.id] = el}
-                className="premium-card"
-                style={{ borderLeft: openTuner === tuner.id ? '4px solid var(--accent-red)' : '4px solid var(--accent-blue)', overflow: 'hidden', transition: 'all 0.3s ease' }}
-              >
-                <div
-                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px', cursor: 'pointer' }}
-                  onClick={() => setOpenTuner(openTuner === tuner.id ? null : tuner.id)}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+          <div className="filter-bar" style={{ borderRadius: '12px', marginBottom: '32px' }}>
+            <div style={{ position: 'relative', flex: '1', minWidth: '200px' }}>
+              <Search size={18} color="var(--text-muted)" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
+              <input 
+                type="text" 
+                placeholder="Search tuners or platforms..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{ 
+                  width: '100%', padding: '10px 16px 10px 42px', 
+                  background: 'var(--surface)', border: '1px solid var(--border)', 
+                  borderRadius: '99px', color: 'var(--text-primary)', fontSize: '0.9rem', outline: 'none'
+                }}
+              />
+            </div>
+            
+            <select value={filterCity} onChange={e=>setFilterCity(e.target.value)} className="sort-select">
+              <option value="All">All Cities</option>
+              <option value="Delhi">Delhi NCR</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Pune">Pune</option>
+              <option value="Bangalore">Bangalore</option>
+              <option value="Remote">Remote</option>
+            </select>
+            
+            <select value={filterSpec} onChange={e=>setFilterSpec(e.target.value)} className="sort-select">
+              <option value="All">All Platforms</option>
+              <option value="VAG">VAG</option>
+              <option value="BMW">BMW</option>
+              <option value="Mercedes">Mercedes</option>
+              <option value="Hyundai">Hyundai</option>
+            </select>
+
+            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', color: 'var(--text-primary)', fontSize: '0.9rem', marginLeft: '12px' }}>
+              <input type="checkbox" checked={filterDyno} onChange={e=>setFilterDyno(e.target.checked)} style={{ accentColor: 'var(--red)' }} />
+              Dyno Available
+            </label>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', color: 'var(--text-primary)', fontSize: '0.9rem' }}>
+              <input type="checkbox" checked={filterRemote} onChange={e=>setFilterRemote(e.target.checked)} style={{ accentColor: 'var(--red)' }} />
+              Remote Tune
+            </label>
+          </div>
+
+          {filteredTuners.length === 0 ? (
+            <div className="empty-state">
+              <h3 style={{ color: 'var(--text-primary)' }}>No tuners match criteria.</h3>
+            </div>
+          ) : (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '24px' }}>
+              {filteredTuners.map(tuner => (
+                <div 
+                  key={tuner.id} 
+                  ref={el => tunerRefs.current[tuner.id] = el}
+                  className="premium-card" 
+                  style={{ padding: '24px', display: 'flex', flexDirection: 'column' }}
                 >
-                  <div>
-                    <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', margin: '0 0 4px', fontFamily: 'var(--font-heading)' }}>{tuner.name}</h3>
-                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>📍 {tuner.location}</span>
-                  </div>
-                  {openTuner === tuner.id ? <ChevronUp size={22} color="var(--accent-red)" /> : <ChevronDown size={22} color="var(--accent-blue)" />}
-                </div>
-
-                {openTuner === tuner.id && (
-                  <div style={{ padding: '0 24px 24px', animation: 'fadeIn 0.3s ease' }}>
-                    <div style={{ height: '1px', background: 'var(--border)', marginBottom: '18px' }} />
-                    <p style={{ color: 'var(--text-muted)', fontSize: '1rem', marginBottom: '20px', lineHeight: '1.65' }}>{tuner.desc}</p>
-
-                    {/* Info grid */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '10px', marginBottom: '18px' }}>
-                      {[
-                        { label: 'Specialities', value: tuner.platforms, color: 'var(--accent-blue)' },
-                        { label: 'Estimated Cost', value: tuner.estimatedCost, color: 'var(--accent-red)' },
-                        { label: 'Turnaround', value: tuner.turnaround, color: '#facc15' },
-                      ].map(info => (
-                        <div key={info.label} style={{ background: 'rgba(255,255,255,0.04)', padding: '12px 16px', borderRadius: '8px' }}>
-                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>{info.label}</div>
-                          <div style={{ fontSize: '0.9rem', color: info.color, fontWeight: 600 }}>{info.value}</div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--surface-hover)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: 'var(--text-primary)' }}>
+                        {tuner.name[0]}
+                      </div>
+                      <div>
+                        <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)' }}>{tuner.name}</h3>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                          <MapPin size={14} /> {tuner.location.split(' ')[0]}
                         </div>
-                      ))}
-                    </div>
-
-                    {/* Features */}
-                    <div style={{ display: 'flex', gap: '12px', marginBottom: '16px', flexWrap: 'wrap' }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: tuner.dynoPull ? '#4ade80' : '#f87171' }}>
-                        {tuner.dynoPull ? <CheckCircle size={14} /> : <XCircle size={14} />} Dyno Pulls
-                      </span>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: tuner.remoteTune ? '#4ade80' : '#f87171' }}>
-                        {tuner.remoteTune ? <CheckCircle size={14} /> : <XCircle size={14} />} Remote / E-Tuning
-                      </span>
-                    </div>
-
-                    {/* Reputation */}
-                    <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', borderRadius: '8px', padding: '14px 16px', marginBottom: '16px' }}>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>Community Reputation</div>
-                      <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.6, fontStyle: 'italic' }}>"{tuner.reputation}"</p>
-                    </div>
-
-                    <a href={tuner.website} target="_blank" rel="noreferrer" className="btn btn-outline" style={{ padding: '8px 18px', fontSize: '0.9rem', display: 'inline-block' }}>Visit Website →</a>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── HOW TO CHOOSE ── */}
-        <section>
-          <div className="premium-card" style={{ borderLeft: '4px solid #facc15', overflow: 'hidden' }}>
-            <div
-              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px', cursor: 'pointer' }}
-              onClick={() => setOpenSection(openSection === 'choose' ? null : 'choose')}
-              onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
-              onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-            >
-              <h2 style={{ margin: 0, fontSize: '1.4rem', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)' }}>🔍 How to Choose Your Tuner</h2>
-              {openSection === 'choose' ? <ChevronUp size={22} color="#facc15" /> : <ChevronDown size={22} color="#facc15" />}
-            </div>
-            {openSection === 'choose' && (
-              <div style={{ padding: '0 24px 24px', animation: 'fadeIn 0.3s ease' }}>
-                <div style={{ height: '1px', background: 'var(--border)', marginBottom: '20px' }} />
-                <p style={{ color: 'var(--text-muted)', marginBottom: '20px', lineHeight: 1.7 }}>
-                  Your tuner is the most important decision in your build. A bad tune can destroy your engine. A good one can unlock its full potential. Here's exactly what to look for:
-                </p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '20px' }}>
-                  <div style={{ background: 'rgba(74,222,128,0.06)', border: '1px solid rgba(74,222,128,0.2)', borderRadius: '10px', padding: '18px' }}>
-                    <h4 style={{ color: '#4ade80', margin: '0 0 14px', fontSize: '1rem' }}>✅ Green Flags — Hire Them</h4>
-                    {choosingTips.green.map((tip, i) => (
-                      <div key={i} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', marginBottom: '10px' }}>
-                        <CheckCircle size={14} color="#4ade80" style={{ flexShrink: 0, marginTop: '3px' }} />
-                        <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>{tip}</span>
                       </div>
+                    </div>
+                    <span style={{ fontSize: '1rem', color: 'var(--status-green)', fontWeight: 'bold' }}>{tuner.priceBand}</span>
+                  </div>
+
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: '20px', flex: '1' }}>
+                    "{tuner.reputation}"
+                  </p>
+
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+                    {tuner.platforms.split(',').map((p, i) => (
+                      <span key={i} style={{ padding: '4px 8px', background: 'var(--surface-hover)', borderRadius: '4px', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                        {p.trim()}
+                      </span>
                     ))}
                   </div>
-                  <div style={{ background: 'rgba(248,113,113,0.06)', border: '1px solid rgba(248,113,113,0.2)', borderRadius: '10px', padding: '18px' }}>
-                    <h4 style={{ color: '#f87171', margin: '0 0 14px', fontSize: '1rem' }}>🚩 Red Flags — Walk Away</h4>
-                    {choosingTips.red.map((tip, i) => (
-                      <div key={i} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start', marginBottom: '10px' }}>
-                        <XCircle size={14} color="#f87171" style={{ flexShrink: 0, marginTop: '3px' }} />
-                        <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>{tip}</span>
-                      </div>
-                    ))}
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border)', paddingTop: '16px' }}>
+                    <div style={{ display: 'flex', gap: '12px' }}>
+                      {tuner.dynoPull && <span style={{ fontSize: '0.8rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '4px' }}><CheckCircle size={14} color="var(--status-green)" /> Dyno</span>}
+                      {tuner.remoteTune && <span style={{ fontSize: '0.8rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '4px' }}><Globe size={14} color="var(--accent-blue)" /> Remote</span>}
+                    </div>
+                    <a href={tuner.website} target="_blank" rel="noreferrer" style={{ color: 'var(--accent-red)', fontSize: '0.85rem', fontWeight: '600', textDecoration: 'none' }}>Visit Site →</a>
                   </div>
                 </div>
-              </div>
-            )}
-          </div>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* ── BUDGET PRESETS ── */}
         <section>
-          <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px', fontFamily: 'var(--font-heading)' }}>Build Budget Presets</h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '0.95rem' }}>What do you get at each budget level? Click to expand a realistic breakdown.</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {budgets.map(b => (
-              <div key={b.id} className="premium-card" style={{ borderLeft: `4px solid ${b.color}`, overflow: 'hidden' }}>
-                <div
-                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px', cursor: 'pointer' }}
-                  onClick={() => setOpenBudget(openBudget === b.id ? null : b.id)}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-                >
-                  <div>
-                    <h3 style={{ margin: '0 0 4px', fontSize: '1.2rem', color: b.color, fontFamily: 'var(--font-heading)' }}>{b.label}</h3>
-                    <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{b.subtitle}</span>
+          <span className="section-label">Cost Breakdown</span>
+          <h2 style={{ fontSize: 'var(--text-3xl)', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)', marginBottom: '24px' }}>Budget Presets</h2>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {budgets.map(b => {
+              const isOpen = openBudget === b.id
+              return (
+                <div key={b.id} className="premium-card" style={{ borderLeft: `4px solid ${b.color}`, overflow: 'hidden' }}>
+                  <div 
+                    onClick={() => setOpenBudget(isOpen ? null : b.id)}
+                    style={{ padding: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', background: isOpen ? 'var(--surface-hover)' : 'transparent', transition: 'background 0.2s' }}
+                  >
+                    <div>
+                      <h3 style={{ fontSize: '1.4rem', color: 'var(--text-primary)', marginBottom: '4px' }}>{b.label}</h3>
+                      <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>{b.subtitle}</p>
+                    </div>
+                    {isOpen ? <ChevronUp size={24} color="var(--text-muted)" /> : <ChevronDown size={24} color="var(--text-muted)" />}
                   </div>
-                  {openBudget === b.id ? <ChevronUp size={22} color={b.color} /> : <ChevronDown size={22} color={b.color} />}
+                  
+                  {isOpen && (
+                    <div style={{ padding: '0 24px 24px', animation: 'fadeIn 0.3s ease' }}>
+                      <div style={{ background: 'var(--surface-hover)', padding: '16px', borderRadius: '8px', marginBottom: '20px' }}>
+                        <strong style={{ color: 'var(--text-primary)' }}>Best For:</strong> <span style={{ color: 'var(--text-muted)' }}>{b.suitable}</span>
+                      </div>
+                      
+                      <table className="table-styled" style={{ marginBottom: '20px' }}>
+                        <thead>
+                          <tr>
+                            <th>Modification</th>
+                            <th>Cost Estimate</th>
+                            <th>Expected Gain</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {b.what.map((item, i) => (
+                            <tr key={i}>
+                              <td style={{ fontWeight: '500' }}>{item.item}</td>
+                              <td style={{ color: 'var(--text-muted)' }}>{item.cost}</td>
+                              <td style={{ color: 'var(--text-muted)' }}>{item.gain}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      
+                      <p style={{ color: 'var(--text-primary)', lineHeight: 1.6, borderLeft: `2px solid ${b.color}`, paddingLeft: '16px' }}>
+                        {b.result}
+                      </p>
+                    </div>
+                  )}
                 </div>
-                {openBudget === b.id && (
-                  <div style={{ padding: '0 24px 24px', animation: 'fadeIn 0.3s ease' }}>
-                    <div style={{ height: '1px', background: 'var(--border)', marginBottom: '18px' }} />
-                    <div style={{ marginBottom: '18px' }}>
-                      {b.what.map((w, i) => (
-                        <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1.5fr', gap: '12px', padding: '10px 0', borderBottom: '1px solid rgba(255,255,255,0.05)', alignItems: 'center' }}>
-                          <span style={{ color: 'var(--text-primary)', fontSize: '0.9rem', fontWeight: 500 }}>{w.item}</span>
-                          <span style={{ color: b.color, fontSize: '0.85rem', fontWeight: 700 }}>{w.cost}</span>
-                          <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>{w.gain}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div style={{ background: `${b.color}10`, border: `1px solid ${b.color}30`, borderRadius: '8px', padding: '14px 18px', marginBottom: '12px' }}>
-                      <div style={{ fontSize: '0.8rem', color: b.color, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>What to Expect</div>
-                      <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>{b.result}</p>
-                    </div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                      <strong style={{ color: 'var(--text-primary)' }}>Best for: </strong>{b.suitable}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+              )
+            })}
           </div>
         </section>
 
-        {/* ── HARDWARE COSTS ── */}
+        {/* ── HARDWARE COSTS TABLE ── */}
         <section>
-          <h2 style={{ fontSize: '1.8rem', marginBottom: '8px', color: 'var(--text-primary)', borderBottom: '1px solid var(--border)', paddingBottom: '10px', fontFamily: 'var(--font-heading)' }}>Hardware Cost Reference</h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '0.95rem' }}>Real Indian market pricing for every major performance upgrade. Categorized by stage. Click for details and "when to buy" guidance.</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {Object.entries(hardwareCosts.reduce((acc, cost) => {
-              if (!acc[cost.category]) acc[cost.category] = []
-              acc[cost.category].push(cost)
-              return acc
-            }, {})).map(([category, items]) => (
-              <div key={category} className="premium-card" style={{ borderLeft: '4px solid var(--accent-blue)', overflow: 'hidden' }}>
-                <div
-                  style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '18px 24px', cursor: 'pointer', transition: 'background 0.2s' }}
-                  onClick={() => setOpenHardwareCat(openHardwareCat === category ? null : category)}
-                  onMouseEnter={e => e.currentTarget.style.background = 'var(--surface-hover)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-                >
-                  <h3 style={{ margin: 0, fontSize: '1.2rem', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)' }}>{category}</h3>
-                  {openHardwareCat === category ? <ChevronUp size={22} color="var(--accent-blue)" /> : <ChevronDown size={22} color="var(--accent-blue)" />}
-                </div>
-                {openHardwareCat === category && (
-                  <div style={{ padding: '0 24px 24px', animation: 'fadeIn 0.3s ease' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                      {items.map(cost => (
-                        <div key={cost.id} className="glass" style={{ borderRadius: '8px', border: '1px solid var(--border)', overflow: 'hidden' }}>
-                          <div
-                            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 18px', cursor: 'pointer', transition: 'background 0.2s' }}
-                            onClick={() => setOpenCost(openCost === cost.id ? null : cost.id)}
-                            onMouseEnter={e => e.currentTarget.style.background = 'var(--surface-hover)'}
-                            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-                          >
-                            <h4 style={{ fontSize: '1rem', color: 'var(--text-primary)', margin: 0 }}>{cost.item}</h4>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                              <span style={{ fontWeight: 700, color: 'var(--accent-red)', fontSize: '0.95rem' }}>{cost.price}</span>
-                              {openCost === cost.id ? <ChevronUp size={18} color="var(--text-muted)" /> : <ChevronDown size={18} color="var(--text-muted)" />}
-                            </div>
-                          </div>
-                          {openCost === cost.id && (
-                            <div style={{ padding: '0 18px 16px', animation: 'fadeIn 0.2s ease' }}>
-                              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6, margin: '0 0 10px' }}>{cost.desc}</p>
-                              <div style={{ fontSize: '0.85rem', color: '#facc15' }}>
-                                <strong>⏱ When to buy:</strong> {cost.when}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+          <span className="section-label">A La Carte</span>
+          <h2 style={{ fontSize: 'var(--text-3xl)', fontFamily: 'var(--font-heading)', color: 'var(--text-primary)', marginBottom: '24px' }}>Hardware Pricing Guide</h2>
+          
+          <div className="premium-card" style={{ overflow: 'hidden' }}>
+            <table className="table-styled">
+              <thead>
+                <tr>
+                  <th>Component</th>
+                  <th>Category</th>
+                  <th>Estimated Price</th>
+                  <th>When to upgrade?</th>
+                </tr>
+              </thead>
+              <tbody>
+                {hardwareCosts.map((hw, i) => (
+                  <tr key={i}>
+                    <td>
+                      <div style={{ fontWeight: '500', color: 'var(--text-primary)', marginBottom: '4px' }}>{hw.item}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', maxWidth: '300px' }}>{hw.desc}</div>
+                    </td>
+                    <td><span className="chip" style={{ fontSize: '0.75rem', padding: '4px 8px' }}>{hw.category}</span></td>
+                    <td style={{ color: 'var(--status-green)', fontWeight: '600' }}>{hw.price}</td>
+                    <td style={{ color: 'var(--text-muted)', fontSize: '0.85rem', maxWidth: '200px' }}>{hw.when}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* ── TRUST & DISCLAIMER ── */}
+        <section style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
+          <div className="premium-card" style={{ flex: '1', minWidth: '300px', padding: '32px', borderTop: '4px solid var(--status-green)' }}>
+            <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <CheckCircle size={20} color="var(--status-green)" /> Green Flags
+            </h3>
+            <ul style={{ paddingLeft: '20px', color: 'var(--text-muted)', lineHeight: 1.6, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {choosingTips.green.map((tip, i) => <li key={i}>{tip}</li>)}
+            </ul>
+          </div>
+
+          <div className="premium-card" style={{ flex: '1', minWidth: '300px', padding: '32px', borderTop: '4px solid var(--status-red)' }}>
+            <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <XCircle size={20} color="var(--status-red)" /> Red Flags
+            </h3>
+            <ul style={{ paddingLeft: '20px', color: 'var(--text-muted)', lineHeight: 1.6, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {choosingTips.red.map((tip, i) => <li key={i}>{tip}</li>)}
+            </ul>
           </div>
         </section>
 
