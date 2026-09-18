@@ -9,7 +9,7 @@ from typing import Dict, List
 import yaml
 from pydantic import ValidationError
 
-from .schema import CarOverlay, ModCategory, Mod, RealityScore, StyleRecipe
+from .schema import CarOverlay, ModCategory, Mod, RealityScore, StyleRecipe, VendorListing
 
 _ROOT = Path(__file__).parent
 
@@ -57,6 +57,17 @@ def load_mods() -> List[Mod]:
 
 def load_recipes() -> List[StyleRecipe]:
     return _load_many(_ROOT / "recipes", "*.yaml", StyleRecipe)
+
+
+def load_vendors() -> List[VendorListing]:
+    path = _ROOT / "vendors.yaml"
+    if not path.exists():
+        return []
+    raw = _load_yaml_file(path)
+    try:
+        return [VendorListing.model_validate(v) for v in raw]
+    except ValidationError as exc:
+        raise ModLaneDataError(f"{path}: {exc}") from exc
 
 
 def load_car_overlays() -> Dict[str, CarOverlay]:
@@ -128,6 +139,7 @@ def rto_rules_for_state(state_code: str | None) -> Dict[str, RealityScore]:
 CATEGORIES: List[ModCategory] = load_categories()
 MODS: List[Mod] = load_mods()
 RECIPES: List[StyleRecipe] = load_recipes()
+VENDORS: List[VendorListing] = load_vendors()
 RTO_BASELINE: Dict[str, RealityScore] = load_rto_baseline()
 RTO_STATE_OVERRIDES: Dict[str, Dict[str, RealityScore]] = load_rto_state_overrides()
 CAR_OVERLAYS: Dict[str, CarOverlay] = load_car_overlays()

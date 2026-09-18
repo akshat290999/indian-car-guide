@@ -81,6 +81,28 @@ class WorkshopLink(BaseModel):
     whatsapp_link: Optional[str] = None
 
 
+class VendorListing(BaseModel):
+    """Editorially curated real business, not a community submission — no
+    phone/WhatsApp contact is stored here since none was independently
+    verified; `source` is the business's own site or a listing that named it.
+    Never invent a name, address, or contact for this list.
+
+    `category` reuses the same category_id namespace as ModCategory (see
+    categories.yaml) rather than a separate vendor-specific taxonomy — one
+    fewer thing to keep in sync. Coverage across the 3 launch cities
+    (Hyderabad, Delhi, Bengaluru) is intentionally uneven: some categories
+    (lighting, aero-body-kits) simply don't have a well-documented dedicated
+    specialist in every city yet, and a thin/partial list is the honest
+    outcome rather than a padded one.
+    """
+    name: str
+    city: str
+    category: str
+    specialty: str
+    source: Source
+    confidence: Literal["verified_3plus", "two_independent", "single_source"]
+
+
 class BrandRecommendation(BaseModel):
     name: str
     tier: Literal["budget", "mid", "premium"]

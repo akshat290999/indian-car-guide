@@ -1,0 +1,388 @@
+# Editorially curated real businesses (web-researched, Sep 2026) — not
+# community submissions, no personal endorsement or paid placement. Every
+# entry's `source` is that business's own site or a listing that independently
+# named it. Deliberately NOT storing phone/WhatsApp numbers here since none
+# were independently verified — see Workshops.jsx for the "verify before you
+# visit" disclaimer this data is served with.
+#
+# `category` reuses categories.yaml's category_id namespace. Coverage across
+# Hyderabad, Delhi and Bengaluru is intentionally uneven — some categories
+# (lighting, aero-body-kits) don't have a well-documented dedicated specialist
+# in every city yet; a thin, honest list beats a padded, fabricated one.
+
+# ── wheels-tyres ──────────────────────────────────────────────────────────
+- name: Fasttracks Car Care
+  city: Hyderabad
+  category: wheels-tyres
+  specialty: "Alloy wheel fitment and custom powder coating alongside screens and audio-visual upgrades — Jubilee Hills."
+  source:
+    label: "Fasttracks Car Care — India's Biggest Car Modification Studio"
+    url: https://www.fasttrackscarcare.in/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Jagadamba Motors
+  city: Hyderabad
+  category: wheels-tyres
+  specialty: "Car accessories and modification, including custom wheels."
+  source:
+    label: "Jagadamba Motors — Car Accessories at Hyderabad's Best Store"
+    url: https://jagadambamotors.com/car-accessories-at-hyderabads/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Automarc
+  city: Delhi
+  category: wheels-tyres
+  specialty: "Alloy wheels designed for handling and looks, with staff guidance on fitment and brand selection."
+  source:
+    label: "Automarc — Premier Car Accessories Provider in Delhi"
+    url: https://www.automarc.in/post/the-premier-car-accessories-provider-in-delhi
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: StudioX Car Accessories
+  city: Delhi
+  category: wheels-tyres
+  specialty: "Premium alloy wheels from established brands for durability, lightweight handling and finish."
+  source:
+    label: "StudioX — Alloy Wheels"
+    url: https://studioxindia.com/products/alloy-wheels/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Car Shringar
+  city: Bengaluru
+  category: wheels-tyres
+  specialty: "Premium alloy wheels and tyres under one roof; stocks brands including OZ Racing, Apollo, MRF, Bridgestone."
+  source:
+    label: "Car Shringar — Best Car Accessories in Bengaluru"
+    url: https://carshringarblr.com/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Skyway Car Accessory Centre
+  city: Bengaluru
+  category: wheels-tyres
+  specialty: "Alloy wheels alongside seat covers, sun films, LED lights and detailing — Yelahanka."
+  source:
+    label: "Skyway Car Accessory Centre — Yelahanka, Bangalore"
+    url: https://skywaycaraccessories.com/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+# ── exterior-wraps-body (tint, chrome delete, vinyl wraps) ─────────────────
+- name: WrapStyle Hyderabad
+  city: Hyderabad
+  category: exterior-wraps-body
+  specialty: "Vinyl wrap application, part of the multi-city WrapStyle franchise (also Kerala, Chennai, Mumbai, Bengaluru)."
+  source:
+    label: "WrapStyle — Hyderabad (Detailers India listing)"
+    url: https://www.detailers.in/listing/wrapstyle-hyderabad/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Carbox Detailing Studio
+  city: Hyderabad
+  category: exterior-wraps-body
+  specialty: "Window film installation for privacy and UV protection."
+  source:
+    label: "Carbox Detailing Studio — Window Film for Cars in Hyderabad"
+    url: https://www.cbdshyd.com/window-film-for-cars-in-hyderabad/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: 3M Car Care
+  city: Delhi
+  category: exterior-wraps-body
+  specialty: "Originated in Bengaluru, now a countrywide franchise with four Delhi locations; wraps for aesthetics and protection."
+  source:
+    label: "3M Car Care — Top 10 Car Detailing Studios in Delhi NCR"
+    url: https://thedetailinggang.com/blog/top-10-car-detailing-studios-in-delhi-ncr
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Retro Rraps
+  city: Delhi
+  category: exterior-wraps-body
+  specialty: "Auto spa and wrapping studio — gloss, matte and carbon-fibre-finish vinyl wraps."
+  source:
+    label: "Retro Rraps — Top 10 Car Detailing Studios in Delhi NCR"
+    url: https://thedetailinggang.com/blog/top-10-car-detailing-studios-in-delhi-ncr
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Vinyled Car Care
+  city: Bengaluru
+  category: exterior-wraps-body
+  specialty: "Sun film/tint installation and vinyl wrapping — Kammanahalli."
+  source:
+    label: "Vinyled — Best Car Sunfilm Installation in Bangalore"
+    url: https://vinyled.in/best-car-sunfilm-installation-in-bangalore/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Turbo Tints
+  city: Bengaluru
+  category: exterior-wraps-body
+  specialty: "Automotive window film specialist — HSR Layout."
+  source:
+    label: "Turbo Tints"
+    url: https://www.turbotints.in/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+# ── lighting (LED/HID retrofit) ─────────────────────────────────────────────
+# Thinnest category in this list: only one dedicated specialist with a clear
+# single-city presence turned up in research, plus one multi-city installer.
+- name: Light Xpertz International
+  city: Bengaluru
+  category: lighting
+  specialty: "Performance lighting specialist since 2008 — headlight and fog lamp upgrades."
+  source:
+    label: "Light Xpertz International — Instagram"
+    url: https://www.instagram.com/light_xpertz_india/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: DHC Autosolutions
+  city: "Hyderabad, Delhi & Bengaluru"
+  category: lighting
+  specialty: "LED headlight bulbs and installation — online-first with customer reviews spanning all three cities, not a single physical storefront."
+  source:
+    label: "DHC Autosolutions — LED Headlight Bulb for Car"
+    url: https://dhcautosolutions.com/led-headlamp-bulb-for-car
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+# ── interior-cabin (seat covers, interior) ──────────────────────────────────
+- name: The Detailing Don
+  city: Hyderabad
+  category: interior-cabin
+  specialty: "Custom seat covers (Rexine/PU/leather) with factory-style fit and airbag-safe installation — ECIL & Kushaiguda."
+  source:
+    label: "The Detailing Don — Car Seat Covers Hyderabad"
+    url: https://www.thedetailingdon.in/car-decors-hyderabad/car-seat-covers-hyderabad
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Maheshwari Car Accessories
+  city: Hyderabad
+  category: interior-cabin
+  specialty: "Wholesale dealer of seat covers and interior accessories — Minister Road."
+  source:
+    label: "Maheshwari Car Accessories"
+    url: https://www.maheshwaricaraccessories.com/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: RR Covers
+  city: Delhi
+  category: interior-cabin
+  specialty: "Custom-fit seat covers in PU Leather, Velvet, Cotton and Composite Leather."
+  source:
+    label: "RR Covers"
+    url: https://www.rrcovers.co.in/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Pegasus Premium
+  city: Delhi
+  category: interior-cabin
+  specialty: "Customised seat covers in PU/Nappa/Italian leatherette with high-density foam — Udyog Nagar."
+  source:
+    label: "Pegasus Premium — car seat covers Delhi NCR"
+    url: https://carshala.in/collections/car-seat-cover-in-delhi
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Kavach Auto
+  city: Bengaluru
+  category: interior-cabin
+  specialty: "Seat covers with professional installation, typically 1-2 hours."
+  source:
+    label: "Kavach Auto — Car Seat Covers in Bangalore"
+    url: https://www.kavachauto.in/car-seat-covers-bangalore/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Exotica Leathers
+  city: Bengaluru
+  category: interior-cabin
+  specialty: "Car seat cover dealer and manufacturer — Jayanagar 7th Block."
+  source:
+    label: "Exotica Leathers"
+    url: https://www.exoticaleathers.com/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+# ── audio-screens (head units, speakers, subwoofers) ────────────────────────
+- name: Elegant Car Designers
+  city: Hyderabad
+  category: audio-screens
+  specialty: "Car audio systems alongside remote locking, sensors and decor accessories."
+  source:
+    label: "Elegant Car Designers — car audio, Hyderabad (search listing)"
+    url: https://www.sulekha.com/car-accessories-shops/hyderabad
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Audio Wheels
+  city: Delhi
+  category: audio-screens
+  specialty: "Premium car audio systems, Android stereos and dashcams, sold pan-India."
+  source:
+    label: "Audio Wheels — Buy Premium Car Accessories & Audio Systems"
+    url: https://audiowheels.in/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Nandi Car Accessories
+  city: Bengaluru
+  category: audio-screens
+  specialty: "Pioneer car audio installs; touchscreen and infotainment specialists."
+  source:
+    label: "Nandi Car Accessories"
+    url: https://nandicaraccessories.com/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Glamour Car Accessories
+  city: Bengaluru
+  category: audio-screens
+  specialty: "Car stereo systems with brands including Polk Audio, Rockford Fosgate, Hertz, Kenwood, JBL, Sony, Pioneer — Koramangala."
+  source:
+    label: "Glamour Car Accessories"
+    url: https://glamourcar.in/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+# ── paint-protection (PPF, ceramic coating) ─────────────────────────────────
+- name: CarzSpa
+  city: Hyderabad
+  category: paint-protection
+  specialty: "PPF (Aegis range), ceramic coating, sun films — multi-city chain with an established Hyderabad studio."
+  source:
+    label: "CarzSpa — Hyderabad Studios"
+    url: https://www.carzspa.com/studios/hyderabad/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Vishnu Car Care Studios
+  city: Hyderabad
+  category: paint-protection
+  specialty: "XPEL, Saint-Gobain, Garware, LLumar & STEK PPF installs, up to 10-year warranty — ECIL & Tellapur."
+  source:
+    label: "Best PPF in Hyderabad — Vishnu Car Care Studios"
+    url: https://www.vishnuautoconnect.in/pages/best-ppf-in-hyderabad
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: The Detailing Mafia
+  city: Delhi
+  category: paint-protection
+  specialty: "210+ studios across India; multiple Delhi outlets including Vasant Kunj, Malviya Nagar, Preet Vihar, Pitampura, Janakpuri."
+  source:
+    label: "The Detailing Mafia — Best Paint Protection Film in Delhi"
+    url: https://www.thedetailingmafia.com/blog-details/best-paint-protection-film-in-delhi
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Shinex Car Spa
+  city: Delhi
+  category: paint-protection
+  specialty: "PPF and detailing studio, frequently cited among Delhi's top-rated PPF installers."
+  source:
+    label: "Shinex Car Spa — Best Paint Protection Film in Delhi"
+    url: https://www.shinexcarspa.com/best-paint-protection-film-in-delhi/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: CarzSpa
+  city: Bengaluru
+  category: paint-protection
+  specialty: "PPF (Aegis range), ceramic coating, sun films — same chain as the Hyderabad studio, Bengaluru location."
+  source:
+    label: "CarzSpa — Bangalore Studios"
+    url: https://www.carzspa.com/studios/bangalore/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Vinyled Car Care
+  city: Bengaluru
+  category: paint-protection
+  specialty: "Premium car styling and PPF studio in Kammanahalli, tested materials for Indian weather conditions."
+  source:
+    label: "Vinyled — Best Car PPF Services in Bengaluru"
+    url: https://vinyled.in/best-car-ppf-services-in-bengaluru/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+# ── aero-body-kits ───────────────────────────────────────────────────────────
+# No well-documented dedicated Bengaluru specialist turned up in research —
+# left out rather than filled with an unverified directory listing.
+- name: WrapStyle Hyderabad
+  city: Hyderabad
+  category: aero-body-kits
+  specialty: "Car design and styling alongside its core wrap/PPF business."
+  source:
+    label: "WrapStyle — Hyderabad (Detailers India listing)"
+    url: https://www.detailers.in/listing/wrapstyle-hyderabad/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+- name: Retro Rraps
+  city: Delhi
+  category: aero-body-kits
+  specialty: "Body kits for high-end cars, alongside its wrap studio work."
+  source:
+    label: "Retro Rraps — Top 10 Car Detailing Studios in Delhi NCR"
+    url: https://thedetailinggang.com/blog/top-10-car-detailing-studios-in-delhi-ncr
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source
+
+# ── utility-camping (roof racks, mud flaps) ─────────────────────────────────
+# Weakest category: general accessory stores carry these items, but no
+# dedicated "utility/camping" specialist turned up for any of the 3 cities.
+- name: Accessories Pro
+  city: Hyderabad
+  category: utility-camping
+  specialty: "Mudguards, door guards and general accessories alongside wraps and alloy wheels."
+  source:
+    label: "Accessories Pro — Car Accessories Hyderabad"
+    url: https://accessoriespro.in/car-accessories-hyderabad/
+    source_type: editorial_field_test
+    date_observed: "2026-09-19"
+  confidence: single_source

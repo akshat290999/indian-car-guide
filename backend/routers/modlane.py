@@ -59,6 +59,14 @@ def get_recipes():
     return [r.model_dump() for r in loader.RECIPES]
 
 
+@router.get("/vendors")
+def get_vendors():
+    """Editorially curated real workshops/vendors — see vendors.yaml's header
+    for the sourcing discipline. Not the community-submission queue.
+    """
+    return [v.model_dump() for v in loader.VENDORS]
+
+
 @router.get("/cars/{model_name}")
 def get_car_overlay(model_name: str):
     overlay = loader.CAR_OVERLAYS.get(model_name)

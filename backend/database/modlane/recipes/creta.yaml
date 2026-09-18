@@ -139,3 +139,25 @@
   # flag on their own — worst-of means the bundle inherits that honestly
   # rather than rounding it away because it "feels" like a safe starter pack.
   # Fits all trims — none of the three components has a trim restriction.
+
+- id: creta-everyday-essentials
+  car_model: Creta
+  name: Creta Everyday Essentials
+  mod_ids:
+    - creta-floor-boot-mats
+    - creta-detachable-window-sunshades
+    - creta-wireless-charger-mount
+    - creta-steering-wheel-cover
+  combined_price_range:
+    min_inr: 2950
+    max_inr: 13000
+    confidence: single_source
+    sample_size: 0
+  combined_warranty_risk: green
+  combined_road_clearance_risk: green
+  combined_rto_risk_baseline: green
+  style_tags: [subtle, tech]
+  # For under ₹13,000 total, not everyone doing a Creta wants a big-ticket
+  # mod — this is the smallest, cheapest bundle in the catalog, and
+  # genuinely all-Green: no wiring, no cutting, nothing that touches a
+  # warranted component. Fits all trims.
