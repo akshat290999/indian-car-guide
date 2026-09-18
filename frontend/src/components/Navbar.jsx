@@ -78,7 +78,7 @@ function Navbar() {
             textTransform: 'uppercase',
             lineHeight: 1,
           }}>
-            Indian Car Guide
+            Tuner's Guide
           </span>
         </NavLink>
 

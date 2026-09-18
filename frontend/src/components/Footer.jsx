@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="footer-grid">
         {/* Brand col */}
         <div>
-          <span className="footer-logo">Indian Car Guide</span>
+          <span className="footer-logo">Tuner's Guide</span>
           <p style={{ fontSize: '0.88rem', lineHeight: 1.7, maxWidth: '320px', marginBottom: '20px' }}>
             India's most honest resource for car tuning — covering platforms, stages, costs, and real-world builds from the Indian community.
           </p>
@@ -60,7 +60,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <span>© {year} Indian Car Guide. Built for enthusiasts, by enthusiasts.</span>
+        <span>© {year} Tuner's Guide. Built for enthusiasts, by enthusiasts.</span>
         <span>Not affiliated with any manufacturer or tuning shop.</span>
       </div>
     </footer>

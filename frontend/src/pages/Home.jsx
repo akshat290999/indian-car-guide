@@ -212,8 +212,7 @@ export default function Home() {
                     flexDirection: 'column',
                     gap: '16px',
                     transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-                    cursor: 'pointer',
-                    gridColumn: cardIdx < 2 ? 'span 2' : 'span 1'
+                    cursor: 'pointer'
                   }}
                 >
                   <div style={{

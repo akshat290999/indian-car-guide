@@ -78,7 +78,7 @@ _CARS_WITH_META = [{**car, **CAR_META.get(car['model_name'], {})} for car in CAR
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to the Indian Car Guide API"}
+    return {"message": "Welcome to the Tuner's Guide API"}
 
 
 @app.get("/api/version")

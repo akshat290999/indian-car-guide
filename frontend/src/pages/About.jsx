@@ -19,7 +19,7 @@ export default function About() {
               The Indian car tuning scene is growing rapidly, but reliable information is still hard to find. Forums are fragmented, Instagram is full of vanity metrics, and finding a trustworthy tuner often feels like a gamble.
             </p>
             <p>
-              We built <strong>Indian Car Guide</strong> to solve this. Our goal is to provide an objective, centralized knowledge base for platform potential, tuning stages, real-world costs, and verified builds.
+              We built <strong>Tuner's Guide</strong> to solve this. Our goal is to provide an objective, centralized knowledge base for platform potential, tuning stages, real-world costs, and verified builds.
             </p>
             <p>
               Whether you are looking to unlock a safe 20 HP from your daily driver or build a 500 HP track weapon, you need to know the facts before you spend your hard-earned money.
