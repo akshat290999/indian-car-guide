@@ -42,4 +42,38 @@ CAR_META = {
         'lineage_history':  "The Scorpio name has been a Mahindra icon since 2002, defining the brand's transition from utilitarian vehicles to aspirational SUVs. The Scorpio-N launched in 2022 as a clean-sheet redesign on an all-new ladder frame platform, with a 2.2L mHawk diesel and a new 2.0L mStallion turbo petrol option. It offered genuine seven-seater capacity, ADAS features, and a premium interior that the original Scorpio never had, while retaining the rugged body-on-frame DNA its loyal customer base expected.",
         'monthly_sales':    7000,
     },
+
+    # ── Added for ModLane (see modlane_brief.md) — reformatted from
+    # cars_data_archived.py; brand_history/lineage_history text carried over
+    # unchanged from the archive entries.
+    'Brezza': {
+        'brand_history':   "Maruti Suzuki India was established in 1981 as a joint venture between the Government of India and Suzuki Motor Corporation. The iconic Maruti 800, launched in 1983, revolutionised personal mobility by making cars affordable for the Indian middle class. Over four decades the company has consistently held the largest market share in the Indian passenger-vehicle segment, producing over 25 million vehicles, and continues to dominate through an unmatched service network spanning tier-1 to tier-4 cities.",
+        'lineage_history':  "Introduced as the Vitara Brezza in 2016, this model marked Maruti's entry into compact SUVs. It quickly became a massive hit due to its high fuel efficiency, robust reliability, and boxy, commanding stance.",
+        'monthly_sales':    14500,
+    },
+    'Swift': {
+        'brand_history':   "Maruti Suzuki India was established in 1981 as a joint venture between the Government of India and Suzuki Motor Corporation. The iconic Maruti 800, launched in 1983, revolutionised personal mobility by making cars affordable for the Indian middle class. Over four decades the company has consistently held the largest market share in the Indian passenger-vehicle segment, producing over 25 million vehicles, and continues to dominate through an unmatched service network spanning tier-1 to tier-4 cities.",
+        'lineage_history':  "Since 2005, the Swift has been a cultural icon in India, redefining the hatchback as sporty and youthful. Across four generations, it has consistently remained one of the country's top three best-selling cars.",
+        'monthly_sales':    17000,
+    },
+    'Baleno': {
+        'brand_history':   "Maruti Suzuki India was established in 1981 as a joint venture between the Government of India and Suzuki Motor Corporation. The iconic Maruti 800, launched in 1983, revolutionised personal mobility by making cars affordable for the Indian middle class. Over four decades the company has consistently held the largest market share in the Indian passenger-vehicle segment, producing over 25 million vehicles, and continues to dominate through an unmatched service network spanning tier-1 to tier-4 cities.",
+        'lineage_history':  "Launched in 2015 and comprehensively redesigned in 2022, the Baleno is India's best-selling premium hatchback. Sold exclusively through the NEXA channel, it brought HUD and connected car features to the segment, achieving over one million cumulative sales and consistently ranking among India's top-five best sellers.",
+        'monthly_sales':    14000,
+    },
+    'Fronx': {
+        'brand_history':   "Maruti Suzuki India was established in 1981 as a joint venture between the Government of India and Suzuki Motor Corporation. The iconic Maruti 800, launched in 1983, revolutionised personal mobility by making cars affordable for the Indian middle class. Over four decades the company has consistently held the largest market share in the Indian passenger-vehicle segment, producing over 25 million vehicles, and continues to dominate through an unmatched service network spanning tier-1 to tier-4 cities.",
+        'lineage_history':  "The Fronx arrived in 2023 as a crossover-SUV built on the Baleno Heartect platform, sold exclusively through the NEXA premium channel. It combines the assertive stance of an SUV with hatchback agility, and its 1.0-litre Boosterjet turbo engine is among the most refined in the compact crossover class.",
+        'monthly_sales':    7000,
+    },
+
+    # Authored fresh — Virtus never existed in this backend before (see
+    # cars_data.py). monthly_sales and both history fields are approximate,
+    # from general knowledge, not sourced from a verified sales report —
+    # confirm before this is treated as final content.
+    'Virtus': {
+        'brand_history':   "Volkswagen India, part of the Volkswagen Group's India 2.0 project alongside Skoda, has operated in the country since 2007 and consolidated platform-sharing with Skoda from 2020 to cut costs and improve localisation. The brand is known for German build quality, structural rigidity, and driving dynamics that consistently earn strong safety ratings, positioning it as a value-for-engineering alternative to mainstream Japanese and Korean competitors.",
+        'lineage_history':  "Launched in 2022 on the MQB-A0-IN platform shared with the Skoda Slavia, the Virtus replaced the Vento as Volkswagen's mid-size sedan for India. It offers 1.0 TSI and 1.5 TSI turbo-petrol engines with manual, torque-converter, and DSG gearbox options, and its GT-badged variants target enthusiast buyers seeking a more engaging drive than segment norms.",
+        'monthly_sales':    2000,
+    },
 }

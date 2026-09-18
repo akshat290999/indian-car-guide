@@ -23,6 +23,10 @@ image_results.json
 *.bak
 *.bak2
 
+# ── ModLane community-submission queue (local dev only — prod DB lives
+#    outside the repo clone via MODLANE_DB_PATH, see submissions_db.py) ───────
+backend/modlane_dev.db
+
 # ── Root-level Node artefacts (playwright runner, not the app) ───────────────
 # The real package.json lives at frontend/package.json and IS tracked.
 # Leading slash scopes these rules to the repo root only.

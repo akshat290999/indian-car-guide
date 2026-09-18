@@ -1,0 +1,151 @@
+# National-level baselines. A category baseline is a coarse default —
+# individual Mod.rto_risk entries (see mods/*.yaml) are always more specific
+# and should be treated as authoritative over this file when they disagree.
+# State-specific overrides (per Phase 3 of the plan) still need dedicated
+# research per state and are NOT filled in here yet — state_overrides stays
+# empty until that work happens. Sourced via WebSearch, Sep 2026, not
+# scraped/fabricated; confidence reflects how many independent sources
+# actually agreed, not how confident the rationale sounds.
+
+wheels-tyres:
+  rating: amber
+  rationale: >
+    Changing wheel/tyre size beyond the RC-specified rolling radius can throw
+    off speedometer calibration and, in some states, requires an RC
+    endorsement. Enforcement in practice is inconsistent — this is a real but
+    low-severity risk compared to lighting or structural categories.
+  sources: []
+  confidence: editorial_judgment_only
+  last_reviewed: "2026-09-19"
+
+exterior-wraps-body:
+  rating: red
+  rationale: >
+    Covers window tint specifically, which the Supreme Court's 2012 ruling
+    (Avishek Goenka vs. Union of India) and CMVR Rule 100 make Red nationally
+    — aftermarket black/opaque film is banned outright, with only
+    IS 2553-certified films meeting the 70%/50% VLT minimums permitted. Other
+    exterior-wraps-body mods (chrome delete, colour-change body wraps) are
+    generally lower-risk and are scored individually per mod — this category
+    baseline reflects the worst common case (tint), not every mod in it.
+  sources:
+    - label: "RTO Fines for Tinted Glass in Cars: Rules, Penalties and Legal VLT Limits"
+      url: https://www.zurichkotak.com/knowledge-center/car-insurance/rto-fines-for-tinted-glass-understanding-the-consequences
+      source_type: government_document
+      date_observed: "2026-09-19"
+    - label: "RTO Approved Sun Film Rules in India (2026)"
+      url: https://www.garwarehitechfilms.com/sun-control-films/blog/how-rto-approved-sun-control-film-can-improve-your-driving-experience
+      source_type: government_document
+      date_observed: "2026-09-19"
+    - label: "Car Window Film Rules in India | Legal CMVR Guidelines"
+      url: https://www.garwarehitechfilms.com/sun-control-films/blog/cmvr-guidelines-for-car-window-films
+      source_type: government_document
+      date_observed: "2026-09-19"
+  confidence: verified_3plus
+  last_reviewed: "2026-09-19"
+
+lighting:
+  rating: red
+  rationale: >
+    Non-OEM HID/projector conversions requiring housing modification, and
+    LED bars/auxiliary lights not ARAI-approved, are widely enforced against
+    under CMVR Rules 104/105/108 (AIS-008/009 beam-pattern and glare
+    standards). October 2025 Supreme Court direction to states to crack down
+    on dazzling aftermarket LEDs, and a single Bengaluru enforcement drive
+    that challaned ~10,000 motorists, confirm this is actively policed, not
+    theoretical.
+  sources:
+    - label: "Headlight Modification Laws in India"
+      url: https://www.carzspa.com/headlight-modification-laws-in-india/
+      source_type: government_document
+      date_observed: "2026-09-19"
+    - label: "Why Police Officials Across India Are At War Against LED Lights"
+      url: https://www.cartoq.com/car-life/why-high-intensity-led-headlamps-illegal-india/
+      source_type: government_document
+      date_observed: "2026-09-19"
+    - label: "Bengaluru: dazzling headlights land 10,000 motorists in trouble — Deccan Herald"
+      url: https://www.deccanherald.com/india/karnataka/bengaluru/bengaluru-dazzling-headlights-land-10000-motorists-in-trouble-3858981
+      source_type: government_document
+      date_observed: "2026-09-19"
+  confidence: verified_3plus
+  last_reviewed: "2026-09-19"
+
+interior-cabin:
+  rating: green
+  rationale: Interior modifications that don't affect safety or structural integrity are generally permitted; this category isn't covered by CMVR's exterior-lighting/dimension rules.
+  sources:
+    - label: "Car Modifications in India: A Guide to Legal and Illegal Customisations"
+      url: https://www.hdfcergo.com/blogs/car-insurance/car-modifications-rules-in-india
+      source_type: government_document
+      date_observed: "2026-09-19"
+  confidence: single_source
+  last_reviewed: "2026-09-19"
+
+audio-screens:
+  rating: green
+  rationale: >
+    No CMVR provision was found restricting in-cabin infotainment hardware;
+    all enforcement activity found in research targets exterior lighting, not
+    head units or speakers. This is an absence-of-evidence conclusion, not a
+    confirmed clean bill — flagged with lower confidence accordingly.
+  sources: []
+  confidence: editorial_judgment_only
+  last_reviewed: "2026-09-19"
+
+paint-protection:
+  rating: green
+  rationale: No CMVR provision governs a clear/near-invisible protective film or coating that doesn't change the vehicle's registered colour or dimensions.
+  sources: []
+  confidence: editorial_judgment_only
+  last_reviewed: "2026-09-19"
+
+aero-body-kits:
+  rating: amber
+  rationale: >
+    Section 52 of the Motor Vehicles Act, 1988 prohibits altering a vehicle
+    beyond its RTO-registered specification. Oversized/wide-body kits that
+    increase overall dimensions are illegal without RTO endorsement (₹5,000
+    fine under Section 52; a 2019 Supreme Court ruling lets RTOs impound
+    non-compliant vehicles on the spot); a bolt-on kit that doesn't change
+    registered dimensions is generally tolerated in practice. Amber reflects
+    that real split, not uncertainty about the law itself.
+  sources:
+    - label: "Illegal Car Modifications in India | Complete List"
+      url: https://www.carchhe.com/blog/illegal-car-modifications-in-india
+      source_type: government_document
+      date_observed: "2026-09-19"
+    - label: "India's Motor Vehicle Act on Car Modifications: Rules, Sections, Penalties"
+      url: https://cargraze.com/blog/india-s-motor-vehicle-act-on-car-modifications-rules-sections-permissions-and-prohibited-changes
+      source_type: government_document
+      date_observed: "2026-09-19"
+  confidence: two_independent
+  last_reviewed: "2026-09-19"
+
+utility-camping:
+  rating: red
+  rationale: >
+    This category mixes very different risk profiles and the baseline
+    reflects the worst common case, not every mod in it: bull bars/crash
+    guards have been banned on Indian passenger cars since a December 2017
+    MoRTH advisory enforcing Section 52 of the Motor Vehicles Act, reinforced
+    by a 2019 Supreme Court ruling giving RTOs on-the-spot impoundment
+    authority — this is Red and well-corroborated. Roof rails/carriers, by
+    contrast, are sold as normalized OEM-adjacent retrofit accessories with
+    no comparable enforcement found — see the mod-level entries for the
+    accurate per-mod picture; do not read this category baseline as applying
+    uniformly to roof racks.
+  sources:
+    - label: "Bull Bars Are Illegal in India (2026): Fines, Airbag Risk, Insurance Impact"
+      url: https://nandicaraccessories.com/blogs/news/that-rs-12-000-bull-bar-makes-your-crash-worse-not-better-the-crumple-zone-physics-the-section-52-ban-and-the-insurance-claim-you-will-lose-india-2026
+      source_type: government_document
+      date_observed: "2026-09-19"
+    - label: "Bull Bar Ban India 2026 — MoRTH Law, Fines, Legal Alternatives"
+      url: https://vahanbazaar.in/tips/bull-bar-ban-india-law-alternatives-vahanbazaar
+      source_type: government_document
+      date_observed: "2026-09-19"
+    - label: "Take bull bars off cars — Deccan Herald"
+      url: https://www.deccanherald.com/content/649341/take-bull-bars-off-cars.html
+      source_type: government_document
+      date_observed: "2026-09-19"
+  confidence: verified_3plus
+  last_reviewed: "2026-09-19"

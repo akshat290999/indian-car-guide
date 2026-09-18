@@ -1,0 +1,26 @@
+# Telangana. A genuine state-relevant escalation for exterior-wraps-body,
+# not just enforcement-intensity commentary like the Karnataka file: a
+# documented Hyderabad (Jubilee Hills) case shows police invoking a
+# specifically harsher penalty section against a FULL-BODY COLOUR-CHANGE
+# wrap than the tint-driven national baseline for this category cites.
+exterior-wraps-body:
+  rating: red
+  rationale: >
+    Same national basis as the baseline (window tint ban), plus a documented
+    Hyderabad case adding a materially harsher angle specific to full-body
+    colour-change wraps: police booked a motorist (owner of the vehicle) and
+    the wrap shop under Section 52 and Section 182A(1) of the Motor Vehicles
+    Act, 1988 for a full-body colour-change wrap done without RTA permission
+    — Section 182A(1) carries a fine of up to ₹1 lakh or imprisonment up to
+    one year, or both, separate from and larger than the standard ₹1,000-
+    5,000 fine cited for an RC/vehicle-colour mismatch. Partial wraps
+    (chrome delete, accent panels) that don't change the car's overall
+    registered colour are not implicated by this specific case.
+  sources:
+    - label: "Altering vehicle colours can lead to imprisonment — Deccan Chronicle"
+      url: https://www.deccanchronicle.com/southern-states/telangana/altering-vehicle-colours-can-lead-to-imprisonment-1861505
+      source_type: government_document
+      state: Telangana
+      date_observed: "2026-09-19"
+  confidence: single_source
+  last_reviewed: "2026-09-19"

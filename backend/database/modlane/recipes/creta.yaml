@@ -1,0 +1,141 @@
+# Combined scores/prices below are computed by hand from the current
+# mods/creta.yaml entries using the worst-of rule (schema.py's worst_rating)
+# and price summation — not independently re-derived by the loader at
+# runtime yet (that wiring is a small follow-up, not done in this pass).
+# If mods/creta.yaml changes, these combined figures need a manual recheck
+# until that automation exists.
+
+- id: creta-stealth-edition
+  car_model: Creta
+  name: Creta Stealth Edition
+  mod_ids:
+    - creta-chrome-delete-blackout
+    - creta-window-tint-sun-film
+    - creta-alloy-wheel-upgrade-17-18in
+    - creta-interior-ambient-lighting
+  combined_price_range:
+    min_inr: 43500
+    max_inr: 97000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  combined_warranty_risk: amber
+  combined_road_clearance_risk: amber
+  combined_rto_risk_baseline: red
+  style_tags: [stealth, subtle]
+  # Worked example of why worst-of matters: 3 of these 4 mods are Green/Amber
+  # on their own, but the window-tint component is Red (Supreme Court 2012
+  # ban), so the whole bundle is Red. A buyer assembling this look from
+  # individual mod pages could easily miss that the bundle, as a package,
+  # carries a real challan/seizure risk — which is exactly the failure mode
+  # this recipe-level score exists to surface.
+
+- id: creta-oem-plus-subtle-refresh
+  car_model: Creta
+  name: Creta OEM+ Subtle Refresh
+  mod_ids:
+    - creta-ppf-ceramic-coating
+    - creta-door-visors-rain-guards
+    - creta-mud-flaps
+    - creta-underbody-rust-coating
+  combined_price_range:
+    min_inr: 25600
+    max_inr: 105000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  combined_warranty_risk: green
+  combined_road_clearance_risk: green
+  combined_rto_risk_baseline: green
+  style_tags: [subtle, utility]
+  # All four components are independently Green — genuinely the safest
+  # possible bundle in the current catalog, not just a marketing label.
+
+- id: creta-tech-comfort-pack
+  car_model: Creta
+  name: Creta Tech & Comfort Pack
+  mod_ids:
+    - creta-android-head-unit-upgrade
+    - creta-subwoofer-amplifier-install
+    - creta-seat-covers
+    - creta-interior-ambient-lighting
+  combined_price_range:
+    min_inr: 35000
+    max_inr: 108000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  combined_warranty_risk: amber
+  combined_road_clearance_risk: green
+  combined_rto_risk_baseline: green
+  style_tags: [tech, subtle]
+  # A different risk shape than the other two recipes: electronics-heavy,
+  # so Amber on warranty (CAN-bus/wiring concerns across all four mods) but
+  # fully Green on RTO — no exterior/dimensional component at all.
+
+- id: creta-sport-stance
+  car_model: Creta
+  name: Creta Sport Stance
+  mod_ids:
+    - creta-alloy-wheel-upgrade-17-18in
+    - creta-wheel-spacers
+    - creta-body-kit-spoiler
+    - creta-chrome-delete-blackout
+  combined_price_range:
+    min_inr: 49500
+    max_inr: 118000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  combined_warranty_risk: amber
+  combined_road_clearance_risk: amber
+  combined_rto_risk_baseline: amber
+  style_tags: [sport, stealth]
+  # Needs S trim and above — inherited from the alloy-wheel component, the
+  # strictest trim requirement of the four (the other three fit all trims).
+  # Amber across all three axes, not Red: unlike the Stealth Edition's tint
+  # component, nothing here crosses a hard legal line by itself — the Amber
+  # comes from genuine but manageable risk (fitment/offset, bumper-cutting
+  # variance, Section 52 ambiguity on wide-body kits) rather than an outright ban.
+
+- id: creta-weekend-utility-camping
+  car_model: Creta
+  name: Creta Weekend Utility & Camping
+  mod_ids:
+    - creta-roof-rails-carrier
+    - creta-mud-flaps
+    - creta-door-visors-rain-guards
+    - creta-underbody-rust-coating
+  combined_price_range:
+    min_inr: 10600
+    max_inr: 27000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  combined_warranty_risk: green
+  combined_road_clearance_risk: amber
+  combined_rto_risk_baseline: green
+  style_tags: [utility]
+  # Not a flat "all-Green" bundle: the roof-rails/carrier component is
+  # independently Amber on road clearance (a loaded roof box/tent raises
+  # centre of gravity and overall height), so worst-of correctly surfaces
+  # Amber here even though every other axis and every other component is
+  # Green. Fits all trims — none of the four components has a trim restriction.
+
+- id: creta-daily-comfort-starter
+  car_model: Creta
+  name: Creta Daily Comfort+ (Starter)
+  mod_ids:
+    - creta-interior-ambient-lighting
+    - creta-seat-covers
+    - creta-door-visors-rain-guards
+  combined_price_range:
+    min_inr: 9200
+    max_inr: 31500
+    confidence: editorial_judgment_only
+    sample_size: 0
+  combined_warranty_risk: amber
+  combined_road_clearance_risk: green
+  combined_rto_risk_baseline: green
+  style_tags: [tech, subtle]
+  # An entry-level bundle for the sub-25k budget segment. Amber, not Green,
+  # on warranty: both the ambient-lighting (fuse/wiring tap) and seat-covers
+  # (airbag-bolster cutout fit) components carry a real, if modest, claim-risk
+  # flag on their own — worst-of means the bundle inherits that honestly
+  # rather than rounding it away because it "feels" like a safe starter pack.
+  # Fits all trims — none of the three components has a trim restriction.

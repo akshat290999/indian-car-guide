@@ -8,12 +8,18 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from database.cars_data import CARS_DATA
 from database.car_metadata import CAR_META
+from routers.modlane import router as modlane_router
 
 app = FastAPI()
+app.include_router(modlane_router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://d1m68rrd1mp2k5.cloudfront.net", "http://localhost:5173"],
+    allow_origins=[
+        "https://d1m68rrd1mp2k5.cloudfront.net",
+        "http://localhost:5173",
+        "http://localhost:5174",  # ModLane standalone frontend (car-mmodifications repo), local dev
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -1,6 +1,9 @@
-# ── Active database: 4 cars ─────────────────────────────────────────────────
+# ── Active database: 13 cars ────────────────────────────────────────────────
 # Metadata (brand history, lineage, sales) lives in car_metadata.py — one entry
-# per model, merged by main.py. Archived 27 models are in cars_data_archived.py.
+# per model, merged by main.py. Archived 23 remaining models are in
+# cars_data_archived.py. Brezza/Swift/Baleno/Fronx were reformatted out of the
+# archive for ModLane (ids 61-78); Virtus was authored fresh — it never
+# existed in this backend before (ids 79-86). See modlane_brief.md.
 
 _CRETA_COLORS  = ['Robust Emerald Pearl', 'Atlas White With Titanium Black', 'Titanium Black Matte', 'Titan Grey Matte', 'Starry Night', 'Atlas White', 'Titan Grey', 'Titanium Black', 'King Limited Edition Titanium Black Matte']
 _CRETA_IMGS    = {'Robust Emerald Pearl': '/images/hyundai-creta-robust-emerald-pearl.jpg', 'Atlas White With Titanium Black': '/images/hyundai-creta-atlas-white-with-titanium-black.jpg', 'Titanium Black Matte': '/images/hyundai-creta-titanium-black-matte.jpg', 'Titan Grey Matte': '/images/hyundai-creta-titan-grey-matte.jpg', 'Starry Night': '/images/hyundai-creta-starry-night.jpg', 'Atlas White': '/images/hyundai-creta-atlas-white.jpg', 'Titan Grey': '/images/hyundai-creta-titan-grey.jpg', 'Titanium Black': '/images/hyundai-creta-titanium-black.jpg', 'King Limited Edition Titanium Black Matte': '/images/hyundai-creta-king-limited-edition-titanium-black-matte.jpg'}
@@ -55,6 +58,28 @@ _SCORPIO_IMGS   = {
     'Midnight Black':  '/images/mahindra-scorpio-n-midnight-black.jpg',
     'Stealth Black':   '/images/mahindra-scorpio-n-stealth-black.jpg',
 }
+
+# ── Maruti Suzuki Brezza/Swift/Baleno/Fronx — reformatted from the archive ────
+# image_urls below are single external Wikimedia photos reused across all
+# listed colors (carried over as-is from cars_data_archived.py) — placeholder
+# quality, not real per-color photography. Flagged here rather than silently
+# treated as finished, matching the "don't fabricate false confidence" rule
+# this plan applies everywhere else.
+_BREZZA_COLORS = ['Sizzling Red', 'Exuberant Blue', 'Magma Grey']
+_BREZZA_IMGS   = {c: 'https://upload.wikimedia.org/wikipedia/commons/e/ee/2022_Maruti_Suzuki_Brezza_ZXi%2B_%28India%29_front_view_03.png' for c in _BREZZA_COLORS}
+
+_SWIFT_COLORS  = ['Sizzling Red', 'Splendid Silver', 'Arctic White']
+_SWIFT_IMGS    = {c: 'https://upload.wikimedia.org/wikipedia/commons/3/3d/Suzuki_Swift_%282024%29_hybrid_DSC_6076.jpg' for c in _SWIFT_COLORS}
+
+_BALENO_COLORS = ['Sizzling Red', 'Splendid Silver', 'Arctic White']
+_BALENO_IMGS   = {c: 'https://upload.wikimedia.org/wikipedia/commons/5/59/Suzuki_Baleno_front_20071004.jpg' for c in _BALENO_COLORS}
+
+_FRONX_COLORS  = ['Sizzling Red', 'Grandeur Grey', 'Splendid Silver']
+_FRONX_IMGS    = {c: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/2024_Suzuki_Fronx.jpg/3840px-2024_Suzuki_Fronx.jpg' for c in _FRONX_COLORS}
+
+# ── Volkswagen Virtus — authored fresh, no source image on file yet ──────────
+_VIRTUS_COLORS = ['Curcuma Yellow', 'Carbon Steel Grey', 'Candy White', 'Rising Blue Metallic', 'Wild Cherry Red']
+_VIRTUS_IMGS   = {c: None for c in _VIRTUS_COLORS}
 
 CARS_DATA = [
     {'id':1  , 'brand':'Hyundai'   , 'model_name':'Creta'   , 'series':'E'          , 'trim_name':'E 1.5 Petrol MT'                   , 'car_type':'SUV'          , 'fuel_type':'Petrol'  , 'gearbox_type':'Manual'    , 'ex_showroom_price':11.0  , 'power':113  , 'colors':_CRETA_COLORS, 'image_urls':_CRETA_IMGS},
@@ -125,4 +150,44 @@ CARS_DATA = [
     {'id':58 , 'brand':'Mahindra' , 'model_name':'Scorpio-N', 'series':'Z8'        , 'trim_name':'Z8 2.0 Petrol AT'                  , 'car_type':'SUV'           , 'fuel_type':'Petrol'  , 'gearbox_type':'Automatic' , 'ex_showroom_price':24.99 , 'power':200  , 'colors':_SCORPIO_COLORS, 'image_urls':_SCORPIO_IMGS},
     {'id':59 , 'brand':'Mahindra' , 'model_name':'Scorpio-N', 'series':'Z8L'       , 'trim_name':'Z8L 2.2 Diesel MT'                 , 'car_type':'SUV'           , 'fuel_type':'Diesel'  , 'gearbox_type':'Manual'    , 'ex_showroom_price':24.49 , 'power':175  , 'colors':_SCORPIO_COLORS, 'image_urls':_SCORPIO_IMGS},
     {'id':60 , 'brand':'Mahindra' , 'model_name':'Scorpio-N', 'series':'Z8L'       , 'trim_name':'Z8L 2.2 Diesel AT'                 , 'car_type':'SUV'           , 'fuel_type':'Diesel'  , 'gearbox_type':'Automatic' , 'ex_showroom_price':26.49 , 'power':175  , 'colors':_SCORPIO_COLORS, 'image_urls':_SCORPIO_IMGS},
+
+    # ── Maruti Suzuki Brezza — reformatted from cars_data_archived.py for ModLane ─
+    {'id':61 , 'brand':'Maruti Suzuki', 'model_name':'Brezza', 'series':'LXi'  , 'trim_name':'LXi 1.5 Petrol MT'         , 'car_type':'SUV'      , 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':8.34 , 'power':102 , 'colors':_BREZZA_COLORS, 'image_urls':_BREZZA_IMGS},
+    {'id':62 , 'brand':'Maruti Suzuki', 'model_name':'Brezza', 'series':'VXi'  , 'trim_name':'VXi 1.5 Petrol MT'         , 'car_type':'SUV'      , 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':9.64 , 'power':102 , 'colors':_BREZZA_COLORS, 'image_urls':_BREZZA_IMGS},
+    {'id':63 , 'brand':'Maruti Suzuki', 'model_name':'Brezza', 'series':'VXi'  , 'trim_name':'VXi 1.5 Petrol AT'         , 'car_type':'SUV'      , 'fuel_type':'Petrol', 'gearbox_type':'Automatic', 'ex_showroom_price':11.14, 'power':102 , 'colors':_BREZZA_COLORS, 'image_urls':_BREZZA_IMGS},
+    {'id':64 , 'brand':'Maruti Suzuki', 'model_name':'Brezza', 'series':'ZXi'  , 'trim_name':'ZXi 1.5 Petrol MT'         , 'car_type':'SUV'      , 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':11.14, 'power':102 , 'colors':_BREZZA_COLORS, 'image_urls':_BREZZA_IMGS},
+    {'id':65 , 'brand':'Maruti Suzuki', 'model_name':'Brezza', 'series':'ZXi+' , 'trim_name':'ZXi+ 1.5 Petrol AT'        , 'car_type':'SUV'      , 'fuel_type':'Petrol', 'gearbox_type':'Automatic', 'ex_showroom_price':13.96, 'power':102 , 'colors':_BREZZA_COLORS, 'image_urls':_BREZZA_IMGS},
+
+    # ── Maruti Suzuki Swift — reformatted from cars_data_archived.py for ModLane ──
+    {'id':66 , 'brand':'Maruti Suzuki', 'model_name':'Swift', 'series':'LXi'  , 'trim_name':'LXi 1.2 Petrol MT'          , 'car_type':'Hatchback', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':6.49, 'power':80 , 'colors':_SWIFT_COLORS, 'image_urls':_SWIFT_IMGS},
+    {'id':67 , 'brand':'Maruti Suzuki', 'model_name':'Swift', 'series':'VXi'  , 'trim_name':'VXi 1.2 Petrol MT'          , 'car_type':'Hatchback', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':7.29, 'power':80 , 'colors':_SWIFT_COLORS, 'image_urls':_SWIFT_IMGS},
+    {'id':68 , 'brand':'Maruti Suzuki', 'model_name':'Swift', 'series':'VXi'  , 'trim_name':'VXi 1.2 Petrol AMT'         , 'car_type':'Hatchback', 'fuel_type':'Petrol', 'gearbox_type':'Automatic', 'ex_showroom_price':7.79, 'power':80 , 'colors':_SWIFT_COLORS, 'image_urls':_SWIFT_IMGS},
+    {'id':69 , 'brand':'Maruti Suzuki', 'model_name':'Swift', 'series':'ZXi'  , 'trim_name':'ZXi 1.2 Petrol MT'          , 'car_type':'Hatchback', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':8.29, 'power':80 , 'colors':_SWIFT_COLORS, 'image_urls':_SWIFT_IMGS},
+    {'id':70 , 'brand':'Maruti Suzuki', 'model_name':'Swift', 'series':'ZXi+' , 'trim_name':'ZXi+ 1.2 Petrol AMT'        , 'car_type':'Hatchback', 'fuel_type':'Petrol', 'gearbox_type':'Automatic', 'ex_showroom_price':9.59, 'power':80 , 'colors':_SWIFT_COLORS, 'image_urls':_SWIFT_IMGS},
+
+    # ── Maruti Suzuki Baleno — reformatted from cars_data_archived.py for ModLane ─
+    {'id':71 , 'brand':'Maruti Suzuki', 'model_name':'Baleno', 'series':'Sigma', 'trim_name':'Sigma 1.2 Petrol MT'       , 'car_type':'Hatchback', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':6.61 , 'power':90, 'colors':_BALENO_COLORS, 'image_urls':_BALENO_IMGS},
+    {'id':72 , 'brand':'Maruti Suzuki', 'model_name':'Baleno', 'series':'Delta', 'trim_name':'Delta 1.2 Petrol MT'       , 'car_type':'Hatchback', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':7.45 , 'power':90, 'colors':_BALENO_COLORS, 'image_urls':_BALENO_IMGS},
+    {'id':73 , 'brand':'Maruti Suzuki', 'model_name':'Baleno', 'series':'Zeta' , 'trim_name':'Zeta 1.2 Petrol MT'        , 'car_type':'Hatchback', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':9.35 , 'power':90, 'colors':_BALENO_COLORS, 'image_urls':_BALENO_IMGS},
+    {'id':74 , 'brand':'Maruti Suzuki', 'model_name':'Baleno', 'series':'Alpha', 'trim_name':'Alpha 1.2 Petrol AT'       , 'car_type':'Hatchback', 'fuel_type':'Petrol', 'gearbox_type':'Automatic', 'ex_showroom_price':10.53, 'power':90, 'colors':_BALENO_COLORS, 'image_urls':_BALENO_IMGS},
+
+    # ── Maruti Suzuki Fronx — reformatted from cars_data_archived.py for ModLane ──
+    {'id':75 , 'brand':'Maruti Suzuki', 'model_name':'Fronx', 'series':'Sigma'      , 'trim_name':'Sigma 1.2 Petrol MT'         , 'car_type':'SUV', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':7.51 , 'power':90 , 'colors':_FRONX_COLORS, 'image_urls':_FRONX_IMGS},
+    {'id':76 , 'brand':'Maruti Suzuki', 'model_name':'Fronx', 'series':'Delta Turbo', 'trim_name':'Delta Turbo 1.0T Petrol MT'  , 'car_type':'SUV', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':9.49 , 'power':100, 'colors':_FRONX_COLORS, 'image_urls':_FRONX_IMGS},
+    {'id':77 , 'brand':'Maruti Suzuki', 'model_name':'Fronx', 'series':'Zeta Turbo' , 'trim_name':'Zeta Turbo 1.0T Petrol AT'   , 'car_type':'SUV', 'fuel_type':'Petrol', 'gearbox_type':'Automatic', 'ex_showroom_price':11.38, 'power':100, 'colors':_FRONX_COLORS, 'image_urls':_FRONX_IMGS},
+    {'id':78 , 'brand':'Maruti Suzuki', 'model_name':'Fronx', 'series':'Alpha Turbo', 'trim_name':'Alpha Turbo 1.0T Petrol AT'  , 'car_type':'SUV', 'fuel_type':'Petrol', 'gearbox_type':'Automatic', 'ex_showroom_price':13.04, 'power':100, 'colors':_FRONX_COLORS, 'image_urls':_FRONX_IMGS},
+
+    # ── Volkswagen Virtus — authored fresh for ModLane, did not exist in this
+    # backend before (only a frontend-only tuning-platform stub in
+    # tuningData.js). Prices/power are approximate, from general knowledge,
+    # NOT scraped or verified against a current VW India price list — confirm
+    # before Phase 2 content authoring cites specific figures. ─────────────
+    {'id':79 , 'brand':'Volkswagen', 'model_name':'Virtus', 'series':'Curline', 'trim_name':'Curline 1.0 TSI MT'         , 'car_type':'Sedan', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':11.71, 'power':115, 'colors':_VIRTUS_COLORS, 'image_urls':_VIRTUS_IMGS},
+    {'id':80 , 'brand':'Volkswagen', 'model_name':'Virtus', 'series':'Dynamic', 'trim_name':'Dynamic 1.0 TSI MT'        , 'car_type':'Sedan', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':12.90, 'power':115, 'colors':_VIRTUS_COLORS, 'image_urls':_VIRTUS_IMGS},
+    {'id':81 , 'brand':'Volkswagen', 'model_name':'Virtus', 'series':'Dynamic', 'trim_name':'Dynamic 1.0 TSI AT'        , 'car_type':'Sedan', 'fuel_type':'Petrol', 'gearbox_type':'Automatic', 'ex_showroom_price':14.40, 'power':115, 'colors':_VIRTUS_COLORS, 'image_urls':_VIRTUS_IMGS},
+    {'id':82 , 'brand':'Volkswagen', 'model_name':'Virtus', 'series':'Highline', 'trim_name':'Highline 1.0 TSI MT'      , 'car_type':'Sedan', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':14.90, 'power':115, 'colors':_VIRTUS_COLORS, 'image_urls':_VIRTUS_IMGS},
+    {'id':83 , 'brand':'Volkswagen', 'model_name':'Virtus', 'series':'Highline', 'trim_name':'Highline 1.0 TSI AT'      , 'car_type':'Sedan', 'fuel_type':'Petrol', 'gearbox_type':'Automatic', 'ex_showroom_price':16.30, 'power':115, 'colors':_VIRTUS_COLORS, 'image_urls':_VIRTUS_IMGS},
+    {'id':84 , 'brand':'Volkswagen', 'model_name':'Virtus', 'series':'Highline', 'trim_name':'Highline 1.5 TSI MT'      , 'car_type':'Sedan', 'fuel_type':'Petrol', 'gearbox_type':'Manual'   , 'ex_showroom_price':16.80, 'power':150, 'colors':_VIRTUS_COLORS, 'image_urls':_VIRTUS_IMGS},
+    {'id':85 , 'brand':'Volkswagen', 'model_name':'Virtus', 'series':'Topline', 'trim_name':'Topline GT 1.5 TSI DSG'    , 'car_type':'Sedan', 'fuel_type':'Petrol', 'gearbox_type':'Automatic', 'ex_showroom_price':18.90, 'power':150, 'colors':_VIRTUS_COLORS, 'image_urls':_VIRTUS_IMGS},
+    {'id':86 , 'brand':'Volkswagen', 'model_name':'Virtus', 'series':'GT Plus', 'trim_name':'GT Plus 1.5 TSI DSG'       , 'car_type':'Sedan', 'fuel_type':'Petrol', 'gearbox_type':'Automatic', 'ex_showroom_price':19.90, 'power':150, 'colors':_VIRTUS_COLORS, 'image_urls':_VIRTUS_IMGS},
 ]

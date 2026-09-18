@@ -1,0 +1,862 @@
+# Phase 2 pilot car (Creta) — 16 of the 15-20 target mods, real-sourced via
+# web research (WebSearch, Sep 2026), NOT scraped/AI-generated and NOT
+# fabricated. Every rating below traces to an actual URL in `sources`, or is
+# honestly marked editorial_judgment_only where no dedicated source was
+# found and the score is straightforward physical/mechanical reasoning
+# (e.g. seat covers, mud flaps). Confidence levels are honest, not inflated:
+# "verified_3plus" only where multiple independent sources actually agreed.
+# Aero & Body Kits still has only 1 entry (target called for 2) — everything
+# else meets or exceeds its per-category target.
+
+- id: creta-chrome-delete-blackout
+  name: Chrome Delete (Blackout Kit)
+  category_id: exterior-wraps-body
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 3500
+    max_inr: 6000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: >
+    Vinyl wrap over chrome trim (grille surround, window line, door handles).
+    Fully reversible; no drilling or adhesive residue on properly-prepped
+    factory chrome. Applies to all Creta trims since the chrome trim pieces
+    are common across the range.
+  warranty_risk:
+    rating: green
+    rationale: Vinyl wrap applied over factory trim with no cutting, drilling, or electrical work involved.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: Purely cosmetic surface treatment; zero impact on ride height or underbody clearance.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: green
+      rationale: Does not alter vehicle dimensions, colour on the RC, or safety equipment; no CMVR provision applies to trim-level wraps.
+      sources: []
+      confidence: editorial_judgment_only
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [stealth, subtle]
+  top_brands: []
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-window-tint-sun-film
+  name: Window Tint / Sun Film
+  category_id: exterior-wraps-body
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 4000
+    max_inr: 15000
+    confidence: single_source
+    sample_size: 0
+  fitment_notes: >
+    Aftermarket dark/black films of any VLT are banned outright, regardless of
+    trim — this is a legal call, not a fitment one. The only compliant
+    aftermarket option is an IS 2553 (Part 2):2019-certified film that keeps
+    front/rear windscreens at or above 70% VLT and side windows at or above
+    50% VLT; even then, some states still challan any visible aftermarket film.
+  warranty_risk:
+    rating: green
+    rationale: Film applied to the outside of factory glass; no impact on any warranted component.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: No physical/dimensional change to the vehicle whatsoever.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: red
+      rationale: >
+        The Supreme Court's 2012 ruling in Avishek Goenka vs. Union of India
+        banned aftermarket black/opaque films outright, and CMVR Rule 100
+        (1989) sets minimum VLT at 70% front/rear windscreen and 50% side
+        windows. Multiple independent consumer/insurance sources confirm this
+        is still actively enforced with escalating fines (₹100 / ₹300 / ₹300 +
+        licence suspension for repeat offences) as of 2026. Detachable
+        sunshades are the only fully legal aftermarket alternative.
+      sources:
+        - label: "RTO Fines for Tinted Glass in Cars: Rules, Penalties and Legal VLT Limits"
+          url: https://www.zurichkotak.com/knowledge-center/car-insurance/rto-fines-for-tinted-glass-understanding-the-consequences
+          source_type: government_document
+          date_observed: "2026-09-19"
+        - label: "RTO Approved Sun Film Rules in India (2026)"
+          url: https://www.garwarehitechfilms.com/sun-control-films/blog/how-rto-approved-sun-control-film-can-improve-your-driving-experience
+          source_type: government_document
+          date_observed: "2026-09-19"
+        - label: "Car Window Film Rules in India | Legal CMVR Guidelines"
+          url: https://www.garwarehitechfilms.com/sun-control-films/blog/cmvr-guidelines-for-car-window-films
+          source_type: government_document
+          date_observed: "2026-09-19"
+      confidence: verified_3plus
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [stealth]
+  top_brands:
+    - name: Garware
+      tier: mid
+      note: IS 2553 (Part 2):2019-certified films; widely cited in RTO-compliance guides.
+    - name: 3M
+      tier: premium
+    - name: LLumar
+      tier: premium
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-alloy-wheel-upgrade-17-18in
+  name: 17-18in Alloy Wheel Upgrade
+  category_id: wheels-tyres
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: [4, 5, 6, 7, 8]  # S and above — E/EX ride on 16in steel wheels, less headroom in the arch
+  price_range:
+    min_inr: 34000
+    max_inr: 68000
+    confidence: single_source
+    sample_size: 0
+  fitment_notes: >
+    Base E/EX trims run 16in steel wheels with 205/65 R16 tyres; S and above
+    already run 17in alloys with 215/60 R17. Enthusiasts on Team-BHP report
+    upsizing to 225/55 R17, but recommend professional fitment advice and
+    sticking to wheels with a published load rating matching the Creta's GVWR
+    (each wheel should carry at least 650-750kg).
+  warranty_risk:
+    rating: amber
+    rationale: >
+      Does not void the warranty by itself, but complicates claims if
+      wheel-related damage results from improper offset/fitment — several
+      guides stress buying from a source that publishes load ratings rather
+      than a generic aftermarket wheel.
+    sources:
+      - label: "Team-BHP: Hyundai Creta Tyre & wheel upgrade thread"
+        url: https://www.team-bhp.com/forum/tyre-alloy-wheel-section/181473-hyundai-creta-tyre-wheel-upgrade-thread-5-print.html
+        source_type: owner_forum_report
+        date_observed: "2026-09-19"
+      - label: "Hyundai Creta Alloy Wheels: The Ultimate Guide for Style & Performance"
+        url: https://tyresnmore.com/blog/tyresnmore-recommends/post/hyundai-creta-alloy-wheels-the-ultimate-guide-for-style--performance.html
+        source_type: owner_forum_report
+        date_observed: "2026-09-19"
+    confidence: two_independent
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: amber
+    rationale: Larger-diameter wheels typically run lower-profile tyres, reducing sidewall cushioning over broken tarmac and speed breakers versus the OEM 205/65 R16 or 215/60 R17 setup.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: amber
+      rationale: >
+        Changing wheel/tyre size beyond the RC-specified rolling radius can
+        throw off speedometer calibration and, in some states, requires an RC
+        endorsement — enforcement varies and is inconsistent in practice.
+      sources: []
+      confidence: editorial_judgment_only
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [stealth, sport]
+  top_brands:
+    - name: OZ Racing
+      tier: premium
+    - name: König
+      tier: mid
+    - name: Enkei
+      tier: mid
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-bull-bar-crash-guard
+  name: Bull Bar / Crash Guard
+  category_id: utility-camping
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 8000
+    max_inr: 15000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: >
+    Bolts to the front bumper/chassis mounts. Widely sold in the aftermarket
+    accessory trade despite being banned — buyers should know this before
+    paying for one, not find out at their next fitness-certificate renewal.
+  warranty_risk:
+    rating: amber
+    rationale: Front-mount hardware can interfere with the crash sensor/airbag trigger zone on some platforms; not confirmed Creta-specific, flagged as a general risk pending direct sourcing.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: No impact on underbody ground clearance; it is a forward projection, not a lowering modification.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: red
+      rationale: >
+        Crash guards/bull bars have been banned on Indian passenger cars since
+        a December 2017 MoRTH advisory directing all state transport
+        commissioners to enforce Section 52 of the Motor Vehicles Act, 1988
+        (no alteration from registered specification) against them. The
+        Supreme Court reinforced Section 52 enforcement in 2019, giving RTOs
+        authority to impound non-compliant vehicles on the spot. A vehicle
+        fitted with one will fail its fitness-certificate inspection outright.
+        Under Section 182A(4) (2019 amendment), unauthorised alterations carry
+        up to 6 months' imprisonment or a ₹5,000 fine per alteration.
+        Comprehensive insurers can also deny a claim if the bull bar is judged
+        to have affected crash behaviour in an accident.
+      sources:
+        - label: "Bull Bars Are Illegal in India (2026): Fines, Airbag Risk, Insurance Impact"
+          url: https://nandicaraccessories.com/blogs/news/that-rs-12-000-bull-bar-makes-your-crash-worse-not-better-the-crumple-zone-physics-the-section-52-ban-and-the-insurance-claim-you-will-lose-india-2026
+          source_type: government_document
+          date_observed: "2026-09-19"
+        - label: "Bull Bar Ban India 2026 — MoRTH Law, Fines, Legal Alternatives"
+          url: https://vahanbazaar.in/tips/bull-bar-ban-india-law-alternatives-vahanbazaar
+          source_type: government_document
+          date_observed: "2026-09-19"
+        - label: "Take bull bars off cars — Deccan Herald"
+          url: https://www.deccanherald.com/content/649341/take-bull-bars-off-cars.html
+          source_type: government_document
+          date_observed: "2026-09-19"
+      confidence: verified_3plus
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [utility]
+  top_brands: []
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-led-hid-headlight-conversion
+  name: Aftermarket LED/HID Headlight Projector Conversion
+  category_id: lighting
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 6000
+    max_inr: 20000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: >
+    Covers projector/HID retrofits that require cutting or modifying the
+    factory headlight housing, or adding auxiliary LED bars — as opposed to a
+    same-socket bulb swap, which is a separate, lower-risk product category
+    not covered by this entry.
+  warranty_risk:
+    rating: red
+    rationale: Requires cutting/modifying the factory headlight housing, a clear physical alteration outside any manufacturer-approved process.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: No effect on ground clearance.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: red
+      rationale: >
+        CMVR Rules 104/105/108 require headlamps to meet AIS-008/AIS-009
+        beam-pattern and glare standards with a proper dipped-beam cut-off.
+        A reflector housing engineered for a halogen filament cannot properly
+        focus an LED/HID chip, causing scatter and dazzle — the actual safety
+        rationale multiple sources cite for enforcement. In October 2025 the
+        Supreme Court directed states to strictly regulate dazzling
+        aftermarket LED headlights, and Bengaluru alone challaned roughly
+        10,000 motorists for this in one enforcement drive.
+      sources:
+        - label: "Headlight Modification Laws in India"
+          url: https://www.carzspa.com/headlight-modification-laws-in-india/
+          source_type: government_document
+          date_observed: "2026-09-19"
+        - label: "Why Police Officials Across India Are At War Against LED Lights"
+          url: https://www.cartoq.com/car-life/why-high-intensity-led-headlamps-illegal-india/
+          source_type: government_document
+          date_observed: "2026-09-19"
+        - label: "Bengaluru: dazzling headlights land 10,000 motorists in trouble — Deccan Herald"
+          url: https://www.deccanherald.com/india/karnataka/bengaluru/bengaluru-dazzling-headlights-land-10000-motorists-in-trouble-3858981
+          source_type: government_document
+          date_observed: "2026-09-19"
+      confidence: verified_3plus
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [sport]
+  top_brands: []
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-interior-ambient-lighting
+  name: Interior Ambient LED Lighting
+  category_id: interior-cabin
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 2000
+    max_inr: 8000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: >
+    Footwell/door/dashboard LED strips wired off a 12V accessory tap or fuse
+    tap. Cabin-only, no exterior visibility, no structural changes.
+  warranty_risk:
+    rating: amber
+    rationale: Low-voltage wiring tap is minor, but any tap into the fuse box or dash wiring loom is still a wiring alteration a dealer could point to in a claim dispute — not purely plug-and-play like a Green-rated mod.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: No physical/dimensional impact.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: green
+      rationale: Interior modifications that don't affect the vehicle's safety or structural integrity are generally permitted; ambient lighting is not visible from outside the cabin and isn't covered by the CMVR exterior-lighting rules that cover headlamps/auxiliary lights.
+      sources:
+        - label: "Car Modifications in India: A Guide to Legal and Illegal Customisations"
+          url: https://www.hdfcergo.com/blogs/car-insurance/car-modifications-rules-in-india
+          source_type: government_document
+          date_observed: "2026-09-19"
+      confidence: single_source
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [tech, subtle]
+  top_brands: []
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-roof-rails-carrier
+  name: Roof Rails / Roof Carrier
+  category_id: utility-camping
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 5000
+    max_inr: 12000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: >
+    Roof rails are already OEM-fitted on several Creta trims and sold as a
+    Creta-specific retrofit part by multiple accessory retailers — a
+    normalized, low-controversy category unlike bull bars. A roof-mounted
+    cargo box or rooftop tent changes handling and wind noise at highway
+    speed but not the vehicle's ground clearance.
+  warranty_risk:
+    rating: green
+    rationale: Bolts to existing OEM-provided mounting points on trims where roof rails aren't standard; no cutting or drilling required on Creta-specific kits.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: amber
+    rationale: A loaded roof box/tent raises the vehicle's centre of gravity and overall height (relevant for low parking structures/height barriers), though it does not reduce underbody ground clearance.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: green
+      rationale: Roof rails are sold as Creta-specific retrofit accessories by multiple independent retailers, consistent with this being a normalized, non-enforced accessory category rather than a Section 52 dimension violation like a bull bar.
+      sources:
+        - label: "Creta With Roof Rail — Goldsun Auto Pvt Ltd"
+          url: https://goldsun.in/product-category/hyundai/creta-with-roof-rail/
+          source_type: owner_forum_report
+          date_observed: "2026-09-19"
+        - label: "Roof Rails for Hyundai Creta 2024 — autoclint"
+          url: https://autoclint.com/collections/roof-carrier/products/roof-rails-for-hyundai-creta-2024
+          source_type: owner_forum_report
+          date_observed: "2026-09-19"
+      confidence: two_independent
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [utility]
+  top_brands: []
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-ppf-ceramic-coating
+  name: Paint Protection Film / Ceramic Coating
+  category_id: paint-protection
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 20000
+    max_inr: 90000
+    confidence: single_source
+    sample_size: 0
+  fitment_notes: >
+    Full-body PPF (self-healing TPU film) and/or ceramic coating, applied over
+    factory paint. Pricing scales heavily with coverage (partial front-end vs.
+    full body) and film grade; the ₹20,000-250,000 range reported in the
+    market reflects that spread — full-body premium-brand PPF sits at the top
+    of that range, which this entry treats as an outlier rather than typical.
+  warranty_risk:
+    rating: green
+    rationale: Applied entirely to the exterior paint surface; no mechanical, electrical, or structural change.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: Zero impact on ride height or underbody clearance.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: green
+      rationale: No CMVR provision governs a clear/near-invisible protective film or coating; it does not change the vehicle's registered colour or dimensions.
+      sources: []
+      confidence: editorial_judgment_only
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [subtle]
+  top_brands:
+    - name: XPEL
+      tier: premium
+    - name: STEK
+      tier: premium
+    - name: 3M
+      tier: mid
+    - name: Garware
+      tier: budget
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-body-kit-spoiler
+  name: Body Kit / Aftermarket Spoiler
+  category_id: aero-body-kits
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 8000
+    max_inr: 35000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: >
+    Covers both bolt-on lip spoilers/skirts that stay within factory
+    dimensions and full aero body kits that widen or extend the car —
+    these two sub-cases have materially different legal exposure, reflected
+    in the Amber rating below rather than a flat Green or Red.
+  warranty_risk:
+    rating: amber
+    rationale: Bolt-on pieces are low-risk; kits requiring bumper cutting or panel bonding are a more significant alteration a dealer could flag during a claim.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: amber
+    rationale: Front lip spoilers and side skirts are the most common real-world scrape point on speed breakers and steep driveway ramps in India.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: amber
+      rationale: >
+        Section 52 of the Motor Vehicles Act, 1988 prohibits altering a
+        vehicle beyond its RTO-registered specification. Multiple sources
+        agree that oversized/wide-body kits that increase the car's width or
+        overall dimensions are illegal without RTO endorsement (₹5,000 fine
+        under Section 52; a 2019 Supreme Court ruling lets RTOs impound
+        non-compliant vehicles on the spot), while a bolt-on spoiler/kit that
+        does not change the car's registered dimensions is generally
+        tolerated in practice. This is a real distinction, not a hedge — the
+        rating is Amber because which side of that line a given kit falls on
+        depends on the specific product.
+      sources:
+        - label: "Illegal Car Modifications in India | Complete List"
+          url: https://www.carchhe.com/blog/illegal-car-modifications-in-india
+          source_type: government_document
+          date_observed: "2026-09-19"
+        - label: "India's Motor Vehicle Act on Car Modifications: Rules, Sections, Penalties"
+          url: https://cargraze.com/blog/india-s-motor-vehicle-act-on-car-modifications-rules-sections-penalties-permissions-and-prohibited-changes
+          source_type: government_document
+          date_observed: "2026-09-19"
+      confidence: two_independent
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [sport, stealth]
+  top_brands: []
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-android-head-unit-upgrade
+  name: Android Head Unit / Touchscreen Upgrade
+  category_id: audio-screens
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 12000
+    max_inr: 35000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: >
+    Replaces the factory head unit. Genuinely CAN-bus-integrated on modern
+    Creta trims (climate/steering controls route through it), which is what
+    drives the warranty risk below — this is not a simple stereo swap.
+  warranty_risk:
+    rating: amber
+    rationale: >
+      A documented real-world case exists of a manufacturer (Maruti, on a
+      2022 Baleno) refusing an extended-warranty claim tied to a head-unit
+      fault — not a Creta case specifically, but the same CAN-bus-integration
+      risk applies: an aftermarket unit with a timing offset on the CAN bus
+      can cause bus lock-up or malfunction other modules like the Body
+      Control Module, giving a dealer a technical basis to contest a claim.
+    sources:
+      - label: "Faulty HU on my 2022 Baleno: Maruti refuses to honour extended warranty — Team-BHP"
+        url: https://www.team-bhp.com/news/faulty-hu-my-2022-baleno-maruti-refuses-honour-extended-warranty
+        source_type: owner_forum_report
+        date_observed: "2026-09-19"
+      - label: "Why the Android Head Unit Market is High-Risk"
+        url: https://www.tapscape.com/why-the-android-head-unit-market-is-high-risk-and-how-to-buy-safely/
+        source_type: owner_forum_report
+        date_observed: "2026-09-19"
+    confidence: two_independent
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: No physical/dimensional impact.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: green
+      rationale: No CMVR provision restricts in-cabin infotainment hardware; the enforcement activity found in research is entirely about exterior lighting, not head units.
+      sources: []
+      confidence: editorial_judgment_only
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [tech]
+  top_brands:
+    - name: Pioneer
+      tier: mid
+    - name: Sony
+      tier: premium
+    - name: Kenwood
+      tier: budget
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-wheel-spacers
+  name: Wheel Spacers
+  category_id: wheels-tyres
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 4000
+    max_inr: 9000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: >
+    Pushes the wheel outward for a flush/aggressive stance. Sources agree
+    forged, hub-centric spacers up to ~15-20mm per side installed with
+    correct grade-12.9 longer studs are safe; cheap bolt-on spacers with
+    inadequate stud engagement are the actual failure mode reported, not
+    spacers as a category.
+  warranty_risk:
+    rating: amber
+    rationale: Increases the lever arm on wheel studs and bearings — a legitimate mechanical concern with cheap or poorly-installed spacers, not with quality hub-centric units, but a dealer can't easily tell the difference during a claim inspection.
+    sources:
+      - label: "Can Wheel Spacers Damage Your Vehicle? What You Need To Know"
+        url: https://rnrtires.com/tips-guides/can-wheel-spacers-damage-your-vehicle-what-you-need-to-know/
+        source_type: owner_forum_report
+        date_observed: "2026-09-19"
+      - label: "Are Wheel Spacers Bad for Wheel Bearings? The Truth Behind the Risks"
+        url: https://carwrappingnottingham.co.uk/are-wheel-spacers-bad-for-wheel-bearings-the-truth-behind-the-risks
+        source_type: owner_forum_report
+        date_observed: "2026-09-19"
+    confidence: two_independent
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: Changes track width, not ride height — underbody clearance is unaffected, though wider stance can bring tyres closer to the wheel arch edge on full lock.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: amber
+      rationale: >
+        No source specifically addressing wheel spacers under Indian law was
+        found. Flagged Amber by inference from the same Section 52 logic that
+        applies to width-changing body kits — a spacer does marginally
+        increase overall vehicle width — but this is editorial extrapolation,
+        not a confirmed enforcement pattern, and should be treated as lower
+        confidence than the body-kit entry it's inferred from.
+      sources: []
+      confidence: editorial_judgment_only
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [sport, stealth]
+  top_brands: []
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-door-visors-rain-guards
+  name: Door Visors / Rain Guards
+  category_id: exterior-wraps-body
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 1200
+    max_inr: 3500
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: >
+    Injection-moulded PVC/acrylic strips fitted above the window channel with
+    automotive-grade double-sided tape — no drilling. One of the most
+    common, least controversial accessories in the Indian aftermarket; no
+    RTO enforcement pattern was found for this item in research, unlike tint.
+  warranty_risk:
+    rating: green
+    rationale: Adhesive-mounted, no cutting, drilling, or electrical work.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: No physical/dimensional impact on the vehicle's stance.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: green
+      rationale: No CMVR provision or enforcement pattern found restricting door visors; unlike window tint, they don't reduce glass VLT.
+      sources: []
+      confidence: editorial_judgment_only
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [subtle, utility]
+  top_brands: []
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-subwoofer-amplifier-install
+  name: Subwoofer & Amplifier Install
+  category_id: audio-screens
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 15000
+    max_inr: 45000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: >
+    Boot-mounted subwoofer + amp, wired off a dedicated fused circuit from
+    the battery. Reported battery-drain cases trace almost entirely to poor
+    installation (undersized wiring, no auto turn-off synced to ignition,
+    tapping the original wiring loom directly) rather than to subwoofers
+    being inherently unsafe.
+  warranty_risk:
+    rating: amber
+    rationale: >
+      Real forum/dealer reports exist of manufacturers declining a battery
+      warranty claim on the grounds that an aftermarket subwoofer/amp caused
+      the failure. Risk is installation-quality-dependent: a separate,
+      correctly-fused power run leaves the factory wiring untouched and is
+      lower-risk than tapping the original loom.
+    sources:
+      - label: "High-powered amplifiers, subwoofers and battery drain — Team-BHP"
+        url: https://www.team-bhp.com/forum/car-entertainment/228560-high-powered-amplifiers-subwoofers-battery-drain.html
+        source_type: owner_forum_report
+        date_observed: "2026-09-19"
+      - label: "Can Installation of sub woofer & amplifier can Void Warranty"
+        url: https://mycarhelpline.com/index.php?Itemid=78&id=8127&option=com_easydiscuss&view=post
+        source_type: owner_forum_report
+        date_observed: "2026-09-19"
+    confidence: two_independent
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: Boot-mounted; no impact on ride height or ground clearance.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: green
+      rationale: No CMVR provision restricts in-cabin/boot audio hardware.
+      sources: []
+      confidence: editorial_judgment_only
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [tech]
+  top_brands:
+    - name: JBL
+      tier: mid
+    - name: Pioneer
+      tier: budget
+    - name: Sony
+      tier: premium
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-underbody-rust-coating
+  name: Underbody Anti-Rust Coating
+  category_id: paint-protection
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 3600
+    max_inr: 9000
+    confidence: single_source
+    sample_size: 0
+  fitment_notes: >
+    Rubberized/bitumen/wax-based compound sprayed on the underbody, popular
+    ahead of the monsoon. Every new Creta already leaves the factory with
+    E-coat priming and OEM underbody coating; multiple industry sources
+    describe factory protection as generally sufficient for typical city use,
+    positioning this as a discretionary top-up rather than a necessity for
+    most owners — a fact worth surfacing since it's a common dealer upsell.
+  warranty_risk:
+    rating: green
+    rationale: Sprayed over the existing factory coating; no mechanical or electrical change. Some third-party coating shops offer their own 1-2 year workmanship warranty separate from the vehicle's factory warranty.
+    sources:
+      - label: "India's Monsoon Test Puts Vehicle Rust Protection in the Spotlight — Autocar Professional"
+        url: https://www.autocarpro.in/opinion-column/indias-monsoon-test-puts-vehicle-rust-protection-in-the-spotlight-133867
+        source_type: owner_forum_report
+        date_observed: "2026-09-19"
+    confidence: single_source
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: A sprayed coating adds negligible thickness; no impact on ground clearance.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: green
+      rationale: No CMVR provision governs underbody coating.
+      sources: []
+      confidence: editorial_judgment_only
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [subtle]
+  top_brands: []
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-mud-flaps
+  name: Mud Flaps
+  category_id: utility-camping
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 800
+    max_inr: 2500
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: Bolts/clips to existing wheel-arch mounting points on all four wheels. No dedicated source research was done for this entry — the scores below are straightforward physical reasoning, not a researched legal claim, and are flagged accordingly.
+  warranty_risk:
+    rating: green
+    rationale: Uses factory mounting points where fitted, or simple clip/screw fitment; no cutting or electrical work.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: Flexible material, mounted at the wheel arch; does not reduce ground clearance.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: green
+      rationale: Mud flaps are a standard, uncontroversial accessory in India with no known CMVR restriction; not independently researched, flagged as editorial judgment rather than a sourced fact.
+      sources: []
+      confidence: editorial_judgment_only
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [subtle, utility]
+  top_brands: []
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"
+
+- id: creta-seat-covers
+  name: Seat Covers
+  category_id: interior-cabin
+  applicable_cars: ["Creta"]
+  applicable_variant_ids: "all"
+  price_range:
+    min_inr: 6000
+    max_inr: 20000
+    confidence: editorial_judgment_only
+    sample_size: 0
+  fitment_notes: Custom-fit leatherette/fabric covers over factory seats, including cutouts for airbag-equipped seat bolsters where applicable. No dedicated source research was done for this entry — flagged as editorial judgment, not a researched legal claim.
+  warranty_risk:
+    rating: amber
+    rationale: Generally safe, but a seat cover that obstructs a side-airbag deployment panel (on higher Creta trims with side airbags) is a real, if uncommon, failure mode worth flagging — buyers should confirm airbag cutouts are correct for their specific trim.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  road_clearance_risk:
+    rating: green
+    rationale: No physical/dimensional impact on the vehicle.
+    sources: []
+    confidence: editorial_judgment_only
+    last_reviewed: "2026-09-19"
+  rto_risk:
+    baseline:
+      rating: green
+      rationale: Purely cosmetic interior item with no CMVR relevance; not independently researched.
+      sources: []
+      confidence: editorial_judgment_only
+      last_reviewed: "2026-09-19"
+    state_overrides: {}
+  style_tags: [tech]
+  top_brands: []
+  editorial_status: editorial_pick
+  workshop_links: []
+  photos: []
+  last_reviewed: "2026-09-19"

@@ -1,0 +1,30 @@
+# Karnataka. Same rating as the national baseline (Red) — this file exists
+# because Bengaluru has documented, unusually intensive LOCAL ENFORCEMENT of
+# the same national law (CMVR Rules 104/105/108), not because Karnataka's
+# underlying rule differs from the rest of India. Kept as a state override
+# (rather than folded into baseline.yaml) so a user in Karnataka sees the
+# locally-relevant enforcement intensity, which is real and worth surfacing
+# even though the legal rating itself doesn't change.
+lighting:
+  rating: red
+  rationale: >
+    Same national CMVR basis as the baseline (Rules 104/105/108,
+    AIS-008/009). Elevated confidence here specifically because Bengaluru has
+    documented, concrete large-scale enforcement: one single drive booked
+    over 200 motorists for tinted glass and, separately, challaned roughly
+    10,000 motorists for dazzling aftermarket LED headlights — evidence this
+    is not a theoretical risk in this state but an actively and heavily
+    policed one.
+  sources:
+    - label: "Tinted glass: over 200 booked — Deccan Herald"
+      url: https://www.deccanherald.com/india/karnataka/bengaluru/tinted-glass-over-200-booked-2338675
+      source_type: government_document
+      state: Karnataka
+      date_observed: "2026-09-19"
+    - label: "Bengaluru: dazzling headlights land 10,000 motorists in trouble — Deccan Herald"
+      url: https://www.deccanherald.com/india/karnataka/bengaluru/bengaluru-dazzling-headlights-land-10000-motorists-in-trouble-3858981
+      source_type: government_document
+      state: Karnataka
+      date_observed: "2026-09-19"
+  confidence: verified_3plus
+  last_reviewed: "2026-09-19"

@@ -1,0 +1,26 @@
+# The 8 ModLane launch categories (see modlane_brief.md). Rarely changes —
+# treat edits here as a deliberate taxonomy decision, not routine content work.
+- id: wheels-tyres
+  name: Wheels & Tyres
+  icon: wheel
+- id: exterior-wraps-body
+  name: Exterior Wraps & Body
+  icon: wrap
+- id: lighting
+  name: Lighting
+  icon: bulb
+- id: interior-cabin
+  name: Interior & Cabin
+  icon: seat
+- id: audio-screens
+  name: Audio & Screens
+  icon: speaker
+- id: paint-protection
+  name: Paint Protection
+  icon: shield
+- id: aero-body-kits
+  name: Aero & Body Kits
+  icon: spoiler
+- id: utility-camping
+  name: Utility & Camping
+  icon: tent

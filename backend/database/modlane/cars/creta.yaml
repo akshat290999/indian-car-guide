@@ -1,0 +1,41 @@
+# Presentation data for the ModLane frontend's Creta hub page. Image paths
+# are relative to the ModLane frontend's own public/images/creta/ folder
+# (car-mmodifications repo) — these are real photos copied from Tuner's
+# Guide's asset set, not placeholders.
+model_name: Creta
+tagline: "India's best-selling SUV, styled your way."
+hero_images:
+  - /images/creta/hyundai-creta-titan-grey-matte.jpg
+  - /images/creta/hyundai-creta-abyss-black.jpg
+  - /images/creta/hyundai-creta-atlas-white.jpg
+  - /images/creta/hyundai-creta-titanium-black.jpg
+  - /images/creta/hyundai-creta-starry-night.jpg
+  - /images/creta/hyundai-creta-robust-emerald-pearl.jpg
+  - /images/creta/hyundai-creta-king-limited-edition-titanium-black-matte.jpg
+  - /images/creta/hyundai-creta-titanium-black-matte.jpg
+  - /images/creta/hyundai-creta-atlas-white-with-titanium-black.jpg
+gallery_images:
+  - /images/creta/hyundai-creta-interior-dashboard.jpg
+  - /images/creta/hyundai-creta-interior-infotainment.jpg
+  - /images/creta/hyundai-creta-interior-steering-wheel.jpg
+  - /images/creta/hyundai-creta-interior-instrument-cluster.jpg
+  - /images/creta/hyundai-creta-interior-rear-seats.jpg
+  - /images/creta/hyundai-creta-interior-gear-lever.jpg
+  - /images/creta/hyundai-creta-interior-boot.jpg
+  - /images/creta/hyundai-creta-interior-sunroof.jpg
+  - /images/creta/hyundai-creta-interior-camera-360.jpg
+  - /images/creta/hyundai-creta-interior-ac-controls.jpg
+  - /images/creta/hyundai-creta-interior-centre-air-vents.jpg
+  - /images/creta/hyundai-creta-interior-driver-airbag.jpg
+  - /images/creta/hyundai-creta-interior-passenger-airbag.jpg
+  - /images/creta/hyundai-creta-interior-passenger-airbag-2.jpg
+  - /images/creta/hyundai-creta-interior-front-tweeters.jpg
+  - /images/creta/hyundai-creta-interior-headlight-stalk.jpg
+  - /images/creta/hyundai-creta-interior-orvm-controls.jpg
+  - /images/creta/hyundai-creta-interior-parking-brake.jpg
+  - /images/creta/hyundai-creta-interior-rear-charging.jpg
+  - /images/creta/hyundai-creta-interior-roof.jpg
+  - /images/creta/hyundai-creta-interior-side-air-vents.jpg
+  - /images/creta/hyundai-creta-interior-start-button.jpg
+  - /images/creta/hyundai-creta-interior-usb-charging.jpg
+  - /images/creta/hyundai-creta-titan-grey.jpg
