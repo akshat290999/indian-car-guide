@@ -206,27 +206,27 @@ export default function Home() {
                   to={card.to}
                   className={`premium-card ${['card-stripe-red','card-stripe-blue','card-stripe-yellow','card-stripe-green'][cardIdx]}`}
                   style={{
-                    padding: '32px 28px',
+                    padding: 'clamp(20px, 4vw, 32px) clamp(20px, 4vw, 28px)',
                     textDecoration: 'none',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '16px',
+                    gap: '12px',
                     transition: 'transform 0.25s ease, box-shadow 0.25s ease',
                     cursor: 'pointer'
                   }}
                 >
                   <div style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '12px',
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '10px',
                     background: 'rgba(239,68,68,0.1)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
                   }}>
-                    <Icon size={24} color="var(--accent-red)" />
+                    <Icon size={20} color="var(--accent-red)" />
                   </div>
-                  <h3 style={{ fontSize: '1.2rem', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)', margin: 0 }}>
+                  <h3 style={{ fontSize: '1.15rem', color: 'var(--text-primary)', fontFamily: 'var(--font-heading)', margin: 0 }}>
                     {card.title}
                   </h3>
                   <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '0.95rem', lineHeight: 1.5 }}>
@@ -310,9 +310,9 @@ export default function Home() {
                   {carIdx === 2 && <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0,0,0,0.7)', color: '#4ade80', fontSize: '0.7rem', fontWeight: 700, padding: '3px 10px', borderRadius: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' }}>India's Favourite</span>}
                 </div>
 
-                <div style={{ padding: '24px' }}>
+                <div style={{ padding: '20px' }}>
                   <h3 style={{
-                    fontSize: '1.2rem',
+                    fontSize: '1.15rem',
                     color: 'var(--text-primary)',
                     fontFamily: 'var(--font-heading)',
                     margin: '0 0 12px'
@@ -482,7 +482,7 @@ export default function Home() {
           <div
             className="premium-card"
             style={{
-              padding: '48px 40px',
+              padding: 'clamp(24px, 5vw, 48px) clamp(20px, 5vw, 40px)',
               textAlign: 'center',
               opacity: tabFade ? 1 : 0,
               transform: tabFade ? 'translateY(0)' : 'translateY(8px)',
@@ -727,7 +727,7 @@ function GlossaryAccordion() {
   return (
     <div className="premium-card" style={{ borderLeft: '4px solid var(--accent-red)', overflow: 'hidden' }}>
       <div
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '22px 28px', cursor: 'pointer', userSelect: 'none' }}
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 'clamp(16px, 4vw, 22px) clamp(20px, 4vw, 28px)', cursor: 'pointer', userSelect: 'none' }}
         onClick={() => setOpen(o => !o)}
         onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
         onMouseLeave={e => e.currentTarget.style.background = 'transparent'}

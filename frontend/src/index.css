@@ -206,6 +206,12 @@ a:hover {
   box-shadow: var(--shadow-sm);
 }
 
+@media (max-width: 768px) {
+  .premium-card {
+    padding: 16px !important;
+  }
+}
+
 .premium-card:hover {
   transform: translateY(-3px);
   border-color: var(--text-muted);
