@@ -197,11 +197,7 @@ export default function Home() {
             Everything you need, one click away.
           </p>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '24px'
-          }}>
+          <div className="nav-cards-grid">
             {navCards.map((card, cardIdx) => {
               const Icon = card.icon
               return (
@@ -218,14 +214,6 @@ export default function Home() {
                     transition: 'transform 0.25s ease, box-shadow 0.25s ease',
                     cursor: 'pointer',
                     gridColumn: cardIdx < 2 ? 'span 2' : 'span 1'
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.transform = 'translateY(-6px)'
-                    e.currentTarget.style.boxShadow = '0 12px 40px rgba(239,68,68,0.12)'
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.transform = 'translateY(0)'
-                    e.currentTarget.style.boxShadow = ''
                   }}
                 >
                   <div style={{
@@ -300,14 +288,6 @@ export default function Home() {
                   overflow: 'hidden',
                   scrollSnapAlign: 'start',
                   transition: 'transform 0.25s ease, box-shadow 0.25s ease'
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-4px)'
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.3)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = ''
                 }}
               >
                 <div style={{

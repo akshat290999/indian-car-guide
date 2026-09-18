@@ -258,7 +258,7 @@ export default function BuildPlanner() {
         borderBottom: '1px solid var(--border)'
       }}>
         <h1 className="text-gradient" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', marginBottom: '12px', fontFamily: 'var(--font-heading)' }}>
-          🔧 Plan Your Build
+          🔧 Plan Your Build <span style={{ fontSize: '0.45em', verticalAlign: 'middle', opacity: 0.6 }}>(beta)</span>
         </h1>
         <p style={{ color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto', fontSize: '1.05rem', lineHeight: 1.6 }}>
           Select your car, add modifications, and watch your build come to life — with real power and cost estimates.
@@ -298,7 +298,7 @@ export default function BuildPlanner() {
         </div>
       ) : (
         /* ── BUILDER VIEW ── */
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 340px', gap: '40px', padding: '0 20px', minHeight: 'calc(100vh - 160px)', maxWidth: '1400px', margin: '40px auto', width: '100%', boxSizing: 'border-box' }}>
+        <div className="build-planner-grid">
 
           {/* LEFT — Mod Selector */}
           <div style={{ padding: '28px 24px', borderRight: '1px solid var(--border)', overflowY: 'auto', backgroundImage: `radial-gradient(circle, var(--border) 1px, transparent 1px)`, backgroundSize: '24px 24px' }}>
@@ -326,7 +326,7 @@ export default function BuildPlanner() {
             </div>
 
             {/* Block Square Categories Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '24px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: '12px', marginBottom: '24px' }}>
               {CATEGORIES.map(cat => {
                 const catMods = compatibleMods.filter(m => m.category === cat)
                 if (catMods.length === 0) return null
