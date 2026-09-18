@@ -37,6 +37,33 @@ export default function Guides() {
       )
     },
     {
+      id: 'ecu',
+      title: 'ECU vs Piggyback',
+      content: (
+        <div style={{ color: 'var(--text-primary)', lineHeight: 1.7, fontSize: '1rem' }}>
+          <p style={{ marginBottom: '16px' }}>When you want to increase your engine's power, you have two main options to alter its mapping: an ECU Remap (Flash) or a Piggyback Tuning Box.</p>
+          <h4 style={{ color: 'var(--text-primary)', marginTop: '24px', marginBottom: '12px' }}>ECU Remap (Flash Tune)</h4>
+          <p style={{ marginBottom: '16px' }}>A flash tune completely overwrites the factory engine control unit software via the OBD2 port. It is the gold standard of tuning. Because it natively alters the parameters inside the engine's brain, it can safely and smoothly control boost, fueling, timing, and torque limiters.</p>
+          <h4 style={{ color: 'var(--text-primary)', marginTop: '24px', marginBottom: '12px' }}>Piggyback Box (e.g. JB4, RaceChip)</h4>
+          <p style={{ marginBottom: '16px' }}>A piggyback is a physical box that plugs into your engine's sensors. Instead of rewriting the ECU, it intercepts the sensor signals and "tricks" the ECU into producing more boost. While they are easier to remove and resell, they offer less precise control than a flash tune.</p>
+        </div>
+      )
+    },
+    {
+      id: 'hardware',
+      title: 'Stage Hardware Requirements',
+      content: (
+        <div style={{ color: 'var(--text-primary)', lineHeight: 1.7, fontSize: '1rem' }}>
+          <p style={{ marginBottom: '16px' }}>While tuning stages are not officially standardized, they generally follow these hardware requirements:</p>
+          <ul style={{ paddingLeft: '20px', color: 'var(--text-muted)' }}>
+            <li style={{ marginBottom: '8px' }}><strong>Stage 1:</strong> Software only. No hardware required.</li>
+            <li style={{ marginBottom: '8px' }}><strong>Stage 2:</strong> Upgraded Downpipe (Decat or High-Flow Cat) and a High-Flow Intake. A Front-Mount Intercooler (FMIC) is highly recommended in India's hot climate.</li>
+            <li style={{ marginBottom: '8px' }}><strong>Stage 3:</strong> Upgraded Turbocharger (Hybrid or Big Turbo), fueling upgrades (HPFP, LPFP), and often forged engine internals.</li>
+          </ul>
+        </div>
+      )
+    },
+    {
       id: 'fuel',
       title: 'Fuel & Octane in India',
       content: (
@@ -47,6 +74,62 @@ export default function Guides() {
           <div style={{ padding: '16px', background: 'rgba(230,57,70,0.1)', borderLeft: '4px solid var(--accent-red)', marginBottom: '16px' }}>
             <strong>Pro Tip:</strong> Never get a "97 Octane Map" if you plan to travel outside major cities. A 95 Octane map is the safest bet for India, as XP95 is widely available on highways now.
           </div>
+        </div>
+      )
+    },
+    {
+      id: 'dyno',
+      title: 'Reading a Dyno Graph',
+      content: (
+        <div style={{ color: 'var(--text-primary)', lineHeight: 1.7, fontSize: '1rem' }}>
+          <p style={{ marginBottom: '16px' }}>A dynamometer (dyno) measures the power output of your vehicle. However, not all dyno figures are created equal.</p>
+          <ul style={{ paddingLeft: '20px', color: 'var(--text-muted)' }}>
+            <li style={{ marginBottom: '8px' }}><strong>WHP vs Crank HP:</strong> Manufacturers advertise Crank HP (engine power). A dyno measures Wheel HP (WHP), which is lower due to drivetrain loss (usually 10-15%).</li>
+            <li style={{ marginBottom: '8px' }}><strong>The Curve Matters:</strong> Peak horsepower is just a number. A good tune provides a wide, smooth torque curve across the entire RPM range, rather than a spiky curve that drops off quickly.</li>
+            <li style={{ marginBottom: '8px' }}><strong>Correction Factors:</strong> Be wary of dyno sheets using SAE or uncorrected numbers in hot weather to inflate results. Always look for the delta (the difference between the baseline run and the tuned run on the exact same dyno).</li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      id: 'legal',
+      title: 'Legal & Insurance',
+      content: (
+        <div style={{ color: 'var(--text-primary)', lineHeight: 1.7, fontSize: '1rem' }}>
+          <p style={{ marginBottom: '16px' }}>Under Section 52 of the Indian Motor Vehicles Act, modifying a vehicle to deviate from the manufacturer's original specifications is illegal. However, the scene operates in a massive grey area.</p>
+          <ul style={{ paddingLeft: '20px', color: 'var(--text-muted)' }}>
+            <li style={{ marginBottom: '8px' }}><strong>ECU Tunes:</strong> These are software-based and invisible to physical inspections. They are widely considered the "safest" mod legally.</li>
+            <li style={{ marginBottom: '8px' }}><strong>Exhausts:</strong> Loud exhausts are the most heavily penalized modification by traffic police across Indian states.</li>
+            <li style={{ marginBottom: '8px' }}><strong>Insurance:</strong> If you are involved in a major accident and the insurance surveyor discovers an aftermarket downpipe or piggyback box, your claim will likely be rejected. Flash tunes are rarely detected by standard insurance surveyors.</li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      id: 'buying',
+      title: 'Buying Modified Cars',
+      content: (
+        <div style={{ color: 'var(--text-primary)', lineHeight: 1.7, fontSize: '1rem' }}>
+          <p style={{ marginBottom: '16px' }}>Buying a pre-tuned car can save you lakhs of rupees in parts, but it carries significant risk.</p>
+          <ul style={{ paddingLeft: '20px', color: 'var(--text-muted)' }}>
+            <li style={{ marginBottom: '8px' }}><strong>Who tuned it?</strong> Only buy cars tuned by reputable, known tuners in the community. Ask for the dyno sheets and logs.</li>
+            <li style={{ marginBottom: '8px' }}><strong>Service History:</strong> Tuned cars require oil changes every 5,000 to 7,000 km, not the factory 15,000 km. Verify the service records.</li>
+            <li style={{ marginBottom: '8px' }}><strong>Compression Test:</strong> Always get a compression test done on the engine cylinders before buying a heavily modified Stage 2 or Stage 3 car.</li>
+          </ul>
+        </div>
+      )
+    },
+    {
+      id: 'logs',
+      title: 'Datalogging 101',
+      content: (
+        <div style={{ color: 'var(--text-primary)', lineHeight: 1.7, fontSize: '1rem' }}>
+          <p style={{ marginBottom: '16px' }}>Datalogging is the process of recording the engine's sensor data during a wide-open throttle (WOT) pull. It is the only way to know if your tune is safe.</p>
+          <ul style={{ paddingLeft: '20px', color: 'var(--text-muted)' }}>
+            <li style={{ marginBottom: '8px' }}><strong>Ignition Timing Retard (Knock):</strong> The ECU will pull timing if it detects knock. You want to see zeroes across all cylinders. Consistent negative numbers mean the tune is too aggressive for the fuel.</li>
+            <li style={{ marginBottom: '8px' }}><strong>AFR (Air/Fuel Ratio):</strong> On a turbo car, you generally want to see AFRs drop into the mid-to-low 11s or 12s under full boost to keep the cylinders cool.</li>
+            <li style={{ marginBottom: '8px' }}><strong>IAT (Intake Air Temp):</strong> If your IATs climb rapidly during a pull, your intercooler is heat-soaking and you are losing power.</li>
+          </ul>
         </div>
       )
     }
