@@ -212,27 +212,30 @@ export default function BuildPlanner() {
     setBuildPhase('editing')
     setSelectedMods(prev => {
       const next = new Set(prev)
-      const isEcuMod = ['ecu_s1', 'ecu_s2', 'ecu_s1_pops', 'ecu_s2_pops'].includes(id)
-      const isTurboMod = ['hybrid_turbo', 'big_turbo'].includes(id)
+      
+      // Define mutually exclusive groups
+      const ecuMods = ['ecu_s1', 'ecu_s2', 'ecu_s1_pops', 'ecu_s2_pops']
+      const turboMods = ['hybrid_turbo', 'big_turbo']
+      const intakeMods = ['panel_filt', 'intake']
+      const exhaustSoundMods = ['catback', 'res_delete']
+      const suspensionMods = ['lowering_springs', 'coilovers', 'coilovers_hi']
+      const brakeFrictionMods = ['brake_pads', 'bbk']
+      
+      const removeGroup = (group) => group.forEach(m => next.delete(m))
       
       if (next.has(id)) {
         next.delete(id)
       } else {
-        if (isEcuMod) {
-          next.delete('ecu_s1')
-          next.delete('ecu_s2')
-          next.delete('ecu_s1_pops')
-          next.delete('ecu_s2_pops')
-        }
-        if (isTurboMod) {
-          next.delete('hybrid_turbo')
-          next.delete('big_turbo')
-        }
+        if (ecuMods.includes(id)) removeGroup(ecuMods)
+        if (turboMods.includes(id)) removeGroup(turboMods)
+        if (intakeMods.includes(id)) removeGroup(intakeMods)
+        if (exhaustSoundMods.includes(id)) removeGroup(exhaustSoundMods)
+        if (suspensionMods.includes(id)) removeGroup(suspensionMods)
+        if (brakeFrictionMods.includes(id)) removeGroup(brakeFrictionMods)
+        
         next.add(id)
       }
 
-      // Check if Stage 2/3 mod was added and fuel is 91 RON, then force update fuel
-      // We can't update state directly in here, so we will handle the fuel correction in a useEffect or inside the component body based on buildStats.
       return next
     })
   }
