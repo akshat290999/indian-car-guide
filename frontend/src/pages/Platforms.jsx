@@ -6,8 +6,8 @@ import { Search, ChevronDown, Check, X, GitCompare } from 'lucide-react'
 const DIFFICULTY = {
   'High': { label: 'Moderate', color: 'var(--status-yellow)', value: 2 },
   'Very High': { label: 'Expert', color: 'var(--status-orange)', value: 3 },
-  'Extreme': { label: 'Expert+', color: 'var(--status-red)', value: 4 },
-  'God-Tier': { label: 'God-Tier', color: 'var(--status-purple)', value: 5 },
+  'Advanced': { label: 'Advanced', color: 'var(--status-red)', value: 4 },
+  'Elite': { label: 'Elite', color: 'var(--status-purple)', value: 5 },
   'Medium': { label: 'Easy', color: 'var(--status-green)', value: 1 },
   'Medium-High': { label: 'Moderate', color: 'var(--status-yellow)', value: 2 },
 }
@@ -17,14 +17,14 @@ const POTENTIAL_PCT = {
   'High': 55,
   'Medium-High': 50,
   'Very High': 75,
-  'Extreme': 88,
-  'God-Tier': 100,
+  'Advanced': 88,
+  'Elite': 100,
 }
 
 const TAGS = {
   'vw-polo-tsi': { tag: '🏆 Most Popular', tagColor: 'var(--status-yellow)' },
   'skoda-octavia-vrs': { tag: '🔥 Best Value', tagColor: 'var(--status-red)' },
-  'bmw-m340i': { tag: '👑 God-Tier', tagColor: 'var(--status-purple)' },
+  'bmw-m340i': { tag: '👑 Elite', tagColor: 'var(--status-purple)' },
   'fiat-abarth-punto': { tag: '🇮🇳 India Icon', tagColor: 'var(--status-orange)' },
   'hyundai-i20-nline': { tag: '⭐ Rising Star', tagColor: 'var(--status-green)' },
   'porsche-911': { tag: '🏎️ Supercar', tagColor: 'var(--status-purple)' },

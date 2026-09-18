@@ -281,7 +281,7 @@ export default function Home() {
                 to={`/platform/${car.id}`}
                 className="premium-card"
                 style={{
-                  minWidth: '320px',
+                  width: '300px',
                   flex: '0 0 auto',
                   textDecoration: 'none',
                   overflow: 'hidden',
@@ -291,7 +291,7 @@ export default function Home() {
               >
                 <div style={{
                   width: '100%',
-                  height: '200px',
+                  height: '160px',
                   background: '#18181b',
                   overflow: 'hidden',
                   display: 'flex',
@@ -325,14 +325,14 @@ export default function Home() {
                       <p style={{ color: 'var(--text-primary)', fontWeight: 600, margin: '2px 0 0', fontSize: '1rem' }}>{car.stock_power}</p>
                     </div>
                     <div style={{
-                      background: car.potential === 'God-Tier'
+                      background: car.potential === 'Elite'
                         ? 'linear-gradient(135deg, rgba(239,68,68,0.2), rgba(249,115,22,0.2))'
-                        : car.potential === 'Extreme'
+                        : car.potential === 'Advanced'
                           ? 'rgba(59,130,246,0.15)'
                           : 'rgba(16,185,129,0.15)',
-                      color: car.potential === 'God-Tier'
+                      color: car.potential === 'Elite'
                         ? '#f97316'
-                        : car.potential === 'Extreme'
+                        : car.potential === 'Advanced'
                           ? '#60a5fa'
                           : '#34d399',
                       padding: '4px 12px',
