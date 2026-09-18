@@ -130,7 +130,7 @@ export default function PlatformDetail() {
                 </div>
                 <div className="premium-card" style={{ padding: '20px', borderLeft: '3px solid var(--status-orange)' }}>
                   <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '8px' }}>Drive</div>
-                  <div style={{ fontSize: '1.1rem', color: 'var(--text-primary)', fontWeight: '600' }}>FWD / AWD / RWD</div>
+                  <div style={{ fontSize: '1.1rem', color: 'var(--text-primary)', fontWeight: '600' }}>{data.drive || 'Unknown'}</div>
                 </div>
                 <div className="premium-card" style={{ padding: '20px', borderLeft: '3px solid var(--status-yellow)' }}>
                   <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: '8px' }}>Reliability</div>
